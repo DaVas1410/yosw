@@ -39,5 +39,14 @@
   "programa.categoria.mentorias": "Mentoring",
   "programa.categoria.social_networking": "Social & Networking",
   "programa.categoria.premiacion": "Awards",
-  "programa.categoria.academico_general": "General Academic"
+  "programa.categoria.academico_general": "General Academic",
+  "participantes.heading": "Participants",
+  "participantes.ver_todos": "See all",
+  "participantes.buscar": "Search by name",
+  "participantes.filtrar_eje": "Filter by pillar",
+  "participantes.filtrar_rol": "Filter by role",
+  "participantes.todos_ejes": "All pillars",
+  "participantes.todos_roles": "All roles",
+  "participantes.sin_resultados": "No participants match those filters.",
+  "participantes.volver": "Back to home"
 }

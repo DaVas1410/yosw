@@ -7,6 +7,7 @@ import About from '../../components/About.astro';
 import EjesSection from '../../components/EjesSection.astro';
 import ProgramTimeline from '../../components/timeline/ProgramTimeline.astro';
 import DataSection from '../../components/data/DataSection.astro';
+import ParticipantsPreview from '../../components/participants/ParticipantsPreview.astro';
 export function getStaticPaths() {
   return LOCALES.map((lang) => ({ params: { lang } }));
 }
@@ -19,4 +20,5 @@ const lang = Astro.params.lang as Locale;
   <EjesSection lang={lang} />
   <ProgramTimeline lang={lang} />
   <DataSection lang={lang} />
+  <ParticipantsPreview lang={lang} />
 </Base>

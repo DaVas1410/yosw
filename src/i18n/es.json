@@ -39,5 +39,14 @@
   "programa.categoria.mentorias": "Mentorías",
   "programa.categoria.social_networking": "Social y Networking",
   "programa.categoria.premiacion": "Premiación",
-  "programa.categoria.academico_general": "Académico general"
+  "programa.categoria.academico_general": "Académico general",
+  "participantes.heading": "Participantes",
+  "participantes.ver_todos": "Ver todos",
+  "participantes.buscar": "Buscar por nombre",
+  "participantes.filtrar_eje": "Filtrar por eje",
+  "participantes.filtrar_rol": "Filtrar por rol",
+  "participantes.todos_ejes": "Todos los ejes",
+  "participantes.todos_roles": "Todos los roles",
+  "participantes.sin_resultados": "No se encontraron participantes con esos filtros.",
+  "participantes.volver": "Volver al inicio"
 }

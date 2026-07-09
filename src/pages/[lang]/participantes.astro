@@ -1,0 +1,169 @@
+---
+import { LOCALES, type Locale, t } from '../../i18n';
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import ParticipantCard from '../../components/participants/ParticipantCard.astro';
+import participants from '../../data/participants.json';
+import ejes from '../../data/ejes.json';
+import type { Participant } from '../../data/schemas';
+
+export function getStaticPaths() {
+  return LOCALES.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Locale;
+const list = participants as Participant[];
+const roles = Array.from(new Set(list.map((p) => p.rol))).sort();
+---
+
+<Base lang={lang} title={`${t(lang, 'participantes.heading')} · ${t(lang, 'brand.short')}`}>
+  <Nav lang={lang} />
+
+  <main class="participantes-page">
+    <div class="participantes-page__inner">
+      <h1 class="participantes-page__heading">{t(lang, 'participantes.heading')}</h1>
+
+      {list.length > 0 ? (
+        <>
+          <div class="participantes-page__filters">
+            <input
+              type="search"
+              id="participantes-search"
+              class="participantes-page__search"
+              placeholder={t(lang, 'participantes.buscar')}
+              aria-label={t(lang, 'participantes.buscar')}
+            />
+            <select id="participantes-eje" class="participantes-page__select" aria-label={t(lang, 'participantes.filtrar_eje')}>
+              <option value="">{t(lang, 'participantes.todos_ejes')}</option>
+              {ejes.map((eje) => (
+                <option value={eje.id}>{eje.nombre[lang]}</option>
+              ))}
+            </select>
+            <select id="participantes-rol" class="participantes-page__select" aria-label={t(lang, 'participantes.filtrar_rol')}>
+              <option value="">{t(lang, 'participantes.todos_roles')}</option>
+              {roles.map((rol) => (
+                <option value={rol}>{rol}</option>
+              ))}
+            </select>
+          </div>
+
+          <div id="participantes-grid" class="participantes-page__grid">
+            {list.map((p) => (
+              <ParticipantCard lang={lang} participant={p} />
+            ))}
+          </div>
+
+          <p id="participantes-empty" class="participantes-page__empty" hidden>
+            {t(lang, 'participantes.sin_resultados')}
+          </p>
+        </>
+      ) : (
+        <p class="participantes-page__empty">{t(lang, 'stats.soon')}</p>
+      )}
+
+      <a class="participantes-page__back" href={`/${lang}#participantes`}>
+        {t(lang, 'participantes.volver')}
+      </a>
+    </div>
+  </main>
+</Base>
+
+{list.length > 0 && (
+  <script>
+    import { filterParticipants } from '../../components/participants/filter';
+
+    const search = document.getElementById('participantes-search') as HTMLInputElement | null;
+    const ejeSelect = document.getElementById('participantes-eje') as HTMLSelectElement | null;
+    const rolSelect = document.getElementById('participantes-rol') as HTMLSelectElement | null;
+    const grid = document.getElementById('participantes-grid');
+    const emptyState = document.getElementById('participantes-empty');
+
+    if (search && ejeSelect && rolSelect && grid && emptyState) {
+      const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-participant]'));
+      const list = cards.map((card) => ({
+        id: card.dataset.nombre ?? '',
+        nombre: card.dataset.nombre ?? '',
+        rol: card.dataset.rol ?? '',
+        eje: card.dataset.eje ? Number(card.dataset.eje) : null,
+        el: card,
+      }));
+
+      const applyFilters = () => {
+        const eje = ejeSelect.value ? Number(ejeSelect.value) : undefined;
+        const rol = rolSelect.value || undefined;
+        const query = search.value || undefined;
+        const matches = new Set(
+          filterParticipants(list as any, { eje, rol, query }).map((p: any) => p.el)
+        );
+        let visibleCount = 0;
+        for (const item of list) {
+          const visible = matches.has(item.el);
+          item.el.hidden = !visible;
+          if (visible) visibleCount += 1;
+        }
+        emptyState.hidden = visibleCount !== 0;
+      };
+
+      search.addEventListener('input', applyFilters);
+      ejeSelect.addEventListener('change', applyFilters);
+      rolSelect.addEventListener('change', applyFilters);
+    }
+  </script>
+)}
+
+<style>
+  .participantes-page {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+    min-height: 60vh;
+  }
+  .participantes-page__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 3);
+  }
+  .participantes-page__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .participantes-page__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--space));
+  }
+  .participantes-page__search,
+  .participantes-page__select {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    padding: calc(var(--space) / 2) var(--space);
+    border-radius: var(--radius);
+    border: 1px solid color-mix(in srgb, var(--color-muted) 40%, transparent);
+    background: var(--color-surface);
+    color: var(--color-text);
+  }
+  .participantes-page__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: calc(var(--space) * 2);
+  }
+  .participantes-page__empty {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .participantes-page__back {
+    align-self: flex-start;
+    font-family: var(--font-body);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .participantes-page__back:hover {
+    text-decoration: underline;
+  }
+</style>
