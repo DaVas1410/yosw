@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from '../i18n';
+import logo from '../assets/brand/logo.svg';
 
 interface Props {
   lang: Locale;
@@ -24,8 +25,8 @@ const links = [
 
 <header class="nav">
   <nav class="nav__bar">
-    <a class="nav__logo" href={`/${lang}`} aria-label="YOSW 2026">
-      <img src="/src/assets/brand/logo.svg" alt="YOSW 2026" width="160" height="24" />
+    <a class="nav__logo" href={`/${lang}`} aria-label={t(lang, 'brand.short')}>
+      <img src={logo.src} alt={t(lang, 'brand.short')} width="160" height="24" />
     </a>
     <ul class="nav__links">
       {links.map((link) => (

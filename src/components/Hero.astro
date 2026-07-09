@@ -12,7 +12,7 @@ const { lang } = Astro.props;
 
 <section class="hero">
   <div class="hero__inner">
-    <h1 class="hero__title">Yachay Open Science Week 2026</h1>
+    <h1 class="hero__title">{t(lang, 'brand.name')}</h1>
     <p class="hero__dates">{t(lang, 'hero.dates')}</p>
     <p class="hero__venue">{t(lang, 'hero.venue')}</p>
     <Countdown lang={lang} target={config.eventStart} />
