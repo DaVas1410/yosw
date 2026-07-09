@@ -1,0 +1,312 @@
+{
+  "evento": "Yachay Open Science Week (YOSW) 2026",
+  "leyenda_categorias": {
+    "inauguracion": "#2563EB",
+    "charlas": "#0EA5E9",
+    "mesas_abiertas": "#14B8A6",
+    "posters": "#8B5CF6",
+    "expos_jurados": "#F59E0B",
+    "mentorias": "#EC4899",
+    "social_networking": "#22C55E",
+    "premiacion": "#F43F5E",
+    "academico_general": "#64748B"
+  },
+  "dias": [
+    {
+      "fecha": "2026-08-22",
+      "dia_semana": "Domingo",
+      "eventos": []
+    },
+    {
+      "fecha": "2026-08-23",
+      "dia_semana": "Lunes",
+      "eventos": [
+        {
+          "titulo": "Inauguración",
+          "hora_inicio": "09:00",
+          "hora_fin": "10:00",
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": "Inauguración Ideathon",
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": "Inauguración de Galería de Posters",
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "posters"
+        },
+        {
+          "titulo": "Foro, Mesa Abierta",
+          "hora_inicio": "16:00",
+          "hora_fin": "17:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Mentorías Ideathon",
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-24",
+      "dia_semana": "Martes",
+      "eventos": [
+        {
+          "titulo": "Investigación, Innovación, Vinculación",
+          "hora_inicio": "09:00",
+          "hora_fin": "11:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Presentación Grupos de Investigación",
+          "hora_inicio": "11:00",
+          "hora_fin": "13:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Clubes",
+          "hora_inicio": "14:00",
+          "hora_fin": "18:00",
+          "categoria": "academico_general",
+          "nota": "Bloque general sin desglose confirmado en el calendario original"
+        },
+        {
+          "titulo": "Mentorías Ideathon",
+          "hora_inicio": "19:00",
+          "hora_fin": "21:15",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-25",
+      "dia_semana": "Miércoles",
+      "eventos": [
+        {
+          "titulo": "Charlas cortas (1-6)",
+          "hora_inicio": "09:00",
+          "hora_fin": "11:00",
+          "categoria": "charlas",
+          "subeventos": [
+            {"titulo": "Charla 1", "hora": "09:00"},
+            {"titulo": "Charla 2", "hora": "09:20"},
+            {"titulo": "Charla 3", "hora": "09:40"},
+            {"titulo": "Charla 4", "hora": "10:00"},
+            {"titulo": "Charla 5", "hora": "10:20"},
+            {"titulo": "Charla 6", "hora": "10:40"}
+          ]
+        },
+        {
+          "titulo": "Stands Estudiantes Grupos de Investigación",
+          "hora_inicio": "11:00",
+          "hora_fin": "13:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Almuerzo",
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Apertura Sesión de Posters",
+          "hora_inicio": "14:00",
+          "hora_fin": null,
+          "categoria": "posters"
+        },
+        {
+          "titulo": "Exposiciones Generales",
+          "hora_inicio": "14:30",
+          "hora_fin": "15:30",
+          "categoria": "posters"
+        },
+        {
+          "titulo": "Eje: IA, Data Science, HPC — Expos a Jurados",
+          "hora_inicio": "15:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados",
+          "nota": "Hora exacta cortada en la imagen original; verificar"
+        },
+        {
+          "titulo": "Eje: Bio, Med, X — Expos a Jurados",
+          "hora_inicio": "16:00",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": "Eje: Energías, Tierra, etc. — Expos a Jurados",
+          "hora_inicio": "16:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados",
+          "nota": "Hora exacta cortada en la imagen original; verificar"
+        },
+        {
+          "titulo": "Eje: Social — Expos a Jurados",
+          "hora_inicio": "17:00",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": "Eje: Teóricas — Expos a Jurados",
+          "hora_inicio": "17:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": "Mentorías Ideathon",
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-26",
+      "dia_semana": "Jueves",
+      "eventos": [
+        {
+          "titulo": "Alumni: Respecto a Ejes",
+          "hora_inicio": "09:00",
+          "hora_fin": "10:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Mesa Abierta Alumni",
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Alumni: Respecto a Ejes",
+          "hora_inicio": "11:00",
+          "hora_fin": "12:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Mesa Abierta Alumnis",
+          "hora_inicio": "12:00",
+          "hora_fin": "13:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Profes",
+          "hora_inicio": "14:00",
+          "hora_fin": "18:00",
+          "categoria": "academico_general",
+          "nota": "Bloque general sin desglose confirmado en el calendario original"
+        },
+        {
+          "titulo": "Mentorías Ideathon",
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-27",
+      "dia_semana": "Viernes",
+      "eventos": [
+        {
+          "titulo": "Charlas cortas (1-12)",
+          "hora_inicio": "09:00",
+          "hora_fin": "13:00",
+          "categoria": "charlas",
+          "subeventos": [
+            {"titulo": "Charla 1", "hora": "09:00"},
+            {"titulo": "Charla 2", "hora": "09:20"},
+            {"titulo": "Charla 3", "hora": "09:40"},
+            {"titulo": "Charla 4", "hora": "10:00"},
+            {"titulo": "Charla 5", "hora": "10:20"},
+            {"titulo": "Charla 6", "hora": "10:40"},
+            {"titulo": "Charla 7", "hora": "11:00"},
+            {"titulo": "Charla 8", "hora": "11:20"},
+            {"titulo": "Charla 9", "hora": "11:40"},
+            {"titulo": "Charla 10", "hora": "12:00"},
+            {"titulo": "Charla 11", "hora": "12:20"},
+            {"titulo": "Charla 12", "hora": "12:40"}
+          ]
+        },
+        {
+          "titulo": "Almuerzo",
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": "Mesa Abierta: Social, Vinculación, Platea",
+          "hora_inicio": "14:00",
+          "hora_fin": "15:00",
+          "categoria": "mesas_abiertas",
+          "nota": "El nombre 'Platea/Plateu' estaba cortado en la imagen original; verificar"
+        },
+        {
+          "titulo": "Mesa Abierta Eje",
+          "hora_inicio": "15:00",
+          "hora_fin": "16:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Mesa Abierta Eje",
+          "hora_inicio": "16:00",
+          "hora_fin": "17:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Mesa Abierta Eje",
+          "hora_inicio": "17:00",
+          "hora_fin": "18:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": "Mentorías Ideathon",
+          "hora_inicio": "19:00",
+          "hora_fin": "21:15",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-08-28",
+      "dia_semana": "Sábado",
+      "eventos": [
+        {
+          "titulo": "Apertura",
+          "hora_inicio": "09:00",
+          "hora_fin": null,
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": "Sesión de Posters",
+          "hora_inicio": "09:30",
+          "hora_fin": null,
+          "categoria": "posters"
+        },
+        {
+          "titulo": "Premiación Ideathon",
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "premiacion"
+        },
+        {
+          "titulo": "Premiación Posters",
+          "hora_inicio": "11:00",
+          "hora_fin": "12:00",
+          "categoria": "premiacion"
+        },
+        {
+          "titulo": "Networking",
+          "hora_inicio": "12:00",
+          "hora_fin": "13:00",
+          "categoria": "social_networking"
+        }
+      ]
+    }
+  ]
+}
