@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.astro';
 interface Props { lang: 'es' | 'en'; title: string; }
 const { lang, title } = Astro.props;
 ---
@@ -10,5 +11,8 @@ const { lang, title } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
   </head>
-  <body><slot /></body>
+  <body>
+    <Nav lang={lang} />
+    <slot />
+  </body>
 </html>
