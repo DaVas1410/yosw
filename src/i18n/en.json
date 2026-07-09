@@ -15,5 +15,10 @@
   "countdown.hours": "hours",
   "countdown.min": "min",
   "countdown.sec": "sec",
-  "stats.soon": "Coming soon"
+  "stats.soon": "Coming soon",
+  "about.intro": "Yachay Open Science Week 2026 is an interdisciplinary open-science congress bringing together students, researchers, and innovators at Yachay Tech from October 19–24, 2026.",
+  "about.objective": "Our goal is to drive open collaboration across disciplines, connecting scientific and technological talent from Ecuador and the region.",
+  "about.stat.ejes": "Thematic pillars",
+  "about.stat.dias": "Days of activities",
+  "about.stat.actividades": "Activities"
 }
