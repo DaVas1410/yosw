@@ -1,0 +1,115 @@
+---
+import { t, type Locale } from '../../i18n';
+import config from '../../data/config.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const sheetUrl = config.liveStatsSheetUrl;
+const soonLabel = t(lang, 'stats.soon');
+
+const tiles = [
+  { metric: 'attendees', label: t(lang, 'stats.attendees') },
+  { metric: 'posters', label: t(lang, 'stats.posters') },
+  { metric: 'ideaton_teams', label: t(lang, 'stats.ideaton_teams') },
+  { metric: 'participants', label: t(lang, 'stats.participants') },
+];
+---
+
+<div class="live-stats" data-sheet-url={sheetUrl} data-soon-label={soonLabel}>
+  {tiles.map((tile) => (
+    <div class="live-stats__tile" data-metric={tile.metric}>
+      <span class="live-stats__value" data-role="value">{soonLabel}</span>
+      <span class="live-stats__label">{tile.label}</span>
+    </div>
+  ))}
+</div>
+
+<style>
+  .live-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: calc(var(--space) * 2);
+  }
+  .live-stats__tile {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: calc(var(--space) * 2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: calc(var(--space) / 2);
+    text-align: center;
+  }
+  .live-stats__value {
+    font-family: var(--font-display);
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  .live-stats__label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+</style>
+
+<script>
+  import { parseSheetRows } from './liveStats';
+
+  function animateTo(el: HTMLElement, target: number) {
+    const duration = 800;
+    const start = performance.now();
+    function frame(now: number) {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.round(target * progress);
+      el.textContent = value.toLocaleString();
+      if (progress < 1) requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  async function init() {
+    const root = document.querySelector<HTMLElement>('.live-stats');
+    if (!root) return;
+    const sheetUrl = root.dataset.sheetUrl;
+    const soonLabel = root.dataset.soonLabel ?? '';
+    const tiles = root.querySelectorAll<HTMLElement>('.live-stats__tile');
+
+    const showSoon = () => {
+      tiles.forEach((tile) => {
+        const valueEl = tile.querySelector<HTMLElement>('[data-role="value"]');
+        if (valueEl) valueEl.textContent = soonLabel;
+      });
+    };
+
+    if (!sheetUrl) {
+      showSoon();
+      return;
+    }
+
+    try {
+      const res = await fetch(sheetUrl);
+      if (!res.ok) throw new Error('fetch failed');
+      const json = await res.json();
+      const counts = parseSheetRows(json);
+      tiles.forEach((tile) => {
+        const metric = tile.dataset.metric ?? '';
+        const valueEl = tile.querySelector<HTMLElement>('[data-role="value"]');
+        if (!valueEl) return;
+        const value = counts[metric];
+        if (typeof value === 'number' && !Number.isNaN(value)) {
+          animateTo(valueEl, value);
+        } else {
+          valueEl.textContent = soonLabel;
+        }
+      });
+    } catch {
+      showSoon();
+    }
+  }
+
+  init();
+</script>
