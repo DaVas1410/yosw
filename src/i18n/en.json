@@ -20,5 +20,9 @@
   "about.objective": "Our goal is to drive open collaboration across disciplines, connecting scientific and technological talent from Ecuador and the region.",
   "about.stat.ejes": "Thematic pillars",
   "about.stat.dias": "Days of activities",
-  "about.stat.actividades": "Activities"
+  "about.stat.actividades": "Activities",
+  "programa.heading": "Program",
+  "programa.filtrar": "Filter by category",
+  "programa.todos": "All",
+  "programa.sin_hora_fin": "onward"
 }

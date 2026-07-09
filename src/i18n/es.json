@@ -20,5 +20,9 @@
   "about.objective": "Nuestro objetivo es impulsar la colaboración abierta entre disciplinas, conectando talento científico y tecnológico de Ecuador y la región.",
   "about.stat.ejes": "Ejes temáticos",
   "about.stat.dias": "Días de actividades",
-  "about.stat.actividades": "Actividades"
+  "about.stat.actividades": "Actividades",
+  "programa.heading": "Programa",
+  "programa.filtrar": "Filtrar por categoría",
+  "programa.todos": "Todos",
+  "programa.sin_hora_fin": "en adelante"
 }

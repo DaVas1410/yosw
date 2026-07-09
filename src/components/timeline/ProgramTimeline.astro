@@ -1,0 +1,205 @@
+---
+import { t, type Locale } from '../../i18n';
+import calendario from '../../data/calendario.json';
+import { toTimeline } from './transform';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const days = toTimeline(calendario, lang);
+const legend = Object.keys(calendario.leyenda_categorias);
+
+function formatLabel(categoria: string): string {
+  return categoria
+    .split('_')
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(' ');
+}
+---
+
+<section id="programa" class="programa">
+  <div class="programa__inner">
+    <h2 class="programa__heading">{t(lang, 'programa.heading')}</h2>
+
+    <div class="programa__filtros" role="group" aria-label={t(lang, 'programa.filtrar')}>
+      <button type="button" class="programa__filtro is-active" data-categoria="todos">
+        {t(lang, 'programa.todos')}
+      </button>
+      {legend.map((categoria) => (
+        <button
+          type="button"
+          class="programa__filtro"
+          data-categoria={categoria}
+          style={`--btn-color: var(--cat-${categoria})`}
+        >
+          <span class="programa__filtro-dot" style={`background: var(--cat-${categoria})`}></span>
+          {formatLabel(categoria)}
+        </button>
+      ))}
+    </div>
+
+    <div class="programa__scroll">
+      <div class="programa__grid">
+        {days.map((day) => (
+          <div class="programa__col">
+            <div class="programa__col-header">
+              <span class="programa__col-dia">{day.dia_semana}</span>
+              <span class="programa__col-fecha">{day.fecha}</span>
+            </div>
+            <div class="programa__eventos">
+              {day.events.map((ev) => (
+                <article
+                  class="programa__evento"
+                  data-categoria={ev.categoria}
+                  style={`--event-color: ${ev.color}`}
+                >
+                  <div class="programa__evento-hora">
+                    {ev.start}{ev.end ? `–${ev.end}` : ` ${t(lang, 'programa.sin_hora_fin')}`}
+                    {ev.nota && <span class="programa__evento-nota" title={ev.nota}>⚠</span>}
+                  </div>
+                  <div class="programa__evento-titulo">{ev.titulo}</div>
+                </article>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .programa {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+  }
+  .programa__inner {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 3);
+  }
+  .programa__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .programa__filtros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--space));
+  }
+  .programa__filtro {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--space) / 2);
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-muted);
+    border-radius: 999px;
+    padding: calc(var(--space) / 2) calc(var(--space) * 1.25);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .programa__filtro.is-active {
+    border-color: var(--color-accent);
+    background: var(--color-accent);
+    color: #fff;
+  }
+  .programa__filtro-dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .programa__scroll {
+    overflow-x: auto;
+    max-width: 100%;
+  }
+  .programa__grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(220px, 1fr);
+    gap: calc(var(--space) * 2);
+    padding-bottom: calc(var(--space));
+  }
+  .programa__col {
+    background: var(--color-surface);
+    border-radius: var(--radius);
+    padding: calc(var(--space) * 1.5);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space));
+    min-width: 220px;
+  }
+  .programa__col-header {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--color-muted);
+    padding-bottom: calc(var(--space) / 2);
+  }
+  .programa__col-dia {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  .programa__col-fecha {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+  .programa__eventos {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space));
+  }
+  .programa__evento {
+    background: var(--color-bg);
+    border-left: 4px solid var(--event-color);
+    border-radius: calc(var(--radius) / 2);
+    padding: calc(var(--space) * 0.75) calc(var(--space));
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) / 4);
+  }
+  .programa__evento.is-hidden {
+    display: none;
+  }
+  .programa__evento-hora {
+    font-size: 0.75rem;
+    color: var(--event-color);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: calc(var(--space) / 4);
+  }
+  .programa__evento-nota {
+    cursor: help;
+  }
+  .programa__evento-titulo {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+</style>
+
+<script>
+  const filtros = document.querySelectorAll<HTMLButtonElement>('.programa__filtro');
+  const eventos = document.querySelectorAll<HTMLElement>('.programa__evento');
+
+  filtros.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filtros.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+      const categoria = btn.dataset.categoria;
+      eventos.forEach((ev) => {
+        const match = categoria === 'todos' || ev.dataset.categoria === categoria;
+        ev.classList.toggle('is-hidden', !match);
+      });
+    });
+  });
+</script>
