@@ -24,5 +24,14 @@
   "programa.heading": "Programa",
   "programa.filtrar": "Filtrar por categoría",
   "programa.todos": "Todos",
-  "programa.sin_hora_fin": "en adelante"
+  "programa.sin_hora_fin": "en adelante",
+  "programa.categoria.inauguracion": "Inauguración",
+  "programa.categoria.charlas": "Charlas",
+  "programa.categoria.mesas_abiertas": "Mesas abiertas",
+  "programa.categoria.posters": "Pósters",
+  "programa.categoria.expos_jurados": "Exposiciones a jurados",
+  "programa.categoria.mentorias": "Mentorías",
+  "programa.categoria.social_networking": "Social y Networking",
+  "programa.categoria.premiacion": "Premiación",
+  "programa.categoria.academico_general": "Académico general"
 }

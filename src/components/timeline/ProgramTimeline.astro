@@ -10,13 +10,6 @@ interface Props {
 const { lang } = Astro.props;
 const days = toTimeline(calendario, lang);
 const legend = Object.keys(calendario.leyenda_categorias);
-
-function formatLabel(categoria: string): string {
-  return categoria
-    .split('_')
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
-    .join(' ');
-}
 ---
 
 <section id="programa" class="programa">
@@ -35,7 +28,7 @@ function formatLabel(categoria: string): string {
           style={`--btn-color: var(--cat-${categoria})`}
         >
           <span class="programa__filtro-dot" style={`background: var(--cat-${categoria})`}></span>
-          {formatLabel(categoria)}
+          {t(lang, `programa.categoria.${categoria}`)}
         </button>
       ))}
     </div>

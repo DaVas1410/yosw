@@ -24,5 +24,14 @@
   "programa.heading": "Program",
   "programa.filtrar": "Filter by category",
   "programa.todos": "All",
-  "programa.sin_hora_fin": "onward"
+  "programa.sin_hora_fin": "onward",
+  "programa.categoria.inauguracion": "Opening",
+  "programa.categoria.charlas": "Talks",
+  "programa.categoria.mesas_abiertas": "Open Panels",
+  "programa.categoria.posters": "Posters",
+  "programa.categoria.expos_jurados": "Judged Presentations",
+  "programa.categoria.mentorias": "Mentoring",
+  "programa.categoria.social_networking": "Social & Networking",
+  "programa.categoria.premiacion": "Awards",
+  "programa.categoria.academico_general": "General Academic"
 }
