@@ -19,6 +19,7 @@ const groups = tiers.map((tier) => ({
 }));
 
 const email = config.social.email;
+const proposalUrl = config.sponsorshipProposalUrl;
 ---
 
 <section id="sponsors" class="sponsors">
@@ -60,7 +61,9 @@ const email = config.social.email;
       ) : (
         <span class="sponsors__contact sponsors__contact--fallback">{t(lang, 'sponsors.contact.fallback')}</span>
       )}
-      <a class="sponsors__download" href="/propuesta-yosw-2026.pdf">{t(lang, 'sponsors.download')}</a>
+      {proposalUrl && (
+        <a class="sponsors__download" href={proposalUrl}>{t(lang, 'sponsors.download')}</a>
+      )}
     </div>
   </div>
 </section>

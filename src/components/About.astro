@@ -1,5 +1,6 @@
 ---
 import { t, type Locale } from '../i18n';
+import calendario from '../data/calendario.json';
 
 interface Props {
   lang: Locale;
@@ -7,10 +8,15 @@ interface Props {
 
 const { lang } = Astro.props;
 
+const totalActividades = calendario.dias.reduce(
+  (sum, dia) => sum + dia.eventos.length,
+  0
+);
+
 const stats = [
   { value: '5', label: t(lang, 'about.stat.ejes') },
   { value: '6', label: t(lang, 'about.stat.dias') },
-  { value: '40+', label: t(lang, 'about.stat.actividades') },
+  { value: String(totalActividades), label: t(lang, 'about.stat.actividades') },
 ];
 ---
 

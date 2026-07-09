@@ -36,6 +36,7 @@ export const ConfigSchema = z.object({
   forms: z.object({ attend: z.string(), poster: z.string(), ideaton: z.string() }),
   liveStatsSheetUrl: z.string(),
   social: z.object({ instagram: z.string(), email: z.string() }),
+  sponsorshipProposalUrl: z.string(),
 });
 
 export type Evento = z.infer<typeof Evento>;
