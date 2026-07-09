@@ -19,14 +19,14 @@ Primary language of the content is **Spanish**. Preserve Spanish when editing ex
 - `hora_fin: null` and `nota` fields mark unconfirmed data — do not silently "clean up" these; they are intentional flags.
 - Times are 24-hour `"HH:MM"` strings; dates are `YYYY-MM-DD`.
 
-## IMPORTANT: known data discrepancy
+## IMPORTANT: known data discrepancy (reconciled)
 
-The two files disagree on the event dates and must be reconciled before either is treated as final:
+The root files historically disagreed on the event dates:
 
 - `Propuesta_OSW_v3.docx` states **23–28 November 2026** (and internally references activities as if that week).
-- `calendario_yosw.json` uses **22–28 August 2026**.
+- `calendario_yosw.json` uses **22–28 August 2026** (including an empty opening Sunday).
 
-The day-of-week → activity structure is otherwise parallel between them. When editing either file, confirm which date range is authoritative rather than assuming, and flag the mismatch if it is still unresolved.
+**Reconciliation:** **19–24 October 2026** (Mon–Sat) is the authoritative date range for the website. `src/data/calendario.json` reflects this range — the same weekday → activity structure shifted onto Oct 19 (Mon) … Oct 24 (Sat), with the empty Sunday dropped and every `titulo` converted to a `{ es, en }` bilingual object. `Propuesta_OSW_v3.docx` and the root `calendario_yosw.json` remain historical source documents only; do not treat their dates as current.
 
 ## Domain glossary (from the proposal)
 

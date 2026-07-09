@@ -1,0 +1,7 @@
+[
+  {"id":1,"nombre":{"es":"IA, Ciencia de Datos y HPC","en":"AI, Data Science & HPC"},"descripcion":{"es":"","en":""},"color":"var(--color-eje-1)"},
+  {"id":2,"nombre":{"es":"Salud Digital, Bioingeniería e Interoperabilidad Clínica","en":"Digital Health, Bioengineering & Clinical Interoperability"},"descripcion":{"es":"","en":""},"color":"var(--color-eje-2)"},
+  {"id":3,"nombre":{"es":"Sostenibilidad, Producción y Territorio Inteligente","en":"Sustainability, Production & Smart Territory"},"descripcion":{"es":"","en":""},"color":"var(--color-eje-3)"},
+  {"id":4,"nombre":{"es":"Sociedad Digital: Gobierno, Educación e Identidad","en":"Digital Society: Government, Education & Identity"},"descripcion":{"es":"","en":""},"color":"var(--color-eje-4)"},
+  {"id":5,"nombre":{"es":"Ciencias Fundamentales y Computación Teórica","en":"Fundamental Sciences & Theoretical Computing"},"descripcion":{"es":"","en":""},"color":"var(--color-eje-5)"}
+]

@@ -1,0 +1,307 @@
+{
+  "evento": "Yachay Open Science Week (YOSW) 2026",
+  "leyenda_categorias": {
+    "inauguracion": "#2563EB",
+    "charlas": "#0EA5E9",
+    "mesas_abiertas": "#14B8A6",
+    "posters": "#8B5CF6",
+    "expos_jurados": "#F59E0B",
+    "mentorias": "#EC4899",
+    "social_networking": "#22C55E",
+    "premiacion": "#F43F5E",
+    "academico_general": "#64748B"
+  },
+  "dias": [
+    {
+      "fecha": "2026-10-19",
+      "dia_semana": "Lunes",
+      "eventos": [
+        {
+          "titulo": { "es": "Inauguración", "en": "Opening Ceremony" },
+          "hora_inicio": "09:00",
+          "hora_fin": "10:00",
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": { "es": "Inauguración Ideathon", "en": "Ideathon Opening" },
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": { "es": "Inauguración de Galería de Posters", "en": "Poster Gallery Opening" },
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "posters"
+        },
+        {
+          "titulo": { "es": "Foro, Mesa Abierta", "en": "Forum, Open Panel" },
+          "hora_inicio": "16:00",
+          "hora_fin": "17:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-20",
+      "dia_semana": "Martes",
+      "eventos": [
+        {
+          "titulo": { "es": "Investigación, Innovación, Vinculación", "en": "Research, Innovation, Outreach" },
+          "hora_inicio": "09:00",
+          "hora_fin": "11:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Presentación Grupos de Investigación", "en": "Research Groups Presentation" },
+          "hora_inicio": "11:00",
+          "hora_fin": "13:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Clubes", "en": "Clubs" },
+          "hora_inicio": "14:00",
+          "hora_fin": "18:00",
+          "categoria": "academico_general",
+          "nota": "Bloque general sin desglose confirmado en el calendario original"
+        },
+        {
+          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "hora_inicio": "19:00",
+          "hora_fin": "21:15",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-21",
+      "dia_semana": "Miércoles",
+      "eventos": [
+        {
+          "titulo": { "es": "Charlas cortas (1-6)", "en": "Short Talks (1-6)" },
+          "hora_inicio": "09:00",
+          "hora_fin": "11:00",
+          "categoria": "charlas",
+          "subeventos": [
+            { "titulo": "Charla 1", "hora": "09:00" },
+            { "titulo": "Charla 2", "hora": "09:20" },
+            { "titulo": "Charla 3", "hora": "09:40" },
+            { "titulo": "Charla 4", "hora": "10:00" },
+            { "titulo": "Charla 5", "hora": "10:20" },
+            { "titulo": "Charla 6", "hora": "10:40" }
+          ]
+        },
+        {
+          "titulo": { "es": "Stands Estudiantes Grupos de Investigación", "en": "Student Research Groups Booths" },
+          "hora_inicio": "11:00",
+          "hora_fin": "13:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Almuerzo", "en": "Lunch" },
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Apertura Sesión de Posters", "en": "Poster Session Opening" },
+          "hora_inicio": "14:00",
+          "hora_fin": null,
+          "categoria": "posters"
+        },
+        {
+          "titulo": { "es": "Exposiciones Generales", "en": "General Exhibitions" },
+          "hora_inicio": "14:30",
+          "hora_fin": "15:30",
+          "categoria": "posters"
+        },
+        {
+          "titulo": { "es": "Eje: IA, Data Science, HPC — Expos a Jurados", "en": "Track: AI, Data Science, HPC — Judged Presentations" },
+          "hora_inicio": "15:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados",
+          "nota": "Hora exacta cortada en la imagen original; verificar"
+        },
+        {
+          "titulo": { "es": "Eje: Bio, Med, X — Expos a Jurados", "en": "Track: Bio, Med, X — Judged Presentations" },
+          "hora_inicio": "16:00",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": { "es": "Eje: Energías, Tierra, etc. — Expos a Jurados", "en": "Track: Energy, Earth, etc. — Judged Presentations" },
+          "hora_inicio": "16:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados",
+          "nota": "Hora exacta cortada en la imagen original; verificar"
+        },
+        {
+          "titulo": { "es": "Eje: Social — Expos a Jurados", "en": "Track: Social — Judged Presentations" },
+          "hora_inicio": "17:00",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": { "es": "Eje: Teóricas — Expos a Jurados", "en": "Track: Theoretical — Judged Presentations" },
+          "hora_inicio": "17:30",
+          "hora_fin": null,
+          "categoria": "expos_jurados"
+        },
+        {
+          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-22",
+      "dia_semana": "Jueves",
+      "eventos": [
+        {
+          "titulo": { "es": "Alumni: Respecto a Ejes", "en": "Alumni: On the Thematic Tracks" },
+          "hora_inicio": "09:00",
+          "hora_fin": "10:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta Alumni", "en": "Alumni Open Panel" },
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Alumni: Respecto a Ejes", "en": "Alumni: On the Thematic Tracks" },
+          "hora_inicio": "11:00",
+          "hora_fin": "12:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta Alumnis", "en": "Alumni Open Panel" },
+          "hora_inicio": "12:00",
+          "hora_fin": "13:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Profes", "en": "Faculty" },
+          "hora_inicio": "14:00",
+          "hora_fin": "18:00",
+          "categoria": "academico_general",
+          "nota": "Bloque general sin desglose confirmado en el calendario original"
+        },
+        {
+          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "hora_inicio": "19:00",
+          "hora_fin": "21:00",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-23",
+      "dia_semana": "Viernes",
+      "eventos": [
+        {
+          "titulo": { "es": "Charlas cortas (1-12)", "en": "Short Talks (1-12)" },
+          "hora_inicio": "09:00",
+          "hora_fin": "13:00",
+          "categoria": "charlas",
+          "subeventos": [
+            { "titulo": "Charla 1", "hora": "09:00" },
+            { "titulo": "Charla 2", "hora": "09:20" },
+            { "titulo": "Charla 3", "hora": "09:40" },
+            { "titulo": "Charla 4", "hora": "10:00" },
+            { "titulo": "Charla 5", "hora": "10:20" },
+            { "titulo": "Charla 6", "hora": "10:40" },
+            { "titulo": "Charla 7", "hora": "11:00" },
+            { "titulo": "Charla 8", "hora": "11:20" },
+            { "titulo": "Charla 9", "hora": "11:40" },
+            { "titulo": "Charla 10", "hora": "12:00" },
+            { "titulo": "Charla 11", "hora": "12:20" },
+            { "titulo": "Charla 12", "hora": "12:40" }
+          ]
+        },
+        {
+          "titulo": { "es": "Almuerzo", "en": "Lunch" },
+          "hora_inicio": "13:00",
+          "hora_fin": "14:00",
+          "categoria": "academico_general"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta: Social, Vinculación, Platea", "en": "Open Panel: Social, Outreach, Platea" },
+          "hora_inicio": "14:00",
+          "hora_fin": "15:00",
+          "categoria": "mesas_abiertas",
+          "nota": "El nombre 'Platea/Plateu' estaba cortado en la imagen original; verificar"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta Eje", "en": "Track Open Panel" },
+          "hora_inicio": "15:00",
+          "hora_fin": "16:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta Eje", "en": "Track Open Panel" },
+          "hora_inicio": "16:00",
+          "hora_fin": "17:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Mesa Abierta Eje", "en": "Track Open Panel" },
+          "hora_inicio": "17:00",
+          "hora_fin": "18:00",
+          "categoria": "mesas_abiertas"
+        },
+        {
+          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "hora_inicio": "19:00",
+          "hora_fin": "21:15",
+          "categoria": "mentorias"
+        }
+      ]
+    },
+    {
+      "fecha": "2026-10-24",
+      "dia_semana": "Sábado",
+      "eventos": [
+        {
+          "titulo": { "es": "Apertura", "en": "Opening" },
+          "hora_inicio": "09:00",
+          "hora_fin": null,
+          "categoria": "inauguracion"
+        },
+        {
+          "titulo": { "es": "Sesión de Posters", "en": "Poster Session" },
+          "hora_inicio": "09:30",
+          "hora_fin": null,
+          "categoria": "posters"
+        },
+        {
+          "titulo": { "es": "Premiación Ideathon", "en": "Ideathon Awards" },
+          "hora_inicio": "10:00",
+          "hora_fin": "11:00",
+          "categoria": "premiacion"
+        },
+        {
+          "titulo": { "es": "Premiación Posters", "en": "Poster Awards" },
+          "hora_inicio": "11:00",
+          "hora_fin": "12:00",
+          "categoria": "premiacion"
+        },
+        {
+          "titulo": { "es": "Networking", "en": "Networking" },
+          "hora_inicio": "12:00",
+          "hora_fin": "13:00",
+          "categoria": "social_networking"
+        }
+      ]
+    }
+  ]
+}
