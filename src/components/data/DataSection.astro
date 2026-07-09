@@ -21,11 +21,15 @@ const bars = Object.entries(counts)
   }));
 ---
 
-<section id="datos" class="datos">
-  <div class="datos__inner">
-    <h2 class="datos__heading">{t(lang, 'datos.heading')}</h2>
+<section id="datos" class="section datos">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">{t(lang, 'nav.datos')}</span>
+      <h2 class="section__title">{t(lang, 'datos.heading')}</h2>
+      <div class="divider"></div>
+    </div>
 
-    <div class="datos__chart">
+    <div class="card datos__chart" data-reveal>
       <h3 class="datos__chart-title">{t(lang, 'datos.categorias')}</h3>
       <div class="datos__bars">
         {bars.map((bar) => (
@@ -34,7 +38,8 @@ const bars = Object.entries(counts)
             <div class="datos__bar-track">
               <div
                 class="datos__bar-fill"
-                style={`width: ${bar.pct}%; background: var(--cat-${bar.categoria});`}
+                data-pct={bar.pct}
+                style={`background: var(--cat-${bar.categoria});`}
               ></div>
             </div>
             <span class="datos__bar-count">{bar.count}</span>
@@ -48,66 +53,71 @@ const bars = Object.entries(counts)
 </section>
 
 <style>
-  .datos {
-    background: var(--color-bg);
-    color: var(--color-text);
-    padding: calc(var(--space) * 8) calc(var(--space) * 3);
-  }
-  .datos__inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 4);
-  }
-  .datos__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    margin: 0;
-  }
   .datos__chart {
+    padding: clamp(1.5rem, 4vw, 2.5rem);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space) * 1.5);
+    gap: calc(var(--space) * 2);
   }
+  .datos__chart:hover { transform: none; }
   .datos__chart-title {
-    font-family: var(--font-body);
-    font-size: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
     font-weight: 600;
-    color: var(--color-muted);
+    color: var(--color-text);
     margin: 0;
   }
   .datos__bars {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space));
+    gap: calc(var(--space) * 1.4);
   }
   .datos__bar-row {
     display: grid;
-    grid-template-columns: minmax(120px, 180px) 1fr auto;
+    grid-template-columns: minmax(120px, 190px) 1fr auto;
     align-items: center;
-    gap: calc(var(--space));
+    gap: calc(var(--space) * 1.5);
   }
   .datos__bar-label {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
   .datos__bar-track {
-    background: var(--color-surface);
+    background: color-mix(in srgb, var(--color-muted) 16%, transparent);
     border-radius: 999px;
     overflow: hidden;
-    height: 0.9rem;
+    height: 0.85rem;
   }
   .datos__bar-fill {
     height: 100%;
+    width: 0;
     border-radius: 999px;
+    transition: width 1.1s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .datos__bar-count {
-    font-family: var(--font-body);
-    font-size: 0.85rem;
-    color: var(--color-muted);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text);
     min-width: 1.5rem;
     text-align: right;
   }
+  @media (max-width: 560px) {
+    .datos__bar-row { grid-template-columns: 1fr auto; }
+    .datos__bar-label { grid-column: 1 / -1; }
+  }
 </style>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (!e.isIntersecting) continue;
+      const fills = e.target.querySelectorAll<HTMLElement>('.datos__bar-fill');
+      fills.forEach((f, i) => {
+        setTimeout(() => { f.style.width = (f.dataset.pct || '0') + '%'; }, i * 70);
+      });
+      io.unobserve(e.target);
+    }
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.datos__bars').forEach((el) => io.observe(el));
+</script>

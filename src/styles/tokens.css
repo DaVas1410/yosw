@@ -1,17 +1,62 @@
 :root {
-  --color-bg: #0b1120;
-  --color-surface: #131c31;
-  --color-text: #e8edf7;
-  --color-muted: #94a3b8;
-  --color-accent: #2563eb;
-  /* eje colors (placeholder — brand kit overrides) */
-  --color-eje-1: #0ea5e9; --color-eje-2: #14b8a6; --color-eje-3: #22c55e;
-  --color-eje-4: #8b5cf6; --color-eje-5: #f59e0b;
-  /* schedule categories (mirror leyenda_categorias) */
-  --cat-inauguracion: #2563eb; --cat-charlas: #0ea5e9; --cat-mesas_abiertas: #14b8a6;
-  --cat-posters: #8b5cf6; --cat-expos_jurados: #f59e0b; --cat-mentorias: #ec4899;
-  --cat-social_networking: #22c55e; --cat-premiacion: #f43f5e; --cat-academico_general: #64748b;
-  --font-display: system-ui, 'Segoe UI', sans-serif;
-  --font-body: system-ui, 'Segoe UI', sans-serif;
-  --radius: 12px; --space: 8px;
+  /* ---- Light base, Yachay Tech institutional palette ---- */
+  --color-bg: transparent;              /* sections reveal the 3D backdrop */
+  --color-page: #f5f7fa;                /* real page base behind the canvas */
+  --color-surface: rgba(255, 255, 255, 0.74); /* frosted glass cards */
+  --color-surface-solid: #ffffff;
+  --color-text: #16222b;
+  --color-muted: #5a6773;
+  --color-border: rgba(20, 35, 45, 0.12);
+
+  /* Yachay institutional brand palette (9) */
+  --y-red:     #96332b;
+  --y-orange:  #ba6f3a;
+  --y-gold:    #c09e27;
+  --y-yellow:  #cfab2a;
+  --y-green:   #619745;
+  --y-blue:    #328ab5;
+  --y-teal:    #1f8e8b;
+  --y-purple:  #805794;
+  --y-cyan:    #3197ad;
+
+  --color-accent: var(--y-blue);
+  --color-accent-2: var(--y-teal);
+
+  /* legacy accent aliases kept so older refs still resolve */
+  --c-cyan: var(--y-cyan);
+  --c-violet: var(--y-purple);
+  --c-magenta: var(--y-red);
+  --c-lime: var(--y-green);
+
+  /* gradients */
+  --grad-brand: linear-gradient(120deg, #1f8e8b 0%, #328ab5 55%, #805794 100%);
+  --grad-spectrum: linear-gradient(100deg,
+    #328ab5 0%, #3197ad 16%, #1f8e8b 30%, #619745 45%,
+    #cfab2a 60%, #c09e27 70%, #ba6f3a 84%, #96332b 100%);
+  --grad-brand-soft: linear-gradient(120deg, #1f8e8b1f 0%, #328ab51f 55%, #8057941f 100%);
+
+  --glow: 0 0 40px;
+  --shadow-sm: 0 2px 12px rgba(20, 35, 45, 0.07);
+  --shadow-md: 0 16px 44px -14px rgba(20, 45, 60, 0.28);
+  --shadow-lg: 0 28px 60px -18px rgba(20, 45, 60, 0.35);
+  --glass-blur: 14px;
+
+  /* eje colors — thematic subset of the brand palette */
+  --color-eje-1: #328ab5; --color-eje-2: #1f8e8b; --color-eje-3: #619745;
+  --color-eje-4: #805794; --color-eje-5: #c09e27;
+
+  /* schedule categories mapped to the 9 brand colors */
+  --cat-inauguracion: #328ab5;
+  --cat-charlas: #3197ad;
+  --cat-mesas_abiertas: #1f8e8b;
+  --cat-posters: #805794;
+  --cat-expos_jurados: #c09e27;
+  --cat-mentorias: #ba6f3a;
+  --cat-social_networking: #619745;
+  --cat-premiacion: #96332b;
+  --cat-academico_general: #cfab2a;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --radius: 18px; --space: 8px;
 }

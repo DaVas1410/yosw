@@ -9,14 +9,24 @@ interface Props {
 const { lang } = Astro.props;
 ---
 
-<section id="ejes" class="ejes">
-  <div class="ejes__inner">
-    <h2 class="ejes__heading">{t(lang, 'nav.ejes')}</h2>
+<section id="ejes" class="section ejes">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">{t(lang, 'brand.short')}</span>
+      <h2 class="section__title">{t(lang, 'nav.ejes')}</h2>
+      <div class="divider"></div>
+    </div>
     <div class="ejes__grid">
-      {ejes.map((eje) => (
-        <article class="ejes__card" style={`--eje-color: ${eje.color}`}>
+      {ejes.map((eje, i) => (
+        <article
+          class="card card--accent ejes__card"
+          style={`--accent: ${eje.color}; --eje-color: ${eje.color}; --delay: ${i * 90}ms`}
+          data-reveal
+        >
+          <span class="ejes__num">{String(eje.id).padStart(2, '0')}</span>
           <h3 class="ejes__card-title">{eje.nombre[lang]}</h3>
           {eje.descripcion[lang] && <p class="ejes__card-desc">{eje.descripcion[lang]}</p>}
+          <span class="ejes__glow"></span>
         </article>
       ))}
     </div>
@@ -24,45 +34,33 @@ const { lang } = Astro.props;
 </section>
 
 <style>
-  .ejes {
-    background: var(--color-bg);
-    color: var(--color-text);
-    padding: calc(var(--space) * 8) calc(var(--space) * 3);
-  }
-  .ejes__inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 3);
-  }
-  .ejes__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    margin: 0;
-  }
   .ejes__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: calc(var(--space) * 2);
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: calc(var(--space) * 2.5);
   }
   .ejes__card {
-    background: var(--color-surface);
-    border: 1px solid var(--eje-color);
-    border-radius: var(--radius);
-    padding: calc(var(--space) * 2);
+    transition-delay: var(--delay);
+    padding: clamp(1.4rem, 3vw, 2rem);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space) / 2);
-    box-shadow: inset 4px 0 0 var(--eje-color);
+    gap: 0.6rem;
+    min-height: 190px;
+  }
+  .ejes__num {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--eje-color);
+    opacity: 0.28;
   }
   .ejes__card-title {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 600;
     margin: 0;
-    color: var(--eje-color);
+    color: var(--color-text);
   }
   .ejes__card-desc {
     font-family: var(--font-body);
@@ -70,5 +68,21 @@ const { lang } = Astro.props;
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.5;
+  }
+  .ejes__glow {
+    position: absolute;
+    right: -40px;
+    bottom: -40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--eje-color);
+    opacity: 0.12;
+    filter: blur(30px);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+  }
+  .ejes__card:hover .ejes__glow {
+    opacity: 0.28;
+    transform: scale(1.3);
   }
 </style>

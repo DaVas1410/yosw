@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Scene3D from '../components/Scene3D.astro';
 interface Props { lang: 'es' | 'en'; title: string; }
 const { lang, title } = Astro.props;
 ---
@@ -9,8 +10,32 @@ const { lang, title } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
+    <Scene3D />
     <slot />
+    <script>
+      // Reveal-on-scroll for any [data-reveal] element.
+      const els = document.querySelectorAll('[data-reveal]');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          }
+        }, { threshold: 0.12 });
+        els.forEach((el) => io.observe(el));
+      } else {
+        els.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
   </body>
 </html>

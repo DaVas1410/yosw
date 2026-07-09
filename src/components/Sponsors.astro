@@ -12,9 +12,15 @@ const { lang } = Astro.props;
 const sponsors = sponsorsData as Sponsor[];
 
 const tiers = ['principal', 'colaborador', 'institucional'] as const;
+const tierColors: Record<(typeof tiers)[number], string> = {
+  principal: 'var(--y-blue)',
+  colaborador: 'var(--y-teal)',
+  institucional: 'var(--y-purple)',
+};
 const groups = tiers.map((tier) => ({
   tier,
   label: t(lang, `sponsors.${tier}`),
+  color: tierColors[tier],
   items: sponsors.filter((s) => s.nivel === tier),
 }));
 
@@ -22,14 +28,22 @@ const email = config.social.email;
 const proposalUrl = config.sponsorshipProposalUrl;
 ---
 
-<section id="sponsors" class="sponsors">
-  <div class="sponsors__inner">
-    <h2 class="sponsors__heading">{t(lang, 'sponsors.heading')}</h2>
+<section id="sponsors" class="section sponsors">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">{t(lang, 'nav.sponsors')}</span>
+      <h2 class="section__title">{t(lang, 'sponsors.heading')}</h2>
+      <div class="divider"></div>
+    </div>
 
     <div class="sponsors__tiers">
-      {groups.map((group) => (
-        <div class="sponsors__tier">
-          <h3 class="sponsors__tier-label">{group.label}</h3>
+      {groups.map((group, i) => (
+        <div
+          class="card card--accent sponsors__tier"
+          style={`--accent: ${group.color}; --delay: ${i * 100}ms`}
+          data-reveal
+        >
+          <h3 class="sponsors__tier-label" style={`color: ${group.color}`}>{group.label}</h3>
           {group.items.length > 0 ? (
             <div class="sponsors__logos">
               {group.items.map((s) => (
@@ -48,14 +62,13 @@ const proposalUrl = config.sponsorshipProposalUrl;
             <div class="sponsors__logos">
               <div class="sponsors__logo sponsors__logo--placeholder" aria-hidden="true"></div>
               <div class="sponsors__logo sponsors__logo--placeholder" aria-hidden="true"></div>
-              <div class="sponsors__logo sponsors__logo--placeholder" aria-hidden="true"></div>
             </div>
           )}
         </div>
       ))}
     </div>
 
-    <div class="sponsors__cta">
+    <div class="sponsors__cta" data-reveal>
       {email ? (
         <a class="sponsors__contact" href={`mailto:${email}`}>{t(lang, 'sponsors.cta')}: {email}</a>
       ) : (
@@ -69,69 +82,64 @@ const proposalUrl = config.sponsorshipProposalUrl;
 </section>
 
 <style>
-  .sponsors {
-    background: var(--color-bg);
-    color: var(--color-text);
-    padding: calc(var(--space) * 8) calc(var(--space) * 3);
-  }
-  .sponsors__inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 4);
-  }
-  .sponsors__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    margin: 0;
-  }
   .sponsors__tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--space) * 2.5);
+  }
+  .sponsors__tier {
+    transition-delay: var(--delay);
+    padding: clamp(1.4rem, 3vw, 2rem);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space) * 3);
+    gap: 1rem;
   }
   .sponsors__tier-label {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-muted);
-    margin: 0 0 calc(var(--space)) 0;
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin: 0;
+    text-transform: uppercase;
   }
   .sponsors__logos {
     display: flex;
     flex-wrap: wrap;
-    gap: calc(var(--space) * 2);
+    gap: calc(var(--space) * 1.5);
   }
   .sponsors__logo {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-surface);
-    border-radius: var(--radius);
-    min-width: 140px;
-    min-height: 72px;
+    flex: 1 1 120px;
+    background: var(--color-surface-solid);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    min-height: 68px;
     padding: var(--space) calc(var(--space) * 2);
     text-decoration: none;
     color: var(--color-text);
     font-family: var(--font-body);
     font-size: 0.9rem;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .sponsors__logo img {
-    max-width: 100%;
-    max-height: 48px;
+  a.sponsors__logo:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
   }
+  .sponsors__logo img { max-width: 100%; max-height: 44px; }
   .sponsors__logo--placeholder {
-    border: 1px dashed color-mix(in srgb, var(--color-muted) 50%, transparent);
+    border-style: dashed;
+    background: transparent;
+    min-height: 68px;
   }
   .sponsors__cta {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
-    gap: calc(var(--space) * 2);
-    padding-top: calc(var(--space) * 2);
-    border-top: 1px solid color-mix(in srgb, var(--color-muted) 30%, transparent);
+    gap: calc(var(--space) * 2.5);
+    margin-top: calc(var(--space) * 4);
   }
   .sponsors__contact {
     font-family: var(--font-body);
@@ -139,23 +147,24 @@ const proposalUrl = config.sponsorshipProposalUrl;
     text-decoration: none;
     font-weight: 600;
   }
-  .sponsors__contact:hover {
-    text-decoration: underline;
-  }
-  .sponsors__contact--fallback {
-    color: var(--color-muted);
-    font-weight: 400;
-  }
+  .sponsors__contact:hover { text-decoration: underline; }
+  .sponsors__contact--fallback { color: var(--color-muted); font-weight: 400; }
   .sponsors__download {
     font-family: var(--font-body);
-    color: var(--color-text);
-    background: var(--color-surface);
+    color: #fff;
+    background: var(--grad-brand);
     text-decoration: none;
     font-weight: 600;
-    padding: calc(var(--space) / 1.2) calc(var(--space) * 2);
-    border-radius: var(--radius);
+    padding: 0.7rem 1.6rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .sponsors__download:hover {
-    filter: brightness(1.15);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  @media (max-width: 760px) {
+    .sponsors__tiers { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
   }
 </style>

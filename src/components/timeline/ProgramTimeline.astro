@@ -1,189 +1,225 @@
 ---
 import { t, type Locale } from '../../i18n';
 import calendario from '../../data/calendario.json';
-import { toTimeline } from './transform';
+import { toCalendar } from './calendar';
 
 interface Props {
   lang: Locale;
 }
 
 const { lang } = Astro.props;
-const days = toTimeline(calendario, lang);
+const cal = toCalendar(calendario, lang);
 const legend = Object.keys(calendario.leyenda_categorias);
+
+const HOUR_PX = 66;
+const gridStart = cal.startMin;
+const totalMin = cal.endMin - cal.startMin;
+const bodyHeight = (totalMin / 60) * HOUR_PX;
+const topPx = (min: number) => ((min - gridStart) / 60) * HOUR_PX;
+
+const hours: { label: string; top: number }[] = [];
+for (let m = cal.startMin; m <= cal.endMin; m += 60) {
+  hours.push({ label: `${String(Math.floor(m / 60)).padStart(2, '0')}:00`, top: topPx(m) });
+}
 ---
 
-<section id="programa" class="programa">
-  <div class="programa__inner">
-    <h2 class="programa__heading">{t(lang, 'programa.heading')}</h2>
+<section id="programa" class="section programa">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">{t(lang, 'nav.programa')}</span>
+      <h2 class="section__title">{t(lang, 'programa.heading')}</h2>
+      <div class="divider"></div>
+    </div>
 
-    <div class="programa__filtros" role="group" aria-label={t(lang, 'programa.filtrar')}>
+    <div class="programa__filtros" role="group" aria-label={t(lang, 'programa.filtrar')} data-reveal>
       <button type="button" class="programa__filtro is-active" data-categoria="todos">
         {t(lang, 'programa.todos')}
       </button>
       {legend.map((categoria) => (
-        <button
-          type="button"
-          class="programa__filtro"
-          data-categoria={categoria}
-          style={`--btn-color: var(--cat-${categoria})`}
-        >
+        <button type="button" class="programa__filtro" data-categoria={categoria}>
           <span class="programa__filtro-dot" style={`background: var(--cat-${categoria})`}></span>
           {t(lang, `programa.categoria.${categoria}`)}
         </button>
       ))}
     </div>
 
-    <div class="programa__scroll">
-      <div class="programa__grid">
-        {days.map((day) => (
-          <div class="programa__col">
-            <div class="programa__col-header">
-              <span class="programa__col-dia">{day.dia_semana}</span>
-              <span class="programa__col-fecha">{day.fecha}</span>
+    <div class="cal card" data-reveal>
+      <div class="cal__scroll">
+        <div class="cal__inner" style={`--hour-px: ${HOUR_PX}px`}>
+          <!-- header row: corner + day headers -->
+          <div class="cal__corner"></div>
+          {cal.days.map((day) => (
+            <div class="cal__dayhead">
+              <span class="cal__dayhead-name">{day.dia_semana}</span>
+              <span class="cal__dayhead-date">{day.fecha.split('-')[2]}</span>
             </div>
-            <div class="programa__eventos">
-              {day.events.map((ev) => (
-                <article
-                  class="programa__evento"
-                  data-categoria={ev.categoria}
-                  style={`--event-color: ${ev.color}`}
-                >
-                  <div class="programa__evento-hora">
-                    {ev.start}{ev.end ? `–${ev.end}` : ` ${t(lang, 'programa.sin_hora_fin')}`}
-                    {ev.nota && <span class="programa__evento-nota" title={ev.nota}>⚠</span>}
-                  </div>
-                  <div class="programa__evento-titulo">{ev.titulo}</div>
-                </article>
-              ))}
-            </div>
+          ))}
+
+          <!-- time gutter -->
+          <div class="cal__gutter" style={`height: ${bodyHeight}px`}>
+            {hours.map((h) => (
+              <span class="cal__hour" style={`top: ${h.top}px`}>{h.label}</span>
+            ))}
           </div>
-        ))}
+
+          <!-- day columns with positioned events -->
+          {cal.days.map((day) => (
+            <div class="cal__col" style={`height: ${bodyHeight}px`}>
+              {hours.map((h) => (
+                <span class="cal__line" style={`top: ${h.top}px`}></span>
+              ))}
+              {day.events.map((ev) => {
+                const top = topPx(ev.startMin);
+                const height = Math.max(((ev.endMin - ev.startMin) / 60) * HOUR_PX, 30);
+                const width = 100 / ev.cols;
+                const left = ev.col * width;
+                return (
+                  <article
+                    class="cal__event"
+                    data-categoria={ev.categoria}
+                    style={`top:${top}px; height:${height}px; left:${left}%; width:calc(${width}% - 4px); --event-color: ${ev.color}`}
+                    title={`${ev.start}${ev.end ? '–' + ev.end : ''} · ${ev.titulo}`}
+                  >
+                    <span class="cal__event-time">
+                      {ev.start}{ev.end ? `–${ev.end}` : ''}
+                      {ev.nota && <span class="cal__event-nota" title={ev.nota}>⚠</span>}
+                    </span>
+                    <span class="cal__event-title">{ev.titulo}</span>
+                  </article>
+                );
+              })}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .programa {
-    background: var(--color-bg);
-    color: var(--color-text);
-    padding: calc(var(--space) * 8) calc(var(--space) * 3);
-  }
-  .programa__inner {
-    max-width: 1300px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 3);
-  }
-  .programa__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    margin: 0;
-  }
   .programa__filtros {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: calc(var(--space));
+    margin-bottom: calc(var(--space) * 3);
   }
   .programa__filtro {
     display: inline-flex;
     align-items: center;
-    gap: calc(var(--space) / 2);
+    gap: 0.4rem;
     background: var(--color-surface);
     color: var(--color-text);
-    border: 1px solid var(--color-muted);
+    border: 1px solid var(--color-border);
     border-radius: 999px;
-    padding: calc(var(--space) / 2) calc(var(--space) * 1.25);
+    padding: 0.4rem 0.9rem;
     font-family: var(--font-body);
     font-size: 0.85rem;
     cursor: pointer;
+    transition: transform 0.15s ease;
   }
-  .programa__filtro.is-active {
-    border-color: var(--color-accent);
-    background: var(--color-accent);
-    color: #fff;
-  }
-  .programa__filtro-dot {
-    width: 0.6rem;
-    height: 0.6rem;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  .programa__scroll {
-    overflow-x: auto;
-    max-width: 100%;
-  }
-  .programa__grid {
+  .programa__filtro:hover { transform: translateY(-2px); }
+  .programa__filtro.is-active { border-color: transparent; background: var(--grad-brand); color: #fff; }
+  .programa__filtro-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; }
+
+  .cal { padding: calc(var(--space) * 1.5); }
+  .cal:hover { transform: none; }
+  .cal__scroll { overflow-x: auto; }
+  .cal__inner {
     display: grid;
-    grid-auto-flow: column;
-    grid-auto-columns: minmax(220px, 1fr);
-    gap: calc(var(--space) * 2);
-    padding-bottom: calc(var(--space));
+    grid-template-columns: 58px repeat(6, minmax(150px, 1fr));
+    min-width: 860px;
   }
-  .programa__col {
-    background: var(--color-surface);
-    border-radius: var(--radius);
-    padding: calc(var(--space) * 1.5);
+  .cal__corner { position: sticky; left: 0; z-index: 2; }
+  .cal__dayhead {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space));
-    min-width: 220px;
+    align-items: center;
+    gap: 0.1rem;
+    padding: 0.5rem 0.25rem 0.75rem;
+    border-bottom: 2px solid var(--color-border);
   }
-  .programa__col-header {
-    display: flex;
-    flex-direction: column;
-    border-bottom: 1px solid var(--color-muted);
-    padding-bottom: calc(var(--space) / 2);
-  }
-  .programa__col-dia {
+  .cal__dayhead-name {
     font-family: var(--font-display);
     font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: capitalize;
   }
-  .programa__col-fecha {
-    font-size: 0.8rem;
+  .cal__dayhead-date {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    background: var(--grad-brand);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .cal__gutter {
+    position: sticky;
+    left: 0;
+    z-index: 2;
+    background: var(--color-surface-solid);
+  }
+  .cal__hour {
+    position: absolute;
+    right: 6px;
+    transform: translateY(-50%);
+    font-size: 0.7rem;
     color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
   }
-  .programa__eventos {
+  .cal__col {
+    position: relative;
+    border-left: 1px solid var(--color-border);
+  }
+  .cal__line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: color-mix(in srgb, var(--color-muted) 14%, transparent);
+  }
+  .cal__event {
+    position: absolute;
+    overflow: hidden;
+    border-radius: 8px;
+    padding: 3px 6px;
+    background: color-mix(in srgb, var(--event-color) 16%, white);
+    border-left: 3px solid var(--event-color);
+    box-shadow: var(--shadow-sm);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space));
+    gap: 1px;
+    cursor: default;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, z-index 0s;
   }
-  .programa__evento {
-    background: var(--color-bg);
-    border-left: 4px solid var(--event-color);
-    border-radius: calc(var(--radius) / 2);
-    padding: calc(var(--space) * 0.75) calc(var(--space));
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) / 4);
+  .cal__event:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-md);
+    z-index: 5;
   }
-  .programa__evento.is-hidden {
-    display: none;
-  }
-  .programa__evento-hora {
-    font-size: 0.75rem;
+  .cal__event.is-hidden { display: none; }
+  .cal__event-time {
+    font-size: 0.66rem;
+    font-weight: 700;
     color: var(--event-color);
-    font-weight: 600;
     display: flex;
     align-items: center;
-    gap: calc(var(--space) / 4);
+    gap: 0.2rem;
+    font-variant-numeric: tabular-nums;
   }
-  .programa__evento-nota {
-    cursor: help;
-  }
-  .programa__evento-titulo {
-    font-family: var(--font-body);
-    font-size: 0.9rem;
-    line-height: 1.4;
+  .cal__event-nota { cursor: help; }
+  .cal__event-title {
+    font-size: 0.74rem;
+    line-height: 1.2;
+    color: var(--color-text);
   }
 </style>
 
 <script>
   const filtros = document.querySelectorAll<HTMLButtonElement>('.programa__filtro');
-  const eventos = document.querySelectorAll<HTMLElement>('.programa__evento');
-
+  const eventos = document.querySelectorAll<HTMLElement>('.cal__event');
   filtros.forEach((btn) => {
     btn.addEventListener('click', () => {
       filtros.forEach((b) => b.classList.remove('is-active'));

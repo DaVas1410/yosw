@@ -14,9 +14,11 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "astro": "^7.0.7"
+    "astro": "^7.0.7",
+    "three": "^0.185.1"
   },
   "devDependencies": {
+    "@types/three": "^0.185.1",
     "vitest": "^4.1.10",
     "zod": "^4.4.3"
   }

@@ -9,23 +9,32 @@ interface Props {
 const { lang } = Astro.props;
 
 const cards = [
-  { key: 'attend', href: config.forms.attend },
-  { key: 'poster', href: config.forms.poster },
-  { key: 'ideaton', href: config.forms.ideaton },
+  { key: 'attend', href: config.forms.attend, color: 'var(--y-blue)', icon: '🎟️' },
+  { key: 'poster', href: config.forms.poster, color: 'var(--y-purple)', icon: '📊' },
+  { key: 'ideaton', href: config.forms.ideaton, color: 'var(--y-orange)', icon: '💡' },
 ] as const;
 ---
 
-<section id="registro" class="registro">
-  <div class="registro__inner">
-    <h2 class="registro__heading">{t(lang, 'reg.heading')}</h2>
+<section id="registro" class="section registro">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">{t(lang, 'nav.registro')}</span>
+      <h2 class="section__title">{t(lang, 'reg.heading')}</h2>
+      <div class="divider"></div>
+    </div>
     <div class="registro__grid">
-      {cards.map((card) => (
-        <article class="registro__card">
+      {cards.map((card, i) => (
+        <article
+          class="card card--accent registro__card"
+          style={`--accent: ${card.color}; --delay: ${i * 100}ms`}
+          data-reveal
+        >
+          <span class="registro__icon" style={`background: ${card.color}`}>{card.icon}</span>
           <h3 class="registro__card-title">{t(lang, `reg.${card.key}`)}</h3>
           <p class="registro__card-desc">{t(lang, `reg.${card.key}.desc`)}</p>
           {card.href ? (
             <a class="registro__card-cta" href={card.href} target="_blank" rel="noopener noreferrer">
-              {t(lang, 'reg.cta.open')}
+              {t(lang, 'reg.cta.open')} <span aria-hidden="true">→</span>
             </a>
           ) : (
             <span class="registro__card-cta registro__card-cta--disabled" aria-disabled="true">
@@ -39,70 +48,70 @@ const cards = [
 </section>
 
 <style>
-  .registro {
-    background: var(--color-bg);
-    color: var(--color-text);
-    padding: calc(var(--space) * 8) calc(var(--space) * 3);
-  }
-  .registro__inner {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--space) * 3);
-  }
-  .registro__heading {
-    font-family: var(--font-display);
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    font-weight: 700;
-    margin: 0;
-  }
   .registro__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: calc(var(--space) * 2);
+    grid-template-columns: repeat(3, 1fr);
+    gap: calc(var(--space) * 2.5);
   }
   .registro__card {
-    background: var(--color-surface);
-    border-radius: var(--radius);
-    padding: calc(var(--space) * 2);
+    transition-delay: var(--delay);
+    padding: clamp(1.5rem, 3vw, 2.2rem);
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space));
+    gap: 0.7rem;
+    text-align: left;
+  }
+  .registro__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    font-size: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    filter: saturate(1.1);
   }
   .registro__card-title {
     font-family: var(--font-display);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 600;
-    margin: 0;
+    margin: 0.3rem 0 0;
   }
   .registro__card-desc {
     font-family: var(--font-body);
     color: var(--color-muted);
     margin: 0;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.55;
     flex-grow: 1;
   }
   .registro__card-cta {
     align-self: flex-start;
-    display: inline-block;
-    background: var(--color-accent);
-    color: var(--color-text);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    background: var(--accent, var(--grad-brand));
+    color: #fff;
     text-decoration: none;
     font-family: var(--font-body);
     font-weight: 600;
-    padding: calc(var(--space) / 1.2) calc(var(--space) * 2);
-    border-radius: var(--radius);
+    padding: 0.6rem 1.3rem;
+    border-radius: 999px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
   }
   .registro__card-cta:hover {
-    filter: brightness(1.1);
+    transform: translateX(3px);
+    box-shadow: var(--shadow-sm);
   }
   .registro__card-cta--disabled {
-    background: var(--color-muted);
-    color: var(--color-bg);
+    background: color-mix(in srgb, var(--color-muted) 40%, transparent);
+    color: var(--color-muted);
     cursor: not-allowed;
     pointer-events: none;
-    opacity: 0.7;
+  }
+  @media (max-width: 760px) {
+    .registro__grid { grid-template-columns: 1fr; max-width: 420px; margin-inline: auto; }
   }
 </style>
