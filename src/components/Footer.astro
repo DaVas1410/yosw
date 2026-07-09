@@ -1,0 +1,83 @@
+---
+import { t, type Locale } from '../i18n';
+import config from '../data/config.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const { instagram, email } = config.social;
+const year = new Date(config.eventStart).getFullYear();
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <p class="footer__committee">{t(lang, 'footer.committee')}</p>
+
+    <div class="footer__contact">
+      <span class="footer__contact-label">{t(lang, 'footer.contact')}:</span>
+      {email ? (
+        <a class="footer__link" href={`mailto:${email}`}>{email}</a>
+      ) : (
+        <span class="footer__fallback">{t(lang, 'footer.email.fallback')}</span>
+      )}
+      {instagram ? (
+        <a class="footer__link" href={instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+      ) : (
+        <span class="footer__fallback">{t(lang, 'footer.instagram.fallback')}</span>
+      )}
+    </div>
+
+    <p class="footer__copyright">
+      © {year} {t(lang, 'brand.name')}. {t(lang, 'footer.rights')}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: calc(var(--space) * 4) calc(var(--space) * 3);
+  }
+  .footer__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 1.5);
+  }
+  .footer__committee {
+    font-family: var(--font-body);
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .footer__contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: calc(var(--space) * 1.5);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+  }
+  .footer__contact-label {
+    color: var(--color-muted);
+  }
+  .footer__link {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+  .footer__link:hover {
+    text-decoration: underline;
+  }
+  .footer__fallback {
+    color: var(--color-muted);
+  }
+  .footer__copyright {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin: 0;
+    font-size: 0.8rem;
+  }
+</style>

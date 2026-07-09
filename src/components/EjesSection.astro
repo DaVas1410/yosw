@@ -1,0 +1,74 @@
+---
+import { t, type Locale } from '../i18n';
+import ejes from '../data/ejes.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+---
+
+<section id="ejes" class="ejes">
+  <div class="ejes__inner">
+    <h2 class="ejes__heading">{t(lang, 'nav.ejes')}</h2>
+    <div class="ejes__grid">
+      {ejes.map((eje) => (
+        <article class="ejes__card" style={`--eje-color: ${eje.color}`}>
+          <h3 class="ejes__card-title">{eje.nombre[lang]}</h3>
+          {eje.descripcion[lang] && <p class="ejes__card-desc">{eje.descripcion[lang]}</p>}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ejes {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+  }
+  .ejes__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 3);
+  }
+  .ejes__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .ejes__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: calc(var(--space) * 2);
+  }
+  .ejes__card {
+    background: var(--color-surface);
+    border: 1px solid var(--eje-color);
+    border-radius: var(--radius);
+    padding: calc(var(--space) * 2);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) / 2);
+    box-shadow: inset 4px 0 0 var(--eje-color);
+  }
+  .ejes__card-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--eje-color);
+  }
+  .ejes__card-desc {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+</style>

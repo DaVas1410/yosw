@@ -1,0 +1,113 @@
+---
+import { t, type Locale } from '../../i18n';
+import calendario from '../../data/calendario.json';
+import { countByCategory } from './axes';
+import LiveStats from './LiveStats.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const counts = countByCategory(calendario);
+const max = Math.max(...Object.values(counts), 1);
+const bars = Object.entries(counts)
+  .sort((a, b) => b[1] - a[1])
+  .map(([categoria, count]) => ({
+    categoria,
+    count,
+    pct: Math.round((count / max) * 100),
+    label: t(lang, `programa.categoria.${categoria}`),
+  }));
+---
+
+<section id="datos" class="datos">
+  <div class="datos__inner">
+    <h2 class="datos__heading">{t(lang, 'datos.heading')}</h2>
+
+    <div class="datos__chart">
+      <h3 class="datos__chart-title">{t(lang, 'datos.categorias')}</h3>
+      <div class="datos__bars">
+        {bars.map((bar) => (
+          <div class="datos__bar-row">
+            <span class="datos__bar-label">{bar.label}</span>
+            <div class="datos__bar-track">
+              <div
+                class="datos__bar-fill"
+                style={`width: ${bar.pct}%; background: var(--cat-${bar.categoria});`}
+              ></div>
+            </div>
+            <span class="datos__bar-count">{bar.count}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <LiveStats lang={lang} />
+  </div>
+</section>
+
+<style>
+  .datos {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+  }
+  .datos__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 4);
+  }
+  .datos__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .datos__chart {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 1.5);
+  }
+  .datos__chart-title {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .datos__bars {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space));
+  }
+  .datos__bar-row {
+    display: grid;
+    grid-template-columns: minmax(120px, 180px) 1fr auto;
+    align-items: center;
+    gap: calc(var(--space));
+  }
+  .datos__bar-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+  }
+  .datos__bar-track {
+    background: var(--color-surface);
+    border-radius: 999px;
+    overflow: hidden;
+    height: 0.9rem;
+  }
+  .datos__bar-fill {
+    height: 100%;
+    border-radius: 999px;
+  }
+  .datos__bar-count {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    min-width: 1.5rem;
+    text-align: right;
+  }
+</style>

@@ -1,0 +1,92 @@
+---
+import { t, type Locale } from '../i18n';
+import calendario from '../data/calendario.json';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+
+const totalActividades = calendario.dias.reduce(
+  (sum, dia) => sum + dia.eventos.length,
+  0
+);
+
+const stats = [
+  { value: '5', label: t(lang, 'about.stat.ejes') },
+  { value: '6', label: t(lang, 'about.stat.dias') },
+  { value: String(totalActividades), label: t(lang, 'about.stat.actividades') },
+];
+---
+
+<section id="about" class="about">
+  <div class="about__inner">
+    <h2 class="about__heading">{t(lang, 'nav.about')}</h2>
+    <p class="about__intro">{t(lang, 'about.intro')}</p>
+    <p class="about__objective">{t(lang, 'about.objective')}</p>
+    <div class="about__stats">
+      {stats.map((stat) => (
+        <div class="about__stat">
+          <span class="about__stat-value">{stat.value}</span>
+          <span class="about__stat-label">{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+  }
+  .about__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space);
+  }
+  .about__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .about__intro,
+  .about__objective {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+  }
+  .about__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--space) * 3);
+    margin-top: calc(var(--space) * 3);
+  }
+  .about__stat {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) / 2);
+    padding: calc(var(--space) * 2);
+    border: 1px solid color-mix(in srgb, var(--color-muted) 30%, transparent);
+    border-radius: var(--radius);
+    min-width: 140px;
+  }
+  .about__stat-value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+  .about__stat-label {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+</style>

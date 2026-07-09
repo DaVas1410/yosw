@@ -1,0 +1,101 @@
+---
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  lang: Locale;
+  target: string;
+}
+
+const { lang, target } = Astro.props;
+
+const labels = {
+  d: t(lang, 'countdown.days'),
+  h: t(lang, 'countdown.hours'),
+  m: t(lang, 'countdown.min'),
+  s: t(lang, 'countdown.sec'),
+};
+---
+
+<div class="countdown" data-target={target}>
+  <div class="countdown__unit">
+    <span class="countdown__value" data-unit="d">0</span>
+    <span class="countdown__label">{labels.d}</span>
+  </div>
+  <div class="countdown__unit">
+    <span class="countdown__value" data-unit="h">0</span>
+    <span class="countdown__label">{labels.h}</span>
+  </div>
+  <div class="countdown__unit">
+    <span class="countdown__value" data-unit="m">0</span>
+    <span class="countdown__label">{labels.m}</span>
+  </div>
+  <div class="countdown__unit">
+    <span class="countdown__value" data-unit="s">0</span>
+    <span class="countdown__label">{labels.s}</span>
+  </div>
+</div>
+
+<style>
+  .countdown {
+    display: flex;
+    gap: calc(var(--space) * 3);
+  }
+  .countdown__unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 4ch;
+  }
+  .countdown__value {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+  }
+  .countdown__label {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+</style>
+
+<script>
+  function breakdown(ms: number) {
+    const clamped = Math.max(0, ms);
+    const s = Math.floor(clamped / 1000);
+    return {
+      d: Math.floor(s / 86400),
+      h: Math.floor((s % 86400) / 3600),
+      m: Math.floor((s % 3600) / 60),
+      s: s % 60,
+    };
+  }
+
+  function initCountdown(el: HTMLElement) {
+    const targetStr = el.dataset.target;
+    if (!targetStr) return;
+    const target = new Date(targetStr).getTime();
+
+    const valueEls = {
+      d: el.querySelector<HTMLElement>('[data-unit="d"]'),
+      h: el.querySelector<HTMLElement>('[data-unit="h"]'),
+      m: el.querySelector<HTMLElement>('[data-unit="m"]'),
+      s: el.querySelector<HTMLElement>('[data-unit="s"]'),
+    };
+
+    function tick() {
+      const parts = breakdown(target - Date.now());
+      if (valueEls.d) valueEls.d.textContent = String(parts.d);
+      if (valueEls.h) valueEls.h.textContent = String(parts.h);
+      if (valueEls.m) valueEls.m.textContent = String(parts.m);
+      if (valueEls.s) valueEls.s.textContent = String(parts.s);
+    }
+
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  document.querySelectorAll<HTMLElement>('.countdown').forEach(initCountdown);
+</script>

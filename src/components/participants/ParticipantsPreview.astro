@@ -1,0 +1,74 @@
+---
+import { t, type Locale } from '../../i18n';
+import participants from '../../data/participants.json';
+import type { Participant } from '../../data/schemas';
+import ParticipantCard from './ParticipantCard.astro';
+
+interface Props {
+  lang: Locale;
+}
+
+const { lang } = Astro.props;
+const preview = (participants as Participant[]).slice(0, 8);
+---
+
+<section id="participantes" class="participantes-preview">
+  <div class="participantes-preview__inner">
+    <h2 class="participantes-preview__heading">{t(lang, 'participantes.heading')}</h2>
+
+    {preview.length > 0 ? (
+      <div class="participantes-preview__grid">
+        {preview.map((p) => (
+          <ParticipantCard lang={lang} participant={p} />
+        ))}
+      </div>
+    ) : (
+      <p class="participantes-preview__empty">{t(lang, 'stats.soon')}</p>
+    )}
+
+    <a class="participantes-preview__all" href={`/${lang}/participantes`}>
+      {t(lang, 'participantes.ver_todos')}
+    </a>
+  </div>
+</section>
+
+<style>
+  .participantes-preview {
+    background: var(--color-bg);
+    color: var(--color-text);
+    padding: calc(var(--space) * 8) calc(var(--space) * 3);
+  }
+  .participantes-preview__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 3);
+  }
+  .participantes-preview__heading {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin: 0;
+  }
+  .participantes-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: calc(var(--space) * 2);
+  }
+  .participantes-preview__empty {
+    font-family: var(--font-body);
+    color: var(--color-muted);
+    margin: 0;
+  }
+  .participantes-preview__all {
+    align-self: flex-start;
+    font-family: var(--font-body);
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .participantes-preview__all:hover {
+    text-decoration: underline;
+  }
+</style>

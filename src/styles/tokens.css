@@ -1,0 +1,17 @@
+:root {
+  --color-bg: #0b1120;
+  --color-surface: #131c31;
+  --color-text: #e8edf7;
+  --color-muted: #94a3b8;
+  --color-accent: #2563eb;
+  /* eje colors (placeholder — brand kit overrides) */
+  --color-eje-1: #0ea5e9; --color-eje-2: #14b8a6; --color-eje-3: #22c55e;
+  --color-eje-4: #8b5cf6; --color-eje-5: #f59e0b;
+  /* schedule categories (mirror leyenda_categorias) */
+  --cat-inauguracion: #2563eb; --cat-charlas: #0ea5e9; --cat-mesas_abiertas: #14b8a6;
+  --cat-posters: #8b5cf6; --cat-expos_jurados: #f59e0b; --cat-mentorias: #ec4899;
+  --cat-social_networking: #22c55e; --cat-premiacion: #f43f5e; --cat-academico_general: #64748b;
+  --font-display: system-ui, 'Segoe UI', sans-serif;
+  --font-body: system-ui, 'Segoe UI', sans-serif;
+  --radius: 12px; --space: 8px;
+}
