@@ -1,14 +1,14 @@
 :root {
-  /* ---- Light base, Yachay Tech institutional palette ---- */
-  --color-bg: transparent;              /* sections reveal the 3D backdrop */
-  --color-page: #f5f7fa;                /* real page base behind the canvas */
-  --color-surface: rgba(255, 255, 255, 0.74); /* frosted glass cards */
+  /* ---- Warm neutral base, Yachay Tech institutional palette as accent ---- */
+  --color-bg: transparent;
+  --color-page: #faf8f4;
+  --color-surface: #ffffff;
   --color-surface-solid: #ffffff;
-  --color-text: #16222b;
-  --color-muted: #5a6773;
-  --color-border: rgba(20, 35, 45, 0.12);
+  --color-text: #17140f;
+  --color-muted: #6b6255;
+  --color-border: rgba(30, 26, 20, 0.12);
 
-  /* Yachay institutional brand palette (9) */
+  /* Yachay institutional brand palette (9) — unchanged values, accent-only role */
   --y-red:     #96332b;
   --y-orange:  #ba6f3a;
   --y-gold:    #c09e27;
@@ -28,18 +28,22 @@
   --c-magenta: var(--y-red);
   --c-lime: var(--y-green);
 
-  /* gradients */
-  --grad-brand: linear-gradient(120deg, #1f8e8b 0%, #328ab5 55%, #805794 100%);
+  /* gradients — toned down: CTA keeps a soft 2-stop brand gradient,
+     the old full-rainbow spectrum sweep is retired from default use */
+  --grad-brand: linear-gradient(120deg, var(--y-teal) 0%, var(--y-blue) 100%);
   --grad-spectrum: linear-gradient(100deg,
     #328ab5 0%, #3197ad 16%, #1f8e8b 30%, #619745 45%,
     #cfab2a 60%, #c09e27 70%, #ba6f3a 84%, #96332b 100%);
-  --grad-brand-soft: linear-gradient(120deg, #1f8e8b1f 0%, #328ab51f 55%, #8057941f 100%);
+  --grad-brand-soft: linear-gradient(120deg, #1f8e8b14 0%, #328ab514 100%);
 
   --glow: 0 0 40px;
-  --shadow-sm: 0 2px 12px rgba(20, 35, 45, 0.07);
-  --shadow-md: 0 16px 44px -14px rgba(20, 45, 60, 0.28);
-  --shadow-lg: 0 28px 60px -18px rgba(20, 45, 60, 0.35);
-  --glass-blur: 14px;
+  --shadow-sm: 0 1px 3px rgba(23, 20, 15, 0.06);
+  --shadow-md: 0 12px 32px -14px rgba(23, 20, 15, 0.16);
+  --shadow-lg: 0 24px 48px -18px rgba(23, 20, 15, 0.22);
+  /* Neutralized: cards are flat/solid now, no backdrop blur. Kept at 0 so any
+     component still referencing var(--glass-blur) degrades to a harmless
+     no-op instead of needing an individual edit. */
+  --glass-blur: 0px;
 
   /* eje colors — thematic subset of the brand palette */
   --color-eje-1: #328ab5; --color-eje-2: #1f8e8b; --color-eje-3: #619745;
@@ -56,7 +60,7 @@
   --cat-premiacion: #96332b;
   --cat-academico_general: #cfab2a;
 
-  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
   --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --radius: 18px; --space: 8px;
+  --radius: 14px; --space: 8px;
 }
