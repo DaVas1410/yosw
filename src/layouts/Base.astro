@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import Scene3D from '../components/Scene3D.astro';
 interface Props { lang: 'es' | 'en'; title: string; }
 const { lang, title } = Astro.props;
 ---
@@ -13,12 +12,11 @@ const { lang, title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Inter:wght@400;500;600&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-    <Scene3D />
     <slot />
     <script>
       // Reveal-on-scroll for any [data-reveal] element.
