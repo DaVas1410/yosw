@@ -1,18 +1,21 @@
 ---
-// Interactive 3D backdrop: connected particle network + rotating wireframe
-// core + drifting star cloud. Fixed behind all content. Degrades to the CSS
-// gradient (body::before) when WebGL is unavailable or reduced-motion is set.
+// Hero-scoped 3D backdrop: a single abstract wireframe rendering of the
+// Yachay tower from the event logo (tapered body + crenellated top),
+// banded in the brand's rainbow progression. Rotation is driven by scroll
+// progress through the hero, with a light pointer-parallax tilt on top.
+// Degrades to no canvas (CSS fallback in Hero.astro) when WebGL is
+// unavailable or reduced-motion is set.
 ---
 
 <canvas id="scene3d" aria-hidden="true"></canvas>
 
 <style>
   #scene3d {
-    position: fixed;
+    position: absolute;
     inset: 0;
     width: 100%;
     height: 100%;
-    z-index: -2;
+    z-index: 0;
     pointer-events: none;
     display: block;
   }
@@ -23,11 +26,13 @@
 
 <script>
   import * as THREE from 'three';
+  import { computeScrollProgress, rotationForProgress } from './heroTower';
 
   const canvas = document.getElementById('scene3d') as HTMLCanvasElement | null;
+  const hero = canvas?.closest('.hero') as HTMLElement | null;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  if (canvas && !reduce) {
+  if (canvas && hero && !reduce) {
     let renderer: THREE.WebGLRenderer;
     try {
       renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
@@ -37,85 +42,60 @@
     }
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.z = 9;
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 50);
+    camera.position.set(0, 0.4, 9);
 
-    const palette = [0x35c0dd, 0x12718b, 0x0e5163, 0x7d9aa2];
+    // Band colors follow the logo's tower, bottom to top.
+    const bandColors = [0x96332b, 0xba6f3a, 0xc09e27, 0x619745, 0x1f8e8b, 0x328ab5];
 
-    // ---- Central wireframe core ----
-    const core = new THREE.Group();
-    const icoGeo = new THREE.IcosahedronGeometry(2.1, 1);
-    const wire = new THREE.LineSegments(
-      new THREE.WireframeGeometry(icoGeo),
-      new THREE.LineBasicMaterial({ color: 0x12718b, transparent: true, opacity: 0.38 })
-    );
-    const shell = new THREE.Mesh(
-      icoGeo,
-      new THREE.MeshBasicMaterial({ color: 0x35c0dd, transparent: true, opacity: 0.05 })
-    );
-    core.add(wire, shell);
-    scene.add(core);
+    const tower = new THREE.Group();
+    const bandHeight = 0.85;
+    const baseRadius = 1.5;
+    const topRadius = 1.1;
 
-    // ---- Connected particle network ----
-    const NODES = 90;
-    const RANGE = 9;
-    const positions = new Float32Array(NODES * 3);
-    const velocities: number[] = [];
-    for (let i = 0; i < NODES; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * RANGE * 2;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * RANGE * 1.3;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * RANGE;
-      velocities.push((Math.random() - 0.5) * 0.008, (Math.random() - 0.5) * 0.008, (Math.random() - 0.5) * 0.008);
+    bandColors.forEach((hex, i) => {
+      const t0 = i / bandColors.length;
+      const t1 = (i + 1) / bandColors.length;
+      const r0 = baseRadius + (topRadius - baseRadius) * t0;
+      const r1 = baseRadius + (topRadius - baseRadius) * t1;
+      const geo = new THREE.CylinderGeometry(r1, r0, bandHeight, 10, 1, true);
+      const wire = new THREE.LineSegments(
+        new THREE.WireframeGeometry(geo),
+        new THREE.LineBasicMaterial({ color: hex, transparent: true, opacity: 0.85 })
+      );
+      wire.position.y = -2 + bandHeight * (i + 0.5);
+      tower.add(wire);
+    });
+
+    // Crenellated top ring, in the topmost band color.
+    const crenGroup = new THREE.Group();
+    const crenColor = bandColors[bandColors.length - 1];
+    const crenCount = 10;
+    const crenRadius = topRadius + 0.05;
+    for (let i = 0; i < crenCount; i++) {
+      const angle = (i / crenCount) * Math.PI * 2;
+      const tooth = new THREE.Mesh(
+        new THREE.BoxGeometry(0.28, 0.35, 0.18),
+        new THREE.MeshBasicMaterial({ color: crenColor, wireframe: true, transparent: true, opacity: 0.85 })
+      );
+      tooth.position.set(Math.cos(angle) * crenRadius, -2 + bandHeight * bandColors.length + 0.15, Math.sin(angle) * crenRadius);
+      crenGroup.add(tooth);
     }
-    const nodeGeo = new THREE.BufferGeometry();
-    nodeGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const nodes = new THREE.Points(
-      nodeGeo,
-      new THREE.PointsMaterial({ color: 0x0e5163, size: 0.09, transparent: true, opacity: 0.9 })
-    );
-    scene.add(nodes);
+    tower.add(crenGroup);
 
-    const LINK_DIST = 2.6;
-    const linkPos = new Float32Array(NODES * NODES * 3);
-    const linkGeo = new THREE.BufferGeometry();
-    linkGeo.setAttribute('position', new THREE.BufferAttribute(linkPos, 3));
-    const links = new THREE.LineSegments(
-      linkGeo,
-      new THREE.LineBasicMaterial({ color: 0x35c0dd, transparent: true, opacity: 0.28 })
-    );
-    scene.add(links);
+    scene.add(tower);
+    tower.position.x = 1.6;
 
-    // ---- Drifting star cloud (vertex colors) ----
-    const STARS = 700;
-    const starPos = new Float32Array(STARS * 3);
-    const starCol = new Float32Array(STARS * 3);
-    const c = new THREE.Color();
-    for (let i = 0; i < STARS; i++) {
-      starPos[i * 3] = (Math.random() - 0.5) * 40;
-      starPos[i * 3 + 1] = (Math.random() - 0.5) * 26;
-      starPos[i * 3 + 2] = (Math.random() - 0.5) * 24 - 6;
-      c.setHex(palette[(Math.random() * palette.length) | 0]);
-      starCol[i * 3] = c.r; starCol[i * 3 + 1] = c.g; starCol[i * 3 + 2] = c.b;
-    }
-    const starGeo = new THREE.BufferGeometry();
-    starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-    starGeo.setAttribute('color', new THREE.BufferAttribute(starCol, 3));
-    const stars = new THREE.Points(
-      starGeo,
-      new THREE.PointsMaterial({ size: 0.06, transparent: true, opacity: 0.55, vertexColors: true })
-    );
-    scene.add(stars);
-
-    // ---- Pointer parallax ----
     const pointer = { x: 0, y: 0 };
     const target = { x: 0, y: 0 };
     window.addEventListener('pointermove', (e) => {
-      target.x = (e.clientX / window.innerWidth - 0.5);
-      target.y = (e.clientY / window.innerHeight - 0.5);
+      target.x = e.clientX / window.innerWidth - 0.5;
+      target.y = e.clientY / window.innerHeight - 0.5;
     }, { passive: true });
 
     function resize() {
-      const w = window.innerWidth, h = window.innerHeight;
+      const w = hero!.clientWidth;
+      const h = hero!.clientHeight;
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
@@ -130,51 +110,17 @@
       if (running) tick();
     });
 
-    const pos = nodeGeo.getAttribute('position') as THREE.BufferAttribute;
-    const half = RANGE;
-
     function tick() {
       if (!running) return;
       requestAnimationFrame(tick);
 
-      pointer.x += (target.x - pointer.x) * 0.04;
-      pointer.y += (target.y - pointer.y) * 0.04;
+      pointer.x += (target.x - pointer.x) * 0.05;
+      pointer.y += (target.y - pointer.y) * 0.05;
 
-      core.rotation.y += 0.0016;
-      core.rotation.x += 0.0009;
-      core.rotation.y += pointer.x * 0.01;
-      stars.rotation.y += 0.0004;
-
-      scene.rotation.y = pointer.x * 0.35;
-      scene.rotation.x = pointer.y * 0.2;
-
-      // move nodes + bounce
-      for (let i = 0; i < NODES; i++) {
-        for (let a = 0; a < 3; a++) {
-          const idx = i * 3 + a;
-          positions[idx] += velocities[idx];
-          const bound = a === 0 ? half * 2 : a === 1 ? half * 1.3 : half;
-          if (positions[idx] > bound || positions[idx] < -bound) velocities[idx] *= -1;
-        }
-      }
-      pos.needsUpdate = true;
-
-      // rebuild links between nearby nodes
-      let n = 0;
-      for (let i = 0; i < NODES; i++) {
-        const ix = positions[i * 3], iy = positions[i * 3 + 1], iz = positions[i * 3 + 2];
-        for (let j = i + 1; j < NODES; j++) {
-          const dx = ix - positions[j * 3];
-          const dy = iy - positions[j * 3 + 1];
-          const dz = iz - positions[j * 3 + 2];
-          if (dx * dx + dy * dy + dz * dz < LINK_DIST * LINK_DIST) {
-            linkPos[n++] = ix; linkPos[n++] = iy; linkPos[n++] = iz;
-            linkPos[n++] = positions[j * 3]; linkPos[n++] = positions[j * 3 + 1]; linkPos[n++] = positions[j * 3 + 2];
-          }
-        }
-      }
-      linkGeo.setDrawRange(0, n / 3);
-      (linkGeo.getAttribute('position') as THREE.BufferAttribute).needsUpdate = true;
+      const rect = hero!.getBoundingClientRect();
+      const progress = computeScrollProgress(rect.top, rect.height, window.innerHeight);
+      tower.rotation.y = rotationForProgress(progress) + pointer.x * 0.25;
+      tower.rotation.x = pointer.y * 0.12;
 
       renderer.render(scene, camera);
     }
