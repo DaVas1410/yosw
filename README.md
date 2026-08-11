@@ -79,7 +79,7 @@ Set `liveStatsSheetUrl` to the published URL of the Google Sheet (CSV/JSON expor
 
 - Colors, fonts, spacing, and radii are CSS custom properties defined in `src/styles/tokens.css` (`--color-bg`, `--color-accent`, `--color-eje-1`…`--color-eje-5`, `--cat-*` schedule category colors, `--font-display`, `--font-body`, `--radius`, `--space`). Edit the values in place — components consume these tokens, not hardcoded colors.
 - The `--cat-*` tokens should mirror the keys in `leyenda_categorias` in `src/data/calendario.json`; keep them in sync when categories change.
-- The logo is `src/assets/brand/logo.svg` — replace the file in place with the same filename to swap it site-wide.
+- The logo is `src/assets/brand/logo-color.png` — replace the file in place with the same filename to swap it site-wide.
 
 ## Deployment
 

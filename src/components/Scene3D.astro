@@ -105,14 +105,20 @@
     resize();
 
     let running = true;
+    let rafId = 0;
     document.addEventListener('visibilitychange', () => {
-      running = !document.hidden;
-      if (running) tick();
+      if (document.hidden) {
+        cancelAnimationFrame(rafId);
+        running = false;
+      } else if (!running) {
+        running = true;
+        tick();
+      }
     });
 
     function tick() {
       if (!running) return;
-      requestAnimationFrame(tick);
+      rafId = requestAnimationFrame(tick);
 
       pointer.x += (target.x - pointer.x) * 0.05;
       pointer.y += (target.y - pointer.y) * 0.05;

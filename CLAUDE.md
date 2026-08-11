@@ -27,7 +27,7 @@ Site content is data-driven, not hardcoded in components:
 
 - `src/data/*.json` — schedule (`calendario.json`), thematic axes (`ejes.json`), participants directory (`participants.json`), sponsors (`sponsors.json`), and site config (`config.json`: event start date, venue, Google Form URLs, live-stats sheet URL, social links). Each has a Zod schema in `src/data/schemas.ts`, validated by `src/data/data.test.ts`.
 - `src/i18n/{es,en}.json` — all UI strings. Both files must have identical key sets (enforced by `src/i18n/i18n.test.ts`).
-- `src/styles/tokens.css` — brand colors, fonts, spacing as CSS custom properties. `src/assets/brand/logo.svg` — the logo asset.
+- `src/styles/tokens.css` — brand colors, fonts, spacing as CSS custom properties. `src/assets/brand/logo-color.png` — the logo asset.
 
 See `README.md` for the full guide to adding participants/sponsors and wiring up forms.
 
