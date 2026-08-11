@@ -1,6 +1,7 @@
 ---
 import { t, type Locale } from '../i18n';
 import Countdown from './Countdown.astro';
+import Scene3D from './Scene3D.astro';
 import config from '../data/config.json';
 
 interface Props {
@@ -8,61 +9,70 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+
+// brand.name is an untranslated proper noun ("Yachay Open Science Week
+// 2026") in both locales — split the trailing year onto its own line for
+// a deliberate, noth.in-style headline break without touching i18n keys.
+const fullTitle = t(lang, 'brand.name');
+const lastSpace = fullTitle.lastIndexOf(' ');
+const titleHead = fullTitle.slice(0, lastSpace);
+const titleTail = fullTitle.slice(lastSpace + 1);
 ---
 
 <section class="hero">
+  <Scene3D />
   <div class="hero__inner">
     <span class="hero__badge" data-reveal>Open Science · Yachay Tech</span>
     <h1 class="hero__title" data-reveal>
-      <span class="gradient-text">{t(lang, 'brand.name')}</span>
+      {titleHead}<br /><span class="gradient-text">{titleTail}</span>
     </h1>
     <p class="hero__dates" data-reveal>{t(lang, 'hero.dates')}</p>
     <p class="hero__venue" data-reveal>{t(lang, 'hero.venue')}</p>
     <div data-reveal><Countdown lang={lang} target={config.eventStart} /></div>
     <a class="hero__cta" href="#registro" data-reveal>{t(lang, 'hero.cta')}</a>
   </div>
-  <div class="hero__fade"></div>
 </section>
 
 <style>
   .hero {
     position: relative;
-    background: var(--color-bg);
+    overflow: hidden;
+    background: var(--color-page);
     color: var(--color-text);
-    padding: clamp(4rem, 12vh, 9rem) calc(var(--space) * 3) clamp(3rem, 8vh, 6rem);
+    padding: clamp(5rem, 14vh, 10rem) calc(var(--space) * 3) clamp(4rem, 10vh, 7rem);
     min-height: 88vh;
     display: flex;
     align-items: center;
   }
   .hero__inner {
-    max-width: 960px;
-    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: calc(var(--space) * 1.5);
+    gap: calc(var(--space) * 1.75);
   }
   .hero__badge {
     font-family: var(--font-body);
     font-weight: 600;
     font-size: 0.8rem;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
     padding: 0.4rem 0.9rem;
     border-radius: 999px;
     background: var(--color-surface);
-    backdrop-filter: blur(var(--glass-blur));
-    -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid var(--color-border);
     color: var(--color-accent);
   }
   .hero__title {
     font-family: var(--font-display);
-    font-size: clamp(2.6rem, 8vw, 6rem);
-    font-weight: 700;
-    line-height: 1.02;
-    letter-spacing: -0.02em;
+    font-size: clamp(3.2rem, 10vw, 7.5rem);
+    font-weight: 800;
+    line-height: 0.96;
+    letter-spacing: -0.03em;
     margin: 0.2rem 0;
   }
   .hero__dates {
@@ -95,6 +105,9 @@ const { lang } = Astro.props;
   }
   .hero__cta:hover {
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 22px 50px -12px rgba(124, 58, 237, 0.55);
+    box-shadow: var(--shadow-lg);
+  }
+  @media (max-width: 720px) {
+    .hero__inner { max-width: 100%; }
   }
 </style>
