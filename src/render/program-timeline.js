@@ -1,0 +1,149 @@
+// Ported from src/components/timeline/ProgramTimeline.astro.
+// The inline <script> (day tab switcher) moves verbatim to
+// src/client/program-timeline.js.
+
+import { t } from '../lib/i18n.js';
+
+export function renderProgramTimeline({ lang, calendario }) {
+  const locale = lang === 'es' ? 'es-EC' : 'en-US';
+  const days = calendario.dias.map((dia, i) => {
+    const date = new Date(`${dia.fecha}T00:00:00`);
+    return {
+      key: `d${i + 1}`,
+      weekday: date.toLocaleDateString(locale, { weekday: 'short' }).replace(/\.$/, ''),
+      dayNum: date.getDate(),
+    };
+  });
+
+  return `<section id="programa" class="section programa">
+  <div class="section__wrap">
+    <div class="section__head" data-reveal>
+      <span class="eyebrow">${t(lang, 'nav.programa')}</span>
+      <h2 class="section__title">${t(lang, 'programa.heading')}</h2>
+      <p class="section__lead">${t(lang, 'programa.tbd_lead')}</p>
+      <div class="divider"></div>
+    </div>
+
+    <div data-reveal>
+      <div class="programa__tabs" role="tablist" aria-label="${t(lang, 'programa.dias_aria')}">
+        ${days
+          .map(
+            (day, i) => `<button type="button" class="programa__tab${i === 0 ? ' is-active' : ''}" data-tab="${day.key}">
+          ${day.weekday} ${day.dayNum}
+        </button>`
+          )
+          .join('\n        ')}
+      </div>
+      ${days
+        .map(
+          (day, i) => `<div class="programa__panel${i === 0 ? ' is-active' : ''}" data-panel="${day.key}">
+        <div class="programa__tbd">
+          <span class="programa__tbd-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>
+          </span>
+          <p>${t(lang, 'programa.tbd')}</p>
+        </div>
+      </div>`
+        )
+        .join('\n      ')}
+      <p class="programa__note">${t(lang, 'programa.nota')}</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .programa .section__wrap {
+    max-width: 900px;
+  }
+  .programa__tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
+  }
+  .programa__tab {
+    border: 2px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-weight: 800;
+    font-size: 0.83rem;
+    color: var(--color-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: 0.25s ease;
+    font-family: var(--font-body);
+    text-transform: capitalize;
+  }
+  .programa__tab:hover {
+    border-color: var(--y-blue);
+    color: var(--y-blue);
+  }
+  .programa__tab.is-active {
+    background: var(--y-blue);
+    border-color: var(--y-blue);
+    color: #fff;
+  }
+  .programa__panel {
+    display: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    animation: programa-fade-in 0.4s ease;
+  }
+  .programa__panel.is-active {
+    display: block;
+  }
+  @keyframes programa-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .programa__tbd {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 4.5rem) 1.5rem;
+    color: var(--color-muted);
+  }
+  .programa__tbd-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--y-blue) 10%, transparent);
+    color: var(--y-blue);
+  }
+  .programa__tbd-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .programa__tbd p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--y-blue-dk);
+    margin: 0;
+  }
+  .programa__note {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-muted-2);
+    font-style: italic;
+  }
+</style>
+
+<script src="/client/program-timeline.js" defer></script>`;
+}
