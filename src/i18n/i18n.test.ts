@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import es from './es.json';
 import en from './en.json';
-import { t } from './index';
+import { t } from '../lib/i18n';
 
 const keys = (o: Record<string, unknown>) => Object.keys(o).sort();
 
