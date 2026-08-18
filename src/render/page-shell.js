@@ -3,7 +3,11 @@
 // pointing at self-hosted woff2 files, and the reveal-on-scroll inline
 // <script> with a reference to /client/scroll-reveal.js.
 
-export function renderPageShell({ lang, title, bodyHtml }) {
+export function renderPageShell({ lang, title, bodyHtml, extraStyles = [] }) {
+  const extraStylesHtml = extraStyles
+    .map((href) => `<link rel="stylesheet" href="${href}" />`)
+    .join('\n    ');
+
   return `<!doctype html>
 <html lang="${lang}">
   <head>
@@ -27,6 +31,7 @@ export function renderPageShell({ lang, title, bodyHtml }) {
       }
     </style>
     <link rel="stylesheet" href="/styles/global.css" />
+    ${extraStylesHtml}
   </head>
   <body>
     ${bodyHtml}
