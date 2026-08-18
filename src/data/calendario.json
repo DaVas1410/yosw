@@ -23,13 +23,13 @@
           "categoria": "inauguracion"
         },
         {
-          "titulo": { "es": "Inauguración Ideathon", "en": "Ideathon Opening" },
+          "titulo": { "es": "Inauguración del Ideatón", "en": "Ideathon Opening" },
           "hora_inicio": "10:00",
           "hora_fin": "11:00",
           "categoria": "inauguracion"
         },
         {
-          "titulo": { "es": "Inauguración de Galería de Posters", "en": "Poster Gallery Opening" },
+          "titulo": { "es": "Inauguración de la Galería de Pósters", "en": "Poster Gallery Opening" },
           "hora_inicio": "13:00",
           "hora_fin": "14:00",
           "categoria": "posters"
@@ -41,7 +41,7 @@
           "categoria": "mesas_abiertas"
         },
         {
-          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "titulo": { "es": "Mentorías del Ideatón", "en": "Ideathon Mentoring" },
           "hora_inicio": "19:00",
           "hora_fin": "21:00",
           "categoria": "mentorias"
@@ -59,7 +59,7 @@
           "categoria": "academico_general"
         },
         {
-          "titulo": { "es": "Presentación Grupos de Investigación", "en": "Research Groups Presentation" },
+          "titulo": { "es": "Presentación de Grupos de Investigación", "en": "Research Groups Presentation" },
           "hora_inicio": "11:00",
           "hora_fin": "13:00",
           "categoria": "academico_general"
@@ -72,7 +72,7 @@
           "nota": "Bloque general sin desglose confirmado en el calendario original"
         },
         {
-          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "titulo": { "es": "Mentorías del Ideatón", "en": "Ideathon Mentoring" },
           "hora_inicio": "19:00",
           "hora_fin": "21:15",
           "categoria": "mentorias"
@@ -98,7 +98,7 @@
           ]
         },
         {
-          "titulo": { "es": "Stands Estudiantes Grupos de Investigación", "en": "Student Research Groups Booths" },
+          "titulo": { "es": "Stands de Grupos de Investigación Estudiantiles", "en": "Student Research Groups Booths" },
           "hora_inicio": "11:00",
           "hora_fin": "13:00",
           "categoria": "academico_general"
@@ -110,7 +110,7 @@
           "categoria": "academico_general"
         },
         {
-          "titulo": { "es": "Apertura Sesión de Posters", "en": "Poster Session Opening" },
+          "titulo": { "es": "Apertura de la Sesión de Pósters", "en": "Poster Session Opening" },
           "hora_inicio": "14:00",
           "hora_fin": null,
           "categoria": "posters"
@@ -122,7 +122,7 @@
           "categoria": "posters"
         },
         {
-          "titulo": { "es": "Eje: IA, Data Science, HPC — Expos a Jurados", "en": "Track: AI, Data Science, HPC — Judged Presentations" },
+          "titulo": { "es": "Eje: IA, Ciencia de Datos y HPC — Expos a Jurados", "en": "Track: AI, Data Science, HPC — Judged Presentations" },
           "hora_inicio": "15:30",
           "hora_fin": null,
           "categoria": "expos_jurados",
@@ -154,7 +154,7 @@
           "categoria": "expos_jurados"
         },
         {
-          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "titulo": { "es": "Mentorías del Ideatón", "en": "Ideathon Mentoring" },
           "hora_inicio": "19:00",
           "hora_fin": "21:00",
           "categoria": "mentorias"
@@ -166,7 +166,7 @@
       "dia_semana": "Jueves",
       "eventos": [
         {
-          "titulo": { "es": "Alumni: Respecto a Ejes", "en": "Alumni: On the Thematic Tracks" },
+          "titulo": { "es": "Alumni: Respecto a los Ejes", "en": "Alumni: On the Thematic Tracks" },
           "hora_inicio": "09:00",
           "hora_fin": "10:00",
           "categoria": "academico_general"
@@ -178,26 +178,26 @@
           "categoria": "mesas_abiertas"
         },
         {
-          "titulo": { "es": "Alumni: Respecto a Ejes", "en": "Alumni: On the Thematic Tracks" },
+          "titulo": { "es": "Alumni: Respecto a los Ejes", "en": "Alumni: On the Thematic Tracks" },
           "hora_inicio": "11:00",
           "hora_fin": "12:00",
           "categoria": "academico_general"
         },
         {
-          "titulo": { "es": "Mesa Abierta Alumnis", "en": "Alumni Open Panel" },
+          "titulo": { "es": "Mesa Abierta Alumni", "en": "Alumni Open Panel" },
           "hora_inicio": "12:00",
           "hora_fin": "13:00",
           "categoria": "mesas_abiertas"
         },
         {
-          "titulo": { "es": "Profes", "en": "Faculty" },
+          "titulo": { "es": "Profesorado", "en": "Faculty" },
           "hora_inicio": "14:00",
           "hora_fin": "18:00",
           "categoria": "academico_general",
           "nota": "Bloque general sin desglose confirmado en el calendario original"
         },
         {
-          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "titulo": { "es": "Mentorías del Ideatón", "en": "Ideathon Mentoring" },
           "hora_inicio": "19:00",
           "hora_fin": "21:00",
           "categoria": "mentorias"
@@ -260,7 +260,7 @@
           "categoria": "mesas_abiertas"
         },
         {
-          "titulo": { "es": "Mentorías Ideathon", "en": "Ideathon Mentoring" },
+          "titulo": { "es": "Mentorías del Ideatón", "en": "Ideathon Mentoring" },
           "hora_inicio": "19:00",
           "hora_fin": "21:15",
           "categoria": "mentorias"
@@ -278,19 +278,19 @@
           "categoria": "inauguracion"
         },
         {
-          "titulo": { "es": "Sesión de Posters", "en": "Poster Session" },
+          "titulo": { "es": "Sesión de Pósters", "en": "Poster Session" },
           "hora_inicio": "09:30",
           "hora_fin": null,
           "categoria": "posters"
         },
         {
-          "titulo": { "es": "Premiación Ideathon", "en": "Ideathon Awards" },
+          "titulo": { "es": "Premiación del Ideatón", "en": "Ideathon Awards" },
           "hora_inicio": "10:00",
           "hora_fin": "11:00",
           "categoria": "premiacion"
         },
         {
-          "titulo": { "es": "Premiación Posters", "en": "Poster Awards" },
+          "titulo": { "es": "Premiación de Pósters", "en": "Poster Awards" },
           "hora_inicio": "11:00",
           "hora_fin": "12:00",
           "categoria": "premiacion"

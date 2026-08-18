@@ -15,13 +15,19 @@ const targetPath = currentPath.replace(/^\/(es|en)/, `/${otherLang}`);
 
 <style>
   .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 3rem;
     font-family: var(--font-body);
+    font-weight: 700;
     color: var(--color-text);
     text-decoration: none;
     border: 1px solid color-mix(in srgb, var(--color-muted) 40%, transparent);
-    border-radius: var(--radius);
-    padding: calc(var(--space) / 2) var(--space);
-    font-size: 0.85rem;
+    border-radius: 10px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    line-height: 1;
   }
   .lang-toggle:hover {
     color: var(--color-accent);

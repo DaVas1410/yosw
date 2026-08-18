@@ -21,7 +21,7 @@ const tiles = [
 <div class="live-stats" data-sheet-url={sheetUrl} data-soon-label={soonLabel}>
   {tiles.map((tile) => (
     <div class="live-stats__tile" data-metric={tile.metric}>
-      <span class="live-stats__value" data-role="value">{soonLabel}</span>
+      <span class="live-stats__value is-placeholder" data-role="value">{soonLabel}</span>
       <span class="live-stats__label">{tile.label}</span>
     </div>
   ))}
@@ -31,7 +31,7 @@ const tiles = [
   .live-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: calc(var(--space) * 2);
+    gap: calc(var(--space) * 2.5);
   }
   .live-stats__tile {
     background: var(--color-surface);
@@ -40,11 +40,11 @@ const tiles = [
     border: 1px solid var(--color-border);
     border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
-    padding: calc(var(--space) * 2.5) calc(var(--space) * 2);
+    padding: calc(var(--space) * 3) calc(var(--space) * 2.5);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.6rem;
     text-align: center;
     transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
   }
@@ -54,7 +54,7 @@ const tiles = [
   }
   .live-stats__value {
     font-family: var(--font-display);
-    font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
     font-weight: 700;
     line-height: 1;
     background: var(--grad-brand);
@@ -62,9 +62,19 @@ const tiles = [
     background-clip: text;
     color: transparent;
   }
+  .live-stats__value.is-placeholder {
+    font-size: 1.05rem;
+    font-weight: 700;
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: var(--color-muted-2);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
   .live-stats__label {
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     color: var(--color-muted);
   }
   @media (max-width: 640px) {
@@ -117,6 +127,7 @@ const tiles = [
         if (!valueEl) return;
         const value = counts[metric];
         if (typeof value === 'number' && !Number.isNaN(value)) {
+          valueEl.classList.remove('is-placeholder');
           animateTo(valueEl, value);
         } else {
           valueEl.textContent = soonLabel;

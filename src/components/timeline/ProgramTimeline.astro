@@ -1,26 +1,22 @@
 ---
 import { t, type Locale } from '../../i18n';
 import calendario from '../../data/calendario.json';
-import { toCalendar } from './calendar';
 
 interface Props {
   lang: Locale;
 }
 
 const { lang } = Astro.props;
-const cal = toCalendar(calendario, lang);
-const legend = Object.keys(calendario.leyenda_categorias);
 
-const HOUR_PX = 66;
-const gridStart = cal.startMin;
-const totalMin = cal.endMin - cal.startMin;
-const bodyHeight = (totalMin / 60) * HOUR_PX;
-const topPx = (min: number) => ((min - gridStart) / 60) * HOUR_PX;
-
-const hours: { label: string; top: number }[] = [];
-for (let m = cal.startMin; m <= cal.endMin; m += 60) {
-  hours.push({ label: `${String(Math.floor(m / 60)).padStart(2, '0')}:00`, top: topPx(m) });
-}
+const locale = lang === 'es' ? 'es-EC' : 'en-US';
+const days = calendario.dias.map((dia, i) => {
+  const date = new Date(`${dia.fecha}T00:00:00`);
+  return {
+    key: `d${i + 1}`,
+    weekday: date.toLocaleDateString(locale, { weekday: 'short' }).replace(/\.$/, ''),
+    dayNum: date.getDate(),
+  };
+});
 ---
 
 <section id="programa" class="section programa">
@@ -28,207 +24,136 @@ for (let m = cal.startMin; m <= cal.endMin; m += 60) {
     <div class="section__head" data-reveal>
       <span class="eyebrow">{t(lang, 'nav.programa')}</span>
       <h2 class="section__title">{t(lang, 'programa.heading')}</h2>
+      <p class="section__lead">{t(lang, 'programa.tbd_lead')}</p>
       <div class="divider"></div>
     </div>
 
-    <div class="programa__filtros" role="group" aria-label={t(lang, 'programa.filtrar')} data-reveal>
-      <button type="button" class="programa__filtro is-active" data-categoria="todos">
-        {t(lang, 'programa.todos')}
-      </button>
-      {legend.map((categoria) => (
-        <button type="button" class="programa__filtro" data-categoria={categoria}>
-          <span class="programa__filtro-dot" style={`background: var(--cat-${categoria})`}></span>
-          {t(lang, `programa.categoria.${categoria}`)}
-        </button>
-      ))}
-    </div>
-
-    <div class="cal card" data-reveal>
-      <div class="cal__scroll">
-        <div class="cal__inner" style={`--hour-px: ${HOUR_PX}px`}>
-          <!-- header row: corner + day headers -->
-          <div class="cal__corner"></div>
-          {cal.days.map((day) => (
-            <div class="cal__dayhead">
-              <span class="cal__dayhead-name">{day.dia_semana}</span>
-              <span class="cal__dayhead-date">{day.fecha.split('-')[2]}</span>
-            </div>
-          ))}
-
-          <!-- time gutter -->
-          <div class="cal__gutter" style={`height: ${bodyHeight}px`}>
-            {hours.map((h) => (
-              <span class="cal__hour" style={`top: ${h.top}px`}>{h.label}</span>
-            ))}
-          </div>
-
-          <!-- day columns with positioned events -->
-          {cal.days.map((day) => (
-            <div class="cal__col" style={`height: ${bodyHeight}px`}>
-              {hours.map((h) => (
-                <span class="cal__line" style={`top: ${h.top}px`}></span>
-              ))}
-              {day.events.map((ev) => {
-                const top = topPx(ev.startMin);
-                const height = Math.max(((ev.endMin - ev.startMin) / 60) * HOUR_PX, 30);
-                const width = 100 / ev.cols;
-                const left = ev.col * width;
-                return (
-                  <article
-                    class="cal__event"
-                    data-categoria={ev.categoria}
-                    style={`top:${top}px; height:${height}px; left:${left}%; width:calc(${width}% - 4px); --event-color: ${ev.color}`}
-                    title={`${ev.start}${ev.end ? '–' + ev.end : ''} · ${ev.titulo}`}
-                  >
-                    <span class="cal__event-time">
-                      {ev.start}{ev.end ? `–${ev.end}` : ''}
-                      {ev.nota && <span class="cal__event-nota" title={ev.nota}>⚠</span>}
-                    </span>
-                    <span class="cal__event-title">{ev.titulo}</span>
-                  </article>
-                );
-              })}
-            </div>
-          ))}
-        </div>
+    <div data-reveal>
+      <div class="programa__tabs" role="tablist" aria-label={t(lang, 'programa.dias_aria')}>
+        {days.map((day, i) => (
+          <button type="button" class:list={['programa__tab', { 'is-active': i === 0 }]} data-tab={day.key}>
+            {day.weekday} {day.dayNum}
+          </button>
+        ))}
       </div>
+      {days.map((day, i) => (
+        <div class:list={['programa__panel', { 'is-active': i === 0 }]} data-panel={day.key}>
+          <div class="programa__tbd">
+            <span class="programa__tbd-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>
+            </span>
+            <p>{t(lang, 'programa.tbd')}</p>
+          </div>
+        </div>
+      ))}
+      <p class="programa__note">{t(lang, 'programa.nota')}</p>
     </div>
   </div>
 </section>
 
 <style>
-  .programa__filtros {
+  .programa .section__wrap {
+    max-width: 900px;
+  }
+  .programa__tabs {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    overflow-x: auto;
     justify-content: center;
-    gap: calc(var(--space));
-    margin-bottom: calc(var(--space) * 3);
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.5rem;
+    scrollbar-width: thin;
   }
-  .programa__filtro {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
+  .programa__tab {
+    border: 2px solid var(--color-border);
     background: var(--color-surface);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
     border-radius: 999px;
-    padding: 0.4rem 0.9rem;
-    font-family: var(--font-body);
-    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+    font-weight: 800;
+    font-size: 0.83rem;
+    color: var(--color-muted);
     cursor: pointer;
-    transition: transform 0.15s ease;
-  }
-  .programa__filtro:hover { transform: translateY(-2px); }
-  .programa__filtro.is-active { border-color: transparent; background: var(--grad-brand); color: #fff; }
-  .programa__filtro-dot { width: 0.6rem; height: 0.6rem; border-radius: 50%; }
-
-  .cal { padding: calc(var(--space) * 1.5); }
-  .cal:hover { transform: none; }
-  .cal__scroll { overflow-x: auto; }
-  .cal__inner {
-    display: grid;
-    grid-template-columns: 58px repeat(6, minmax(150px, 1fr));
-    min-width: 860px;
-  }
-  .cal__corner { position: sticky; left: 0; z-index: 2; }
-  .cal__dayhead {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.1rem;
-    padding: 0.5rem 0.25rem 0.75rem;
-    border-bottom: 2px solid var(--color-border);
-  }
-  .cal__dayhead-name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.9rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    transition: 0.25s ease;
+    font-family: var(--font-body);
     text-transform: capitalize;
   }
-  .cal__dayhead-date {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-    background: var(--grad-brand);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  .programa__tab:hover {
+    border-color: var(--y-blue);
+    color: var(--y-blue);
   }
-  .cal__gutter {
-    position: sticky;
-    left: 0;
-    z-index: 2;
-    background: var(--color-surface-solid);
+  .programa__tab.is-active {
+    background: var(--y-blue);
+    border-color: var(--y-blue);
+    color: #fff;
   }
-  .cal__hour {
-    position: absolute;
-    right: 6px;
-    transform: translateY(-50%);
-    font-size: 0.7rem;
-    color: var(--color-muted);
-    font-variant-numeric: tabular-nums;
-  }
-  .cal__col {
-    position: relative;
-    border-left: 1px solid var(--color-border);
-  }
-  .cal__line {
-    position: absolute;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: color-mix(in srgb, var(--color-muted) 14%, transparent);
-  }
-  .cal__event {
-    position: absolute;
-    overflow: hidden;
-    border-radius: 8px;
-    padding: 3px 6px;
-    background: color-mix(in srgb, var(--event-color) 16%, white);
-    border-left: 3px solid var(--event-color);
+  .programa__panel {
+    display: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
     box-shadow: var(--shadow-sm);
+    animation: programa-fade-in 0.4s ease;
+  }
+  .programa__panel.is-active {
+    display: block;
+  }
+  @keyframes programa-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: none; }
+  }
+  .programa__tbd {
     display: flex;
     flex-direction: column;
-    gap: 1px;
-    cursor: default;
-    transition: transform 0.15s ease, box-shadow 0.15s ease, z-index 0s;
-  }
-  .cal__event:hover {
-    transform: scale(1.02);
-    box-shadow: var(--shadow-md);
-    z-index: 5;
-  }
-  .cal__event.is-hidden { display: none; }
-  .cal__event-time {
-    font-size: 0.66rem;
-    font-weight: 700;
-    color: var(--event-color);
-    display: flex;
     align-items: center;
-    gap: 0.2rem;
-    font-variant-numeric: tabular-nums;
+    gap: 0.8rem;
+    text-align: center;
+    padding: clamp(3rem, 8vw, 4.5rem) 1.5rem;
+    color: var(--color-muted);
   }
-  .cal__event-nota { cursor: help; }
-  .cal__event-title {
-    font-size: 0.74rem;
-    line-height: 1.2;
-    color: var(--color-text);
+  .programa__tbd-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: color-mix(in srgb, var(--y-blue) 10%, transparent);
+    color: var(--y-blue);
+  }
+  .programa__tbd-icon svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .programa__tbd p {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--y-blue-dk);
+    margin: 0;
+  }
+  .programa__note {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--color-muted-2);
+    font-style: italic;
   }
 </style>
 
 <script>
-  const filtros = document.querySelectorAll<HTMLButtonElement>('.programa__filtro');
-  const eventos = document.querySelectorAll<HTMLElement>('.cal__event');
-  filtros.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      filtros.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      const categoria = btn.dataset.categoria;
-      eventos.forEach((ev) => {
-        const match = categoria === 'todos' || ev.dataset.categoria === categoria;
-        ev.classList.toggle('is-hidden', !match);
-      });
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.programa__tab');
+  const panels = document.querySelectorAll<HTMLElement>('.programa__panel');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      tabs.forEach((b) => b.classList.remove('is-active'));
+      panels.forEach((p) => p.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      document.querySelector(`[data-panel="${tab.dataset.tab}"]`)?.classList.add('is-active');
     });
   });
 </script>

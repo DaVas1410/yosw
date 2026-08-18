@@ -1,66 +1,66 @@
 :root {
-  /* ---- Warm neutral base, Yachay Tech institutional palette as accent ---- */
+  /* ---- preliminarweb-inspired institutional palette ---- */
   --color-bg: transparent;
-  --color-page: #faf8f4;
+  --color-page: #f4f5f2;
+  --color-page-alt: #eef1ee;
   --color-surface: #ffffff;
   --color-surface-solid: #ffffff;
-  --color-text: #17140f;
-  --color-muted: #6b6255;
-  --color-border: rgba(30, 26, 20, 0.12);
+  --color-text: #24313d;
+  --color-muted: #5d6771;
+  --color-muted-2: #8a939c;
+  --color-border: #e2e7eb;
 
-  /* Yachay institutional brand palette (9) — unchanged values, accent-only role */
-  --y-red:     #96332b;
-  --y-orange:  #ba6f3a;
-  --y-gold:    #c09e27;
-  --y-yellow:  #cfab2a;
-  --y-green:   #619745;
-  --y-blue:    #328ab5;
-  --y-teal:    #1f8e8b;
-  --y-purple:  #805794;
-  --y-cyan:    #3197ad;
+  --y-blue:   #1f5c8e;
+  --y-blue-dk:#164a75;
+  --y-teal:   #0f9ba8;
+  --y-green:  #74b944;
+  --y-yellow: #f2a900;
+  --y-orange: #e8871e;
+  --y-red:    #d6402c;
 
   --color-accent: var(--y-blue);
   --color-accent-2: var(--y-teal);
 
   /* legacy accent aliases kept so older refs still resolve */
-  --c-cyan: var(--y-cyan);
-  --c-violet: var(--y-purple);
+  --c-cyan: var(--y-teal);
+  --c-violet: var(--y-blue);
   --c-magenta: var(--y-red);
   --c-lime: var(--y-green);
+  --y-gold: var(--y-yellow);
+  --y-purple: var(--y-blue-dk);
+  --y-cyan: var(--y-teal);
 
-  /* gradients — toned down: CTA keeps a soft 2-stop brand gradient,
-     the old full-rainbow spectrum sweep is retired from default use */
-  --grad-brand: linear-gradient(120deg, var(--y-teal) 0%, var(--y-blue) 100%);
-  --grad-spectrum: linear-gradient(100deg,
-    #328ab5 0%, #3197ad 16%, #1f8e8b 30%, #619745 45%,
-    #cfab2a 60%, #c09e27 70%, #ba6f3a 84%, #96332b 100%);
-  --grad-brand-soft: linear-gradient(120deg, #1f8e8b14 0%, #328ab514 100%);
+  --grad-brand: linear-gradient(120deg, var(--y-blue) 0%, var(--y-teal) 100%);
+  --grad-spectrum: linear-gradient(90deg,
+    var(--y-blue) 0 20%, var(--y-teal) 0 40%, var(--y-green) 0 60%,
+    var(--y-yellow) 0 80%, var(--y-red) 0 100%);
+  --grad-brand-soft: linear-gradient(120deg, #0f9ba814 0%, #1f5c8e14 100%);
+
+  --mol-azul: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%231f5c8e' stroke-width='2' opacity='0.10'%3E%3Ccircle cx='34' cy='34' r='12'/%3E%3Ccircle cx='112' cy='66' r='7'/%3E%3Ccircle cx='64' cy='126' r='9'/%3E%3Ccircle cx='140' cy='140' r='5'/%3E%3Cpath d='M45 40l60 22M108 73l-38 46M34 46v70M117 70l18 62'/%3E%3C/g%3E%3C/svg%3E");
+  --mol-blanco: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.14'%3E%3Ccircle cx='34' cy='34' r='12'/%3E%3Ccircle cx='112' cy='66' r='7'/%3E%3Ccircle cx='64' cy='126' r='9'/%3E%3Ccircle cx='140' cy='140' r='5'/%3E%3Cpath d='M45 40l60 22M108 73l-38 46M34 46v70M117 70l18 62'/%3E%3C/g%3E%3C/svg%3E");
 
   --glow: 0 0 40px;
-  --shadow-sm: 0 1px 3px rgba(23, 20, 15, 0.06);
-  --shadow-md: 0 12px 32px -14px rgba(23, 20, 15, 0.16);
-  --shadow-lg: 0 24px 48px -18px rgba(23, 20, 15, 0.22);
-  /* Neutralized: cards are flat/solid now, no backdrop blur. Kept at 0 so any
-     component still referencing var(--glass-blur) degrades to a harmless
-     no-op instead of needing an individual edit. */
+  --shadow-sm: 0 4px 12px rgba(21, 58, 94, 0.08);
+  --shadow-md: 0 10px 30px rgba(21, 58, 94, 0.10);
+  --shadow-lg: 0 18px 36px rgba(21, 58, 94, 0.16);
   --glass-blur: 0px;
 
   /* eje colors — thematic subset of the brand palette */
-  --color-eje-1: #328ab5; --color-eje-2: #1f8e8b; --color-eje-3: #619745;
-  --color-eje-4: #805794; --color-eje-5: #c09e27;
+  --color-eje-1: #1f5c8e; --color-eje-2: #0f9ba8; --color-eje-3: #74b944;
+  --color-eje-4: #e8871e; --color-eje-5: #d6402c;
 
-  /* schedule categories mapped to the 9 brand colors */
-  --cat-inauguracion: #328ab5;
-  --cat-charlas: #3197ad;
-  --cat-mesas_abiertas: #1f8e8b;
-  --cat-posters: #805794;
-  --cat-expos_jurados: #c09e27;
-  --cat-mentorias: #ba6f3a;
-  --cat-social_networking: #619745;
-  --cat-premiacion: #96332b;
-  --cat-academico_general: #cfab2a;
+  /* schedule categories mapped to the brand palette */
+  --cat-inauguracion: #d6402c;
+  --cat-charlas: #0f9ba8;
+  --cat-mesas_abiertas: #74b944;
+  --cat-posters: #e8871e;
+  --cat-expos_jurados: #f2a900;
+  --cat-mentorias: #1f5c8e;
+  --cat-social_networking: #f2a900;
+  --cat-premiacion: #d6402c;
+  --cat-academico_general: #164a75;
 
-  --font-display: 'Archivo', 'Segoe UI', system-ui, sans-serif;
-  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  --radius: 14px; --space: 8px;
+  --font-display: 'Sora Variable', 'Sora', system-ui, sans-serif;
+  --font-body: 'Manrope Variable', 'Manrope', system-ui, sans-serif;
+  --radius: 16px; --space: 8px;
 }

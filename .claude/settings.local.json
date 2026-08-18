@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(git --version)",
+      "Bash(npm create *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git status *)",
+      "Bash(git check-ignore *)",
+      "Bash(node -e \"console.log\\(JSON.stringify\\(require\\('./package.json'\\).scripts, null, 2\\)\\)\")",
+      "Bash(npm test *)",
+      "WebSearch",
+      "WebFetch(domain:commons.wikimedia.org)",
+      "Bash(curl -s -o .superpowers/sdd/yachay_logo.png \"https://upload.wikimedia.org/wikipedia/commons/c/cc/Logotipo_Universidad_Yachay_Tech.png\")",
+      "Bash(node -e ' *)",
+      "Bash(npm i *)",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(bash \"C:\\\\Users\\\\sedig\\\\.claude\\\\plugins\\\\cache\\\\claude-plugins-official\\\\superpowers\\\\6.2.0\\\\skills\\\\subagent-driven-development\\\\scripts\\\\task-brief\" \"C:\\\\Users\\\\sedig\\\\Documents\\\\yosw\\\\docs\\\\superpowers\\\\plans\\\\2026-08-10-noth-inspired-redesign.md\" 1)",
+      "Bash(bash \"C:\\\\Users\\\\sedig\\\\.claude\\\\plugins\\\\cache\\\\claude-plugins-official\\\\superpowers\\\\6.2.0\\\\skills\\\\subagent-driven-development\\\\scripts\\\\task-brief\" \"C:\\\\Users\\\\sedig\\\\Documents\\\\yosw\\\\docs\\\\superpowers\\\\plans\\\\2026-08-10-noth-inspired-redesign.md\" 2)"
+    ]
+  }
+}

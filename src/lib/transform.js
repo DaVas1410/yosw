@@ -1,4 +1,4 @@
-import { CalendarioSchema } from '../data/schemas';
+import { CalendarioSchema } from '../data/schemas.ts';
 
 export function toTimeline(raw, lang) {
   const data = CalendarioSchema.parse(raw);

@@ -29,40 +29,47 @@ const bars = Object.entries(counts)
       <div class="divider"></div>
     </div>
 
-    <div class="card datos__chart" data-reveal>
-      <h3 class="datos__chart-title">{t(lang, 'datos.categorias')}</h3>
-      <div class="datos__bars">
-        {bars.map((bar) => (
-          <div class="datos__bar-row">
-            <span class="datos__bar-label">{bar.label}</span>
-            <div class="datos__bar-track">
-              <div
-                class="datos__bar-fill"
-                data-pct={bar.pct}
-                style={`background: var(--cat-${bar.categoria});`}
-              ></div>
+    <div class="datos__stack">
+      <div class="card datos__chart" data-reveal>
+        <h3 class="datos__chart-title">{t(lang, 'datos.categorias')}</h3>
+        <div class="datos__bars">
+          {bars.map((bar) => (
+            <div class="datos__bar-row">
+              <span class="datos__bar-label">{bar.label}</span>
+              <div class="datos__bar-track">
+                <div
+                  class="datos__bar-fill"
+                  data-pct={bar.pct}
+                  style={`background: var(--cat-${bar.categoria});`}
+                ></div>
+              </div>
+              <span class="datos__bar-count">{bar.count}</span>
             </div>
-            <span class="datos__bar-count">{bar.count}</span>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
 
-    <LiveStats lang={lang} />
+      <LiveStats lang={lang} />
+    </div>
   </div>
 </section>
 
 <style>
-  .datos__chart {
-    padding: clamp(1.5rem, 4vw, 2.5rem);
+  .datos__stack {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space) * 2);
+    gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  }
+  .datos__chart {
+    padding: clamp(1.75rem, 4vw, 2.75rem);
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--space) * 2.5);
   }
   .datos__chart:hover { transform: none; }
   .datos__chart-title {
     font-family: var(--font-display);
-    font-size: 1.05rem;
+    font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text);
     margin: 0;
@@ -70,23 +77,23 @@ const bars = Object.entries(counts)
   .datos__bars {
     display: flex;
     flex-direction: column;
-    gap: calc(var(--space) * 1.4);
+    gap: calc(var(--space) * 1.6);
   }
   .datos__bar-row {
     display: grid;
-    grid-template-columns: minmax(120px, 190px) 1fr auto;
+    grid-template-columns: minmax(140px, 210px) 1fr auto;
     align-items: center;
     gap: calc(var(--space) * 1.5);
   }
   .datos__bar-label {
     font-family: var(--font-body);
-    font-size: 0.9rem;
+    font-size: 1.02rem;
   }
   .datos__bar-track {
     background: color-mix(in srgb, var(--color-muted) 16%, transparent);
     border-radius: 999px;
     overflow: hidden;
-    height: 0.85rem;
+    height: 0.95rem;
   }
   .datos__bar-fill {
     height: 100%;
@@ -97,7 +104,7 @@ const bars = Object.entries(counts)
   .datos__bar-count {
     font-family: var(--font-display);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1.02rem;
     color: var(--color-text);
     min-width: 1.5rem;
     text-align: right;

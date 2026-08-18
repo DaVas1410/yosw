@@ -1,7 +1,7 @@
 ---
 import { t, type Locale } from '../i18n';
-import logo from '../assets/brand/logo-color.png';
 import LangToggle from './LangToggle.astro';
+import logo from '../assets/brand/logo-color.png';
 
 interface Props {
   lang: Locale;
@@ -16,65 +16,184 @@ const links = [
   { href: '#datos', label: t(lang, 'nav.datos') },
   { href: '#participantes', label: t(lang, 'nav.participantes') },
   { href: '#sponsors', label: t(lang, 'nav.sponsors') },
-  { href: '#registro', label: t(lang, 'nav.registro') },
 ];
 ---
 
-<header class="nav">
-  <nav class="nav__bar">
-    <a class="nav__logo" href={`/${lang}`} aria-label={t(lang, 'brand.short')}>
-      <img src={logo.src} alt={t(lang, 'brand.short')} width="96" height="44" />
+<header class="nav" id="siteHeader">
+  <div class="wrap nav__bar">
+    <a class="nav__brand" href={`/${lang}`} aria-label={t(lang, 'brand.short')}>
+      <img class="nav__logo" src={logo.src} alt={t(lang, 'brand.short')} width="220" height="101" />
     </a>
-    <ul class="nav__links">
+    <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
       {links.map((link) => (
-        <li><a href={link.href}>{link.label}</a></li>
+        <a href={link.href}>{link.label}</a>
       ))}
-    </ul>
-    <LangToggle lang={lang} />
-  </nav>
+      <a href="#registro" class="btn btn-primary nav__cta">{t(lang, 'nav.registro')}</a>
+      <LangToggle lang={lang} />
+    </nav>
+    <button id="menuBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
 </header>
 
 <style>
   .nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: var(--color-page);
-    border-bottom: 1px solid var(--color-border);
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 60;
+    background: rgba(244, 245, 242, 0.86);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: box-shadow 0.3s ease, background 0.3s ease;
+  }
+  .nav.is-scrolled {
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 6px 24px rgba(21, 58, 94, 0.1);
   }
   .nav__bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: calc(var(--space) * 2);
-    padding: calc(var(--space) * 1.25) calc(var(--space) * 3);
-    max-width: 1200px;
-    margin: 0 auto;
+    gap: 1.2rem;
+    padding: 0.9rem clamp(1.5rem, 4vw, 3rem);
   }
-  .nav__logo img {
+  .nav__brand {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+  .nav__logo {
     display: block;
-    height: 38px;
+    height: 54px;
     width: auto;
   }
   .nav__links {
     display: flex;
-    flex-wrap: wrap;
-    gap: calc(var(--space) * 2.25);
-    list-style: none;
-    margin: 0;
-    padding: 0;
+    align-items: center;
+    gap: 1.4rem;
+    flex-wrap: nowrap;
   }
   .nav__links a {
     font-family: var(--font-body);
-    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-muted);
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    transition: color 0.2s ease;
+    position: relative;
+    padding: 0.3rem 0;
+    white-space: nowrap;
   }
-  .nav__links a:hover {
-    color: var(--color-accent);
+  .nav__links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 0;
+    height: 3px;
+    border-radius: 99px;
+    background: var(--grad-spectrum);
+    transition: width 0.3s ease;
+  }
+  .nav__links a:hover::after,
+  .nav__links a.is-active::after {
+    width: 100%;
+  }
+  .nav__links a.is-active {
+    color: var(--y-blue);
+  }
+  .nav__links a.nav__cta {
+    padding: 1rem 2.3rem;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    color: #fff;
+    border-radius: 10px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .nav__cta::after {
+    display: none;
+  }
+  #menuBtn {
+    display: none;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    position: relative;
+  }
+  #menuBtn span {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    height: 3px;
+    border-radius: 99px;
+    background: var(--y-blue);
+    transition: 0.3s ease;
+  }
+  #menuBtn span:nth-child(1) { top: 14px; }
+  #menuBtn span:nth-child(2) { top: 21px; }
+  #menuBtn span:nth-child(3) { top: 28px; }
+  .nav.is-open #menuBtn span:nth-child(1) { top: 21px; transform: rotate(45deg); }
+  .nav.is-open #menuBtn span:nth-child(2) { opacity: 0; }
+  .nav.is-open #menuBtn span:nth-child(3) { top: 21px; transform: rotate(-45deg); }
+
+  @media (max-width: 1080px) {
+    #menuBtn { display: block; }
+    .nav__links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #fff;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1.4rem 5%;
+      gap: 1rem;
+      box-shadow: 0 20px 30px rgba(21, 58, 94, 0.12);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform 0.3s ease;
+      border-top: 1px solid var(--color-border);
+    }
+    .nav.is-open .nav__links { transform: scaleY(1); }
   }
 </style>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  const menuBtn = document.getElementById('menuBtn');
+  if (header && menuBtn) {
+    window.addEventListener(
+      'scroll',
+      () => {
+        header.classList.toggle('is-scrolled', window.scrollY > 40);
+        spy();
+      },
+      { passive: true }
+    );
+    menuBtn.addEventListener('click', () => header.classList.toggle('is-open'));
+    header.querySelectorAll('.nav__links a').forEach((a) =>
+      a.addEventListener('click', () => header.classList.remove('is-open'))
+    );
+  }
+
+  const spyLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('.nav__links a[href^="#"]:not(.nav__cta)')
+  );
+  const spySecs: [HTMLAnchorElement, HTMLElement][] = [];
+  spyLinks.forEach((l) => {
+    const sec = document.querySelector<HTMLElement>(l.getAttribute('href') || '');
+    if (sec) spySecs.push([l, sec]);
+  });
+  function spy() {
+    const y = window.scrollY + 140;
+    let current: HTMLAnchorElement | null = null;
+    spySecs.forEach(([link, sec]) => {
+      if (sec.offsetTop <= y) current = link;
+    });
+    spyLinks.forEach((l) => l.classList.toggle('is-active', l === current));
+  }
+  spy();
+</script>

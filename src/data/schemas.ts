@@ -33,9 +33,14 @@ export const SponsorsSchema = z.array(z.object({
 export const ConfigSchema = z.object({
   eventStart: z.string(),
   venue: I18nStr,
-  forms: z.object({ attend: z.string(), poster: z.string(), ideaton: z.string() }),
+  forms: z.object({ register: z.string() }),
   liveStatsSheetUrl: z.string(),
-  social: z.object({ instagram: z.string(), email: z.string() }),
+  social: z.object({
+    instagram: z.string(),
+    email: z.string(),
+    facebook: z.string().optional(),
+    linkedin: z.string().optional(),
+  }),
   sponsorshipProposalUrl: z.string(),
 });
 

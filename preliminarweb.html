@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOSW 2026 · I Congreso Interdisciplinario de Ciencias | Yachay Tech</title>
+<meta name="description" content="Yachay Tech Open Science Week — I Congreso Interdisciplinario de Ciencias. 19–24 de octubre de 2026, Campus Urcuquí, Ecuador. Modalidad híbrida. #HacemosCienciaYT">
+<meta property="og:title" content="YOSW 2026 · I Congreso Interdisciplinario de Ciencias">
+<meta property="og:description" content="19–24 de octubre de 2026 · Campus Urcuquí · Híbrido · #HacemosCienciaYT">
+<meta property="og:image" content="https://image.qwenlm.ai/public_source/459c34b7-1029-4055-9dd9-3a972fff6075/19cdcb536-6612-4b10-b78e-5a5137af5a1a.png">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f5c8e'/%3E%3Cpath d='M20 44V22h6v-6h6v6h6v-6h6v6h6v22' fill='none' stroke='%230f9ba8' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M16 50h32' stroke='%23d6402c' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/manrope@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource-variable/sora@latest/index.css">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+--azul:#1f5c8e; --azul-osc:#164a75; --teal:#0f9ba8; --verde:#74b944;
+--amarillo:#f2a900; --naranja:#e8871e; --rojo:#d6402c;
+--tinta:#24313d; --gris:#5d6771; --gris-claro:#8a939c;
+--fondo:#f4f5f2; --blanco:#ffffff; --linea:#e2e7eb;
+--radio:16px; --sombra:0 10px 30px rgba(21,58,94,.10);
+--multi:linear-gradient(90deg,var(--azul) 0 20%,var(--teal) 0 40%,var(--verde) 0 60%,var(--amarillo) 0 80%,var(--rojo) 0 100%);
+--mol-azul:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%231f5c8e' stroke-width='2' opacity='0.10'%3E%3Ccircle cx='34' cy='34' r='12'/%3E%3Ccircle cx='112' cy='66' r='7'/%3E%3Ccircle cx='64' cy='126' r='9'/%3E%3Ccircle cx='140' cy='140' r='5'/%3E%3Cpath d='M45 40l60 22M108 73l-38 46M34 46v70M117 70l18 62'/%3E%3C/g%3E%3C/svg%3E");
+--mol-blanco:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='2' opacity='0.14'%3E%3Ccircle cx='34' cy='34' r='12'/%3E%3Ccircle cx='112' cy='66' r='7'/%3E%3Ccircle cx='64' cy='126' r='9'/%3E%3Ccircle cx='140' cy='140' r='5'/%3E%3Cpath d='M45 40l60 22M108 73l-38 46M34 46v70M117 70l18 62'/%3E%3C/g%3E%3C/svg%3E");
+--font-body:'Manrope Variable',system-ui,sans-serif;
+--font-disp:'Sora Variable',system-ui,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{font-family:var(--font-body);background:var(--fondo);color:var(--tinta);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+h1,h2,h3,h4{font-family:var(--font-disp);line-height:1.15;color:var(--azul-osc)}
+.wrap{width:min(1160px,92%);margin-inline:auto}
+.stripe{height:6px;background:var(--multi);border-radius:99px;max-width:120px}
+.kicker{display:inline-flex;align-items:center;gap:.55rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-size:.75rem;color:var(--teal)}
+.kicker::before{content:"";width:26px;height:3px;background:var(--multi);border-radius:99px}
+.sec-head{margin-bottom:2.4rem}
+.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin:.5rem 0 .8rem}
+.sec-head p{max-width:680px;color:var(--gris)}
+.btn{display:inline-flex;align-items:center;gap:.5rem;font-weight:800;font-size:.95rem;padding:.85rem 1.6rem;border-radius:99px;border:2px solid transparent;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s;font-family:var(--font-body)}
+.btn-primary{background:var(--azul);color:#fff;box-shadow:0 8px 20px rgba(31,92,142,.28)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 26px rgba(31,92,142,.35)}
+.btn-ghost{border-color:var(--azul);color:var(--azul);background:transparent}
+.btn-ghost:hover{background:var(--azul);color:#fff;transform:translateY(-3px)}
+.btn[aria-disabled="true"]{background:#9db4c8;box-shadow:none;cursor:wait}
+/* ---------- header ---------- */
+header{position:fixed;inset:0 0 auto 0;z-index:60;background:rgba(244,245,242,.86);backdrop-filter:blur(10px);transition:box-shadow .3s,background .3s}
+header.scrolled{background:rgba(255,255,255,.96);box-shadow:0 6px 24px rgba(21,58,94,.10)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
+.brand{display:flex;align-items:center;gap:.65rem}
+.brand-tower{width:24px;height:48px;flex-shrink:0}
+.brand-tower path{fill:none;stroke-width:14;stroke-linecap:round;stroke-linejoin:round}
+.brand-txt b{font-family:var(--font-disp);font-weight:800;font-size:1.15rem;color:var(--azul);letter-spacing:-.01em;display:block;line-height:1}
+.brand-txt b i{font-style:normal;color:transparent;-webkit-text-stroke:1.3px var(--azul)}
+.brand-txt small{display:block;font-size:.6rem;font-weight:700;letter-spacing:.05em;color:var(--gris-claro);margin-top:.15rem}
+.nav-links{display:flex;align-items:center;gap:1.25rem}
+.nav-links a{font-weight:700;font-size:.9rem;color:var(--gris);position:relative;padding:.3rem 0}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:3px;border-radius:99px;background:var(--multi);transition:width .3s}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active{color:var(--azul)}
+.nav-cta{margin-left:.4rem}
+.nav-cta::after{display:none}
+#menuBtn{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;position:relative}
+#menuBtn span{position:absolute;left:10px;right:10px;height:3px;border-radius:99px;background:var(--azul);transition:.3s}
+#menuBtn span:nth-child(1){top:14px}#menuBtn span:nth-child(2){top:21px}#menuBtn span:nth-child(3){top:28px}
+header.open #menuBtn span:nth-child(1){top:21px;transform:rotate(45deg)}
+header.open #menuBtn span:nth-child(2){opacity:0}
+header.open #menuBtn span:nth-child(3){top:21px;transform:rotate(-45deg)}
+/* ---------- hero ---------- */
+.hero{position:relative;padding:9.5rem 0 4.5rem;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:var(--mol-azul) center/420px repeat;opacity:.55;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.08fr .92fr;gap:3rem;align-items:center}
+.badge-soon{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--linea);border-radius:99px;padding:.4rem 1rem;font-size:.8rem;font-weight:800;color:var(--azul);box-shadow:var(--sombra)}
+.badge-soon i{width:8px;height:8px;border-radius:50%;background:var(--verde);animation:pulse 1.6s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(116,185,68,.5)}60%{box-shadow:0 0 0 8px rgba(116,185,68,0)}}
+.hero h1{font-size:clamp(2.7rem,6vw,4.7rem);font-weight:800;color:var(--azul);letter-spacing:-.02em;margin:1.1rem 0 .2rem}
+.hero h1 .year{color:transparent;-webkit-text-stroke:2.5px var(--azul)}
+.hero .sub{font-size:clamp(1rem,2vw,1.3rem);font-weight:700;color:var(--tinta)}
+.hero .sub small{display:block;font-weight:600;color:var(--gris);font-size:.95rem;margin-top:.2rem}
+.hashtag{font-style:italic;font-weight:800;color:var(--azul);font-size:1.05rem;margin-top:.7rem;display:inline-block}
+.hashtag b{color:var(--azul-osc)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 1.6rem}
+.chip{display:inline-flex;align-items:center;gap:.45rem;background:#fff;border:1px solid var(--linea);border-radius:99px;padding:.45rem .95rem;font-size:.83rem;font-weight:700;color:var(--gris)}
+.chip svg{width:15px;height:15px;stroke:var(--teal);fill:none;stroke-width:2}
+.hero-actions{display:flex;flex-wrap:wrap;gap:.9rem}
+.countdown{display:flex;gap:.7rem;margin-top:2rem}
+.cd{background:#fff;border:1px solid var(--linea);border-radius:14px;min-width:74px;padding:.7rem .4rem;text-align:center;box-shadow:var(--sombra)}
+.cd b{display:block;font-family:var(--font-disp);font-size:1.6rem;color:var(--azul);font-weight:800}
+.cd span{font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--gris-claro)}
+.cd:nth-child(1) b{color:var(--azul)}.cd:nth-child(2) b{color:var(--teal)}.cd:nth-child(3) b{color:var(--verde)}.cd:nth-child(4) b{color:var(--naranja)}
+.hero-visual{position:relative}
+.tower-card{position:relative;background:#fff;border:1px solid var(--linea);border-radius:24px;box-shadow:var(--sombra);padding:2.4rem 2rem;display:flex;flex-direction:column;align-items:center;gap:1.2rem;overflow:hidden}
+.tower-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--multi)}
+.tower-card figcaption{font-size:.78rem;font-weight:700;color:var(--gris-claro);letter-spacing:.05em}
+.tower{width:170px;height:auto}
+.tower path{fill:none;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.1s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.tower path:nth-child(1){stroke:var(--azul);animation-delay:.15s}
+.tower path:nth-child(2){stroke:var(--teal);animation-delay:.35s}
+.tower path:nth-child(3),.tower path:nth-child(4){stroke:var(--teal);animation-delay:.5s}
+.tower path:nth-child(5),.tower path:nth-child(6){stroke:var(--verde);animation-delay:.75s}
+.tower path:nth-child(7){stroke:var(--amarillo);animation-delay:.9s}
+.tower path:nth-child(8){stroke:var(--naranja);animation-delay:1s}
+.tower path:nth-child(9){stroke:var(--rojo);animation-delay:1.15s}
+.float-mol{position:absolute;background:#fff;border:1px solid var(--linea);border-radius:14px;box-shadow:var(--sombra);padding:.55rem .9rem;font-size:.75rem;font-weight:800;color:var(--azul);display:flex;gap:.4rem;align-items:center;animation:float 5s ease-in-out infinite}
+.float-mol svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2}
+.fm1{top:8%;left:-6%}.fm2{bottom:12%;right:-5%;animation-delay:1.4s;color:var(--teal)}.fm3{top:46%;right:-9%;animation-delay:2.6s;color:var(--naranja)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+/* ---------- marquee ---------- */
+.marquee{background:#fff;border-block:1px solid var(--linea);overflow:hidden;position:relative}
+.marquee::before,.marquee::after{content:"";position:absolute;left:0;right:0;height:4px;background:var(--multi);z-index:1}
+.marquee::before{top:0}.marquee::after{bottom:0}
+.mq-track{display:flex;width:max-content;animation:mq 26s linear infinite;padding:.85rem 0}
+.mq-track span{font-family:var(--font-disp);font-weight:800;font-size:.92rem;letter-spacing:.12em;text-transform:uppercase;color:var(--azul);white-space:nowrap;padding-right:2.5rem}
+.mq-track em{font-style:normal;color:var(--teal)}
+.mq-track .m2{color:var(--gris-claro)}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* ---------- cifras ---------- */
+.stats{background:var(--azul-osc);color:#fff;padding:3rem 0;position:relative}
+.stats::before,.stats::after{content:"";position:absolute;left:0;right:0;height:6px;background:var(--multi)}
+.stats::before{top:0}.stats::after{bottom:0}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;text-align:center}
+.stat b{font-family:var(--font-disp);font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;display:block}
+.stat:nth-child(1) b{color:#7db6e8}.stat:nth-child(2) b{color:#6fd3de}.stat:nth-child(3) b{color:#a9d981}.stat:nth-child(4) b{color:#ffd166}
+.stat span{font-size:.85rem;font-weight:700;opacity:.85;letter-spacing:.04em}
+/* ---------- about ---------- */
+.about{padding:5.5rem 0}
+.about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:start}
+.about-txt p{color:var(--gris);margin-bottom:1rem}
+.about-txt p strong{color:var(--azul-osc)}
+.values{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.6rem}
+.value{background:#fff;border:1px solid var(--linea);border-radius:14px;padding:1.1rem 1.2rem;box-shadow:var(--sombra);transition:transform .3s}
+.value:hover{transform:translateY(-5px)}
+.value i{width:34px;height:5px;border-radius:99px;display:block;margin-bottom:.7rem}
+.value h4{font-size:.95rem;margin-bottom:.25rem}
+.value p{font-size:.83rem;color:var(--gris)}
+.about-media{display:grid;gap:1.2rem}
+.media-card{background:#fff;border:1px solid var(--linea);border-radius:20px;overflow:hidden;box-shadow:var(--sombra)}
+.media-card img{width:100%;height:300px;object-fit:cover}
+.media-card.small img{height:190px}
+.media-card figcaption{padding:.8rem 1.1rem;font-size:.78rem;font-weight:700;color:var(--gris-claro)}
+/* ---------- ejes ---------- */
+.ejes{padding:5.5rem 0;background:#eef1ee}
+.ejes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.eje{background:#fff;border-radius:var(--radio);padding:1.7rem 1.5rem;border:1px solid var(--linea);border-top:6px solid var(--c,var(--azul));box-shadow:var(--sombra);transition:transform .3s,box-shadow .3s}
+.eje:hover{transform:translateY(-7px);box-shadow:0 18px 36px rgba(21,58,94,.16)}
+.eje .num{font-family:var(--font-disp);font-weight:800;font-size:1rem;color:var(--c)}
+.eje h3{font-size:1.05rem;margin:.5rem 0 .5rem;color:var(--tinta)}
+.eje p{font-size:.86rem;color:var(--gris)}
+/* ---------- ideathon ---------- */
+.idea{padding:5.5rem 0;position:relative;overflow:hidden}
+.idea-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:3rem;align-items:center}
+.idea-txt p{color:var(--gris);margin-bottom:1rem}
+.idea-flow{display:grid;gap:.8rem;margin:1.4rem 0}
+.flow{display:flex;gap:.9rem;align-items:flex-start;background:#fff;border:1px solid var(--linea);border-radius:14px;padding:.85rem 1.1rem;box-shadow:var(--sombra)}
+.flow b{font-family:var(--font-disp);color:var(--c);font-size:.8rem;min-width:64px;padding-top:.1rem}
+.flow h4{font-size:.92rem}
+.flow p{font-size:.82rem;color:var(--gris)}
+.idea-img{border-radius:20px;overflow:hidden;border:1px solid var(--linea);box-shadow:var(--sombra)}
+.retos{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+.reto{background:#fff;border:1px solid var(--linea);border-left:8px solid var(--c);border-radius:14px;padding:1.4rem 1.4rem 1.2rem;box-shadow:var(--sombra);transition:transform .3s}
+.reto:hover{transform:translateY(-6px)}
+.reto .axis{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--c);border-radius:99px;padding:.2rem .65rem;margin-bottom:.7rem}
+.reto h3{font-size:1.02rem;margin-bottom:.4rem}
+.reto p{font-size:.85rem;color:var(--gris)}
+/* ---------- calendario ---------- */
+.cal{padding:5.5rem 0;background:#eef1ee}
+.cal-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:start}
+.timeline{position:relative;padding-left:2rem}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:3px;border-radius:99px;background:var(--multi)}
+.tl-item{position:relative;padding-bottom:1.7rem}
+.tl-item::before{content:"";position:absolute;left:-2rem;top:4px;width:19px;height:19px;border-radius:50%;background:var(--c,var(--azul));border:4px solid #eef1ee;box-shadow:0 0 0 2px var(--c,var(--azul))}
+.tl-item time{font-size:.78rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--c,var(--azul))}
+.tl-item h4{font-size:1rem;margin:.15rem 0}
+.tl-item p{font-size:.85rem;color:var(--gris)}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem}
+.tab{border:2px solid var(--linea);background:#fff;border-radius:99px;padding:.5rem 1rem;font-weight:800;font-size:.83rem;color:var(--gris);cursor:pointer;transition:.25s;font-family:var(--font-body)}
+.tab:hover{border-color:var(--azul);color:var(--azul)}
+.tab.active{background:var(--azul);border-color:var(--azul);color:#fff}
+.agenda-panel{display:none;background:#fff;border:1px solid var(--linea);border-radius:var(--radio);box-shadow:var(--sombra);padding:1.4rem;animation:fadeIn .4s ease}
+.agenda-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.slot{display:flex;gap:1rem;align-items:flex-start;padding:.8rem .4rem;border-bottom:1px dashed var(--linea)}
+.slot:last-child{border-bottom:0}
+.slot time{font-family:var(--font-disp);font-weight:700;font-size:.85rem;color:var(--azul);min-width:52px;padding-top:.15rem}
+.slot h4{font-size:.92rem;color:var(--tinta)}
+.slot .tag{display:inline-block;font-size:.64rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:99px;padding:.18rem .6rem;margin-top:.3rem;color:#fff;background:var(--tc,var(--azul))}
+.cal-note{margin-top:1rem;font-size:.8rem;color:var(--gris-claro);font-style:italic}
+/* ---------- ponentes ---------- */
+.ponentes{padding:5.5rem 0}
+.pon-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+.pon{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);padding:1.6rem 1.2rem;text-align:center;box-shadow:var(--sombra);transition:transform .3s}
+.pon:hover{transform:translateY(-7px)}
+.av{width:96px;height:96px;border-radius:50%;margin:0 auto 1rem;display:grid;place-items:center;font-family:var(--font-disp);font-weight:800;font-size:1.5rem;color:#fff;background:var(--c,var(--azul));position:relative}
+.av::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px dashed var(--c,var(--azul));opacity:.4}
+.pon h3{font-size:.98rem;color:var(--tinta)}
+.pon .rol{font-size:.78rem;font-weight:800;color:var(--teal);margin:.3rem 0 .15rem}
+.pon .aff{font-size:.76rem;color:var(--gris-claro)}
+.pon.cta-card{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:.7rem;background:var(--azul);border-color:var(--azul)}
+.pon.cta-card h3{color:#fff}
+.pon.cta-card p{font-size:.8rem;color:#cfe2f4}
+.pon-note{margin-top:1.6rem;text-align:center;font-size:.85rem;color:var(--gris-claro);font-style:italic}
+/* ---------- inscripciones ---------- */
+.insc{padding:5.5rem 0;background:#eef1ee}
+.insc-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.steps{counter-reset:paso;margin:1.6rem 0 1.6rem;display:grid;gap:1rem}
+.step{counter-increment:paso;display:flex;gap:1rem;align-items:flex-start;background:#fff;border:1px solid var(--linea);border-radius:14px;padding:1rem 1.2rem;box-shadow:var(--sombra)}
+.step::before{content:"0" counter(paso);font-family:var(--font-disp);font-weight:800;font-size:1.3rem;color:var(--c,var(--azul))}
+.step h4{font-size:.95rem}
+.step p{font-size:.84rem;color:var(--gris)}
+.link-box{display:flex;gap:1rem;align-items:center;background:linear-gradient(120deg,#fff, #eef6fb);border:2px dashed var(--teal);border-radius:16px;padding:1.1rem 1.3rem;margin-bottom:1.4rem}
+.link-box .lb-ico{width:44px;height:44px;flex-shrink:0;border-radius:12px;background:var(--teal);display:grid;place-items:center}
+.link-box .lb-ico svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:2}
+.link-box h4{font-size:.95rem}
+.link-box p{font-size:.82rem;color:var(--gris)}
+.tickets{display:grid;gap:.9rem}
+.ticket{display:flex;justify-content:space-between;align-items:center;gap:1rem;border:2px solid var(--linea);border-left:8px solid var(--c,var(--azul));border-radius:14px;background:#fff;padding:.9rem 1.2rem}
+.ticket h4{font-size:.92rem}
+.ticket small{display:block;color:var(--gris);font-size:.78rem}
+.ticket .price{font-family:var(--font-disp);font-weight:800;color:var(--c,var(--azul));white-space:nowrap}
+.form-card{background:#fff;border:1px solid var(--linea);border-radius:20px;box-shadow:var(--sombra);padding:2rem;position:relative;overflow:hidden}
+.form-card::before{content:"";position:absolute;inset:0 0 auto 0;height:6px;background:var(--multi)}
+.form-card h3{margin-bottom:.4rem}
+.form-card>p{font-size:.85rem;color:var(--gris);margin-bottom:1.4rem}
+.field{margin-bottom:1.05rem}
+.field label{display:block;font-size:.8rem;font-weight:800;margin-bottom:.35rem;color:var(--azul-osc)}
+.field input,.field select,.field textarea{width:100%;border:2px solid var(--linea);border-radius:12px;padding:.7rem .9rem;font-family:var(--font-body);font-size:.9rem;color:var(--tinta);background:#fbfcfd;transition:border-color .25s;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--teal)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.form-ok{display:none;background:#eef7e6;border:2px solid var(--verde);color:#3f7a1e;border-radius:12px;padding:1rem 1.2rem;font-weight:700;font-size:.9rem;margin-top:1rem}
+.form-ok.show{display:block;animation:fadeIn .4s ease}
+.form-note{font-size:.75rem;color:var(--gris-claro);margin-top:.8rem;font-style:italic}
+/* ---------- sede ---------- */
+.sede{padding:5.5rem 0}
+.sede-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.sede-txt p{color:var(--gris);margin-bottom:1rem}
+.sede-list{display:grid;gap:.7rem;margin-top:1.2rem}
+.sede-list li{display:flex;gap:.7rem;align-items:flex-start;font-size:.9rem;color:var(--gris)}
+.sede-list svg{width:18px;height:18px;stroke:var(--teal);fill:none;stroke-width:2;flex-shrink:0;margin-top:.2rem}
+.sede-photo{border-radius:20px;overflow:hidden;border:1px solid var(--linea);box-shadow:var(--sombra);position:relative}
+.sede-photo img{width:100%;height:420px;object-fit:cover;transition:transform 6s ease}
+.sede-photo:hover img{transform:scale(1.06)}
+.sede-photo figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(18,40,60,.85));color:#e6eef5;font-size:.8rem;font-weight:700;padding:2rem 1.2rem .9rem}
+/* ---------- FAQ ---------- */
+.faq{padding:5.5rem 0;background:#eef1ee}
+.faq-list{max-width:820px;margin-inline:auto;display:grid;gap:.9rem}
+.faq-item{background:#fff;border:1px solid var(--linea);border-radius:14px;box-shadow:var(--sombra);overflow:hidden}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:1rem;background:none;border:0;padding:1.1rem 1.4rem;font-family:var(--font-body);font-weight:800;font-size:.95rem;color:var(--azul-osc);cursor:pointer;text-align:left}
+.faq-q .chev{width:26px;height:26px;border-radius:50%;background:var(--fondo);display:grid;place-items:center;font-weight:800;color:var(--azul);transition:transform .3s,background .3s;flex-shrink:0}
+.faq-item.open .chev{transform:rotate(45deg);background:var(--azul);color:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-a p{padding:0 1.4rem 1.2rem;font-size:.88rem;color:var(--gris)}
+/* ---------- CTA ---------- */
+.cta{padding:5rem 0;background:var(--azul);color:#fff;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;inset:0;background:var(--mol-blanco) center/420px repeat;opacity:.5;pointer-events:none}
+.cta .wrap{position:relative;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:2rem}
+.cta h2{color:#fff;font-size:clamp(1.6rem,3vw,2.3rem)}
+.cta p{opacity:.9;max-width:520px}
+.cta .hashtag{color:#fff}
+.cta .hashtag b{color:#ffd166}
+.cta-actions{display:flex;flex-direction:column;gap:.8rem}
+.cta-actions a{font-weight:800;display:flex;gap:.6rem;align-items:center}
+.cta-actions svg{width:18px;height:18px;stroke:#ffd166;fill:none;stroke-width:2}
+.btn-white{background:#fff;color:var(--azul)}
+.btn-white:hover{transform:translateY(-3px)}
+/* ---------- footer ---------- */
+footer{background:#12283c;color:#c4d2de;padding:4rem 0 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:2.5rem;padding-bottom:3rem}
+.foot-grid h4{color:#fff;font-size:.95rem;margin-bottom:1rem}
+.foot-grid a{font-size:.86rem;display:block;padding:.22rem 0;opacity:.85;transition:.25s}
+.foot-grid a:hover{opacity:1;color:#7db6e8;transform:translateX(4px)}
+.foot-grid p{font-size:.86rem;opacity:.85}
+.foot-brand{display:flex;align-items:center;gap:.6rem;margin-bottom:1rem}
+.foot-brand .brand-tower path{stroke-width:16}
+.foot-brand b{font-family:var(--font-disp);color:#fff;font-size:1.2rem}
+.foot-brand b i{font-style:normal;color:transparent;-webkit-text-stroke:1.3px #7db6e8}
+.foot-social{display:flex;gap:.6rem;margin-top:1rem}
+.foot-social a{width:40px;height:40px;border-radius:50%;border:1px solid #3b5a77;display:grid;place-items:center;transition:.25s;padding:0}
+.foot-social a svg{width:17px;height:17px;stroke:#c4d2de;fill:none;stroke-width:2}
+.foot-social a:hover{background:var(--teal);border-color:var(--teal);transform:translateY(-3px)}
+.foot-social a:hover svg{stroke:#fff}
+.foot-bottom{border-top:1px solid #24425c;padding:1.2rem 0;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem;font-size:.78rem;opacity:.8}
+.foot-bottom .stripe{max-width:90px;height:4px;align-self:center}
+/* ---------- utilidades ---------- */
+#toTop{position:fixed;right:1.4rem;bottom:1.4rem;width:48px;height:48px;border-radius:50%;background:var(--azul);color:#fff;border:0;cursor:pointer;font-size:1.1rem;box-shadow:0 10px 24px rgba(31,92,142,.4);opacity:0;pointer-events:none;transition:.3s;z-index:70}
+#toTop.show{opacity:1;pointer-events:auto}
+#toTop:hover{transform:translateY(-4px)}
+html.js [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s ease}
+html.js [data-reveal].in{opacity:1;transform:none}
+/* ---------- responsive ---------- */
+@media(max-width:1020px){
+.ejes-grid{grid-template-columns:1fr 1fr}
+.pon-grid{grid-template-columns:1fr 1fr}
+.foot-grid{grid-template-columns:1fr 1fr}
+.retos{grid-template-columns:1fr}
+}
+@media(max-width:920px){
+#menuBtn{display:block}
+.nav-links{position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;align-items:flex-start;padding:1.4rem 5%;gap:1rem;box-shadow:0 20px 30px rgba(21,58,94,.12);transform:scaleY(0);transform-origin:top;transition:transform .3s;border-top:1px solid var(--linea)}
+header.open .nav-links{transform:scaleY(1)}
+.hero-grid,.about-grid,.cal-grid,.insc-grid,.sede-grid,.idea-grid{grid-template-columns:1fr}
+.stats-grid{grid-template-columns:1fr 1fr;gap:2rem}
+.hero-visual{max-width:420px;margin-inline:auto}
+}
+@media(max-width:560px){
+.ejes-grid,.pon-grid,.values,.field-row{grid-template-columns:1fr}
+.countdown{flex-wrap:wrap}
+.link-box{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+*,*::before,*::after{animation:none!important;transition:none!important}
+html.js [data-reveal]{opacity:1;transform:none}
+.mq-track{animation:none}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+<div class="wrap nav">
+<a href="#inicio" class="brand" aria-label="YOSW 2026 — Inicio">
+<svg class="brand-tower" viewBox="0 0 220 440" aria-hidden="true">
+<path d="M64 80 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v28" stroke="#1f5c8e"/>
+<path d="M72 96 q38 12 76 0" stroke="#0f9ba8"/>
+<path d="M80 108 L72 300" stroke="#0f9ba8"/>
+<path d="M140 108 L148 300" stroke="#0f9ba8"/>
+<path d="M62 318 q48 -20 96 0" stroke="#74b944"/>
+<path d="M68 334 q42 -16 84 0" stroke="#74b944"/>
+<path d="M74 356 h72 v12" stroke="#f2a900"/>
+<path d="M56 396 v-14 q0 -8 8 -8 h10 v-10 h72 v10 h10 q8 0 8 8 v14" stroke="#e8871e"/>
+<path d="M50 404 v10 h120 v-10" stroke="#d6402c"/>
+</svg>
+<span class="brand-txt"><b>YOSW <i>2026</i></b><small>I Congreso Interdisciplinario de Ciencias</small></span>
+</a>
+<nav class="nav-links" id="navLinks" aria-label="Navegación principal">
+<a href="#inicio" class="active">Inicio</a>
+<a href="#congreso">El Congreso</a>
+<a href="#ejes">Ejes</a>
+<a href="#ideathon">Ideathon</a>
+<a href="#calendario">Programa</a>
+<a href="#ponentes">Ponentes</a>
+<a href="#sede">Sede</a>
+<a href="#inscripciones" class="btn btn-primary nav-cta">Inscríbete</a>
+</nav>
+<button id="menuBtn" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+</div>
+</header>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero" id="inicio">
+<div class="wrap hero-grid">
+<div data-reveal>
+<span class="badge-soon"><i></i> Próximamente · Primera edición</span>
+<h1>YOSW <span class="year">2026</span></h1>
+<p class="sub">Yachay Tech Open Science Week
+<small>I Congreso Interdisciplinario de Ciencias</small>
+</p>
+<span class="hashtag">#Hacemos<b>CienciaYT</b></span>
+<div class="hero-meta">
+<span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg> 19 – 24 de octubre de 2026</span>
+<span class="chip"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Campus Urcuquí · Ecuador</span>
+<span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.6 3 14.4 0 18-3-3.6-3-14.4 0-18z"/></svg> Modalidad híbrida</span>
+</div>
+<div class="hero-actions">
+<a href="#inscripciones" class="btn btn-primary">Inscríbete gratis</a>
+<a href="#calendario" class="btn btn-ghost">Ver programa</a>
+</div>
+<div class="countdown" aria-label="Cuenta regresiva al congreso">
+<div class="cd"><b id="cdD">00</b><span>días</span></div>
+<div class="cd"><b id="cdH">00</b><span>horas</span></div>
+<div class="cd"><b id="cdM">00</b><span>min</span></div>
+<div class="cd"><b id="cdS">00</b><span>seg</span></div>
+</div>
+</div>
+<figure class="hero-visual" data-reveal>
+<div class="tower-card">
+<svg class="tower" viewBox="0 0 220 440" role="img" aria-label="Torre emblemática del campus Yachay Tech">
+<path pathLength="1" d="M64 80 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v28"/>
+<path pathLength="1" d="M72 96 q38 12 76 0"/>
+<path pathLength="1" d="M80 108 L72 300"/>
+<path pathLength="1" d="M140 108 L148 300"/>
+<path pathLength="1" d="M62 318 q48 -20 96 0"/>
+<path pathLength="1" d="M68 334 q42 -16 84 0"/>
+<path pathLength="1" d="M74 356 h72 v12"/>
+<path pathLength="1" d="M56 396 v-14 q0 -8 8 -8 h10 v-10 h72 v10 h10 q8 0 8 8 v14"/>
+<path pathLength="1" d="M50 404 v10 h120 v-10"/>
+</svg>
+<figcaption>Torre ingenio azucarero · identidad oficial YOSW</figcaption>
+</div>
+<span class="float-mol fm1"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="17" r="3"/><path d="M9 9l6 6"/></svg> Ciencia abierta</span>
+<span class="float-mol fm2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="4" cy="18" r="2.4"/><circle cx="20" cy="18" r="2.4"/><path d="M10 14l-4 3M14 14l4 3"/></svg> Interdisciplina</span>
+<span class="float-mol fm3"><svg viewBox="0 0 24 24"><path d="M12 3v18M5 8l7-5 7 5M7 21h10"/></svg> Territorio</span>
+</figure>
+</div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+<div class="mq-track">
+<span>YOSW 2026 · <em>#HacemosCienciaYT</em> · <span class="m2">I Congreso Interdisciplinario de Ciencias</span> · 19–24 octubre · Urcuquí, Ecuador · Ciencia abierta · Interdisciplina ·&nbsp;</span>
+<span>YOSW 2026 · <em>#HacemosCienciaYT</em> · <span class="m2">I Congreso Interdisciplinario de Ciencias</span> · 19–24 octubre · Urcuquí, Ecuador · Ciencia abierta · Interdisciplina ·&nbsp;</span>
+</div>
+</div>
+
+<!-- ============ CIFRAS ============ -->
+<section class="stats">
+<div class="wrap stats-grid">
+<div class="stat" data-reveal><b><span class="num" data-count="6">0</span></b><span>días de ciencia y comunidad</span></div>
+<div class="stat" data-reveal><b><span class="num" data-count="6">0</span></b><span>ejes temáticos interdisciplinarios</span></div>
+<div class="stat" data-reveal><b>+<span class="num" data-count="40">0</span></b><span>ponencias, pósteres y mesas</span></div>
+<div class="stat" data-reveal><b>+<span class="num" data-count="500">0</span></b><span>asistentes esperados</span></div>
+</div>
+</section>
+
+<!-- ============ EL CONGRESO ============ -->
+<section class="about" id="congreso">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Sobre el congreso</span>
+<h2>El evento insignia de la ciencia Yachay</h2>
+<div class="stripe"></div>
+</div>
+<div class="about-grid">
+<div class="about-txt" data-reveal>
+<p><strong>YOSW — Yachay Tech Open Science Week</strong> es el primer congreso interdisciplinario de ciencias de la Universidad Yachay Tech: una semana en la que estudiantes, docentes, investigadores, alumni y comunidad se reúnen para compartir conocimiento desde todas las disciplinas.</p>
+<p>Nace con la visión de convertirse en el <strong>evento identitario e insignia</strong> de la universidad: un espacio donde la excelencia investigativa se encuentra con la ciencia abierta, el diálogo de saberes y la vinculación con el territorio de Urcuquí y el Ecuador.</p>
+<p>Ponencias orales, sesiones de pósteres con jurado, mesas abiertas, paneles con industria, presentaciones de grupos de investigación y clubes estudiantiles, y un <strong>Ideathon interdisciplinario</strong> con retos reales del campus y del territorio.</p>
+<div class="values">
+<div class="value"><i style="background:var(--azul)"></i><h4>Interdisciplinariedad</h4><p>Todas las ciencias conversan: de las moléculas al territorio.</p></div>
+<div class="value"><i style="background:var(--teal)"></i><h4>Ciencia abierta</h4><p>Conocimiento libre, datos FAIR y reproducibilidad.</p></div>
+<div class="value"><i style="background:var(--verde)"></i><h4>Comunidad</h4><p>Semilleros, jóvenes investigadores, alumni y sociedad civil.</p></div>
+<div class="value"><i style="background:var(--naranja)"></i><h4>Vinculación</h4><p>Universidad, industria y territorio por el desarrollo.</p></div>
+</div>
+</div>
+<div class="about-media" data-reveal>
+<figure class="media-card">
+<img src="https://image.qwenlm.ai/public_source/459c34b7-1029-4055-9dd9-3a972fff6075/19cdcb536-6612-4b10-b78e-5a5137af5a1a.png" alt="Ilustración de un congreso científico interdisciplinario con pósteres e investigadores conversando" loading="lazy">
+<figcaption>Sesiones de pósteres y diálogo entre disciplinas · así se vive YOSW</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ EJES ============ -->
+<section class="ejes" id="ejes">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Áreas de participación</span>
+<h2>Ejes temáticos</h2>
+<p>Seis ejes que abrazan la diversidad científica de Yachay Tech. Toda ponencia, póster, mesa abierta o reto del Ideathon se inscribe en uno o más ejes.</p>
+<div class="stripe" style="margin-top:1rem"></div>
+</div>
+<div class="ejes-grid">
+<article class="eje" style="--c:var(--azul)" data-reveal><span class="num">/ 01</span><h3>IA, Ciencia de Datos y HPC</h3><p>Gobernanza de la IA, diagnóstico asistido por IA, computación de alto rendimiento y datos para la decisión.</p></article>
+<article class="eje" style="--c:var(--teal)" data-reveal><span class="num">/ 02</span><h3>Biomedicina y Ciencias de la Salud</h3><p>Salud pública, genómica y modificación genética, sistemas de información médica y bienestar.</p></article>
+<article class="eje" style="--c:var(--verde)" data-reveal><span class="num">/ 03</span><h3>Sostenibilidad, Producción y Territorio Inteligente</h3><p>Huella de carbono, datos geoespaciales, gestión de suelos y ambiente — como el Semáforo UV del campus.</p></article>
+<article class="eje" style="--c:var(--amarillo)" data-reveal><span class="num">/ 04</span><h3>Agroalimentario y Bioeconomía</h3><p>Productos con valor agregado —como el espárrago—, cadenas productivas y bioeconomía andina.</p></article>
+<article class="eje" style="--c:var(--naranja)" data-reveal><span class="num">/ 05</span><h3>Ciencias Sociales</h3><p>Sociedad, cultura, territorio, saberes ancestrales y desarrollo local desde las humanidades.</p></article>
+<article class="eje" style="--c:var(--rojo)" data-reveal><span class="num">/ 06</span><h3>Ciencias Teóricas</h3><p>Física, matemática y fundamentos: la base que sostiene toda la ciencia.</p></article>
+</div>
+</div>
+</section>
+
+<!-- ============ IDEATHON ============ -->
+<section class="idea" id="ideathon">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Reto insignia</span>
+<h2>Ideathon YOSW 2026</h2>
+<p>Equipos interdisciplinarios —abiertos también a participantes externos— resuelven durante la semana tres retos reales del campus y del territorio, con mentoring y premiación por eje.</p>
+<div class="stripe" style="margin-top:1rem"></div>
+</div>
+<div class="idea-grid">
+<div class="idea-txt" data-reveal>
+<p>El Ideathon inaugura el congreso el lunes 19: cada eje presenta un problema real, los equipos se conforman mezclando carreras y escuelas, y durante la semana trabajan con sesiones de <strong>mentoring nocturnas</strong> hasta la <strong>premiación del sábado 24</strong>, donde el jurado anuncia un equipo ganador por reto.</p>
+<div class="idea-flow">
+<div class="flow" style="--c:var(--azul)"><b>LUN 19</b><div><h4>Lanzamiento del Ideathon</h4><p>Presentación de retos, reglas y conformación de equipos interdisciplinarios.</p></div></div>
+<div class="flow" style="--c:var(--teal)"><b>SEMANA</b><div><h4>Mentoring 19h00 – 21h00</h4><p>Sesiones de acompañamiento con mentores briefeados por el comité.</p></div></div>
+<div class="flow" style="--c:var(--rojo)"><b>SÁB 24</b><div><h4>Premiación Ideathon</h4><p>El jurado anuncia resultados por eje · trofeos y certificados.</p></div></div>
+</div>
+<a href="#inscripciones" class="btn btn-ghost">Quiero participar</a>
+</div>
+<figure class="idea-img" data-reveal>
+<img src="https://image.qwenlm.ai/public_source/459c34b7-1029-4055-9dd9-3a972fff6075/1956b005c-f9a1-476e-8330-f07cee282cd3.png" alt="Ilustración de equipos interdisciplinarios trabajando en un ideathon con laptops, notas adhesivas y un trofeo" loading="lazy">
+</figure>
+</div>
+<div class="retos">
+<article class="reto" style="--c:var(--verde)" data-reveal><span class="axis">Sostenibilidad y Ambiente</span><h3>Semáforo UV</h3><p>Monitoreo y alertas de radiación UV para la vida universitaria y el territorio andino.</p></article>
+<article class="reto" style="--c:var(--amarillo)" data-reveal><span class="axis">Agroalimentario y Bioeconomía</span><h3>Valor agregado al espárrago</h3><p>Creación de productos con valor agregado a partir del espárrago de la región.</p></article>
+<article class="reto" style="--c:var(--teal)" data-reveal><span class="axis">Biomedicina y Salud</span><h3>Sistema para el centro médico</h3><p>Sistema de información para el centro médico Yachay: datos al servicio de la salud.</p></article>
+</div>
+</div>
+</section>
+
+<!-- ============ CALENDARIO ============ -->
+<section class="cal" id="calendario">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Agenda del congreso</span>
+<h2>Programa de la semana</h2>
+<p>Fechas clave del proceso y programa tentativo de actividades, del lunes 19 al sábado 24 de octubre.</p>
+<div class="stripe" style="margin-top:1rem"></div>
+</div>
+<div class="cal-grid">
+<div class="timeline" data-reveal>
+<div class="tl-item" style="--c:var(--azul)"><time>24 · ago · 2026</time><h4>Apertura de convocatoria</h4><p>Se abre el envío de resúmenes, ponencias y pósteres para todos los ejes.</p></div>
+<div class="tl-item" style="--c:var(--teal)"><time>25 · sep · 2026</time><h4>Cierre de recepción de resúmenes</h4><p>Último día para postular ponencias, pósteres y talleres.</p></div>
+<div class="tl-item" style="--c:var(--verde)"><time>02 · oct · 2026</time><h4>Notificación de trabajos aceptados</h4><p>El comité científico comunica los resultados por correo.</p></div>
+<div class="tl-item" style="--c:var(--amarillo)"><time>16 · oct · 2026</time><h4>Cierre de inscripciones</h4><p>Registro gratuito con cupos limitados por modalidad.</p></div>
+<div class="tl-item" style="--c:var(--rojo)"><time>19 – 24 · oct · 2026</time><h4>Semana YOSW 2026</h4><p>Seis días de ciencia, Ideathon, pósteres, paneles y comunidad en el campus.</p></div>
+</div>
+<div data-reveal>
+<div class="tabs" role="tablist" aria-label="Programa por día">
+<button class="tab active" data-tab="d1">Lun 19</button>
+<button class="tab" data-tab="d2">Mar 20</button>
+<button class="tab" data-tab="d3">Mié 21</button>
+<button class="tab" data-tab="d4">Jue 22</button>
+<button class="tab" data-tab="d5">Vie 23</button>
+<button class="tab" data-tab="d6">Sáb 24</button>
+</div>
+<div class="agenda-panel active" data-panel="d1">
+<div class="slot"><time>10:00</time><div><h4>Ceremonia inaugural · Rector, Vicerrectores y comité YOSW</h4><span class="tag" style="--tc:var(--rojo)">Ceremonia</span></div></div>
+<div class="slot"><time>11:00</time><div><h4>Lanzamiento del Ideathon · retos por eje, equipos y reglas</h4><span class="tag" style="--tc:var(--azul)">Ideathon</span></div></div>
+<div class="slot"><time>19:00</time><div><h4>Mentoring Ideathon · sesión 1</h4><span class="tag" style="--tc:var(--azul)">Ideathon</span></div></div>
+</div>
+<div class="agenda-panel" data-panel="d2">
+<div class="slot"><time>10:00</time><div><h4>Panel: investigación en industria, academia y economía emergente · M. Caetano, J. P. Saucedo, R. Vallejo</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+<div class="slot"><time>11:00</time><div><h4>Presentación de grupos de investigación por escuela (pitches)</h4><span class="tag" style="--tc:var(--teal)">Sesiones</span></div></div>
+<div class="slot"><time>16:30</time><div><h4>Foro y Mesa Abierta · con Silla Libre y moderador de piso</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+</div>
+<div class="agenda-panel" data-panel="d3">
+<div class="slot"><time>09:00</time><div><h4>Ponencias orales · Bloque A (slots de 20 min)</h4><span class="tag" style="--tc:var(--teal)">Sesiones</span></div></div>
+<div class="slot"><time>13:00</time><div><h4>Almuerzo + apertura de sesión de pósteres</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>14:00</time><div><h4>Pósteres ante jurado · IA, Ciencia de Datos y HPC</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>15:30</time><div><h4>Pósteres ante jurado · Biomedicina, Salud y X</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>16:30</time><div><h4>Pósteres ante jurado · Ciencias Sociales</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>17:30</time><div><h4>Pósteres ante jurado · Ciencias Teóricas</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+</div>
+<div class="agenda-panel" data-panel="d4">
+<div class="slot"><time>10:00</time><div><h4>Mesa Abierta Alumni</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+<div class="slot"><time>11:00</time><div><h4>Alumni · deep dive por ejes temáticos</h4><span class="tag" style="--tc:var(--teal)">Sesiones</span></div></div>
+<div class="slot"><time>15:00</time><div><h4>Mesa abierta · IA, Datos y HPC: gobernanza de la IA</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+<div class="slot"><time>16:00</time><div><h4>Mesa abierta · Biomedicina: diagnóstico asistido por IA (A. Escobar) y modificación genética</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+<div class="slot"><time>17:00</time><div><h4>Mesa abierta · Sostenibilidad: huella de carbono, datos geoespaciales y suelos</h4><span class="tag" style="--tc:var(--verde)">Panel</span></div></div>
+<div class="slot"><time>19:00</time><div><h4>Mentoring Ideathon · sesión 2</h4><span class="tag" style="--tc:var(--azul)">Ideathon</span></div></div>
+</div>
+<div class="agenda-panel" data-panel="d5">
+<div class="slot"><time>09:00</time><div><h4>Ponencias orales · Bloque B y clubes estudiantiles (charlas de 20 min)</h4><span class="tag" style="--tc:var(--teal)">Sesiones</span></div></div>
+<div class="slot"><time>13:00</time><div><h4>Almuerzo + sesión de pósteres</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>18:00</time><div><h4>Night networking · happy hour de la ciencia</h4><span class="tag" style="--tc:var(--amarillo)">Social</span></div></div>
+</div>
+<div class="agenda-panel" data-panel="d6">
+<div class="slot"><time>09:30</time><div><h4>Pósteres proyectados · exhibición de cierre</h4><span class="tag" style="--tc:var(--naranja)">Pósteres</span></div></div>
+<div class="slot"><time>10:00</time><div><h4>Premiación Ideathon · resultados por eje, trofeos y certificados</h4><span class="tag" style="--tc:var(--rojo)">Ceremonia</span></div></div>
+<div class="slot"><time>13:00</time><div><h4>Foro de clausura · reflexiones finales y Q&A abierto (hasta el cierre)</h4><span class="tag" style="--tc:var(--rojo)">Ceremonia</span></div></div>
+</div>
+<p class="cal-note">* Programa tentativo — horarios sujetos a confirmación por el comité organizador.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ PONENTES ============ -->
+<section class="ponentes" id="ponentes">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Voces invitadas</span>
+<h2>Ponentes y panelistas</h2>
+<p>Investigadores, autoridades e invitados de industria que iluminarán cada jornada. Lista en constante actualización.</p>
+<div class="stripe" style="margin-top:1rem"></div>
+</div>
+<div class="pon-grid">
+<article class="pon" data-reveal><div class="av" style="--c:var(--azul)">UYT</div><h3>Autoridades Yachay Tech</h3><p class="rol">Ceremonia inaugural</p><p class="aff">Rector y Vicerrectores · Universidad Yachay Tech</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--teal)">JDV</div><h3>Juan Daniel Vásconez</h3><p class="rol">Comité organizador</p><p class="aff">Programa de la semana y logística</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--verde)">IAN</div><h3>Ian</h3><p class="rol">Comité organizador</p><p class="aff">Visión general YOSW</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--amarillo)">MC</div><h3>Manuel Caetano</h3><p class="rol">Panelista</p><p class="aff">Investigación en industria y economía emergente</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--naranja)">JPS</div><h3>Juan Pablo Saucedo</h3><p class="rol">Grupos de investigación</p><p class="aff">Presentación de grupos por escuela</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--rojo)">RV</div><h3>Roberto Vallejo</h3><p class="rol">Panelista</p><p class="aff">Investigación, academia y economía emergente</p></article>
+<article class="pon" data-reveal><div class="av" style="--c:var(--azul)">AE</div><h3>Alexander Escobar</h3><p class="rol">Mesa abierta · Biomedicina</p><p class="aff">Diagnóstico asistido por IA</p></article>
+<article class="pon cta-card" data-reveal><h3>¿Y tú?</h3><p>Postula tu ponencia, póster o taller y sé parte del programa.</p><a href="#inscripciones" class="btn btn-white" style="padding:.6rem 1.2rem;font-size:.85rem">Postular mi trabajo</a></article>
+</div>
+<p class="pon-note">Más voces nacionales e internacionales por anunciarse — sigue nuestras redes para no perdértelas.</p>
+</div>
+</section>
+
+<!-- ============ INSCRIPCIONES ============ -->
+<section class="insc" id="inscripciones">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Únete al congreso</span>
+<h2>Inscripciones</h2>
+<p>Participar en YOSW es gratuito. Reserva tu cupo como asistente, postula tu trabajo científico o súmate al Ideathon.</p>
+<div class="stripe" style="margin-top:1rem"></div>
+</div>
+<div class="insc-grid">
+<div data-reveal>
+<div class="steps">
+<div class="step" style="--c:var(--azul)"><div><h4>Completa la preinscripción</h4><p>Regístrate como asistente, ponente o voluntario en menos de 2 minutos.</p></div></div>
+<div class="step" style="--c:var(--teal)"><div><h4>Recibe tu confirmación</h4><p>Te enviaremos el código de acreditación y la guía del participante.</p></div></div>
+<div class="step" style="--c:var(--verde)"><div><h4>Vive la semana YOSW</h4><p>Asiste a sesiones, pósteres, mesas, Ideathon y actividades sociales, en el campus o en línea.</p></div></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════
+     👉 LINK OFICIAL DE INSCRIPCIÓN:
+     Cuando el comité reciba el URL, pégalo en la constante
+     URL_INSCRIPCION dentro del <script> al final de este archivo.
+     El botón se activará automáticamente en todo el sitio.
+     ════════════════════════════════════════════════════════════════ -->
+<div class="link-box">
+<div class="lb-ico"><svg viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg></div>
+<div>
+<h4>Enlace oficial de inscripción</h4>
+<p id="inscSoon">Se publicará muy pronto aquí mismo y en nuestras redes oficiales.</p>
+</div>
+<a id="inscBtn" class="btn btn-primary" href="#" aria-disabled="true">Próximamente</a>
+</div>
+
+<div class="tickets">
+<div class="ticket" style="--c:var(--azul)"><div><h4>Estudiantes Yachay Tech</h4><p>Pregrado y posgrado · certificado incluido</p></div><span class="price">GRATIS</span></div>
+<div class="ticket" style="--c:var(--verde)"><div><h4>Comunidad académica externa</h4><p>Docentes e investigadores de otras instituciones</p></div><span class="price">GRATIS</span></div>
+<div class="ticket" style="--c:var(--naranja)"><div><h4>Público general y participantes Ideathon</h4><p>Cupos limitados · actividades de divulgación</p></div><span class="price">GRATIS</span></div>
+</div>
+</div>
+<div class="form-card" data-reveal>
+<h3>Formulario de preinscripción</h3>
+<p>Déjanos tus datos y te avisaremos apenas se abra el registro oficial.</p>
+<form id="regForm" novalidate>
+<div class="field-row">
+<div class="field"><label for="fNom">Nombres y apellidos *</label><input id="fNom" type="text" required placeholder="Ej.: Ana Pérez"></div>
+<div class="field"><label for="fMail">Correo electrónico *</label><input id="fMail" type="email" required placeholder="nombre@correo.com"></div>
+</div>
+<div class="field-row">
+<div class="field"><label for="fRol">Estamento</label>
+<select id="fRol">
+<option>Estudiante Yachay Tech</option>
+<option>Docente / Investigador</option>
+<option>Comunidad académica externa</option>
+<option>Público general</option>
+</select>
+</div>
+<div class="field"><label for="fMod">Modalidad</label>
+<select id="fMod">
+<option>Presencial (Campus Urcuquí)</option>
+<option>Virtual</option>
+</select>
+</div>
+</div>
+<div class="field"><label for="fInt">¿Deseas presentar un trabajo o unirte al Ideathon? (opcional)</label>
+<select id="fInt">
+<option>No, solo asistente</option>
+<option>Ponencia oral</option>
+<option>Póster</option>
+<option>Taller / demo</option>
+<option>Equipo Ideathon</option>
+</select>
+</div>
+<button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Enviar preinscripción</button>
+<div class="form-ok" id="formOk">✔ ¡Gracias! Tu preinscripción fue registrada. Te avisaremos cuando abra el registro oficial. <em>#HacemosCienciaYT</em></div>
+<p class="form-note">Al registrarte aceptas el tratamiento de datos según la política institucional de Yachay Tech.</p>
+</form>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ SEDE ============ -->
+<section class="sede" id="sede">
+<div class="wrap">
+<div class="sec-head" data-reveal>
+<span class="kicker">Dónde nos encontramos</span>
+<h2>Sede del congreso</h2>
+<div class="stripe"></div>
+</div>
+<div class="sede-grid">
+<div class="sede-txt" data-reveal>
+<p>YOSW 2026 se realiza en el <strong>Campus de la Universidad Yachay Tech</strong>, Hacienda Yachay, Urcuquí — provincia de Imbabura, Ecuador; un entorno andino único donde la ciencia convive con el paisaje.</p>
+<p>Las sesiones virtuales se transmitirán por los canales oficiales del congreso para participantes de todo el país y el mundo.</p>
+<ul class="sede-list">
+<li><svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></svg> Hacienda Yachay s/n, Urcuquí, Imbabura — Ecuador.</li>
+<li><svg viewBox="0 0 24 24"><path d="M4 16l4-8 4 6 4-4 4 6H4z"/></svg> A 2 h 30 de Quito · transporte institucional durante el evento.</li>
+<li><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="10" rx="2"/><path d="M7 8V6h10v2M3 13h18"/></svg> Alojamiento y alimentación con convenios locales en gestión.</li>
+<li><svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 0 1 14 0M8.5 15a3.5 3.5 0 0 1 7 0M12 18.5h.01"/></svg> Cobertura WiFi y streaming híbrido en todas las salas.</li>
+</ul>
+</div>
+<figure class="sede-photo" data-reveal>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Universidad_de_Investigaci%C3%B3n_de_Tecnolog%C3%ADa_Experimental_YACHAY.jpg/960px-Universidad_de_Investigaci%C3%B3n_de_Tecnolog%C3%ADa_Experimental_YACHAY.jpg?utm_source=es.wikipedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail" alt="Campus de la Universidad de Investigación de Tecnología Experimental Yachay, Urcuquí — Ecuador" loading="lazy">
+<figcaption>Campus Yachay Tech · Hacienda Yachay, Urcuquí — Imbabura, Ecuador</figcaption>
+</figure>
+</div>
+</div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq" id="faq">
+<div class="wrap">
+<div class="sec-head" style="text-align:center" data-reveal>
+<span class="kicker" style="justify-content:center">Resuelve tus dudas</span>
+<h2>Preguntas frecuentes</h2>
+<div class="stripe" style="margin-inline:auto"></div>
+</div>
+<div class="faq-list" data-reveal>
+<div class="faq-item"><button class="faq-q">¿Quién puede participar en YOSW 2026?<span class="chev">+</span></button><div class="faq-a"><p>Estudiantes, docentes, investigadores de cualquier institución, alumni y público general interesado en la ciencia. El Ideathon está abierto también a participantes externos en equipos interdisciplinarios.</p></div></div>
+<div class="faq-item"><button class="faq-q">¿El congreso tiene algún costo?<span class="chev">+</span></button><div class="faq-a"><p>No. YOSW es un evento gratuito gracias al apoyo de la Universidad Yachay Tech y sus aliados. La inscripción es obligatoria por control de aforo.</p></div></div>
+<div class="faq-item"><button class="faq-q">¿Cómo presento una ponencia o póster?<span class="chev">+</span></button><div class="faq-a"><p>Envía tu resumen (máx. 300 palabras) mediante el formulario de inscripción seleccionando «Ponencia oral» o «Póster». El comité científico evaluará y notificará los resultados el 2 de octubre. Los pósteres se presentan ante jurado por eje temático.</p></div></div>
+<div class="faq-item"><button class="faq-q">¿Qué es el Ideathon y cómo me uno?<span class="chev">+</span></button><div class="faq-a"><p>Es el reto insignia de la semana: equipos interdisciplinarios trabajan tres retos reales (Semáforo UV, valor agregado al espárrago y sistema del centro médico) con mentoring nocturno y premiación por eje el sábado 24. Puedes inscribirte como parte de un equipo en el formulario.</p></div></div>
+<div class="faq-item"><button class="faq-q">¿Se entregan certificados?<span class="chev">+</span></button><div class="faq-a"><p>Sí: certificados de asistencia (con el 80 % de participación) y de presentación de trabajos, emitidos por la universidad, además de trofeos y certificados para los equipos ganadores del Ideathon.</p></div></div>
+<div class="faq-item"><button class="faq-q">¿Puedo participar a distancia?<span class="chev">+</span></button><div class="faq-a"><p>Sí. YOSW es híbrido: las sesiones magistrales, paneles y ceremonias se transmitirán por los canales oficiales del congreso. Selecciona «Virtual» en el formulario para recibir los enlaces de transmisión.</p></div></div>
+</div>
+</div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section class="cta" id="contacto">
+<div class="wrap">
+<div data-reveal>
+<h2>Sé parte de la primera edición</h2>
+<p>Comité Organizador YOSW 2026 · Universidad Yachay Tech<br>
+<span class="hashtag">#Hacemos<b>CienciaYT</b></span></p>
+</div>
+<div class="cta-actions" data-reveal>
+<a href="mailto:yosw@yachaytech.edu.ec"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg> yosw@yachaytech.edu.ec</a>
+<a href="https://www.instagram.com/yosw2026" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg> @yosw2026</a>
+<a href="https://www.linkedin.com/in/yachay-open-science-week-1374ab424/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg> Yachay Open Science Week</a>
+<a href="#inscripciones" class="btn btn-white">Inscríbete ahora</a>
+</div>
+</div>
+</section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+<div class="wrap foot-grid">
+<div>
+<div class="foot-brand">
+<svg class="brand-tower" viewBox="0 0 220 440" aria-hidden="true">
+<path d="M64 80 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v10 h12 V52 h14 v28" stroke="#7db6e8"/>
+<path d="M72 96 q38 12 76 0" stroke="#6fd3de"/>
+<path d="M80 108 L72 300" stroke="#6fd3de"/>
+<path d="M140 108 L148 300" stroke="#6fd3de"/>
+<path d="M62 318 q48 -20 96 0" stroke="#a9d981"/>
+<path d="M68 334 q42 -16 84 0" stroke="#a9d981"/>
+<path d="M74 356 h72 v12" stroke="#ffd166"/>
+<path d="M56 396 v-14 q0 -8 8 -8 h10 v-10 h72 v10 h10 q8 0 8 8 v14" stroke="#f2a15c"/>
+<path d="M50 404 v10 h120 v-10" stroke="#e46a5a"/>
+</svg>
+<b>YOSW <i>2026</i></b>
+</div>
+<p>Yachay Tech Open Science Week · I Congreso Interdisciplinario de Ciencias. El evento insignia que celebra la ciencia abierta y la interdisciplinariedad desde Urcuquí para el mundo.</p>
+<div class="foot-social">
+<a href="https://www.instagram.com/yosw2026" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8"/></svg></a>
+<a href="https://www.linkedin.com/in/yachay-open-science-week-1374ab424/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 11v5M8 8v.01M12 16v-5M16 16v-3a2 2 0 0 0-4 0"/></svg></a>
+<a href="mailto:yosw@yachaytech.edu.ec" aria-label="Correo"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></a>
+</div>
+</div>
+<div>
+<h4>Explora</h4>
+<a href="#congreso">El Congreso</a><a href="#ejes">Ejes temáticos</a><a href="#ideathon">Ideathon</a><a href="#calendario">Programa</a><a href="#ponentes">Ponentes</a><a href="#sede">Sede</a>
+</div>
+<div>
+<h4>Participa</h4>
+<a href="#inscripciones">Inscripciones</a><a href="#inscripciones">Postula tu ponencia</a><a href="#ideathon">Únete al Ideathon</a><a href="#faq">Preguntas frecuentes</a><a href="mailto:yosw@yachaytech.edu.ec">Voluntariado</a>
+</div>
+<div>
+<h4>Universidad Yachay Tech</h4>
+<p>Hacienda Yachay s/n, Urcuquí, Imbabura — Ecuador<br>yosw@yachaytech.edu.ec</p>
+</div>
+</div>
+<div class="wrap foot-bottom">
+<span>© 2026 Universidad Yachay Tech · Comité YOSW</span>
+<div class="stripe"></div>
+<span>Hecho con ciencia en Urcuquí 🇪🇨</span>
+</div>
+</footer>
+
+<button id="toTop" aria-label="Volver arriba">↑</button>
+
+<script>
+(function(){
+"use strict";
+/* ╔══════════════════════════════════════════════════════════════╗
+   ║  🔗 ENLACE OFICIAL DE INSCRIPCIÓN                             ║
+   ║  Cuando el comité reciba el link, pégalo entre las comillas:  ║
+   ║  Ej.: const URL_INSCRIPCION = "https://forms.yachaytech...";  ║
+   ║  El botón "Próximamente" se activará solo en todo el sitio.   ║
+   ══════════════════════════════════════════════════════════════╝ */
+const URL_INSCRIPCION = "";
+
+if(URL_INSCRIPCION && URL_INSCRIPCION.trim().length>0){
+  const btnInsc=document.getElementById('inscBtn');
+  btnInsc.href=URL_INSCRIPCION.trim();
+  btnInsc.target="_blank";btnInsc.rel="noopener";
+  btnInsc.removeAttribute("aria-disabled");
+  btnInsc.textContent="Inscríbete aquí →";
+  document.getElementById('inscSoon').textContent="¡Registro oficial ya disponible! Serás redirigido al formulario institucional.";
+}
+
+/* ----- header scroll + menú móvil ----- */
+const header=document.getElementById('header'),toTop=document.getElementById('toTop');
+window.addEventListener('scroll',function(){
+  header.classList.toggle('scrolled',window.scrollY>40);
+  toTop.classList.toggle('show',window.scrollY>600);
+  spy();
+},{passive:true});
+document.getElementById('menuBtn').addEventListener('click',function(){header.classList.toggle('open');});
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){header.classList.remove('open');});});
+toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+
+/* ----- cuenta regresiva (19 oct 2026, 10:00 ECT) ----- */
+const target=new Date('2026-10-19T10:00:00-05:00').getTime();
+const elD=document.getElementById('cdD'),elH=document.getElementById('cdH'),elM=document.getElementById('cdM'),elS=document.getElementById('cdS');
+function pad2(n){return String(n).padStart(2,'0');}
+function tick(){
+  const diff=target-Date.now();
+  if(diff<=0){elD.textContent='00';elH.textContent='00';elM.textContent='00';elS.textContent='00';return;}
+  elD.textContent=pad2(Math.floor(diff/864e5));
+  elH.textContent=pad2(Math.floor(diff/36e5)%24);
+  elM.textContent=pad2(Math.floor(diff/6e4)%60);
+  elS.textContent=pad2(Math.floor(diff/1e3)%60);
+}
+tick();setInterval(tick,1000);
+
+/* ----- reveal on scroll ----- */
+const ioReveal=new IntersectionObserver(function(entries){entries.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');ioReveal.unobserve(en.target);}});},{threshold:.15});
+document.querySelectorAll('[data-reveal]').forEach(function(el){ioReveal.observe(el);});
+
+/* ----- contadores ----- */
+const ioCount=new IntersectionObserver(function(entries){entries.forEach(function(en){
+  if(!en.isIntersecting)return;ioCount.unobserve(en.target);
+  const elNum=en.target,endVal=+elNum.dataset.count;let t0=null;
+  function stepFn(t){if(!t0)t0=t;const p=Math.min((t-t0)/1200,1);elNum.textContent=Math.round(endVal*(0.2+0.8*p*p));if(p<1)requestAnimationFrame(stepFn);}
+  requestAnimationFrame(stepFn);
+});},{threshold:.6});
+document.querySelectorAll('.num').forEach(function(el){ioCount.observe(el);});
+
+/* ----- tabs programa ----- */
+const tabBtns=document.querySelectorAll('.tab'),panelBoxes=document.querySelectorAll('.agenda-panel');
+tabBtns.forEach(function(tb){tb.addEventListener('click',function(){
+  tabBtns.forEach(function(x){x.classList.remove('active');});
+  panelBoxes.forEach(function(p){p.classList.remove('active');});
+  tb.classList.add('active');
+  document.querySelector('[data-panel="'+tb.dataset.tab+'"]').classList.add('active');
+});});
+
+/* ----- acordeón FAQ ----- */
+document.querySelectorAll('.faq-q').forEach(function(qBtn){
+  qBtn.addEventListener('click',function(){
+    const item=qBtn.parentElement,ans=item.querySelector('.faq-a'),wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(function(o){o.classList.remove('open');o.querySelector('.faq-a').style.maxHeight=null;});
+    if(!wasOpen){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+  });
+});
+
+/* ----- formulario preinscripción ----- */
+document.getElementById('regForm').addEventListener('submit',function(ev){
+  ev.preventDefault();
+  const nomIn=document.getElementById('fNom'),mailIn=document.getElementById('fMail');
+  const okNom=nomIn.value.trim().length>1;
+  const okMail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mailIn.value.trim());
+  nomIn.style.borderColor=okNom?'':'var(--rojo)';
+  mailIn.style.borderColor=okMail?'':'var(--rojo)';
+  if(!okNom||!okMail)return;
+  nomIn.style.borderColor='';mailIn.style.borderColor='';
+  document.getElementById('formOk').classList.add('show');
+  this.reset();
+  setTimeout(function(){document.getElementById('formOk').classList.remove('show');},7000);
+});
+
+/* ----- scrollspy ----- */
+const spyLinks=document.querySelectorAll('.nav-links a[href^="#"]:not(.nav-cta)');
+const spySecs=[];spyLinks.forEach(function(l){const s=document.querySelector(l.getAttribute('href'));if(s)spySecs.push([l,s]);});
+function spy(){
+  const y=window.scrollY+140;let cur=null;
+  spySecs.forEach(function(par){if(par[1].offsetTop<=y)cur=par[0];});
+  spyLinks.forEach(function(l){l.classList.toggle('active',l===cur);});
+}
+spy();
+})();
+</script>
+</body>
+</html>
