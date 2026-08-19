@@ -9,7 +9,6 @@ import { t } from '../lib/i18n.js';
 
 export function renderFooter({ lang, config }) {
   const { instagram, email, facebook, linkedin } = config.social;
-  const year = new Date(config.eventStart).getFullYear();
 
   return `<footer class="footer">
   <div class="wrap footer__grid">
@@ -76,7 +75,7 @@ export function renderFooter({ lang, config }) {
     </div>
   </div>
   <div class="wrap footer__bottom">
-    <span>© ${year} ${t(lang, 'brand.name')}</span>
+    <span>© ${t(lang, 'brand.name')}</span>
     <div class="footer__stripe"></div>
     <span>${t(lang, 'footer.rights')}</span>
   </div>

@@ -58,7 +58,7 @@ export function renderSponsors({ lang, sponsors, email, proposalUrl }) {
     <div class="sponsors__cta" data-reveal>
       ${
         email
-          ? `<a class="sponsors__contact" href="mailto:${email}">${t(lang, 'sponsors.cta')}: ${email}</a>`
+          ? `<p class="sponsors__contact">${t(lang, 'sponsors.cta')}: <a class="sponsors__contact-link" href="mailto:${email}">${email}</a></p>`
           : `<span class="sponsors__contact sponsors__contact--fallback">${t(lang, 'sponsors.contact.fallback')}</span>`
       }
       ${proposalUrl ? `<a class="sponsors__download" href="${proposalUrl}">${t(lang, 'sponsors.download')}</a>` : ''}
@@ -128,11 +128,17 @@ export function renderSponsors({ lang, sponsors, email, proposalUrl }) {
   }
   .sponsors__contact {
     font-family: var(--font-body);
-    color: var(--color-accent);
-    text-decoration: none;
-    font-weight: 600;
+    color: var(--color-text);
+    font-weight: 500;
+    margin: 0;
   }
-  .sponsors__contact:hover { text-decoration: underline; }
+  .sponsors__contact-link {
+    color: var(--color-accent);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .sponsors__contact-link:hover { color: var(--color-accent-2); }
   .sponsors__contact--fallback { color: var(--color-muted); font-weight: 400; }
   .sponsors__download {
     font-family: var(--font-body);
