@@ -94,5 +94,5 @@ export function renderFaq({ lang }) {
   }
 </style>
 
-<script src="/client/faq.js" defer></script>`;
+<script src="../client/faq.js" defer></script>`;
 }

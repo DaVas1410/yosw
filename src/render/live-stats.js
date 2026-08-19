@@ -80,5 +80,5 @@ export function renderLiveStats({ lang, sheetUrl }) {
   }
 </style>
 
-<script type="module" src="/client/live-stats.js"></script>`;
+<script type="module" src="../client/live-stats.js"></script>`;
 }

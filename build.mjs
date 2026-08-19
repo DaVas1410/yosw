@@ -85,18 +85,21 @@ if (existsSync(publicDir)) {
 // Root redirect page: Netlify handles "/" -> "/es/" via netlify.toml
 // redirects, but static hosts without server-side redirects (e.g. GitHub
 // Pages) need an actual index.html at the root to land visitors on /es/.
+// The target is a relative "es/" (not "/es/") so this keeps working when
+// the whole site is served from a subpath, e.g. a GitHub Pages project
+// site at https://user.github.io/repo/ instead of the domain root.
 writeFileSync(
   path.join(distDir, 'index.html'),
   `<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=/es/">
-<link rel="canonical" href="/es/">
+<meta http-equiv="refresh" content="0; url=es/">
+<link rel="canonical" href="es/">
 <title>Yachay Open Science Week 2026</title>
 </head>
 <body>
-<p>Redirecting to <a href="/es/">/es/</a>&hellip;</p>
+<p>Redirecting to <a href="es/">/es/</a>&hellip;</p>
 </body>
 </html>
 `,

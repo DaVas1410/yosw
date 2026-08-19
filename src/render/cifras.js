@@ -69,5 +69,5 @@ export function renderCifras({ lang, calendario, ejes }) {
   }
 </style>
 
-<script src="/client/cifras.js" defer></script>`;
+<script src="../client/cifras.js" defer></script>`;
 }

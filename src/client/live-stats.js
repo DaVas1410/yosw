@@ -2,7 +2,7 @@
 // (fetches the live Google Sheet, calls parseSheetRows()). TypeScript type
 // annotations removed; logic unchanged.
 
-import { parseSheetRows } from '/lib/live-stats.js';
+import { parseSheetRows } from '../lib/live-stats.js';
 
 function animateTo(el, target) {
   const duration = 800;

@@ -15,7 +15,7 @@ export function renderFooter({ lang, config }) {
   <div class="wrap footer__grid">
     <div>
       <div class="footer__brand">
-        <img class="footer__tower" src="/assets/brand/tower-mark.png" alt="" aria-hidden="true" width="320" height="780" />
+        <img class="footer__tower" src="../assets/brand/tower-mark.png" alt="" aria-hidden="true" width="320" height="780" />
         <b>${t(lang, 'brand.short')}</b>
       </div>
       <p>${t(lang, 'footer.committee')}</p>

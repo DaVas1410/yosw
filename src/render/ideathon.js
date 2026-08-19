@@ -37,7 +37,7 @@ export function renderIdeathon({ lang }) {
         <a href="#registro" class="btn btn-ghost">${t(lang, 'idea.cta')}</a>
       </div>
       <figure class="idea__img" data-reveal>
-        <img src="/assets/illustrations/ideathon.png" alt="${t(lang, 'idea.img_alt')}" loading="lazy" />
+        <img src="../assets/illustrations/ideathon.png" alt="${t(lang, 'idea.img_alt')}" loading="lazy" />
       </figure>
     </div>
   </div>

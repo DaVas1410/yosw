@@ -17,8 +17,8 @@ export function renderNav({ lang, currentPath }) {
 
   return `<header class="nav" id="siteHeader">
   <div class="wrap nav__bar">
-    <a class="nav__brand" href="/${lang}" aria-label="${t(lang, 'brand.short')}">
-      <img class="nav__logo" src="/assets/brand/logo-color.png" alt="${t(lang, 'brand.short')}" width="220" height="101" />
+    <a class="nav__brand" href="./" aria-label="${t(lang, 'brand.short')}">
+      <img class="nav__logo" src="../assets/brand/logo-color.png" alt="${t(lang, 'brand.short')}" width="220" height="101" />
     </a>
     <nav class="nav__links" id="navLinks" aria-label="Navegación principal">
       ${links.map((link) => `<a href="${link.href}">${link.label}</a>`).join('\n      ')}
@@ -155,5 +155,5 @@ export function renderNav({ lang, currentPath }) {
   }
 </style>
 
-<script src="/client/nav.js" defer></script>`;
+<script src="../client/nav.js" defer></script>`;
 }

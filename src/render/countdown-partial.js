@@ -71,5 +71,5 @@ export function renderCountdownPartial({ lang, target }) {
   }
 </style>
 
-<script type="module" src="/client/countdown.js"></script>`;
+<script type="module" src="../client/countdown.js"></script>`;
 }

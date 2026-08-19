@@ -27,7 +27,7 @@ export function renderParticipantsPreview({ lang, participants, ejes }) {
     }
 
     <div class="participantes-preview__foot" data-reveal>
-      <a class="participantes-preview__all" href="/${lang}/participantes">
+      <a class="participantes-preview__all" href="participantes.html">
         ${t(lang, 'participantes.ver_todos')} <span aria-hidden="true">→</span>
       </a>
     </div>

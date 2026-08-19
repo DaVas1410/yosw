@@ -278,5 +278,5 @@ export function renderEjesSection({ lang, ejes }) {
   }
 </style>
 
-<script src="/client/ejes-wheel.js" defer></script>`;
+<script src="../client/ejes-wheel.js" defer></script>`;
 }

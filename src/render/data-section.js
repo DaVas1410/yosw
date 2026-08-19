@@ -114,5 +114,5 @@ export function renderDataSection({ lang, calendario, sheetUrl }) {
   }
 </style>
 
-<script src="/client/data-section.js" defer></script>`;
+<script src="../client/data-section.js" defer></script>`;
 }

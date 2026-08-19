@@ -2,7 +2,7 @@
 // timer). Uses breakdown() from src/lib/countdown.js instead of a local
 // re-declaration; logic otherwise unchanged.
 
-import { breakdown } from '/lib/countdown.js';
+import { breakdown } from '../lib/countdown.js';
 
 function initCountdown(el) {
   const targetStr = el.dataset.target;

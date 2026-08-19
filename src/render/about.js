@@ -34,7 +34,7 @@ export function renderAbout({ lang }) {
         </div>
       </div>
       <figure class="about__media" data-reveal>
-        <img src="/assets/illustrations/congreso.png" alt="${t(lang, 'about.media_alt')}" loading="lazy" />
+        <img src="../assets/illustrations/congreso.png" alt="${t(lang, 'about.media_alt')}" loading="lazy" />
         <figcaption>${t(lang, 'about.media_caption')}</figcaption>
       </figure>
     </div>

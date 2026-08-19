@@ -145,5 +145,5 @@ export function renderProgramTimeline({ lang, calendario }) {
   }
 </style>
 
-<script src="/client/program-timeline.js" defer></script>`;
+<script src="../client/program-timeline.js" defer></script>`;
 }

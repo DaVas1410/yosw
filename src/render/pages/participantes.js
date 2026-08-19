@@ -49,19 +49,19 @@ export function renderParticipantesPage({ lang, data }) {
         : `<p class="participantes-page__empty">${t(lang, 'stats.soon')}</p>`
     }
 
-    <a class="participantes-page__back" href="/${lang}#participantes">
+    <a class="participantes-page__back" href="./#participantes">
       ${t(lang, 'participantes.volver')}
     </a>
   </div>
 </main>
 
 ${participantCardStyle}
-${participants.length > 0 ? `<script src="/client/participantes.js" defer></script>` : ''}`;
+${participants.length > 0 ? `<script src="../client/participantes.js" defer></script>` : ''}`;
 
   return renderPageShell({
     lang,
     title: `${t(lang, 'participantes.heading')} · ${t(lang, 'brand.short')}`,
     bodyHtml,
-    extraStyles: ['/styles/participantes.css'],
+    extraStyles: ['../styles/participantes.css'],
   });
 }

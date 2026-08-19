@@ -5,7 +5,7 @@
 // this script only toggles `hidden` on the existing DOM cards based on their
 // data-nombre/data-rol/data-eje attributes, it does not re-render markup.
 
-import { filterParticipants } from '/lib/filter.js';
+import { filterParticipants } from '../lib/filter.js';
 
 const search = document.getElementById('participantes-search');
 const ejeSelect = document.getElementById('participantes-eje');

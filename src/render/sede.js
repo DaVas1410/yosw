@@ -24,7 +24,7 @@ export function renderSede({ lang, config }) {
       </ul>
     </div>
     <figure class="sede__photo" data-reveal>
-      <img src="/assets/illustrations/sede.jpg" alt="${t(lang, 'sede.photo_alt')}" loading="lazy" />
+      <img src="../assets/illustrations/sede.jpg" alt="${t(lang, 'sede.photo_alt')}" loading="lazy" />
       <figcaption>${t(lang, 'sede.photo_caption')}</figcaption>
     </figure>
   </div>
