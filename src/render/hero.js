@@ -14,7 +14,7 @@ export function renderHero({ lang, config }) {
   <div class="wrap hero__grid">
     <div data-reveal>
       <span class="hero__badge"><i></i> ${t(lang, 'hero.badge')}</span>
-      <h1 class="hero__title">${titleHead} <span class="hero__year">${titleTail}</span></h1>
+      <h1 class="hero__title">${titleHead} <span class="hero__year" data-text="${titleTail}">${titleTail}</span></h1>
       <p class="hero__sub">
         ${t(lang, 'brand.short')}
         <small>${t(lang, 'hero.dates')}</small>
@@ -121,8 +121,25 @@ export function renderHero({ lang, config }) {
     line-height: 1.02;
   }
   .hero__year {
+    position: relative;
+    display: inline-block;
     color: transparent;
-    -webkit-text-stroke: 2.5px var(--y-blue);
+    text-shadow:
+      -2px -2px 0 var(--y-blue),
+       2px -2px 0 var(--y-blue),
+      -2px  2px 0 var(--y-blue),
+       2px  2px 0 var(--y-blue),
+       0   -2px 0 var(--y-blue),
+       0    2px 0 var(--y-blue),
+      -2px  0   0 var(--y-blue),
+       2px  0   0 var(--y-blue),
+       0    0   0 var(--y-blue);
+  }
+  .hero__year::after {
+    content: attr(data-text);
+    position: absolute;
+    inset: 0;
+    color: var(--color-page);
   }
   .hero__sub {
     font-size: clamp(1rem, 2vw, 1.3rem);
