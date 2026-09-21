@@ -2,13 +2,21 @@ import { z } from 'zod';
 
 const I18nStr = z.object({ es: z.string(), en: z.string() });
 
+const Talk = z.object({
+  hora: z.string().optional(),
+  speaker: z.string(),
+  tema: z.string().optional(),
+});
 const Evento = z.object({
   titulo: I18nStr,
   hora_inicio: z.string(),
   hora_fin: z.string().nullable().optional(),
   categoria: z.string(),
+  pic: z.string().optional(),
   nota: z.string().optional(),
-  subeventos: z.array(z.object({ titulo: z.string(), hora: z.string() })).optional(),
+  detalle: I18nStr.optional(),
+  talks: z.array(Talk).optional(),
+  panelists: z.array(z.string()).optional(),
 });
 const Dia = z.object({
   fecha: z.string(), dia_semana: z.string(), eventos: z.array(Evento),

@@ -12,6 +12,9 @@ export function toTimeline(raw, lang) {
       categoria: ev.categoria,
       color: `var(--cat-${ev.categoria})`,
       nota: ev.nota,
+      detalle: ev.detalle?.[lang],
+      talks: ev.talks,
+      panelists: ev.panelists,
     })),
   }));
 }
