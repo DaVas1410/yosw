@@ -1,6 +1,6 @@
 # YOSW 2026 invitation mailer
 
-Sends the congress invitation email to the committee and student lists.
+Sends the congress invitation email to the committee, student, and external-researcher lists.
 
 ## Setup
 
@@ -8,6 +8,10 @@ Sends the congress invitation email to the committee and student lists.
 2. Place the recipient spreadsheets at the repo root (already gitignored):
    - `42. INF COMITE WOSW.xlsx`
    - `Matriculados_Carrera_DGSA 2026-2.xlsx`
+   - `Investigadores_externos.xlsx` (only needed for the `researchers` audience —
+     columns `NOMBRE` (full name, any order), `EMAIL`, and optional `GENERO`).
+     Since these are non-`@yachaytech.edu.ec` addresses, sends to this list count
+     against the external-recipient daily cap (see below).
 3. Copy `.env.example` to `.env` in this folder and fill in `SMTP_PASSWORD`
    (an app password if the Outlook/Office365 account has MFA enabled).
 4. Open `invite.ipynb` (kernel: `py311`) and run the cells top to bottom.

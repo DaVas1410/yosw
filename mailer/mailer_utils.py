@@ -25,6 +25,7 @@ MAILER_DIR = Path(__file__).resolve().parent
 OUTPUT_DIR = MAILER_DIR / "output"
 LOGO_PATH = ROOT / "src" / "assets" / "brand" / "logo-color.png"
 WATERMARK_PATH = MAILER_DIR / "assets" / "watermark.png"
+FLYER_PATH = ROOT / "assets" / "flyer_reminder.png"
 SOCIAL_ICON_PATHS = {
     "icon_instagram": MAILER_DIR / "assets" / "icon-instagram.png",
     "icon_facebook": MAILER_DIR / "assets" / "icon-facebook.png",
@@ -49,6 +50,11 @@ load_dotenv(MAILER_DIR / ".env")
 #   personal Gmail/Hotmail addresses), where it will matter.
 MIN_SECONDS_BETWEEN_SENDS = 3.0
 MAX_NEW_EXTERNAL_RECIPIENTS_PER_ROLLING_24H = 900
+# Office365 SMTP AUTH connections have been observed to drop mid-run (after
+# roughly a few hundred sends); reconnecting and retrying keeps one dropped
+# connection from cascade-failing every remaining recipient in the batch.
+MAX_SEND_ATTEMPTS = 4
+RECONNECT_BACKOFF_SECONDS = 5.0
 INTERNAL_DOMAIN = "yachaytech.edu.ec"
 
 FEMALE_GENDER_VALUES = {"FEMENINO", "MUJER"}
@@ -75,6 +81,10 @@ def _greeting_name(raw_name: str, mode: str) -> str:
         return ""
     if mode == "first":
         return parts[0].title()
+    if mode == "asis":
+        # Source column is already "Nombre Apellido" in natural order (e.g. an
+        # external list) — greet by the full name as given, just title-cased.
+        return " ".join(p.title() for p in parts)
     # "full" mode: source column is "APELLIDO1 APELLIDO2 NOMBRE1 [NOMBRE2]" (all caps).
     # Greet by the given name(s) — the last one or two tokens — not the full string.
     given = parts[-2:] if len(parts) >= 4 else parts[-1:]
@@ -178,6 +188,9 @@ def save_preview(audience_key: str, recipient: Recipient) -> Path:
     watermark_b64 = base64.b64encode(WATERMARK_PATH.read_bytes()).decode("ascii")
     html = html.replace("cid:logo", f"data:image/png;base64,{logo_b64}")
     html = html.replace("cid:watermark", f"data:image/png;base64,{watermark_b64}")
+    if AUDIENCES[audience_key].get("include_flyer"):
+        flyer_b64 = base64.b64encode(FLYER_PATH.read_bytes()).decode("ascii")
+        html = html.replace("cid:flyer", f"data:image/png;base64,{flyer_b64}")
     for cid, path in SOCIAL_ICON_PATHS.items():
         icon_b64 = base64.b64encode(path.read_bytes()).decode("ascii")
         html = html.replace(f"cid:{cid}", f"data:image/png;base64,{icon_b64}")
@@ -186,11 +199,26 @@ def save_preview(audience_key: str, recipient: Recipient) -> Path:
     return out_path
 
 
-def _build_message(subject: str, html: str, sender: str, sender_name: str, to_email: str) -> MIMEMultipart:
+def _build_message(
+    subject: str,
+    html: str,
+    sender: str,
+    sender_name: str,
+    to_email: str,
+    *,
+    include_flyer: bool = False,
+    urgent: bool = False,
+) -> MIMEMultipart:
     msg = MIMEMultipart("related")
     msg["Subject"] = subject
     msg["From"] = f"{sender_name} <{sender}>"
     msg["To"] = to_email
+    if urgent:
+        # High-priority flags recognized by Outlook/Exchange ("Importance") and
+        # older Outlook Express/Thunderbird clients ("X-Priority"/"X-MSMail-Priority").
+        msg["Importance"] = "High"
+        msg["X-Priority"] = "1"
+        msg["X-MSMail-Priority"] = "High"
 
     alt = MIMEMultipart("alternative")
     alt.attach(MIMEText("Ver esta invitación en un cliente que soporte HTML.", "plain"))
@@ -208,6 +236,13 @@ def _build_message(subject: str, html: str, sender: str, sender_name: str, to_em
     watermark.add_header("Content-ID", "<watermark>")
     watermark.add_header("Content-Disposition", "inline", filename="watermark.png")
     msg.attach(watermark)
+
+    if include_flyer:
+        with open(FLYER_PATH, "rb") as f:
+            flyer = MIMEImage(f.read())
+        flyer.add_header("Content-ID", "<flyer>")
+        flyer.add_header("Content-Disposition", "inline", filename="flyer_reminder.png")
+        msg.attach(flyer)
 
     for cid, path in SOCIAL_ICON_PATHS.items():
         with open(path, "rb") as f:
@@ -238,7 +273,15 @@ def send_test_email(audience_key: str, recipient: Recipient, test_to: str) -> No
     sender = os.environ["SMTP_USER"]
     sender_name = "Yachay Open Science Week 2026"
     subject = f"[TEST] {cfg['subject']}"
-    msg = _build_message(subject, html, sender, sender_name, test_to)
+    msg = _build_message(
+        subject,
+        html,
+        sender,
+        sender_name,
+        test_to,
+        include_flyer=cfg.get("include_flyer", False),
+        urgent=cfg.get("urgent", False),
+    )
 
     server = _smtp_connect()
     try:
@@ -386,10 +429,52 @@ def send_batch(
                 deferred += 1
                 bar.set_postfix(sent=sent, failed=failed, deferred=deferred)
                 continue
-            try:
-                html = render_html(audience_key, r)
-                msg = _build_message(cfg["subject"], html, sender, sender_name, r.email)
-                server.sendmail(sender, [r.email], msg.as_string())
+            html = render_html(audience_key, r)
+            msg = _build_message(
+                cfg["subject"],
+                html,
+                sender,
+                sender_name,
+                r.email,
+                include_flyer=cfg.get("include_flyer", False),
+                urgent=cfg.get("urgent", False),
+            )
+            last_exc: Exception | None = None
+            for attempt in range(1, MAX_SEND_ATTEMPTS + 1):
+                try:
+                    server.sendmail(sender, [r.email], msg.as_string())
+                    last_exc = None
+                    break
+                except (
+                    smtplib.SMTPServerDisconnected,
+                    smtplib.SMTPResponseException,
+                    smtplib.SMTPConnectError,
+                    ConnectionError,
+                    OSError,
+                ) as exc:
+                    # Office365 drops long-lived SMTP AUTH connections after a while
+                    # (observed around a few hundred sends in), so reconnect and retry
+                    # rather than letting every remaining recipient cascade-fail.
+                    last_exc = exc
+                    print(
+                        f"[RECONNECT] {audience_key} -> {r.email}: attempt {attempt} failed "
+                        f"({exc}), reconnecting..."
+                    )
+                    try:
+                        server.quit()
+                    except Exception:
+                        pass
+                    time.sleep(RECONNECT_BACKOFF_SECONDS * attempt)
+                    try:
+                        server = _smtp_connect()
+                    except Exception as reconnect_exc:
+                        last_exc = reconnect_exc
+                        continue
+                except Exception as exc:  # noqa: BLE001 — non-transient, don't retry
+                    last_exc = exc
+                    break
+
+            if last_exc is None:
                 _log_send(r.email, audience_key, "sent")
                 sent += 1
                 if is_external(r.email):
@@ -397,11 +482,11 @@ def send_batch(
                 print(f"[OK] {audience_key} -> {r.email}")
                 bar.set_postfix(sent=sent, failed=failed, skipped=skipped)
                 time.sleep(delay_seconds)
-            except Exception as exc:  # noqa: BLE001 — log and keep going
-                _log_send(r.email, audience_key, "failed", str(exc))
+            else:
+                _log_send(r.email, audience_key, "failed", str(last_exc))
                 failed += 1
-                failures.append({"email": r.email, "error": str(exc)})
-                print(f"[FAILED] {audience_key} -> {r.email}: {exc}")
+                failures.append({"email": r.email, "error": str(last_exc)})
+                print(f"[FAILED] {audience_key} -> {r.email}: {last_exc}")
                 bar.set_postfix(sent=sent, failed=failed, skipped=skipped)
     finally:
         bar.close()
