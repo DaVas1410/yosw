@@ -1,16 +1,16 @@
 {
   "evento": "Yachay Open Science Week (YOSW) 2026",
   "leyenda_categorias": {
-    "inauguracion": "#2563EB",
-    "charlas": "#0EA5E9",
-    "mesas_abiertas": "#14B8A6",
-    "posters": "#8B5CF6",
-    "expos_jurados": "#F59E0B",
-    "mentorias": "#EC4899",
-    "social_networking": "#22C55E",
-    "premiacion": "#F43F5E",
-    "academico_general": "#64748B",
-    "cierre": "#DC2626"
+    "inauguracion": "#D6402C",
+    "charlas": "#0C818C",
+    "mesas_abiertas": "#51812F",
+    "posters": "#AD6212",
+    "expos_jurados": "#9B6C00",
+    "mentorias": "#1F5C8E",
+    "social_networking": "#B23A6B",
+    "premiacion": "#6D4AAE",
+    "academico_general": "#164A75",
+    "cierre": "#D6402C"
   },
   "dias": [
     {
