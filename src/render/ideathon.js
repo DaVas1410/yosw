@@ -21,7 +21,7 @@ export function renderIdeathon({ lang }) {
     <div class="idea__grid">
       <div class="idea__text" data-reveal>
         <p>${t(lang, 'idea.body')}</p>
-        <div class="idea__flow">
+        <div class="idea__flow" data-reveal-stagger>
           ${flow
             .map(
               (step) => `<div class="idea__step" style="--c: ${step.color}">
@@ -37,7 +37,7 @@ export function renderIdeathon({ lang }) {
         <a href="#registro" class="btn btn-ghost">${t(lang, 'idea.cta')}</a>
       </div>
       <figure class="idea__img" data-reveal>
-        <img src="../assets/illustrations/ideathon.png" alt="${t(lang, 'idea.img_alt')}" loading="lazy" />
+        <img src="../assets/illustrations/ideathon.png" alt="${t(lang, 'idea.img_alt')}" loading="lazy" data-parallax="0.08" />
       </figure>
     </div>
   </div>

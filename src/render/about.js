@@ -21,7 +21,7 @@ export function renderAbout({ lang }) {
       <div class="about__text" data-reveal>
         <p>${t(lang, 'about.intro')}</p>
         <p>${t(lang, 'about.objective')}</p>
-        <div class="about__values">
+        <div class="about__values" data-reveal-stagger>
           ${values
             .map(
               (v) => `<div class="about__value">

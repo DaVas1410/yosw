@@ -14,7 +14,7 @@ export function renderFaq({ lang }) {
       <h2 class="section__title">${t(lang, 'faq.heading')}</h2>
       <div class="divider" style="margin-inline:auto"></div>
     </div>
-    <div class="faq__list" data-reveal>
+    <div class="faq__list" data-reveal-stagger>
       ${ITEMS.map(
         (key) => `<div class="faq__item">
         <button class="faq__q" type="button">

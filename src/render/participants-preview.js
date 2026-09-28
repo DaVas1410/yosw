@@ -17,7 +17,7 @@ export function renderParticipantsPreview({ lang, participants, ejes }) {
 
     ${
       preview.length > 0
-        ? `<div class="participantes-preview__grid" data-reveal>
+        ? `<div class="participantes-preview__grid" data-reveal-stagger>
       ${preview.map((p) => renderParticipantCard({ lang, participant: p, ejes })).join('\n      ')}
     </div>`
         : `<div class="card participantes-preview__empty" data-reveal>

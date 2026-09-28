@@ -20,6 +20,7 @@ export function renderPageShell({ lang, title, bodyHtml, extraStyles = [] }) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>${title}</title>
+    <script>document.documentElement.classList.add('js');</script>
     <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
     <link rel="alternate icon" href="../favicon.ico" />
     <style>
@@ -43,6 +44,7 @@ export function renderPageShell({ lang, title, bodyHtml, extraStyles = [] }) {
   </head>
   <body>
     ${bodyHtml}
+    <script src="../client/motion.js" defer></script>
     <script src="../client/scroll-reveal.js" defer></script>
   </body>
 </html>`;

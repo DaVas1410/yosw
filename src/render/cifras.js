@@ -13,10 +13,10 @@ export function renderCifras({ lang, calendario, ejes }) {
   ];
 
   return `<section class="cifras">
-  <div class="wrap cifras__grid">
+  <div class="wrap cifras__grid" data-reveal-stagger>
     ${stats
       .map(
-        (stat) => `<div class="cifras__stat" data-reveal>
+        (stat) => `<div class="cifras__stat">
       <b style="color: ${stat.color}"><span class="cifras__num" data-count="${stat.value}">0</span></b>
       <span>${stat.label}</span>
     </div>`

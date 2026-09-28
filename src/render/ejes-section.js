@@ -61,7 +61,7 @@ export function renderEjesSection({ lang, ejes }) {
         aria-label="${escapeAttr(nombre)}"
         data-title="${escapeAttr(nombre)}"
         data-desc="${escapeAttr(descripcion)}"
-        style="--eje-color: ${eje.color}"
+        style="--eje-color: ${eje.color}; --i: ${i}"
       >
         <path class="ejes__wedge-path" d="${path}" />
         <text class="ejes__wedge-num" x="${labelPos.x}" y="${labelPos.y}" text-anchor="middle" dominant-baseline="middle">${String(eje.id).padStart(2, '0')}</text>
@@ -275,6 +275,37 @@ export function renderEjesSection({ lang, ejes }) {
   .ejes__card:hover .ejes__glow {
     opacity: 0.28;
     transform: scale(1.3);
+  }
+  /* Entrance: the five wedges fan in around the wheel's centre one by one
+     (--i per wedge), then the hub pops in. */
+  .js .ejes__wheel-wrap .ejes__wedge,
+  .js .ejes__wheel-wrap :is(.ejes__hub, .ejes__hub-text, .ejes__hub-sub) {
+    transform-box: view-box;
+    transform-origin: 50% 50%;
+  }
+  .js .ejes__wheel-wrap .ejes__wedge {
+    opacity: 0;
+    scale: 0.72;
+    rotate: -28deg;
+    transition:
+      opacity 0.7s var(--ease-out) calc(150ms + var(--i, 0) * 110ms),
+      scale 0.9s var(--ease-spring) calc(150ms + var(--i, 0) * 110ms),
+      rotate 0.9s var(--ease-out) calc(150ms + var(--i, 0) * 110ms);
+  }
+  .js .ejes__wheel-wrap :is(.ejes__hub, .ejes__hub-text, .ejes__hub-sub) {
+    opacity: 0;
+    scale: 0.4;
+    transition: opacity 0.5s var(--ease-out) 0.75s, scale 0.7s var(--ease-spring) 0.75s;
+  }
+  .js .ejes__wheel-wrap.is-visible :is(.ejes__wedge, .ejes__hub, .ejes__hub-text, .ejes__hub-sub) {
+    opacity: 1;
+    scale: none;
+    rotate: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .ejes__wheel-wrap :is(.ejes__wedge, .ejes__hub, .ejes__hub-text, .ejes__hub-sub) {
+      opacity: 1; scale: none; rotate: none; transition: none;
+    }
   }
 </style>
 

@@ -49,15 +49,6 @@ a {
   padding-inline: clamp(1.5rem, 4vw, 3rem);
 }
 
-/* ---- Reusable utilities ---- */
-.gradient-text {
-  background: var(--grad-brand);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 /* ---- Pill buttons ---- */
 .btn {
   display: inline-flex;
@@ -81,7 +72,7 @@ a {
 }
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 26px rgba(31, 92, 142, 0.35);
+  box-shadow: 0 14px 26px rgba(31, 92, 142, 0.35), 0 0 0 5px rgba(15, 155, 168, 0.14);
 }
 .btn-ghost {
   border-color: var(--y-blue);
@@ -92,6 +83,10 @@ a {
   background: var(--y-blue);
   color: #fff;
   transform: translateY(-3px);
+}
+.btn:active {
+  transform: translateY(-1px) scale(0.97);
+  transition-duration: 0.08s;
 }
 .btn[aria-disabled='true'] {
   background: #9db4c8;
@@ -112,6 +107,12 @@ a {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-muted);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.chip:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--y-teal) 40%, var(--color-border));
+  box-shadow: var(--shadow-sm);
 }
 .chip svg {
   width: 15px;
@@ -188,16 +189,11 @@ a {
   transform: translateY(-7px);
   box-shadow: var(--shadow-lg);
 }
-/* accent top-bar reveal on hover (set --accent per card) */
+/* ambient accent tint (set --accent per card); the card's own icon, number,
+   or label already carries the accent color, so this stays a quiet wash
+   rather than a second, competing accent device */
 .card--accent {
-  border-top: 4px solid var(--accent, var(--color-accent));
-}
-.card--accent::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: var(--accent, var(--color-accent));
+  background: color-mix(in srgb, var(--accent, var(--color-accent)) 5%, var(--color-surface));
 }
 
 /* gradient-stripe divider */
@@ -220,20 +216,116 @@ section {
   z-index: 1;
 }
 
-/* ---- Scroll reveal ---- */
-[data-reveal] {
+/* ---- Motion ----
+   Every hidden starting state is scoped under .js (set by an inline script in
+   the page shell), so the page renders fully visible if scripts never run.
+   Entrance offsets use the individual `translate` / `scale` properties so they
+   compose with the `transform` used by hover lifts instead of fighting it. */
+
+/* Single-block reveal */
+.js [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
+  translate: 0 28px;
+  transition:
+    opacity var(--dur-reveal) var(--ease-out) var(--delay, 0ms),
+    translate var(--dur-reveal) var(--ease-out) var(--delay, 0ms),
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s ease;
 }
-[data-reveal].is-visible {
+.js [data-reveal].is-visible {
   opacity: 1;
-  transform: none;
+  translate: none;
+}
+
+/* Staggered reveal: direct children arrive one after another (--i is set
+   per child by scroll-reveal.js). */
+.js [data-reveal-stagger] > * {
+  opacity: 0;
+  translate: 0 24px;
+  transition:
+    opacity 0.65s var(--ease-out) calc(var(--i, 0) * var(--stagger)),
+    translate 0.65s var(--ease-out) calc(var(--i, 0) * var(--stagger)),
+    transform 0.3s var(--ease-out),
+    box-shadow 0.3s ease,
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
+}
+.js [data-reveal-stagger].is-visible > * {
+  opacity: 1;
+  translate: none;
+}
+
+/* Section headings: the block itself stays put; its eyebrow slides in, the
+   title rises word by word (words split by motion.js), the divider grows. */
+.js .section__head[data-reveal] {
+  opacity: 1;
+  translate: none;
+}
+.js .section__head[data-reveal] .eyebrow {
+  opacity: 0;
+  translate: -28px 0;
+  transition: opacity 0.6s var(--ease-out), translate 0.6s var(--ease-out);
+}
+.js .section__head[data-reveal] .section__title .w {
+  display: inline-block;
+  opacity: 0;
+  translate: 0 0.55em;
+  rotate: 4deg;
+  transform-origin: 0 100%;
+  transition:
+    opacity 0.7s var(--ease-out) calc(120ms + var(--i, 0) * 70ms),
+    translate 0.7s var(--ease-out) calc(120ms + var(--i, 0) * 70ms),
+    rotate 0.7s var(--ease-out) calc(120ms + var(--i, 0) * 70ms);
+}
+.js .section__head[data-reveal] .section__lead {
+  opacity: 0;
+  translate: 0 16px;
+  transition: opacity 0.7s var(--ease-out) 0.35s, translate 0.7s var(--ease-out) 0.35s;
+}
+.js .section__head[data-reveal] .divider {
+  scale: 0 1;
+  transition: scale 0.9s var(--ease-out) 0.45s;
+}
+.js .section__head[data-reveal].is-visible :is(.eyebrow, .section__title .w, .section__lead) {
+  opacity: 1;
+  translate: none;
+  rotate: none;
+}
+.js .section__head[data-reveal].is-visible .divider {
+  scale: 1 1;
+}
+
+/* Scroll progress bar (injected by motion.js) */
+.scroll-progress {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  z-index: 1000;
+  background: var(--grad-spectrum);
+  transform-origin: 0 50%;
+  scale: var(--progress, 0) 1;
+  pointer-events: none;
+}
+
+/* Parallax images: scaled up slightly so the drift never exposes an edge */
+[data-parallax] {
+  scale: 1.12;
+  translate: 0 var(--parallax-y, 0px);
+  will-change: translate;
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js [data-reveal],
+  .js [data-reveal-stagger] > *,
+  .js .section__head[data-reveal] :is(.eyebrow, .section__title .w, .section__lead, .divider) {
+    opacity: 1;
+    translate: none;
+    rotate: none;
+    scale: none;
+    transition: none;
+  }
+  .scroll-progress { display: none; }
+  [data-parallax] { scale: none; translate: none; }
 }

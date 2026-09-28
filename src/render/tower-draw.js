@@ -43,13 +43,13 @@ export function renderTowerDraw({ alt, caption }) {
   const outlines = shapes
     .map(
       (s, i) =>
-        `<path class="tower-draw__outline" d="${s.d}" pathLength="1" stroke="${s.fill}" style="animation-delay: ${(i * STAGGER).toFixed(2)}s" />`
+        `<path class="tower-draw__outline" d="${s.d}" pathLength="1" stroke="${s.fill}" style="--d: ${(i * STAGGER).toFixed(2)}s" />`
     )
     .join('\n    ');
   const fills = shapes
     .map(
       (s, i) =>
-        `<path class="tower-draw__fill" d="${s.d}" fill="${s.fill}" style="animation-delay: ${(i * STAGGER + DRAW_DUR * 0.7).toFixed(2)}s" />`
+        `<path class="tower-draw__fill" d="${s.d}" fill="${s.fill}" style="--d: ${(i * STAGGER + DRAW_DUR * 0.7).toFixed(2)}s" />`
     )
     .join('\n    ');
 
@@ -73,10 +73,12 @@ export function renderTowerDraw({ alt, caption }) {
       stroke-dasharray: 1;
       stroke-dashoffset: 1;
       animation: tower-draw-line ${DRAW_DUR}s ease forwards;
+      animation-delay: calc(var(--d) + var(--tower-offset, 0s));
     }
     .tower-draw__fill {
       opacity: 0;
       animation: tower-draw-fill 0.45s ease forwards;
+      animation-delay: calc(var(--d) + var(--tower-offset, 0s));
     }
     @keyframes tower-draw-line {
       to { stroke-dashoffset: 0; }

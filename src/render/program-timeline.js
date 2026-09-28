@@ -104,7 +104,7 @@ export function renderProgramTimeline({ lang, calendario }) {
     </div>
 
     <div data-reveal>
-      <div class="programa__tabs" role="tablist" aria-label="${t(lang, 'programa.dias_aria')}">
+      <div class="programa__tabs" data-reveal-stagger role="tablist" aria-label="${t(lang, 'programa.dias_aria')}">
         ${days
           .map(
             (day, i) => `<button type="button" class="programa__tab${i === 0 ? ' is-active' : ''}" data-tab="${day.key}">
@@ -241,7 +241,6 @@ export function renderProgramTimeline({ lang, calendario }) {
   .agenda__item {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-left: 4px solid var(--item-color, var(--y-blue));
     border-radius: 12px;
     box-shadow: var(--shadow-sm);
     overflow: hidden;
@@ -293,7 +292,7 @@ export function renderProgramTimeline({ lang, calendario }) {
     margin: -0.35rem 1.1rem 0.85rem calc(100px + 0.9rem);
     font-size: 0.8rem;
     font-style: italic;
-    color: var(--color-muted-2);
+    color: var(--color-muted);
   }
   @media (max-width: 560px) {
     .agenda__caption {
@@ -327,7 +326,7 @@ export function renderProgramTimeline({ lang, calendario }) {
     font-size: 0.78rem;
     text-transform: uppercase;
     letter-spacing: 0.04em;
-    color: var(--color-muted-2);
+    color: var(--color-muted);
     margin-bottom: 0.4rem;
   }
   .agenda__sublist {
@@ -365,6 +364,20 @@ export function renderProgramTimeline({ lang, calendario }) {
       order: 4;
       margin-left: 0;
     }
+  }
+  /* Each day's schedule cascades in when the section first reveals and again
+     on every tab switch (the panel going display:none -> block restarts the
+     animation). --i is set per item by motion.js. */
+  .js [data-reveal].is-visible .programa__panel.is-active .agenda__item {
+    animation: agenda-in 0.55s var(--ease-out) both;
+    animation-delay: calc(80ms + var(--i, 0) * 45ms);
+  }
+  @keyframes agenda-in {
+    from { opacity: 0; translate: -18px 0; }
+    to { opacity: 1; translate: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js [data-reveal].is-visible .programa__panel.is-active .agenda__item { animation: none; }
   }
 </style>
 

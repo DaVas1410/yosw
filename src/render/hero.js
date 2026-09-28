@@ -9,17 +9,24 @@ export function renderHero({ lang, config }) {
   const lastSpace = fullTitle.lastIndexOf(' ');
   const titleHead = fullTitle.slice(0, lastSpace);
   const titleTail = fullTitle.slice(lastSpace + 1);
+  // Opening sequence: each piece gets a --seq step (see .hero-seq below);
+  // the title head is split into words so it rises word by word.
+  const headWords = titleHead.split(' ');
+  const seqAfterTitle = headWords.length + 1;
+  const titleHeadHtml = headWords
+    .map((w, i) => `<span class="hero__word hero-seq" style="--seq: ${i + 1}">${w}</span>`)
+    .join(' ');
 
   return `<section class="hero" id="inicio">
   <div class="wrap hero__grid">
-    <div data-reveal>
-      <span class="hero__badge"><i></i> ${t(lang, 'hero.badge')}</span>
-      <h1 class="hero__title">${titleHead} <span class="hero__year" data-text="${titleTail}">${titleTail}</span></h1>
-      <p class="hero__sub">
+    <div class="hero__copy">
+      <span class="hero__badge hero-seq" style="--seq: 0"><i></i> ${t(lang, 'hero.badge')}</span>
+      <h1 class="hero__title">${titleHeadHtml} <span class="hero__year hero-seq" style="--seq: ${seqAfterTitle}" data-text="${titleTail}">${titleTail}</span></h1>
+      <p class="hero__sub hero-seq" style="--seq: ${seqAfterTitle + 1}">
         ${t(lang, 'brand.short')}
         <small>${t(lang, 'hero.dates')}</small>
       </p>
-      <div class="hero__meta">
+      <div class="hero__meta hero-seq" style="--seq: ${seqAfterTitle + 2}">
         <span class="chip">
           <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M8 3v4M16 3v4M3 10h18"></path></svg>
           ${t(lang, 'hero.dates')}
@@ -33,14 +40,14 @@ export function renderHero({ lang, config }) {
           ${t(lang, 'hero.modalidad')}
         </span>
       </div>
-      <div class="hero__actions">
+      <div class="hero__actions hero-seq" style="--seq: ${seqAfterTitle + 3}">
         <a href="#registro" class="btn btn-primary">${t(lang, 'hero.cta')}</a>
         <a href="#programa" class="btn btn-ghost">${t(lang, 'hero.cta.programa')}</a>
       </div>
-      <div class="hero__countdown">${renderCountdownPartial({ lang, target: config.eventStart })}</div>
+      <div class="hero__countdown hero-seq" style="--seq: ${seqAfterTitle + 4}">${renderCountdownPartial({ lang, target: config.eventStart })}</div>
     </div>
 
-    <figure class="hero__visual" data-reveal>
+    <figure class="hero__visual">
       <div class="hero__tower-card">
         ${renderTowerDraw({ alt: t(lang, 'hero.tower_alt'), caption: t(lang, 'hero.tower_caption') })}
       </div>
@@ -78,6 +85,8 @@ export function renderHero({ lang, config }) {
     background: var(--mol-azul) center/420px repeat;
     opacity: 0.55;
     pointer-events: none;
+    /* --hero-y (scrollY while the hero is on screen) is set by motion.js */
+    translate: 0 calc(var(--hero-y, 0) * 0.35px);
   }
   .hero__grid {
     position: relative;
@@ -135,6 +144,17 @@ export function renderHero({ lang, config }) {
        2px  0   0 var(--y-blue),
        0    0   0 var(--y-blue);
   }
+  .hero__year::before {
+    content: '';
+    position: absolute;
+    left: 0.04em;
+    right: 0.04em;
+    bottom: -0.06em;
+    height: 0.09em;
+    border-radius: 99px;
+    background: var(--grad-spectrum);
+    transform-origin: 0 50%;
+  }
   .hero__year::after {
     content: attr(data-text);
     position: absolute;
@@ -174,6 +194,10 @@ export function renderHero({ lang, config }) {
   }
   .hero__tower-card {
     position: relative;
+    /* scroll-out: lags behind the page, shrinks and fades as the hero leaves */
+    translate: 0 calc(var(--hero-y, 0) * 0.12px);
+    scale: calc(1 - var(--hero-out, 0) * 0.08);
+    opacity: calc(1 - var(--hero-out, 0) * 0.6);
     background: #fff;
     border: 1px solid var(--color-border);
     border-radius: 24px;
@@ -205,7 +229,11 @@ export function renderHero({ lang, config }) {
     display: flex;
     gap: 0.4rem;
     align-items: center;
-    animation: hero-float 5s ease-in-out infinite;
+    --pop: 2.1s;
+    --bob: 0s;
+    --depth: 0.25;
+    translate: 0 calc(var(--hero-y, 0) * var(--depth) * -1px);
+    animation: hero-float 5s ease-in-out var(--bob) infinite;
   }
   .hero__float svg {
     width: 16px;
@@ -215,12 +243,59 @@ export function renderHero({ lang, config }) {
     stroke-width: 2;
   }
   .hero__float--1 { top: 8%; left: -6%; }
-  .hero__float--2 { bottom: 12%; right: -5%; animation-delay: 1.4s; color: var(--y-teal); }
-  .hero__float--3 { top: 46%; right: -9%; animation-delay: 2.6s; color: var(--y-orange); }
+  .hero__float--2 { bottom: 12%; right: -5%; --bob: 1.4s; --pop: 2.3s; --depth: 0.45; color: var(--y-teal); }
+  .hero__float--3 { top: 46%; right: -9%; --bob: 2.6s; --pop: 2.5s; --depth: 0.15; color: var(--y-orange); }
   @keyframes hero-float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
   }
+
+  /* ---- Opening sequence (only when JS is on, so nothing hides without it) ---- */
+  .js .hero { --tower-offset: 0.35s; }
+  .js .hero-seq {
+    animation: hero-rise 0.9s var(--ease-out) both;
+    animation-delay: calc(100ms + var(--seq, 0) * 90ms);
+  }
+  .hero__word { display: inline-block; }
+  .js .hero__word { animation-name: hero-word; }
+  .js .hero__year.hero-seq { animation-name: hero-wipe; animation-duration: 1s; }
+  .js .hero__year::before {
+    animation: hero-underline 0.8s var(--ease-out) both;
+    animation-delay: calc(700ms + var(--seq, 0) * 90ms);
+  }
+  .js .hero__visual {
+    animation: hero-card 1.1s var(--ease-out) 0.2s both;
+  }
+  .js .hero__float {
+    animation:
+      hero-pop 0.7s var(--ease-spring) var(--pop) both,
+      hero-float 5s ease-in-out calc(var(--pop) + var(--bob)) infinite;
+  }
+  @keyframes hero-rise {
+    from { opacity: 0; translate: 0 26px; }
+    to { opacity: 1; translate: none; }
+  }
+  @keyframes hero-word {
+    from { opacity: 0; translate: 0 0.5em; rotate: 6deg; }
+    to { opacity: 1; translate: none; rotate: none; }
+  }
+  @keyframes hero-wipe {
+    from { clip-path: inset(-20% 100% -20% -6%); translate: -14px 0; }
+    to { clip-path: inset(-20% -6% -20% -6%); translate: none; }
+  }
+  @keyframes hero-underline {
+    from { scale: 0 1; }
+    to { scale: 1 1; }
+  }
+  @keyframes hero-card {
+    from { opacity: 0; scale: 0.94; translate: 0 34px; }
+    to { opacity: 1; scale: none; translate: none; }
+  }
+  @keyframes hero-pop {
+    from { opacity: 0; scale: 0.5; }
+    to { opacity: 1; scale: none; }
+  }
+
   @media (max-width: 920px) {
     .hero__grid { grid-template-columns: 1fr; }
     .hero__visual { max-width: 420px; margin-inline: auto; }
@@ -229,8 +304,15 @@ export function renderHero({ lang, config }) {
     .hero__countdown .countdown { flex-wrap: wrap; }
   }
   @media (prefers-reduced-motion: reduce) {
-    .hero__float { animation: none; }
+    .hero__float,
+    .js .hero__float,
+    .js .hero-seq,
+    .js .hero__visual,
+    .js .hero__year::before { animation: none; }
     .hero__badge i { animation: none; }
+    .hero::before,
+    .hero__tower-card,
+    .hero__float { translate: none; scale: none; opacity: 1; }
   }
 </style>`;
 }

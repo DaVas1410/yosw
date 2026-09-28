@@ -12,7 +12,7 @@ export function renderSede({ lang, config }) {
       <h2 class="section__title">${t(lang, 'sede.heading')}</h2>
       <div class="divider" style="margin-inline:0"></div>
       <p>${t(lang, 'sede.body')}</p>
-      <ul class="sede__list">
+      <ul class="sede__list" data-reveal-stagger>
         <li>
           <svg viewBox="0 0 24 24"><path d="M12 21s7-6.1 7-11a7 7 0 1 0-14 0c0 4.9 7 11 7 11z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
           ${venue}
@@ -24,7 +24,7 @@ export function renderSede({ lang, config }) {
       </ul>
     </div>
     <figure class="sede__photo" data-reveal>
-      <img src="../assets/illustrations/sede.jpg" alt="${t(lang, 'sede.photo_alt')}" loading="lazy" />
+      <img src="../assets/illustrations/sede.jpg" alt="${t(lang, 'sede.photo_alt')}" loading="lazy" data-parallax="0.08" />
       <figcaption>${t(lang, 'sede.photo_caption')}</figcaption>
     </figure>
   </div>
