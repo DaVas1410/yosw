@@ -22,9 +22,17 @@
       },
       { passive: true }
     );
-    menuBtn.addEventListener('click', () => header.classList.toggle('is-open'));
+    menuBtn.addEventListener('click', () => {
+      const isOpen = header.classList.toggle('is-open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.setAttribute('aria-label', menuBtn.dataset[isOpen ? 'labelClose' : 'labelOpen']);
+    });
     header.querySelectorAll('.nav__links a').forEach((a) =>
-      a.addEventListener('click', () => header.classList.remove('is-open'))
+      a.addEventListener('click', () => {
+        header.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.setAttribute('aria-label', menuBtn.dataset.labelOpen);
+      })
     );
   }
 

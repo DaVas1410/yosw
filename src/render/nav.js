@@ -15,7 +15,8 @@ export function renderNav({ lang, currentPath }) {
     { href: '#sponsors', label: t(lang, 'nav.sponsors') },
   ];
 
-  return `<header class="nav" id="siteHeader">
+  return `<a class="skip-link" href="#main">${t(lang, 'nav.skip_to_content')}</a>
+<header class="nav" id="siteHeader">
   <div class="wrap nav__bar">
     <a class="nav__brand" href="./" aria-label="${t(lang, 'brand.short')}">
       <img class="nav__logo" src="../assets/brand/logo-color.png" alt="${t(lang, 'brand.short')}" width="220" height="101" />
@@ -25,11 +26,33 @@ export function renderNav({ lang, currentPath }) {
       <a href="#registro" class="btn btn-primary nav__cta">${t(lang, 'nav.registro')}</a>
       ${renderLangToggle({ lang, currentPath })}
     </nav>
-    <button id="menuBtn" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
+    <button
+      id="menuBtn"
+      aria-label="${t(lang, 'nav.menu_open')}"
+      aria-expanded="false"
+      data-label-open="${t(lang, 'nav.menu_open')}"
+      data-label-close="${t(lang, 'nav.menu_close')}"
+    ><span></span><span></span><span></span></button>
   </div>
 </header>
 
 <style>
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--y-blue);
+    color: #fff;
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.85rem 1.4rem;
+    border-radius: 0 0 10px 0;
+  }
+  .skip-link:focus {
+    left: 0;
+  }
   .nav {
     position: fixed;
     inset: 0 0 auto 0;
@@ -82,15 +105,17 @@ export function renderNav({ lang, currentPath }) {
     position: absolute;
     left: 0;
     bottom: -2px;
-    width: 0;
+    width: 100%;
     height: 3px;
     border-radius: 99px;
     background: var(--grad-spectrum);
-    transition: width 0.3s ease;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
   }
   .nav__links a:hover::after,
   .nav__links a.is-active::after {
-    width: 100%;
+    transform: scaleX(1);
   }
   .nav__links a.is-active {
     color: var(--y-blue);

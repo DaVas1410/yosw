@@ -27,6 +27,7 @@ export function renderHomePage({ lang, data }) {
   const currentPath = `/${lang}`;
 
   const bodyHtml = `${renderNav({ lang, currentPath })}
+<main id="main">
 ${renderHero({ lang, config })}
 ${renderMarquee({ lang })}
 ${renderCifras({ lang, calendario, ejes })}
@@ -40,6 +41,7 @@ ${renderRegistration({ lang, registerHref: config.forms.register })}
 ${renderSponsors({ lang, sponsors, email: config.social.email, proposalUrl: config.sponsorshipProposalUrl })}
 ${renderSede({ lang, config })}
 ${renderFaq({ lang })}
+</main>
 ${renderFooter({ lang, config })}`;
 
   return renderPageShell({ lang, title: 'Yachay Open Science Week 2026', bodyHtml });

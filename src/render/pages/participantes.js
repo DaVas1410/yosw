@@ -15,7 +15,7 @@ export function renderParticipantesPage({ lang, data }) {
 
   const bodyHtml = `${renderNav({ lang, currentPath })}
 
-<main class="participantes-page">
+<main id="main" class="participantes-page">
   <div class="participantes-page__inner">
     <h1 class="participantes-page__heading">${t(lang, 'participantes.heading')}</h1>
 
