@@ -110,41 +110,19 @@
           "hora_inicio": "09:30",
           "hora_fin": "14:00",
           "categoria": "charlas",
-          "nota": "Charlas simultáneas en varias salas (20 min c/u); número de salas, ponentes y horario exacto por confirmar",
+          "nota": "44 ponencias en 3 salas simultáneas (Hall: 12, Sala 1: 16, Sala 2: 16); horario por sala y ponentes por confirmar",
           "paralelas": [
             {
-              "sala": "TBD",
-              "talks": [
-                { "hora": "09:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "09:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "13:10", "speaker": "TBD", "tema": "TBD" }
-              ]
+              "sala": "Hall",
+              "talks": [{ "speaker": "TBD", "tema": "TBD" }]
             },
             {
-              "sala": "TBD",
-              "talks": [
-                { "hora": "09:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "09:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "10:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "11:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:10", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:30", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "12:50", "speaker": "TBD", "tema": "TBD" },
-                { "hora": "13:10", "speaker": "TBD", "tema": "TBD" }
-              ]
+              "sala": "Sala 1",
+              "talks": [{ "speaker": "TBD", "tema": "TBD" }]
+            },
+            {
+              "sala": "Sala 2",
+              "talks": [{ "speaker": "TBD", "tema": "TBD" }]
             }
           ]
         },

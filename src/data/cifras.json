@@ -1,0 +1,10 @@
+[
+  { "valor": 122, "etiqueta": { "es": "Trabajos aceptados", "en": "Accepted works" }, "detalle": { "es": "100 % de los trabajos tienen espacio", "en": "Every submitted work has a slot" } },
+  { "valor": 44, "etiqueta": { "es": "Ponencias orales", "en": "Oral talks" }, "detalle": { "es": "En 3 salas simultáneas", "en": "Across 3 parallel rooms" } },
+  { "valor": 78, "etiqueta": { "es": "Pósters", "en": "Posters" }, "detalle": { "es": "5 bloques ante jurado, uno por eje", "en": "5 jury sessions, one per track" } },
+  { "valor": 6, "etiqueta": { "es": "Días", "en": "Days" }, "detalle": { "es": "19–24 de octubre de 2026", "en": "October 19–24, 2026" } },
+  { "valor": 5, "etiqueta": { "es": "Ejes temáticos", "en": "Thematic tracks" } },
+  { "valor": 6, "etiqueta": { "es": "Retos del Ideatón", "en": "Ideathon challenges" } },
+  { "valor": 11, "etiqueta": { "es": "Estudiantes organizadores", "en": "Student organizers" }, "detalle": { "es": "De 7 carreras", "en": "From 7 majors" } },
+  { "valor": 0, "prefijo": "$", "etiqueta": { "es": "Costo de inscripción", "en": "Registration fee" }, "detalle": { "es": "Materiales bajo licencias libres", "en": "Materials under open licenses" } }
+]

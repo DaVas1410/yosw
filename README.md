@@ -31,7 +31,7 @@ All editable content is data-driven — you should not need to touch component c
 - `src/data/participants.json` — the participants directory. Each entry: `id`, `nombre`, `rol`, optional `eje` (matches an axis `id`), optional `foto`, `enlace`, and bilingual `bio`. Empty (`[]`) is a valid, intentional state — the directory renders an empty-state message with filters visible until entries are added.
 - `src/data/ideathon.json` — the Ideatón challenges (`retos`), each with bilingual `titulo`, `resumen`, `problema`, `porque`, `entregables[]` and `perfiles`. The sign-up form is `forms.ideathon` in `config.json`.
 - `src/data/sponsors.json` — optional names/links for the sponsor and partner logos; the walls themselves come from the files in `src/assets/sponsors/{patrocinadores,colaboradores}/` (see below).
-- `src/data/config.json` — site-wide settings: `eventStart` (ISO datetime, drives the countdown), `venue`, Google Form URLs, the live-stats sheet URL, and social links.
+- `src/data/config.json` — site-wide settings: `eventStart` (ISO datetime, drives the countdown), `venue`, Google Form URLs, and social links.
 - `src/i18n/es.json` / `src/i18n/en.json` — all UI strings (labels, buttons, headings that aren't part of the data files). **Both files must have the exact same set of keys** — `src/i18n/i18n.test.ts` enforces this parity, so if you add a key to one, add it to the other.
 
 Every data file has a Zod schema in `src/data/schemas.ts`; `src/data/data.test.ts` validates the JSON against those schemas, so malformed edits will fail `npm test`.
@@ -92,11 +92,9 @@ A block of simultaneous talks is an event in `calendario.json` with a `paralelas
 - `speaker` / `tema` set to `"TBD"` render as "Por confirmar".
 - For an event in a single place, add `"lugar": "Auditorio"` to show it next to the title.
 
-### Wiring up the Google Forms and live-stats sheet
+### Wiring up the Google Forms
 
 In `src/data/config.json`, fill in the `forms` URLs (`attend`, `poster`, `ideaton`) with the published Google Form links. Until a given URL is set (empty string), the Registration section shows a "próximamente" (coming soon) state for that form instead of a link.
-
-Set `liveStatsSheetUrl` to the published URL of the Google Sheet (CSV/JSON export endpoint) backing the live stats. Until it's set, the Data dashboard shows a "próximamente" placeholder instead of live numbers.
 
 ### Swapping the brand kit
 

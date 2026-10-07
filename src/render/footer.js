@@ -89,7 +89,7 @@ export function renderFooter({ lang, config }) {
   }
   .footer__grid {
     display: grid;
-    grid-template-columns: 1.3fr 1fr 1fr 1fr;
+    grid-template-columns: minmax(0, 1.3fr) repeat(3, minmax(0, 1fr));
     gap: 2.5rem;
     padding-bottom: 3rem;
   }
@@ -112,6 +112,9 @@ export function renderFooter({ lang, config }) {
     opacity: 1;
     color: #7db6e8;
     transform: translateX(4px);
+  }
+  .footer__grid :is(p, a) {
+    overflow-wrap: anywhere;
   }
   .footer__grid p {
     font-size: 0.86rem;
@@ -187,7 +190,11 @@ export function renderFooter({ lang, config }) {
     background: var(--grad-spectrum);
   }
   @media (max-width: 1020px) {
-    .footer__grid { grid-template-columns: 1fr 1fr; }
+    .footer__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .footer { padding-top: 3rem; }
+    .footer__grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
   }
 </style>`;
 }

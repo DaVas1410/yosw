@@ -21,5 +21,10 @@
     },
     { threshold: 0.6 }
   );
-  document.querySelectorAll('.cifras__num').forEach((el) => io.observe(el));
+  // The HTML carries the final values (correct without JS); reset to 0 so
+  // the count-up starts from zero once the band scrolls into view.
+  document.querySelectorAll('.cifras__num').forEach((el) => {
+    el.textContent = '0';
+    io.observe(el);
+  });
 })();

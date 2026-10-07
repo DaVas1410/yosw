@@ -457,6 +457,10 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
       order: 3;
       flex-basis: 100%;
     }
+    .agenda__tag,
+    .agenda__lugar {
+      order: 3;
+    }
     .agenda__chevron {
       order: 4;
       margin-left: 0;

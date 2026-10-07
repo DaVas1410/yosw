@@ -1,24 +1,26 @@
-// Ported from src/components/Cifras.astro.
-// The inline <script> (count-up animation) moves to src/client/cifras.js.
+// "Cifras" band: the congress's headline numbers, from src/data/cifras.json
+// (value, optional prefix/suffix, bilingual label and one-line detail).
+// Numbers count up when scrolled into view (src/client/cifras.js).
 
 import { t } from '../lib/i18n.js';
 
-export function renderCifras({ lang, calendario, ejes }) {
-  const totalActividades = calendario.dias.reduce((sum, dia) => sum + dia.eventos.length, 0);
+const COLORS = ['#7db6e8', '#6fd3de', '#a9d981', '#f2c66d', '#f4a07a', '#c9a8f0'];
 
-  const stats = [
-    { value: calendario.dias.length, label: t(lang, 'about.stat.dias'), color: '#7db6e8' },
-    { value: ejes.length, label: t(lang, 'about.stat.ejes'), color: '#6fd3de' },
-    { value: totalActividades, label: t(lang, 'about.stat.actividades'), color: '#a9d981' },
-  ];
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[c]));
+}
 
-  return `<section class="cifras">
+export function renderCifras({ lang, cifras }) {
+  return `<section class="cifras" aria-label="${escapeHtml(t(lang, 'cifras.aria'))}">
   <div class="wrap cifras__grid" data-reveal-stagger>
-    ${stats
+    ${cifras
       .map(
-        (stat) => `<div class="cifras__stat">
-      <b style="color: ${stat.color}"><span class="cifras__num" data-count="${stat.value}">0</span></b>
-      <span>${stat.label}</span>
+        (c, i) => `<div class="cifras__stat">
+      <b style="color: ${COLORS[i % COLORS.length]}">${c.prefijo ? escapeHtml(c.prefijo) : ''}<span class="cifras__num" data-count="${c.valor}">${c.valor}</span>${c.sufijo ? escapeHtml(c.sufijo) : ''}</b>
+      <span class="cifras__label">${escapeHtml(c.etiqueta[lang])}</span>
+      ${c.detalle ? `<small class="cifras__detail">${escapeHtml(c.detalle[lang])}</small>` : ''}
     </div>`
       )
       .join('\n    ')}
@@ -29,7 +31,7 @@ export function renderCifras({ lang, calendario, ejes }) {
   .cifras {
     background: var(--y-blue-dk);
     color: #fff;
-    padding: 3rem 0;
+    padding: clamp(2.5rem, 6vh, 3.5rem) 0;
     position: relative;
   }
   .cifras::before,
@@ -44,28 +46,38 @@ export function renderCifras({ lang, calendario, ejes }) {
   .cifras::before { top: 0; }
   .cifras::after { bottom: 0; }
   .cifras__grid {
-    display: flex;
-    justify-content: center;
-    gap: clamp(2.5rem, 8vw, 6rem);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(1.75rem, 4vw, 2.5rem) clamp(1rem, 3vw, 2rem);
     text-align: center;
   }
   .cifras__stat {
-    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.2rem;
   }
   .cifras__stat b {
     font-family: var(--font-display);
     font-size: clamp(1.9rem, 4vw, 2.8rem);
     font-weight: 800;
-    display: block;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
   }
-  .cifras__stat span {
+  .cifras__label {
     font-size: 0.85rem;
     font-weight: 700;
-    opacity: 0.85;
     letter-spacing: 0.04em;
+    opacity: 0.92;
   }
-  @media (max-width: 560px) {
-    .cifras__grid { flex-wrap: wrap; gap: 1.75rem 3rem; }
+  .cifras__detail {
+    font-size: 0.75rem;
+    opacity: 0.68;
+    line-height: 1.35;
+    max-width: 22ch;
+  }
+  @media (max-width: 760px) {
+    .cifras__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
 </style>
 

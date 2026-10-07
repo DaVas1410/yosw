@@ -41,6 +41,14 @@ export const EjesSchema = z.array(z.object({
   // Filenames inside src/assets/ejes/.
   logos: z.array(z.string()).optional(),
 }));
+// Headline numbers for the "cifras" band (src/render/cifras.js).
+export const CifrasSchema = z.array(z.object({
+  valor: z.number(),
+  prefijo: z.string().optional(),
+  sufijo: z.string().optional(),
+  etiqueta: I18nStr,
+  detalle: I18nStr.optional(),
+}));
 export const IdeathonSchema = z.object({
   retos: z.array(z.object({
     id: z.string(),
@@ -71,7 +79,6 @@ export const ConfigSchema = z.object({
   eventStart: z.string(),
   venue: I18nStr,
   forms: z.object({ register: z.string(), ideathon: z.string().optional() }),
-  liveStatsSheetUrl: z.string(),
   social: z.object({
     instagram: z.string(),
     email: z.string(),

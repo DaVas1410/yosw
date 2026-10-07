@@ -16,6 +16,7 @@ import {
   SponsorsMetaSchema,
   ConfigSchema,
   IdeathonSchema,
+  CifrasSchema,
 } from './src/data/schemas.ts';
 import { renderHomePage } from './src/render/pages/home.js';
 import { renderParticipantesPage } from './src/render/pages/participantes.js';
@@ -35,6 +36,7 @@ const ejes = EjesSchema.parse(readJson('src/data/ejes.json'));
 const participants = ParticipantsSchema.parse(readJson('src/data/participants.json'));
 const config = ConfigSchema.parse(readJson('src/data/config.json'));
 const ideathon = IdeathonSchema.parse(readJson('src/data/ideathon.json'));
+const cifras = CifrasSchema.parse(readJson('src/data/cifras.json'));
 
 rmSync(distDir, { recursive: true, force: true });
 
@@ -49,7 +51,7 @@ const sponsors = SponsorsSchema.parse(
   }),
 );
 
-const data = { calendario, ejes, participants, sponsors, config, ideathon };
+const data = { calendario, ejes, participants, sponsors, config, ideathon, cifras };
 
 // --- Render pages ----------------------------------------------------------
 
