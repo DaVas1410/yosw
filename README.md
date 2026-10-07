@@ -26,10 +26,11 @@ Requires Node >= 22.12.0.
 
 All editable content is data-driven — you should not need to touch component code to update text, schedule, people, or sponsors.
 
-- `src/data/calendario.json` — the day-by-day event schedule (`dias[].eventos[]`), validated against `CalendarioSchema` in `src/data/schemas.ts`. Every event's `categoria` must be a key in `leyenda_categorias`. Event titles (`titulo`) are bilingual `{ es, en }` objects.
-- `src/data/ejes.json` — the thematic axes (Ejes), each with an `id`, bilingual `nombre`/`descripcion`, and a `color`.
+- `src/data/calendario.json` — the day-by-day event schedule (`dias[].eventos[]`), validated against `CalendarioSchema` in `src/data/schemas.ts`. Every event's `categoria` must be a key in `leyenda_categorias`. Event titles (`titulo`) are bilingual `{ es, en }` objects. Optional `lugar` shows where an event happens; optional `paralelas` turns an event into simultaneous talks (one column per room, see below).
+- `src/data/ejes.json` — the thematic axes (Ejes), each with an `id`, bilingual `nombre`/`descripcion`, a `color`, and optional `logos` (filenames in `src/assets/ejes/`, shown in the wheel and the mobile cards).
 - `src/data/participants.json` — the participants directory. Each entry: `id`, `nombre`, `rol`, optional `eje` (matches an axis `id`), optional `foto`, `enlace`, and bilingual `bio`. Empty (`[]`) is a valid, intentional state — the directory renders an empty-state message with filters visible until entries are added.
-- `src/data/sponsors.json` — sponsors/partners. Each entry: `id`, `nombre`, `nivel` (`principal` | `colaborador` | `institucional`), optional `logo`, `enlace`. Also empty (`[]`) until sponsors are confirmed.
+- `src/data/ideathon.json` — the Ideatón challenges (`retos`), each with bilingual `titulo`, `resumen`, `problema`, `porque`, `entregables[]` and `perfiles`. The sign-up form is `forms.ideathon` in `config.json`.
+- `src/data/sponsors.json` — optional names/links for the sponsor and partner logos; the walls themselves come from the files in `src/assets/sponsors/{patrocinadores,colaboradores}/` (see below).
 - `src/data/config.json` — site-wide settings: `eventStart` (ISO datetime, drives the countdown), `venue`, Google Form URLs, the live-stats sheet URL, and social links.
 - `src/i18n/es.json` / `src/i18n/en.json` — all UI strings (labels, buttons, headings that aren't part of the data files). **Both files must have the exact same set of keys** — `src/i18n/i18n.test.ts` enforces this parity, so if you add a key to one, add it to the other.
 
@@ -53,21 +54,43 @@ Append an object to `src/data/participants.json`:
 
 `eje`, `foto`, `enlace`, and `bio` are optional.
 
-### Adding a sponsor
+### Adding a sponsor or partner
 
-Append an object to `src/data/sponsors.json`:
+Drop the logo file into the right folder — that's it:
+
+- `src/assets/sponsors/patrocinadores/` → **Patrocinadores** wall
+- `src/assets/sponsors/colaboradores/` → **Colaboradores** wall
+
+PNG, JPG, WebP or SVG. On every build each logo gets its flat background (white, light grey…) removed automatically, is trimmed to its content and resized, so a plain JPG on a white box is fine. Logos appear sorted by filename; with `npm run dev` running, a new file shows up after a page refresh.
+
+Optionally give it a proper name and link in `src/data/sponsors.json`, keyed by `<carpeta>/<archivo>`:
 
 ```json
 {
-  "id": "unique-slug",
-  "nombre": "Sponsor Name",
-  "nivel": "principal",
-  "logo": "/path/or/url/to/logo.svg",
-  "enlace": "https://..."
+  "patrocinadores/huawei.png": { "nombre": "Huawei", "enlace": "https://www.huawei.com" }
 }
 ```
 
-`nivel` must be one of `principal`, `colaborador`, or `institucional`.
+Without an entry, the name is derived from the filename (`el-pato-goloso.png` → "El Pato Goloso"). `npm test` fails if an entry in `sponsors.json` points at a file that no longer exists.
+
+### Adding speakers and rooms for simultaneous talks
+
+A block of simultaneous talks is an event in `calendario.json` with a `paralelas` array — one entry per room:
+
+```json
+"paralelas": [
+  {
+    "sala": "Auditorio",
+    "eje": 1,
+    "talks": [{ "hora": "09:30", "speaker": "Nombre Apellido", "tema": "Título de la charla" }]
+  }
+]
+```
+
+- `sala` is the room name; `"TBD"` renders as "Sala 1", "Sala 2"… until it's known.
+- `eje` (optional) is an axis `id` from `ejes.json`; it colours the column and names the track.
+- `speaker` / `tema` set to `"TBD"` render as "Por confirmar".
+- For an event in a single place, add `"lugar": "Auditorio"` to show it next to the title.
 
 ### Wiring up the Google Forms and live-stats sheet
 

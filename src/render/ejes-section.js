@@ -39,6 +39,18 @@ function escapeAttr(str) {
     .replace(/</g, '&lt;');
 }
 
+// Logos live in src/assets/ejes/ (see `logos` in ejes.json); an axis may
+// have several (eje 1: AI, Data Science, HPC) or none yet.
+function logoSrcs(eje) {
+  return (eje.logos ?? []).map((f) => `../assets/ejes/${f}`);
+}
+
+function renderLogos(lang, eje, cls) {
+  return logoSrcs(eje)
+    .map((src) => `<img class="${cls}" src="${escapeAttr(src)}" alt="${escapeAttr(t(lang, 'ejes.logos_alt'))}: ${escapeAttr(eje.nombre[lang])}" loading="lazy" decoding="async" />`)
+    .join('');
+}
+
 export function renderEjesSection({ lang, ejes }) {
   const n = ejes.length;
   const step = 360 / n;
@@ -61,6 +73,7 @@ export function renderEjesSection({ lang, ejes }) {
         aria-label="${escapeAttr(nombre)}"
         data-title="${escapeAttr(nombre)}"
         data-desc="${escapeAttr(descripcion)}"
+        data-logos="${escapeAttr(logoSrcs(eje).join(' '))}"
         style="--eje-color: ${eje.color}; --i: ${i}"
       >
         <path class="ejes__wedge-path" d="${path}" />
@@ -88,6 +101,7 @@ export function renderEjesSection({ lang, ejes }) {
       </svg>
 
       <div class="ejes__detail">
+        <div class="ejes__detail-logos" id="ejes-detail-logos" data-alt="${escapeAttr(t(lang, 'ejes.logos_alt'))}">${renderLogos(lang, first, 'ejes__logo')}</div>
         <span class="ejes__detail-hint">${t(lang, 'ejes.hint')}</span>
         <span class="ejes__detail-num" id="ejes-detail-num">/ ${String(first.id).padStart(2, '0')}</span>
         <h3 class="ejes__detail-title" id="ejes-detail-title">${first.nombre[lang]}</h3>
@@ -102,6 +116,7 @@ export function renderEjesSection({ lang, ejes }) {
         class="card card--accent ejes__card"
         style="--accent: ${eje.color}; --eje-color: ${eje.color}; --delay: ${i * 90}ms"
       >
+        ${eje.logos?.length ? `<div class="ejes__card-logos">${renderLogos(lang, eje, 'ejes__logo ejes__logo--sm')}</div>` : ''}
         <span class="ejes__num">/ ${String(eje.id).padStart(2, '0')}</span>
         <h3 class="ejes__card-title">${eje.nombre[lang]}</h3>
         ${eje.descripcion[lang] ? `<p class="ejes__card-desc">${eje.descripcion[lang]}</p>` : ''}
@@ -189,6 +204,44 @@ export function renderEjesSection({ lang, ejes }) {
   }
   @media (min-width: 700px) {
     .ejes__detail { text-align: left; }
+  }
+  .ejes__detail-logos {
+    display: flex;
+    gap: 0.9rem;
+    justify-content: center;
+    align-items: flex-end;
+    min-height: 96px;
+    margin-bottom: 0.4rem;
+  }
+  .ejes__detail-logos:empty { display: none; }
+  @media (min-width: 700px) {
+    .ejes__detail-logos { justify-content: flex-start; }
+  }
+  .ejes__logo {
+    height: 96px;
+    width: auto;
+    max-width: 110px;
+    object-fit: contain;
+    animation: ejes-logo-in 0.45s var(--ease-out, ease) both;
+  }
+  .ejes__logo + .ejes__logo { animation-delay: 80ms; }
+  .ejes__logo + .ejes__logo + .ejes__logo { animation-delay: 160ms; }
+  @keyframes ejes-logo-in {
+    from { opacity: 0; transform: translateY(8px) scale(0.92); }
+    to { opacity: 1; transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ejes__logo { animation: none; }
+  }
+  .ejes__card-logos {
+    display: flex;
+    gap: 0.6rem;
+    margin-bottom: 0.2rem;
+  }
+  .ejes__logo--sm {
+    height: 64px;
+    max-width: 72px;
+    animation: none;
   }
   .ejes__detail-hint {
     font-family: var(--font-body);

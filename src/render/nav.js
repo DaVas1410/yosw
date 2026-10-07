@@ -9,6 +9,7 @@ export function renderNav({ lang, currentPath }) {
   const links = [
     { href: '#about', label: t(lang, 'nav.about') },
     { href: '#ejes', label: t(lang, 'nav.ejes') },
+    { href: '#ideathon', label: t(lang, 'nav.ideathon') },
     { href: '#programa', label: t(lang, 'nav.programa') },
     { href: '#datos', label: t(lang, 'nav.datos') },
     { href: '#participantes', label: t(lang, 'nav.participantes') },

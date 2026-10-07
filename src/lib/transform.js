@@ -15,6 +15,8 @@ export function toTimeline(raw, lang) {
       detalle: ev.detalle?.[lang],
       talks: ev.talks,
       panelists: ev.panelists,
+      lugar: ev.lugar,
+      paralelas: ev.paralelas,
     })),
   }));
 }

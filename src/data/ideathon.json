@@ -1,0 +1,162 @@
+{
+  "retos": [
+    {
+      "id": "semaforo-uv",
+      "titulo": { "es": "Semáforo UV", "en": "UV Traffic Light" },
+      "resumen": {
+        "es": "Diseña un sistema tipo semáforo que traduzca datos reales de radiación UV en alertas simples para la comunidad de Yachay Tech y los agricultores de Urcuquí.",
+        "en": "Design a traffic-light system that turns real UV radiation data into simple alerts for the Yachay Tech community and Urcuquí's farmers."
+      },
+      "problema": {
+        "es": "Por estar en la línea ecuatorial, Ecuador recibe niveles de radiación UV mucho más altos que los países de latitudes medias, y la radiación sube entre 10 % y 12 % por cada 1000 m de altitud. Imbabura está entre las provincias con los índices más altos del país. Aun así, la información disponible viene de fuentes nacionales o internacionales que no reflejan las condiciones de Urcuquí ni se presentan en un formato fácil de entender.",
+        "en": "Sitting on the equator, Ecuador receives far higher UV radiation than mid-latitude countries, and radiation rises 10–12 % for every 1000 m of altitude. Imbabura is among the provinces with the highest indices in the country. Yet the available information comes from national or international sources that neither reflect conditions in Urcuquí nor come in an easy-to-understand format."
+      },
+      "porque": {
+        "es": "Sin una alerta local y clara, las personas subestiman su exposición y aumenta el riesgo de quemaduras, daño ocular y cáncer de piel por exposición acumulada. Además, gran parte de la población de Urcuquí vive de la agricultura y no tiene un dato simple para decidir horarios de trabajo en campo, riego o protección de cultivos sensibles.",
+        "en": "Without a clear local alert, people underestimate their exposure, raising the risk of sunburn, eye damage and skin cancer from cumulative exposure. Much of Urcuquí's population also lives off farming and has no simple figure to plan field hours, irrigation or protection of sensitive crops."
+      },
+      "entregables": [
+        { "es": "Un prototipo (hardware, software o ambos) o una propuesta de prototipo fundamentada.", "en": "A prototype (hardware, software or both) or a well-grounded prototype proposal." },
+        { "es": "Un análisis con datos UV reales, públicos y citados de la zona.", "en": "An analysis using real, public and cited UV data from the area." },
+        { "es": "Una estrategia de comunicación del riesgo para universitarios y agricultores.", "en": "A risk-communication strategy for university students and farmers." },
+        { "es": "Viabilidad económica y plan de ejecución.", "en": "Economic feasibility and an implementation plan." }
+      ],
+      "perfiles": {
+        "es": "Física, electrónica o computación; salud; agronomía; comunicación o economía.",
+        "en": "Physics, electronics or computing; health; agronomy; communication or economics."
+      }
+    },
+    {
+      "id": "gobernanza-laboratorios",
+      "titulo": { "es": "Sistema de gobernanza de laboratorios y dashboard", "en": "Lab Governance System & Dashboard" },
+      "resumen": {
+        "es": "Crea una plataforma única para encontrar, reservar y monitorear todos los equipos de laboratorio de Yachay Tech.",
+        "en": "Build a single platform to find, book and monitor every piece of lab equipment at Yachay Tech."
+      },
+      "problema": {
+        "es": "Hoy cada laboratorio agenda equipos y reactivos por su propio correo. Quien necesita un equipo debe saber de antemano en qué laboratorio está, escribir y esperar la respuesta manual del técnico, asumiendo que el equipo está libre y que los reactivos siguen vigentes. No existe un catálogo único que diga qué equipos hay en el campus, para qué sirven, dónde están ni cuándo se pueden usar.",
+        "en": "Today each lab books equipment and reagents through its own email. Anyone who needs an instrument must already know which lab has it, write in and wait for the technician's manual reply, hoping the equipment is free and the reagents still valid. There is no single catalogue of what equipment exists on campus, what it is for, where it is or when it can be used."
+      },
+      "porque": {
+        "es": "Este esquema genera cruces de horario, respuestas tardías y equipos costosos que quedan sin uso porque nadie sabe que están disponibles. Los técnicos cargan con toda la coordinación a mano, y la universidad no tiene datos de qué escuelas y equipos tienen más demanda. Sin esa evidencia, es difícil justificar nuevas compras, planificar el mantenimiento o redistribuir recursos entre laboratorios.",
+        "en": "This leads to double bookings, slow replies and expensive equipment sitting idle because nobody knows it is available. Technicians carry all the coordination by hand, and the university has no data on which schools and instruments are in highest demand. Without that evidence it is hard to justify new purchases, plan maintenance or reallocate resources between labs."
+      },
+      "entregables": [
+        { "es": "Un catálogo de equipos y reactivos de todos los laboratorios: ubicación, escuela, uso y disponibilidad.", "en": "A catalogue of equipment and reagents across all labs: location, school, use and availability." },
+        { "es": "Un sistema de reservas con notificación automática a los técnicos.", "en": "A booking system with automatic notifications to technicians." },
+        { "es": "Un dashboard de métricas por laboratorio: escuelas que más usan, equipos más demandados, estado de mantenimiento.", "en": "A per-lab metrics dashboard: heaviest-using schools, most-requested equipment, maintenance status." },
+        { "es": "Plan de ejecución, viabilidad económica y propuesta de capacitación para estudiantes y técnicos.", "en": "Implementation plan, economic feasibility and a training proposal for students and technicians." }
+      ],
+      "perfiles": {
+        "es": "Computación o ingeniería, junto a estudiantes de química, biología y otras ciencias que usan los laboratorios.",
+        "en": "Computing or engineering, alongside chemistry, biology and other science students who use the labs."
+      }
+    },
+    {
+      "id": "suelos-agroecologia",
+      "titulo": { "es": "Análisis de suelos y renovación agroecológica en los alrededores de Yachay", "en": "Soil Analysis & Agroecological Renewal around Yachay" },
+      "resumen": {
+        "es": "Propón un método de diagnóstico de suelos y un plan de recuperación para un cultivo clave de Urcuquí.",
+        "en": "Propose a soil-diagnosis method and a recovery plan for a key crop in Urcuquí."
+      },
+      "problema": {
+        "es": "La agricultura sostiene la economía y la seguridad alimentaria de la zona, pero años de cultivo continuo, uso desbalanceado de fertilizantes sintéticos, erosión y poca materia orgánica han deteriorado la salud física, química y biológica de los suelos. Los agricultores no cuentan con una forma accesible de interpretar parámetros como pH, materia orgánica, capacidad de intercambio catiónico o nutrientes según lo que cultivan.",
+        "en": "Farming sustains the local economy and food security, but years of continuous cropping, unbalanced use of synthetic fertilisers, erosion and low organic matter have degraded the physical, chemical and biological health of the soil. Farmers have no accessible way to interpret parameters such as pH, organic matter, cation-exchange capacity or nutrients for what they grow."
+      },
+      "porque": {
+        "es": "Sin un diagnóstico, los fertilizantes se aplican de forma empírica y masiva, lo que eleva los costos de producción y daña la vida del suelo. Tampoco existen planes estructurados contra la compactación, la acidez o la pérdida de cobertura vegetal en laderas y valles. Un método de diagnóstico y recuperación pensado para cultivos concretos permitiría restaurar la fertilidad sin agotar los recursos naturales.",
+        "en": "Without a diagnosis, fertilisers are applied by guesswork and in bulk, raising production costs and harming soil life. There are no structured plans against compaction, acidity or loss of plant cover on slopes and valleys. A crop-specific diagnosis and recovery method would restore fertility without depleting natural resources."
+      },
+      "entregables": [
+        { "es": "Un protocolo de muestreo y análisis físico, químico y biológico del suelo para un cultivo de una lista cerrada.", "en": "A sampling and physical, chemical and biological soil-analysis protocol for one crop from a fixed list." },
+        { "es": "Una matriz de interpretación con métricas de daño y de recuperación.", "en": "An interpretation matrix with damage and recovery metrics." },
+        { "es": "Un plan de renovación con enmiendas orgánicas, biofertilizantes o prácticas de conservación.", "en": "A renewal plan using organic amendments, biofertilisers or conservation practices." },
+        { "es": "Viabilidad económica, plan de ejecución, metodología replicable y un modelo para transferir el conocimiento a los agricultores.", "en": "Economic feasibility, an implementation plan, a replicable methodology and a model for transferring the knowledge to farmers." }
+      ],
+      "perfiles": {
+        "es": "Agronomía, agroindustria, ciencias ambientales, química o biología, junto a economía, gestión o comunicación.",
+        "en": "Agronomy, agro-industry, environmental science, chemistry or biology, alongside economics, management or communication."
+      }
+    },
+    {
+      "id": "chatbot-procedimientos",
+      "titulo": { "es": "Chatbot institucional de procedimientos", "en": "Institutional Procedures Chatbot" },
+      "resumen": {
+        "es": "Diseña un chatbot bilingüe que guíe paso a paso a los estudiantes por los trámites y espacios de Yachay Tech, sin inventar respuestas.",
+        "en": "Design a bilingual chatbot that walks students step by step through Yachay Tech's procedures and spaces — without making answers up."
+      },
+      "problema": {
+        "es": "Cada semestre los estudiantes se topan con los mismos obstáculos: reglamentos dispersos en muchos documentos y procedimientos que cambian de una dependencia a otra. Para saber cómo cambiarse de carrera, justificar una inasistencia, acceder a una residencia, reservar un laboratorio o encontrar una sala de estudio, hay que buscar en varios documentos, ir a oficinas o esperar respuestas por correo.",
+        "en": "Every semester students hit the same obstacles: regulations scattered across many documents and procedures that differ from one office to the next. Finding out how to change degree, justify an absence, get into a residence, book a lab or find a study room means searching several documents, visiting offices or waiting for email replies."
+      },
+      "porque": {
+        "es": "Esto genera pérdida de tiempo, información inconsistente y una experiencia frustrante, sobre todo para estudiantes nuevos y de intercambio que no dominan el español. Un canal único, rápido y bilingüe resolvería esas dudas al momento. Pero solo sirve si es confiable: un chatbot que invente respuestas sobre trámites oficiales haría más daño que no tener ninguno.",
+        "en": "This wastes time, spreads inconsistent information and frustrates students — especially new and exchange students who are not fluent in Spanish. A single, fast, bilingual channel would answer those questions on the spot. But it only helps if it is reliable: a chatbot that invents answers about official procedures would do more harm than having none."
+      },
+      "entregables": [
+        { "es": "Un prototipo funcional o una propuesta (mockups y arquitectura) en español e inglés.", "en": "A working prototype or a proposal (mockups and architecture) in Spanish and English." },
+        { "es": "Cobertura de procedimientos, representación estudiantil y ubicación de aulas, laboratorios, salas de estudio y residencias.", "en": "Coverage of procedures, student representation and the location of classrooms, labs, study rooms and residences." },
+        { "es": "Un mecanismo para evitar alucinaciones: cada respuesta debe rastrearse a una fuente institucional.", "en": "A mechanism against hallucinations: every answer must trace back to an institutional source." },
+        { "es": "Validación de la veracidad de las respuestas y estimación del costo computacional.", "en": "Validation of answer accuracy and an estimate of the computational cost." }
+      ],
+      "perfiles": {
+        "es": "Al menos una persona de computación, junto a perfiles de otras carreras que aporten la visión de usuario, el diseño de interfaz y el levantamiento de información.",
+        "en": "At least one computing student, alongside other degrees that bring the user's perspective, interface design and information gathering."
+      }
+    },
+    {
+      "id": "aceite-reciclado",
+      "titulo": { "es": "Reciclaje de aceite de cocina para productos de higiene", "en": "Recycling Cooking Oil into Cleaning Products" },
+      "resumen": {
+        "es": "Diseña un modelo de economía circular que convierta el aceite de cocina usado del campus en jabones, detergentes o desengrasantes.",
+        "en": "Design a circular-economy model that turns the campus's used cooking oil into soaps, detergents or degreasers."
+      },
+      "problema": {
+        "es": "Los restaurantes concesionados y las cocinas de las residencias generan cerca de 30 litros de aceite de cocina usado al día. El campus no tiene un sistema estandarizado para separarlo, recolectarlo ni darle un nuevo uso, y tampoco hay protocolos ni campañas que motiven a estudiantes y concesionarios a almacenarlo bien.",
+        "en": "Concession restaurants and residence kitchens produce about 30 litres of used cooking oil a day. The campus has no standard system to separate, collect or reuse it, and no protocols or campaigns encouraging students and concessionaires to store it properly."
+      },
+      "porque": {
+        "es": "Un solo litro de aceite vertido al desagüe puede contaminar miles de litros de agua, obstruir tuberías y sobrecargar el tratamiento de aguas residuales. A la vez, ese residuo es una materia prima valiosa: mediante saponificación puede convertirse en jabones, detergentes o desengrasantes útiles para el propio mantenimiento del campus. Hoy ese valor se desperdicia y el riesgo ambiental sigue presente.",
+        "en": "A single litre of oil poured down the drain can pollute thousands of litres of water, clog pipes and overload wastewater treatment. Yet that waste is a valuable raw material: through saponification it can become soaps, detergents or degreasers useful for maintaining the campus itself. Today that value is wasted and the environmental risk remains."
+      },
+      "entregables": [
+        { "es": "Un plan logístico de recolección: contenedores, puntos de acopio, frecuencias y responsables.", "en": "A collection logistics plan: containers, drop-off points, frequencies and owners." },
+        { "es": "El diagrama de producción y el procedimiento detallado de saponificación.", "en": "The production diagram and a detailed saponification procedure." },
+        { "es": "Cálculos estequiométricos y balance de masa de los reactivos necesarios.", "en": "Stoichiometric calculations and a mass balance of the required reagents." },
+        { "es": "Un protocolo de validación de calidad del aceite y del producto final.", "en": "A quality-validation protocol for the oil and the final product." },
+        { "es": "Un sistema de entrega, plan de adopción comunitaria y metodología replicable.", "en": "A distribution system, a community-adoption plan and a replicable methodology." }
+      ],
+      "perfiles": {
+        "es": "Química o ingeniería agroindustrial, junto a logística, sostenibilidad, economía o impacto social.",
+        "en": "Chemistry or agro-industrial engineering, alongside logistics, sustainability, economics or social impact."
+      }
+    },
+    {
+      "id": "cercas-vivas",
+      "titulo": { "es": "Cercas vivas para el control de mosquitos", "en": "Living Fences for Mosquito Control" },
+      "resumen": {
+        "es": "Diseña barreras de plantas repelentes que reduzcan los mosquitos en el campus sin depender de insecticidas químicos.",
+        "en": "Design barriers of repellent plants that reduce mosquitoes on campus without relying on chemical insecticides."
+      },
+      "problema": {
+        "es": "El clima y la geografía de Urcuquí favorecen la presencia estacional de mosquitos en el campus, que afectan la comodidad y el bienestar de la comunidad universitaria. Hoy se controlan con insecticidas químicos cuando aparecen los brotes, sin una estrategia de prevención. Las áreas verdes y los linderos se diseñan solo con criterios estéticos o de delimitación.",
+        "en": "Urcuquí's climate and geography favour seasonal mosquitoes on campus, affecting the comfort and wellbeing of the university community. Today they are controlled with chemical insecticides once outbreaks appear, with no prevention strategy. Green areas and boundaries are designed only for looks or demarcation."
+      },
+      "porque": {
+        "es": "El uso continuo de insecticidas genera resistencia en los mosquitos, degrada los suelos y contamina el agua cercana. Las cercas vivas con plantas aromáticas o repelentes pueden alterar el hábitat de los mosquitos y dar refugio a fauna benéfica, pero falta saber qué especies funcionan mejor en Urcuquí y cómo ubicarlas en el campus.",
+        "en": "Continuous insecticide use breeds resistance in mosquitoes, degrades soils and pollutes nearby water. Living fences of aromatic or repellent plants can disrupt mosquito habitat and shelter beneficial wildlife, but it is not yet known which species work best in Urcuquí or how to place them on campus."
+      },
+      "entregables": [
+        { "es": "Una selección justificada de especies vegetales repelentes, nativas o adaptadas al clima local.", "en": "A justified selection of repellent plant species, native or adapted to the local climate." },
+        { "es": "Planos de ubicación de las cercas vivas en el campus: distancias, altura y densidad de siembra.", "en": "Placement plans for the living fences on campus: spacing, height and planting density." },
+        { "es": "Un plan de riego y mantenimiento agronómico.", "en": "An irrigation and agronomic maintenance plan." },
+        { "es": "Una proyección del efecto sobre las poblaciones de mosquitos y la biodiversidad.", "en": "A projection of the effect on mosquito populations and biodiversity." },
+        { "es": "Viabilidad económica y plan de ejecución en el campus.", "en": "Economic feasibility and an on-campus implementation plan." }
+      ],
+      "perfiles": {
+        "es": "Biología, agroindustria o ciencias ambientales, junto a geografía o diseño territorial.",
+        "en": "Biology, agro-industry or environmental science, alongside geography or territorial design."
+      }
+    }
+  ]
+}

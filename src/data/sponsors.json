@@ -1,1 +1,12 @@
-[]
+{
+  "patrocinadores/el-pato-goloso.png": { "nombre": "El Pato Goloso" },
+  "patrocinadores/emlab-representaciones.png": { "nombre": "EMLAB Representaciones" },
+  "patrocinadores/florsani.png": { "nombre": "Florsani – Florícola San Isidro Labrador" },
+  "patrocinadores/huawei.png": { "nombre": "Huawei" },
+  "patrocinadores/jjh.png": { "nombre": "JJ&H" },
+  "colaboradores/aecai.jpg": { "nombre": "AECAI" },
+  "colaboradores/aefn.png": { "nombre": "Asociación de Estudiantes de Física y Nanotecnología – YT" },
+  "colaboradores/aemcic.jpg": { "nombre": "AEMCiC – YT" },
+  "colaboradores/aeq.jpg": { "nombre": "Asociación de Estudiantes de Química Yachay Tech" },
+  "colaboradores/feyt.jpg": { "nombre": "FEYT" }
+}

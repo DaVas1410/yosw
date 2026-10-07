@@ -13,10 +13,13 @@ import {
   EjesSchema,
   ParticipantsSchema,
   SponsorsSchema,
+  SponsorsMetaSchema,
   ConfigSchema,
+  IdeathonSchema,
 } from './src/data/schemas.ts';
 import { renderHomePage } from './src/render/pages/home.js';
 import { renderParticipantesPage } from './src/render/pages/participantes.js';
+import { buildSponsorLogos } from './src/build/sponsor-logos.js';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 const distDir = path.join(rootDir, 'dist');
@@ -30,14 +33,25 @@ function readJson(relPath) {
 const calendario = CalendarioSchema.parse(readJson('src/data/calendario.json'));
 const ejes = EjesSchema.parse(readJson('src/data/ejes.json'));
 const participants = ParticipantsSchema.parse(readJson('src/data/participants.json'));
-const sponsors = SponsorsSchema.parse(readJson('src/data/sponsors.json'));
 const config = ConfigSchema.parse(readJson('src/data/config.json'));
-
-const data = { calendario, ejes, participants, sponsors, config };
-
-// --- Render pages ----------------------------------------------------------
+const ideathon = IdeathonSchema.parse(readJson('src/data/ideathon.json'));
 
 rmSync(distDir, { recursive: true, force: true });
+
+// Sponsor/partner walls come from the logo files on disk (one folder per
+// group); each logo is cleaned up (background removed, trimmed, resized)
+// into dist/assets/sponsors/. sponsors.json only adds names and links.
+const sponsors = SponsorsSchema.parse(
+  await buildSponsorLogos({
+    srcDir: path.join(rootDir, 'src/assets/sponsors'),
+    outDir: path.join(distDir, 'assets/sponsors'),
+    meta: SponsorsMetaSchema.parse(readJson('src/data/sponsors.json')),
+  }),
+);
+
+const data = { calendario, ejes, participants, sponsors, config, ideathon };
+
+// --- Render pages ----------------------------------------------------------
 
 for (const lang of ['es', 'en']) {
   const langDir = path.join(distDir, lang);
@@ -61,7 +75,13 @@ function copyDir(srcRel, destRel) {
 }
 
 copyDir('src/styles', 'styles');
-copyDir('src/assets', 'assets');
+// Raw sponsor logos are skipped: their processed versions were already
+// written to dist/assets/sponsors/ above.
+const rawSponsorsDir = path.join(rootDir, 'src/assets/sponsors') + path.sep;
+cpSync(path.join(rootDir, 'src/assets'), path.join(distDir, 'assets'), {
+  recursive: true,
+  filter: (src) => !src.startsWith(rawSponsorsDir),
+});
 copyDir('src/client', 'client');
 
 // Copy only the runtime lib modules (skip *.test.js and __tests__/) — the

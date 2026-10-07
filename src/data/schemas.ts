@@ -7,6 +7,14 @@ const Talk = z.object({
   speaker: z.string(),
   tema: z.string().optional(),
 });
+// One room of a block of simultaneous talks (e.g. Wednesday's charlas).
+// `sala` is the room name ("TBD" renders as "por confirmar"); `eje` is an
+// optional thematic-axis id from ejes.json used to colour/label the track.
+const Paralela = z.object({
+  sala: z.string(),
+  eje: z.number().optional(),
+  talks: z.array(Talk),
+});
 const Evento = z.object({
   titulo: I18nStr,
   hora_inicio: z.string(),
@@ -17,6 +25,8 @@ const Evento = z.object({
   detalle: I18nStr.optional(),
   talks: z.array(Talk).optional(),
   panelists: z.array(z.string()).optional(),
+  lugar: z.string().optional(),
+  paralelas: z.array(Paralela).optional(),
 });
 const Dia = z.object({
   fecha: z.string(), dia_semana: z.string(), eventos: z.array(Evento),
@@ -28,20 +38,39 @@ export const CalendarioSchema = z.object({
 });
 export const EjesSchema = z.array(z.object({
   id: z.number(), nombre: I18nStr, descripcion: I18nStr, color: z.string(),
+  // Filenames inside src/assets/ejes/.
+  logos: z.array(z.string()).optional(),
 }));
+export const IdeathonSchema = z.object({
+  retos: z.array(z.object({
+    id: z.string(),
+    titulo: I18nStr,
+    resumen: I18nStr,
+    problema: I18nStr,
+    porque: I18nStr,
+    entregables: z.array(I18nStr),
+    perfiles: I18nStr,
+  })),
+});
 export const ParticipantsSchema = z.array(z.object({
   id: z.string(), nombre: z.string(), rol: z.string(), eje: z.number().nullable().optional(),
   foto: z.string().optional(), enlace: z.string().optional(), bio: I18nStr.optional(),
 }));
+// Optional metadata for the logos in src/assets/sponsors/{patrocinadores,colaboradores}/,
+// keyed by "<carpeta>/<archivo>". The logo files themselves drive the walls.
+export const SponsorsMetaSchema = z.record(z.string(), z.object({
+  nombre: z.string().optional(), enlace: z.string().optional(),
+}));
 export const SponsorsSchema = z.array(z.object({
   id: z.string(), nombre: z.string(),
-  nivel: z.enum(['principal', 'colaborador', 'institucional']),
+  // 'sponsor' = Patrocinadores, 'colaborador' = Colaboradores.
+  tipo: z.enum(['sponsor', 'colaborador']).optional(),
   logo: z.string().optional(), enlace: z.string().optional(),
 }));
 export const ConfigSchema = z.object({
   eventStart: z.string(),
   venue: I18nStr,
-  forms: z.object({ register: z.string() }),
+  forms: z.object({ register: z.string(), ideathon: z.string().optional() }),
   liveStatsSheetUrl: z.string(),
   social: z.object({
     instagram: z.string(),
@@ -57,4 +86,6 @@ export type Dia = z.infer<typeof Dia>;
 export type Eje = z.infer<typeof EjesSchema>[number];
 export type Participant = z.infer<typeof ParticipantsSchema>[number];
 export type Sponsor = z.infer<typeof SponsorsSchema>[number];
+export type Paralela = z.infer<typeof Paralela>;
+export type Reto = z.infer<typeof IdeathonSchema>['retos'][number];
 export type Config = z.infer<typeof ConfigSchema>;

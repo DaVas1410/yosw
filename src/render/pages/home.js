@@ -23,7 +23,7 @@ import { renderFaq } from '../faq.js';
 import { renderFooter } from '../footer.js';
 
 export function renderHomePage({ lang, data }) {
-  const { calendario, ejes, participants, sponsors, config } = data;
+  const { calendario, ejes, participants, sponsors, config, ideathon } = data;
   const currentPath = `/${lang}`;
 
   const bodyHtml = `${renderNav({ lang, currentPath })}
@@ -33,8 +33,8 @@ ${renderMarquee({ lang })}
 ${renderCifras({ lang, calendario, ejes })}
 ${renderAbout({ lang })}
 ${renderEjesSection({ lang, ejes })}
-${renderIdeathon({ lang })}
-${renderProgramTimeline({ lang, calendario })}
+${renderIdeathon({ lang, ideathon, formUrl: config.forms.ideathon })}
+${renderProgramTimeline({ lang, calendario, ejes })}
 ${renderDataSection({ lang, calendario, sheetUrl: config.liveStatsSheetUrl })}
 ${renderParticipantsPreview({ lang, participants, ejes })}
 ${renderRegistration({ lang, registerHref: config.forms.register })}

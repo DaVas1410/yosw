@@ -1,7 +1,10 @@
 {
   "eventStart": "2026-10-19T09:00:00-05:00",
   "venue": {"es":"Yachay Tech · Urcuquí, Ecuador","en":"Yachay Tech · Urcuquí, Ecuador"},
-  "forms": {"register": "https://docs.google.com/forms/d/e/1FAIpQLSfNOW3hRboX0L-xwjVdqccvGjqjFQ2mrS0EDzGLGfVkeWWaYQ/viewform?usp=publish-editor"},
+  "forms": {
+    "register": "https://docs.google.com/forms/d/e/1FAIpQLSfNOW3hRboX0L-xwjVdqccvGjqjFQ2mrS0EDzGLGfVkeWWaYQ/viewform?usp=publish-editor",
+    "ideathon": "https://forms.gle/mG3rRHqibK3rKY5x8"
+  },
   "liveStatsSheetUrl": "",
   "social": {
     "instagram": "https://www.instagram.com/yosw2026",

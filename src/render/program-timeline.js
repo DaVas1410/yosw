@@ -15,19 +15,49 @@ function displayValue(lang, value) {
   return value === 'TBD' ? t(lang, 'programa.tbd_value') : escapeHtml(value);
 }
 
+function renderTalkItems(lang, talks) {
+  return talks
+    .map(
+      (talk) => `<li class="agenda__subitem">
+                  ${talk.hora ? `<span class="agenda__sub-time">${escapeHtml(talk.hora)}</span>` : ''}
+                  <span>${displayValue(lang, talk.speaker)}${talk.tema ? ` — ${displayValue(lang, talk.tema)}` : ''}</span>
+                </li>`
+    )
+    .join('\n                ');
+}
+
+// Simultaneous talks: one column per room. A room named "TBD" shows as
+// "Sala N" until its real name is filled in; an optional `eje` colours the
+// column and names the thematic axis it hosts.
+function renderParalelas({ lang, paralelas, ejes }) {
+  return `<div class="agenda__extra">
+              <span class="agenda__extra-heading">${t(lang, 'programa.paralelas_heading')}</span>
+              <div class="agenda__tracks">
+                ${paralelas
+                  .map((p, i) => {
+                    const eje = p.eje != null ? ejes.find((e) => e.id === p.eje) : null;
+                    const sala = p.sala === 'TBD' ? `${t(lang, 'programa.sala')} ${i + 1}` : escapeHtml(p.sala);
+                    return `<div class="agenda__track"${eje ? ` style="--track-color: ${eje.color}"` : ''}>
+                  <div class="agenda__track-head">
+                    <span class="agenda__track-sala">${sala}</span>
+                    ${eje ? `<span class="agenda__track-eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
+                  </div>
+                  <ul class="agenda__sublist">
+                ${renderTalkItems(lang, p.talks)}
+                  </ul>
+                </div>`;
+                  })
+                  .join('\n                ')}
+              </div>
+            </div>`;
+}
+
 function renderSublist({ lang, talks, panelists }) {
   if (talks?.length) {
     return `<div class="agenda__extra">
               <span class="agenda__extra-heading">${t(lang, 'programa.speakers_heading')}</span>
               <ul class="agenda__sublist">
-                ${talks
-                  .map(
-                    (talk) => `<li class="agenda__subitem">
-                  ${talk.hora ? `<span class="agenda__sub-time">${escapeHtml(talk.hora)}</span>` : ''}
-                  <span>${displayValue(lang, talk.speaker)}${talk.tema ? ` — ${displayValue(lang, talk.tema)}` : ''}</span>
-                </li>`
-                  )
-                  .join('\n                ')}
+                ${renderTalkItems(lang, talks)}
               </ul>
             </div>`;
   }
@@ -44,15 +74,24 @@ function renderSublist({ lang, talks, panelists }) {
   return '';
 }
 
-function renderEvent({ lang, event }) {
+const PIN_ICON = '<svg class="agenda__pin" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>';
+
+function renderEvent({ lang, event, ejes }) {
   const timeLabel = event.end ? `${event.start}–${event.end}` : event.start;
   const categoryLabel = t(lang, `programa.categoria.${event.categoria}`);
-  const hasExtra = Boolean(event.talks?.length || event.panelists?.length);
+  const hasParalelas = Boolean(event.paralelas?.length);
+  const hasExtra = Boolean(event.talks?.length || event.panelists?.length || hasParalelas);
   const style = `style="--item-color: var(--cat-${event.categoria})"`;
 
+  const tag = hasParalelas
+    ? `\n          <span class="agenda__tag">${t(lang, 'programa.paralelas_tag')}</span>`
+    : '';
+  const lugar = event.lugar
+    ? `\n          <span class="agenda__lugar">${PIN_ICON}${escapeHtml(event.lugar)}</span>`
+    : '';
   const summary = `<span class="agenda__time">${escapeHtml(timeLabel)}</span>
           <span class="agenda__badge">${escapeHtml(categoryLabel)}</span>
-          <span class="agenda__title">${escapeHtml(event.titulo)}</span>`;
+          <span class="agenda__title">${escapeHtml(event.titulo)}</span>${tag}${lugar}`;
 
   const caption = event.detalle
     ? `<p class="agenda__caption">${escapeHtml(event.detalle)}</p>`
@@ -75,13 +114,17 @@ function renderEvent({ lang, event }) {
             </summary>
             <div class="agenda__content">
               ${caption}
-              ${renderSublist({ lang, talks: event.talks, panelists: event.panelists })}
+              ${
+                hasParalelas
+                  ? renderParalelas({ lang, paralelas: event.paralelas, ejes })
+                  : renderSublist({ lang, talks: event.talks, panelists: event.panelists })
+              }
             </div>
           </details>
         </li>`;
 }
 
-export function renderProgramTimeline({ lang, calendario }) {
+export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
   const locale = lang === 'es' ? 'es-EC' : 'en-US';
   const timeline = toTimeline(calendario, lang);
   const days = calendario.dias.map((dia, i) => {
@@ -119,7 +162,7 @@ export function renderProgramTimeline({ lang, calendario }) {
         ${
           day.events.length
             ? `<ol class="agenda">
-          ${day.events.map((event) => renderEvent({ lang, event })).join('\n          ')}
+          ${day.events.map((event) => renderEvent({ lang, event, ejes })).join('\n          ')}
         </ol>`
             : `<div class="programa__tbd">
           <span class="programa__tbd-icon" aria-hidden="true">
@@ -298,6 +341,60 @@ export function renderProgramTimeline({ lang, calendario }) {
     .agenda__caption {
       margin: -0.2rem 1.1rem 0.85rem 1.1rem;
     }
+  }
+  .agenda__tag {
+    font-family: var(--font-body);
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.16rem 0.55rem;
+    border-radius: 999px;
+    color: var(--item-color, var(--y-blue));
+    border: 1.5px solid currentColor;
+    white-space: nowrap;
+  }
+  .agenda__lugar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+  }
+  .agenda__pin {
+    width: 14px;
+    height: 14px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+  }
+  .agenda__tracks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 0.75rem;
+  }
+  .agenda__track {
+    border: 1px solid var(--color-border);
+    border-top: 3px solid var(--track-color, var(--item-color, var(--y-blue)));
+    border-radius: 10px;
+    padding: 0.7rem 0.8rem;
+    background: color-mix(in srgb, var(--track-color, var(--item-color, var(--y-blue))) 4%, transparent);
+  }
+  .agenda__track-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    margin-bottom: 0.5rem;
+  }
+  .agenda__track-sala {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-text);
+  }
+  .agenda__track-eje {
+    font-size: 0.74rem;
+    color: var(--color-muted);
   }
   .agenda__chevron {
     width: 18px;

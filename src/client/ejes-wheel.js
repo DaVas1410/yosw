@@ -8,6 +8,7 @@
   const numEl = document.getElementById('ejes-detail-num');
   const titleEl = document.getElementById('ejes-detail-title');
   const descEl = document.getElementById('ejes-detail-desc');
+  const logosEl = document.getElementById('ejes-detail-logos');
   if (!wedges.length || !titleEl || !descEl) return;
 
   function activate(wedge) {
@@ -23,6 +24,18 @@
     }
     titleEl.textContent = wedge.dataset.title || '';
     descEl.textContent = wedge.dataset.desc || '';
+    if (logosEl) {
+      logosEl.replaceChildren(
+        ...(wedge.dataset.logos || '').split(' ').filter(Boolean).map((src) => {
+          const img = document.createElement('img');
+          img.className = 'ejes__logo';
+          img.src = src;
+          img.alt = `${logosEl.dataset.alt || ''}: ${wedge.dataset.title || ''}`;
+          img.decoding = 'async';
+          return img;
+        })
+      );
+    }
   }
 
   wedges.forEach((wedge) => {
