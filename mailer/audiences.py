@@ -389,6 +389,146 @@ Yachay Open Science Week 2026<br>
 {SOCIAL_LINE}
 """
 
+# --- Countdown: 7 days to go (sent 2026-10-12) ---------------------------------
+
+IDEATON_FORM_URL = "https://forms.gle/a4ZUY3ScifV11TfcA"
+COUNTDOWN_SUBJECT = "⏳ ¡Faltan 7 días! YOSW 2026 arranca el lunes 19 de octubre"
+
+COUNTDOWN_BANNER_7D = f"""
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:0 0 20px 0;">
+<tr><td style="background:#fff4de;border:1px solid #f2a900;border-radius:12px;padding:16px 18px;text-align:center;">
+<p style="margin:0;font-size:30px;font-weight:bold;line-height:1.2;color:{BLUE_DARK};">⏳ ¡Faltan 7 días!</p>
+<p style="margin:4px 0 0 0;font-size:15px;color:{BLUE_DARK};">
+Yachay Open Science Week 2026 empieza el lunes 19 de octubre</p>
+</td></tr>
+</table>
+"""
+
+COUNTDOWN_PROGRAM_HTML = f"""
+<h2 {_H2}>Esto es lo que se viene 🚀</h2>
+<ul {_UL}>
+<li {_LI}>🌐 <strong>Charlas con Huawei y UNESCO</strong>: tecnología, ciencia abierta y
+futuro, contadas por quienes lo están construyendo.</li>
+<li {_LI}>🎤 <strong>44 ponencias</strong> repartidas en los cinco ejes temáticos del
+congreso, en salas paralelas durante toda la semana.</li>
+<li {_LI}>🖼️ <strong>Sesiones de pósteres</strong>: recorre, pregunta y conversa
+directamente con quienes hicieron la investigación.</li>
+<li {_LI}>🗣️ <strong>Mesas abiertas</strong>: debates sin guion entre estudiantes,
+docentes e invitados, donde todas las voces cuentan.</li>
+<li {_LI}>💡 <strong>Ideatón YOSW 2026</strong>: equipos interdisciplinarios resolviendo
+retos reales del campus y del territorio, con mentoría especializada y premiación.</li>
+</ul>
+<p {_P}>📅 El programa completo, día por día, lo publicaremos muy pronto en la página web
+del congreso. 👀</p>
+"""
+
+_SITE_LINK = f'style="color:{BLUE};font-weight:bold;text-decoration:none;"'
+
+SITE_ACCESS_HTML = f"""
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 16px 0;">
+<tr><td style="background:#eef4f9;border:1px solid #c9dbe9;border-radius:12px;padding:16px 18px;">
+<p style="margin:0 0 8px 0;font-size:16px;font-weight:bold;color:{BLUE_DARK};">
+🌐 Todo el congreso, en la página web oficial</p>
+<p style="margin:0 0 10px 0;font-size:15px;">
+<a href="{SITE_URL}" {_SITE_LINK}>{SITE_URL}</a></p>
+<p style="margin:0;font-size:14px;line-height:1.9;">
+💡 <a href="{SITE_URL}#ideathon" {_SITE_LINK}>Ideatón y retos</a> &nbsp;·&nbsp;
+🎤 <a href="{SITE_URL}#participantes" {_SITE_LINK}>Participantes</a> &nbsp;·&nbsp;
+📍 <a href="{SITE_URL}#sede" {_SITE_LINK}>Cómo llegar</a> &nbsp;·&nbsp;
+❓ <a href="{SITE_URL}#faq" {_SITE_LINK}>Preguntas frecuentes</a></p>
+</td></tr>
+</table>
+"""
+
+IDEATON_CTA_BUTTON = (
+    f'<div style="text-align:center;margin:20px 0;">'
+    f'<a href="{IDEATON_FORM_URL}" style="display:inline-block;background:#f2a900;color:{BLUE_DARK};'
+    f'text-decoration:none;font-size:15px;font-weight:bold;padding:12px 28px;border-radius:999px;">'
+    f"💡 Inscribirme al Ideatón</a></div>"
+)
+
+COUNTDOWN_STUDENTS_BODY_HTML = f"""
+<p {_P}>{{greeting}}</p>
+{COUNTDOWN_BANNER_7D}
+<p {_P}>¡Ya casi! En una semana arranca <strong>Yachay Open Science Week 2026 (YOSW)</strong>,
+la primera edición del congreso interdisciplinario de ciencia abierta de Yachay Tech, y
+queremos verte ahí. Del {EVENT_DATES_ES}, el {VENUE} se convierte en un gran laboratorio
+de ideas: abierto, gratuito y hecho por estudiantes, para estudiantes.</p>
+<p {_P}>No importa tu semestre ni tu carrera: si te da curiosidad cómo se hace ciencia
+(o quieres empezar a hacerla), esta es tu semana.</p>
+{COUNTDOWN_PROGRAM_HTML}
+{SITE_ACCESS_HTML}
+
+<h2 {_H2}>💡🟡 ¡Acepta el reto en el Ideatón YOSW 2026!</h2>
+<p {_P}>¿Quieres formar parte de un equipo que resuelve problemas reales? Únete a un equipo
+interdisciplinario, combina lo que sabes con lo que saben compañeros de otras carreras y
+trabaja durante toda la semana en retos reales del campus y del territorio, con mentoría
+especializada y premiación. 🧠🤝🏆</p>
+<p {_P}>🔥 Inscríbete, crea soluciones y haz que tus ideas sucedan. Conoce los retos de
+este año en la <a href="{SITE_URL}#retos" style="color:{BLUE};">página del congreso</a>.</p>
+{IDEATON_CTA_BUTTON}
+
+<h2 {_H2}>Prepárate para la semana ✅</h2>
+<ul {_UL}>
+<li {_LI}>📅 Reserva la semana del {EVENT_DATES_ES} y, cuando publiquemos el programa,
+arma tu ruta: elige las charlas, ponencias y mesas que no te quieres perder.</li>
+<li {_LI}>👥 Invita a tus amigos y compañeros de clase: la ciencia se disfruta más en grupo.</li>
+<li {_LI}>🎤 Si vas a presentar ponencia o póster: ¡último empujón! Ensaya, ajusta tus
+diapositivas e imprime tu póster con tiempo.</li>
+<li {_LI}>📲 Síguenos en redes para enterarte de cada novedad durante la semana.</li>
+</ul>
+{REPLY_PROMPT_TU}
+<p {_P}>Nos vemos el lunes 19 de octubre. ¡Va a ser una semana increíble y queremos
+vivirla contigo! 🙌</p>
+<p style="margin:20px 0 0 0;">¡Con mucha energía!<br>
+<strong>Comité Organizador</strong><br>
+Yachay Open Science Week 2026<br>
+#HacemosCienciaYT · #YachayTech · #OpenScience · #YOSW2026</p>
+{FLYER_BLOCK}
+{SOCIAL_LINE}
+"""
+
+COUNTDOWN_COMMITTEE_BODY_HTML = f"""
+<p {_P}>{{greeting}}</p>
+{COUNTDOWN_BANNER_7D}
+<p {_P}>¡La cuenta regresiva está en marcha! En una semana arranca
+<strong>Yachay Open Science Week 2026 (YOSW)</strong>, la primera edición del congreso
+interdisciplinario de ciencia abierta de nuestra universidad, del {EVENT_DATES_ES} en el
+{VENUE}. Después de meses de preparación, ya estamos en la recta final, y nos encantaría
+contar con usted durante la semana.</p>
+{COUNTDOWN_PROGRAM_HTML}
+{SITE_ACCESS_HTML}
+
+<h2 {_H2}>💡🟡 Ideatón YOSW 2026: ¡ayúdenos a correr la voz!</h2>
+<p {_P}>Durante toda la semana, equipos interdisciplinarios de estudiantes trabajarán en
+retos reales del campus y del territorio, con mentoría especializada y premiación. Usted
+conoce mejor que nadie el talento de sus estudiantes: le agradeceríamos muchísimo que
+los anime a inscribirse y a formar equipos con compañeros de otras carreras. Los retos
+de este año están en la <a href="{SITE_URL}#retos" style="color:{BLUE};">página del congreso</a>. 🧠🤝🏆</p>
+{IDEATON_CTA_BUTTON}
+
+<h2 {_H2}>¿Cómo puede sumarse esta semana? ✅</h2>
+<ul {_UL}>
+<li {_LI}>📅 Reserve la semana en su agenda; en cuanto publiquemos el programa podrá elegir
+las charlas, ponencias y mesas abiertas de su interés.</li>
+<li {_LI}>🎓 Motive a sus estudiantes a asistir: escuchar a sus pares presentar su
+investigación es una de las mejores formas de inspirarse.</li>
+<li {_LI}>🗣️ Acompáñenos en las sesiones de pósteres y en las mesas abiertas: su pregunta
+o comentario puede ser el mejor aporte que un estudiante reciba esa semana.</li>
+<li {_LI}>🎤 Si presenta ponencia o póster: ¡gracias! Estamos felices de escucharle: el día y la sala
+de su sesión estarán en el programa, que publicaremos muy pronto.</li>
+</ul>
+{REPLY_PROMPT_USTED}
+<p {_P}>Gracias por ser parte de esta primera edición. ¡Nos vemos el lunes 19 de
+octubre!</p>
+<p style="margin:20px 0 0 0;">Con entusiasmo y gratitud,<br>
+<strong>Comité Organizador</strong><br>
+Yachay Open Science Week 2026<br>
+#HacemosCienciaYT · #YachayTech · #OpenScience · #YOSW2026</p>
+{FLYER_BLOCK}
+{SOCIAL_LINE}
+"""
+
 AUDIENCES = {
     "committee": {
         "label": "Comité / personal Yachay Tech",
@@ -494,6 +634,30 @@ AUDIENCES = {
         "body_html": REMINDER_STUDENTS_BODY_HTML,
         "include_flyer": True,
         "urgent": True,
+    },
+    "countdown_committee": {
+        "label": "Cuenta regresiva (7 días) · Comité / personal Yachay Tech",
+        "source_file": "42. INF COMITE WOSW.xlsx",
+        "sheet": 0,
+        "name_col": "NOMBRES Y APELLIDOS",
+        "email_col": "CORREO ELECTRONICO INSTITUCIONAL",
+        "gender_col": "GENERO",
+        "title": "Prof.",
+        "subject": COUNTDOWN_SUBJECT,
+        "body_html": COUNTDOWN_COMMITTEE_BODY_HTML,
+        "flyer": "assets/ideathon.jpeg",
+    },
+    "countdown_students": {
+        "label": "Cuenta regresiva (7 días) · Estudiantes matriculados",
+        "source_file": "Matriculados_Carrera_DGSA 2026-2.xlsx",
+        "sheet": 0,
+        "name_col": ["NOMBRE", "APELLIDO"],
+        "email_col": "MAIL",
+        "gender_col": "GENERO",
+        "greeting_name_mode": "first",
+        "subject": COUNTDOWN_SUBJECT,
+        "body_html": COUNTDOWN_STUDENTS_BODY_HTML,
+        "flyer": "assets/ideathon.jpeg",
     },
     # "alumni": {
     #     # Stub, fill in once the alumni list exists. Same shape as above:

@@ -166,6 +166,14 @@ def load_recipients(audience_key: str) -> list[Recipient]:
     return recipients
 
 
+def _flyer_path(cfg: dict) -> Path | None:
+    """The inline flyer for an audience: its own `flyer` (repo-relative path)
+    if set, else the default reminder flyer when `include_flyer` is on."""
+    if cfg.get("flyer"):
+        return ROOT / cfg["flyer"]
+    return FLYER_PATH if cfg.get("include_flyer") else None
+
+
 def render_html(audience_key: str, recipient: Recipient) -> str:
     """Render one recipient's personalized email for an audience."""
     cfg = AUDIENCES[audience_key]
@@ -188,9 +196,11 @@ def save_preview(audience_key: str, recipient: Recipient) -> Path:
     watermark_b64 = base64.b64encode(WATERMARK_PATH.read_bytes()).decode("ascii")
     html = html.replace("cid:logo", f"data:image/png;base64,{logo_b64}")
     html = html.replace("cid:watermark", f"data:image/png;base64,{watermark_b64}")
-    if AUDIENCES[audience_key].get("include_flyer"):
-        flyer_b64 = base64.b64encode(FLYER_PATH.read_bytes()).decode("ascii")
-        html = html.replace("cid:flyer", f"data:image/png;base64,{flyer_b64}")
+    flyer_path = _flyer_path(AUDIENCES[audience_key])
+    if flyer_path:
+        flyer_b64 = base64.b64encode(flyer_path.read_bytes()).decode("ascii")
+        mime = "jpeg" if flyer_path.suffix.lower() in {".jpg", ".jpeg"} else "png"
+        html = html.replace("cid:flyer", f"data:image/{mime};base64,{flyer_b64}")
     for cid, path in SOCIAL_ICON_PATHS.items():
         icon_b64 = base64.b64encode(path.read_bytes()).decode("ascii")
         html = html.replace(f"cid:{cid}", f"data:image/png;base64,{icon_b64}")
@@ -206,7 +216,7 @@ def _build_message(
     sender_name: str,
     to_email: str,
     *,
-    include_flyer: bool = False,
+    flyer_path: Path | None = None,
     urgent: bool = False,
 ) -> MIMEMultipart:
     msg = MIMEMultipart("related")
@@ -237,11 +247,11 @@ def _build_message(
     watermark.add_header("Content-Disposition", "inline", filename="watermark.png")
     msg.attach(watermark)
 
-    if include_flyer:
-        with open(FLYER_PATH, "rb") as f:
+    if flyer_path:
+        with open(flyer_path, "rb") as f:
             flyer = MIMEImage(f.read())
         flyer.add_header("Content-ID", "<flyer>")
-        flyer.add_header("Content-Disposition", "inline", filename="flyer_reminder.png")
+        flyer.add_header("Content-Disposition", "inline", filename=flyer_path.name)
         msg.attach(flyer)
 
     for cid, path in SOCIAL_ICON_PATHS.items():
@@ -279,7 +289,7 @@ def send_test_email(audience_key: str, recipient: Recipient, test_to: str) -> No
         sender,
         sender_name,
         test_to,
-        include_flyer=cfg.get("include_flyer", False),
+        flyer_path=_flyer_path(cfg),
         urgent=cfg.get("urgent", False),
     )
 
@@ -436,7 +446,7 @@ def send_batch(
                 sender,
                 sender_name,
                 r.email,
-                include_flyer=cfg.get("include_flyer", False),
+                flyer_path=_flyer_path(cfg),
                 urgent=cfg.get("urgent", False),
             )
             last_exc: Exception | None = None
