@@ -4,8 +4,14 @@ const I18nStr = z.object({ es: z.string(), en: z.string() });
 
 const Talk = z.object({
   hora: z.string().optional(),
+  fin: z.string().optional(),
   speaker: z.string(),
   tema: z.string().optional(),
+  institucion: z.string().optional(),
+  coautores: z.string().optional(),
+  // Thematic-axis id from ejes.json.
+  eje: z.number().optional(),
+  descripcion: I18nStr.optional(),
 });
 // One room of a block of simultaneous talks (e.g. Wednesday's charlas).
 // `sala` is the room name ("TBD" renders as "por confirmar"); `eje` is an

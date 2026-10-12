@@ -26,29 +26,82 @@ function renderTalkItems(lang, talks) {
     .join('\n                ');
 }
 
-// Simultaneous talks: one column per room. A room named "TBD" shows as
-// "Sala N" until its real name is filled in; an optional `eje` colours the
-// column and names the thematic axis it hosts.
+// One talk inside a room: time, title, speaker/affiliation, axis and an
+// optional short description. "TBD" speaker/title show as "por confirmar".
+function renderSalaTalk({ lang, talk, ejes }) {
+  const eje = talk.eje != null ? ejes.find((e) => e.id === talk.eje) : null;
+  const time = talk.fin ? `${talk.hora}–${talk.fin}` : talk.hora;
+  const titulo = !talk.tema || talk.tema === 'TBD' ? t(lang, 'programa.tbd_title') : escapeHtml(talk.tema);
+  const speaker = talk.speaker === 'TBD' ? t(lang, 'programa.tbd_speaker') : escapeHtml(talk.speaker);
+  const pending = talk.speaker === 'TBD' || !talk.tema || talk.tema === 'TBD';
+  const meta = [
+    `<span class="sala-talk__speaker">${speaker}</span>`,
+    talk.institucion ? `<span class="sala-talk__inst">${escapeHtml(talk.institucion)}</span>` : '',
+  ].filter(Boolean).join(' · ');
+  return `<li class="sala-talk${pending ? ' sala-talk--tbd' : ''}"${eje ? ` style="--track-color: ${eje.color}"` : ''}>
+                    <span class="sala-talk__time">${escapeHtml(time ?? '')}</span>
+                    <div class="sala-talk__body">
+                      <span class="sala-talk__title">${titulo}</span>
+                      <span class="sala-talk__meta">${meta}</span>
+                      ${talk.coautores ? `<span class="sala-talk__coaut">${t(lang, 'programa.coautores')}: ${escapeHtml(talk.coautores)}</span>` : ''}
+                      ${talk.descripcion ? `<p class="sala-talk__desc">${escapeHtml(talk.descripcion[lang])}</p>` : ''}
+                      ${eje ? `<span class="sala-talk__eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
+                    </div>
+                  </li>`;
+}
+
+// A room's talks in order, with a break row wherever a talk starts later
+// than the previous one ended (e.g. the 11:30–12:00 coffee break).
+function renderSalaTalks({ lang, talks, ejes }) {
+  return talks
+    .map((talk, i) => {
+      const prev = talks[i - 1];
+      const gap = prev?.fin && talk.hora && talk.hora > prev.fin
+        ? `<li class="sala-talk sala-talk--break">
+                    <span class="sala-talk__time">${escapeHtml(prev.fin)}–${escapeHtml(talk.hora)}</span>
+                    <span class="sala-talk__title">${t(lang, 'programa.break')}</span>
+                  </li>
+                  `
+        : '';
+      return gap + renderSalaTalk({ lang, talk, ejes });
+    })
+    .join('\n                  ');
+}
+
+// Simultaneous talks: one tab per room (all rooms stack when JS is off). A
+// room named "TBD" shows as "Sala N" until its real name is filled in; an
+// optional room-level `eje` colours the room and names the axis it hosts.
+let paralelasCount = 0;
 function renderParalelas({ lang, paralelas, ejes }) {
-  return `<div class="agenda__extra">
+  const uid = `salas-${lang}-${++paralelasCount}`;
+  const rooms = paralelas.map((p, i) => ({
+    p,
+    i,
+    id: `${uid}-${i + 1}`,
+    eje: p.eje != null ? ejes.find((e) => e.id === p.eje) : null,
+    sala: p.sala === 'TBD' ? `${t(lang, 'programa.sala')} ${i + 1}` : escapeHtml(p.sala),
+  }));
+  return `<div class="agenda__extra salas" data-salas>
               <span class="agenda__extra-heading">${t(lang, 'programa.paralelas_heading')}</span>
-              <div class="agenda__tracks">
-                ${paralelas
-                  .map((p, i) => {
-                    const eje = p.eje != null ? ejes.find((e) => e.id === p.eje) : null;
-                    const sala = p.sala === 'TBD' ? `${t(lang, 'programa.sala')} ${i + 1}` : escapeHtml(p.sala);
-                    return `<div class="agenda__track"${eje ? ` style="--track-color: ${eje.color}"` : ''}>
-                  <div class="agenda__track-head">
-                    <span class="agenda__track-sala">${sala}</span>
-                    ${eje ? `<span class="agenda__track-eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
-                  </div>
-                  <ul class="agenda__sublist">
-                ${renderTalkItems(lang, p.talks)}
-                  </ul>
-                </div>`;
-                  })
+              <div class="salas__tabs" role="tablist" aria-label="${t(lang, 'programa.sala_tabs_aria')}">
+                ${rooms
+                  .map(
+                    (r) => `<button type="button" role="tab" class="salas__tab${r.i === 0 ? ' is-active' : ''}" id="${r.id}-tab" aria-controls="${r.id}" aria-selected="${r.i === 0}" tabindex="${r.i === 0 ? 0 : -1}"${r.eje ? ` style="--track-color: ${r.eje.color}"` : ''}>
+                  ${r.sala}<span class="salas__count">${r.p.talks.length}</span>
+                </button>`
+                  )
                   .join('\n                ')}
               </div>
+              ${rooms
+                .map(
+                  (r) => `<div class="salas__panel${r.i === 0 ? ' is-active' : ''}" id="${r.id}" role="tabpanel" aria-labelledby="${r.id}-tab"${r.eje ? ` style="--track-color: ${r.eje.color}"` : ''}>
+                <span class="salas__panel-name">${r.sala}${r.eje ? ` — ${escapeHtml(r.eje.nombre[lang])}` : ''}</span>
+                <ol class="sala-talks">
+                  ${renderSalaTalks({ lang, talks: r.p.talks, ejes })}
+                </ol>
+              </div>`
+                )
+                .join('\n              ')}
             </div>`;
 }
 
@@ -368,33 +421,147 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
     stroke: currentColor;
     stroke-width: 2;
   }
-  .agenda__tracks {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-    gap: 0.75rem;
-  }
-  .agenda__track {
-    border: 1px solid var(--color-border);
-    border-top: 3px solid var(--track-color, var(--item-color, var(--y-blue)));
-    border-radius: 10px;
-    padding: 0.7rem 0.8rem;
-    background: color-mix(in srgb, var(--track-color, var(--item-color, var(--y-blue))) 4%, transparent);
-  }
-  .agenda__track-head {
+  /* -- simultaneous rooms (tabs) ------------------------------------------ */
+  .salas__tabs {
     display: flex;
-    flex-direction: column;
-    gap: 0.1rem;
-    margin-bottom: 0.5rem;
+    gap: 0.4rem;
+    overflow-x: auto;
+    padding-bottom: 0.3rem;
+    margin-bottom: 0.6rem;
+    scrollbar-width: thin;
   }
-  .agenda__track-sala {
+  .salas__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    flex-shrink: 0;
+    white-space: nowrap;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    border: 1.5px solid var(--color-border);
+    background: var(--color-surface);
+    color: var(--color-muted);
+    cursor: pointer;
+    transition: 0.2s ease;
+  }
+  .salas__tab:hover {
+    border-color: var(--item-color, var(--y-blue));
+    color: var(--item-color, var(--y-blue));
+  }
+  .salas__tab.is-active {
+    background: var(--item-color, var(--y-blue));
+    border-color: var(--item-color, var(--y-blue));
+    color: #fff;
+  }
+  .salas__count {
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: color-mix(in srgb, currentColor 16%, transparent);
+  }
+  .salas__panel-name {
+    display: none;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 0.9rem;
+    margin: 0.8rem 0 0.4rem;
+  }
+  /* Without JS every room stacks with its name; with JS only the active tab shows. */
+  html:not(.js) .salas__tabs { display: none; }
+  html:not(.js) .salas__panel-name { display: block; }
+  .js .salas__panel:not(.is-active) { display: none; }
+  .sala-talks {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .sala-talk {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 0.2rem 0.8rem;
+    padding: 0.7rem 0 0.7rem 0.75rem;
+    border-left: 3px solid var(--track-color, var(--color-border));
+    border-bottom: 1px solid var(--color-border);
+  }
+  .sala-talk:last-child {
+    border-bottom: 0;
+  }
+  .sala-talk__time {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.78rem;
+    color: var(--color-muted);
+    padding-top: 0.1rem;
+    white-space: nowrap;
+  }
+  .sala-talk__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+  }
+  .sala-talk__title {
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1.35;
+    color: var(--color-text);
+    overflow-wrap: anywhere;
+  }
+  .sala-talk__meta {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+  }
+  .sala-talk__speaker {
+    font-weight: 700;
     color: var(--color-text);
   }
-  .agenda__track-eje {
-    font-size: 0.74rem;
+  .sala-talk__coaut {
+    font-size: 0.75rem;
+    color: var(--color-muted-2, var(--color-muted));
+  }
+  .sala-talk__desc {
+    margin: 0.15rem 0 0;
+    font-size: 0.8rem;
+    line-height: 1.45;
     color: var(--color-muted);
+  }
+  .sala-talk__eje {
+    align-self: flex-start;
+    margin-top: 0.15rem;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.12rem 0.5rem;
+    border-radius: 999px;
+    color: var(--color-text);
+    background: color-mix(in srgb, var(--track-color) 16%, transparent);
+  }
+  .sala-talk--tbd .sala-talk__title {
+    font-style: italic;
+    color: var(--color-muted);
+  }
+  .sala-talk--break {
+    border-left-color: transparent;
+    background: color-mix(in srgb, var(--color-muted) 7%, transparent);
+    border-radius: 6px;
+    padding-block: 0.45rem;
+  }
+  .sala-talk--break .sala-talk__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-muted);
+  }
+  @media (max-width: 560px) {
+    .sala-talk {
+      grid-template-columns: 1fr;
+    }
   }
   .agenda__chevron {
     width: 18px;
