@@ -11,8 +11,14 @@ function escapeHtml(str) {
   }[c]));
 }
 
+// Data fields are plain strings or { es, en } objects.
+function loc(lang, value) {
+  return value && typeof value === 'object' ? value[lang] : value;
+}
+
 function displayValue(lang, value) {
-  return value === 'TBD' ? t(lang, 'programa.tbd_value') : escapeHtml(value);
+  const v = loc(lang, value);
+  return v === 'TBD' ? t(lang, 'programa.tbd_value') : escapeHtml(v);
 }
 
 function renderTalkItems(lang, talks) {
@@ -26,26 +32,30 @@ function renderTalkItems(lang, talks) {
     .join('\n                ');
 }
 
-// One talk inside a room: time, title, speaker/affiliation, axis and an
-// optional short description. "TBD" speaker/title show as "por confirmar".
+const isTbd = (lang, v) => !v || loc(lang, v) === 'TBD';
+
+// One talk card: start/end time on the left, then axis, title, speaker and
+// affiliation; the short description and co-authors fold away under
+// "Ver resumen" so the list stays scannable.
 function renderSalaTalk({ lang, talk, ejes }) {
   const eje = talk.eje != null ? ejes.find((e) => e.id === talk.eje) : null;
-  const time = talk.fin ? `${talk.hora}–${talk.fin}` : talk.hora;
-  const titulo = !talk.tema || talk.tema === 'TBD' ? t(lang, 'programa.tbd_title') : escapeHtml(talk.tema);
-  const speaker = talk.speaker === 'TBD' ? t(lang, 'programa.tbd_speaker') : escapeHtml(talk.speaker);
-  const pending = talk.speaker === 'TBD' || !talk.tema || talk.tema === 'TBD';
-  const meta = [
-    `<span class="sala-talk__speaker">${speaker}</span>`,
-    talk.institucion ? `<span class="sala-talk__inst">${escapeHtml(talk.institucion)}</span>` : '',
-  ].filter(Boolean).join(' · ');
-  return `<li class="sala-talk${pending ? ' sala-talk--tbd' : ''}"${eje ? ` style="--track-color: ${eje.color}"` : ''}>
-                    <span class="sala-talk__time">${escapeHtml(time ?? '')}</span>
-                    <div class="sala-talk__body">
-                      <span class="sala-talk__title">${titulo}</span>
-                      <span class="sala-talk__meta">${meta}</span>
-                      ${talk.coautores ? `<span class="sala-talk__coaut">${t(lang, 'programa.coautores')}: ${escapeHtml(talk.coautores)}</span>` : ''}
-                      ${talk.descripcion ? `<p class="sala-talk__desc">${escapeHtml(talk.descripcion[lang])}</p>` : ''}
-                      ${eje ? `<span class="sala-talk__eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
+  const pending = isTbd(lang, talk.speaker) || isTbd(lang, talk.tema);
+  const titulo = isTbd(lang, talk.tema) ? t(lang, 'programa.tbd_title') : escapeHtml(loc(lang, talk.tema));
+  const speaker = isTbd(lang, talk.speaker) ? t(lang, 'programa.tbd_speaker') : escapeHtml(loc(lang, talk.speaker));
+  const more = talk.descripcion || talk.coautores
+    ? `<details class="talk__more">
+                        <summary>${t(lang, 'programa.ver_resumen')}</summary>
+                        ${talk.descripcion ? `<p>${escapeHtml(talk.descripcion[lang])}</p>` : ''}
+                        ${talk.coautores ? `<p class="talk__coaut"><strong>${t(lang, 'programa.coautores')}:</strong> ${escapeHtml(loc(lang, talk.coautores))}</p>` : ''}
+                      </details>`
+    : '';
+  return `<li class="talk${pending ? ' talk--tbd' : ''}"${eje ? ` style="--eje-color: ${eje.color}"` : ''}>
+                    <div class="talk__time"><span class="talk__start">${escapeHtml(talk.hora ?? '')}</span>${talk.fin ? `<span class="talk__end">${escapeHtml(talk.fin)}</span>` : ''}</div>
+                    <div class="talk__card">
+                      ${eje ? `<span class="talk__eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
+                      <h4 class="talk__title">${titulo}</h4>
+                      <p class="talk__who"><span class="talk__speaker">${speaker}</span>${talk.institucion ? `<span class="talk__inst">${escapeHtml(loc(lang, talk.institucion))}</span>` : ''}</p>
+                      ${more}
                     </div>
                   </li>`;
 }
@@ -57,10 +67,7 @@ function renderSalaTalks({ lang, talks, ejes }) {
     .map((talk, i) => {
       const prev = talks[i - 1];
       const gap = prev?.fin && talk.hora && talk.hora > prev.fin
-        ? `<li class="sala-talk sala-talk--break">
-                    <span class="sala-talk__time">${escapeHtml(prev.fin)}–${escapeHtml(talk.hora)}</span>
-                    <span class="sala-talk__title">${t(lang, 'programa.break')}</span>
-                  </li>
+        ? `<li class="talk-break"><span>${t(lang, 'programa.break')} · ${escapeHtml(prev.fin)}–${escapeHtml(talk.hora)}</span></li>
                   `
         : '';
       return gap + renderSalaTalk({ lang, talk, ejes });
@@ -68,40 +75,56 @@ function renderSalaTalks({ lang, talks, ejes }) {
     .join('\n                  ');
 }
 
-// Simultaneous talks: one tab per room (all rooms stack when JS is off). A
-// room named "TBD" shows as "Sala N" until its real name is filled in; an
-// optional room-level `eje` colours the room and names the axis it hosts.
+const minutes = (a, b) => {
+  const [ah, am] = a.split(':').map(Number);
+  const [bh, bm] = b.split(':').map(Number);
+  return bh * 60 + bm - (ah * 60 + am);
+};
+
+// Simultaneous talks: a room picker plus one list per room. The picker is
+// a radio group, so switching rooms is pure CSS (no script to go stale in a
+// cache). A room named "TBD" shows as "Sala N" until it is filled in.
 let paralelasCount = 0;
 function renderParalelas({ lang, paralelas, ejes }) {
   const uid = `salas-${lang}-${++paralelasCount}`;
-  const rooms = paralelas.map((p, i) => ({
-    p,
-    i,
-    id: `${uid}-${i + 1}`,
-    eje: p.eje != null ? ejes.find((e) => e.id === p.eje) : null,
-    sala: p.sala === 'TBD' ? `${t(lang, 'programa.sala')} ${i + 1}` : escapeHtml(p.sala),
-  }));
-  return `<div class="agenda__extra salas" data-salas>
-              <span class="agenda__extra-heading">${t(lang, 'programa.paralelas_heading')}</span>
-              <div class="salas__tabs" role="tablist" aria-label="${t(lang, 'programa.sala_tabs_aria')}">
+  const rooms = paralelas.map((p, i) => {
+    const first = p.talks[0];
+    return {
+      p,
+      i,
+      id: `${uid}-${i + 1}`,
+      sala: isTbd(lang, p.sala) ? `${t(lang, 'programa.sala')} ${i + 1}` : escapeHtml(loc(lang, p.sala)),
+      dur: first?.hora && first?.fin ? minutes(first.hora, first.fin) : null,
+    };
+  });
+  return `<div class="salas">
+              ${rooms
+                .map(
+                  (r) => `<input class="salas__radio" type="radio" name="${uid}" id="${r.id}"${r.i === 0 ? ' checked' : ''}>`
+                )
+                .join('\n              ')}
+              <div class="salas__picker" role="presentation">
                 ${rooms
                   .map(
-                    (r) => `<button type="button" role="tab" class="salas__tab${r.i === 0 ? ' is-active' : ''}" id="${r.id}-tab" aria-controls="${r.id}" aria-selected="${r.i === 0}" tabindex="${r.i === 0 ? 0 : -1}"${r.eje ? ` style="--track-color: ${r.eje.color}"` : ''}>
-                  ${r.sala}<span class="salas__count">${r.p.talks.length}</span>
-                </button>`
+                    (r) => `<label class="salas__opt" for="${r.id}">
+                  <span class="salas__opt-name">${r.sala}</span>
+                  <span class="salas__opt-meta"><span>${r.p.talks.length} ${t(lang, 'programa.charlas')}</span>${r.dur ? `<span>${r.dur} min</span>` : ''}</span>
+                </label>`
                   )
                   .join('\n                ')}
               </div>
-              ${rooms
-                .map(
-                  (r) => `<div class="salas__panel${r.i === 0 ? ' is-active' : ''}" id="${r.id}" role="tabpanel" aria-labelledby="${r.id}-tab"${r.eje ? ` style="--track-color: ${r.eje.color}"` : ''}>
-                <span class="salas__panel-name">${r.sala}${r.eje ? ` — ${escapeHtml(r.eje.nombre[lang])}` : ''}</span>
-                <ol class="sala-talks">
+              <div class="salas__panels">
+                ${rooms
+                  .map(
+                    (r) => `<div class="salas__panel">
+                  <h3 class="salas__panel-name">${r.sala}</h3>
+                  <ol class="talks">
                   ${renderSalaTalks({ lang, talks: r.p.talks, ejes })}
-                </ol>
-              </div>`
-                )
-                .join('\n              ')}
+                  </ol>
+                </div>`
+                  )
+                  .join('\n                ')}
+              </div>
             </div>`;
 }
 
@@ -133,14 +156,14 @@ function renderEvent({ lang, event, ejes }) {
   const timeLabel = event.end ? `${event.start}–${event.end}` : event.start;
   const categoryLabel = t(lang, `programa.categoria.${event.categoria}`);
   const hasParalelas = Boolean(event.paralelas?.length);
-  const hasExtra = Boolean(event.talks?.length || event.panelists?.length || hasParalelas);
+  const hasExtra = Boolean(event.talks?.length || event.panelists?.length);
   const style = `style="--item-color: var(--cat-${event.categoria})"`;
 
   const tag = hasParalelas
     ? `\n          <span class="agenda__tag">${t(lang, 'programa.paralelas_tag')}</span>`
     : '';
   const lugar = event.lugar
-    ? `\n          <span class="agenda__lugar">${PIN_ICON}${escapeHtml(event.lugar)}</span>`
+    ? `\n          <span class="agenda__lugar">${PIN_ICON}${escapeHtml(loc(lang, event.lugar))}</span>`
     : '';
   const summary = `<span class="agenda__time">${escapeHtml(timeLabel)}</span>
           <span class="agenda__badge">${escapeHtml(categoryLabel)}</span>
@@ -149,6 +172,17 @@ function renderEvent({ lang, event, ejes }) {
   const caption = event.detalle
     ? `<p class="agenda__caption">${escapeHtml(event.detalle)}</p>`
     : '';
+
+  // Parallel talks are the core of the day: always shown, never collapsed.
+  if (hasParalelas) {
+    return `<li class="agenda__item agenda__item--paralelas" ${style}>
+          <div class="agenda__row">
+            ${summary}
+          </div>
+          ${caption}
+          ${renderParalelas({ lang, paralelas: event.paralelas, ejes })}
+        </li>`;
+  }
 
   if (!hasExtra) {
     return `<li class="agenda__item" ${style}>
@@ -160,18 +194,14 @@ function renderEvent({ lang, event, ejes }) {
   }
 
   return `<li class="agenda__item" ${style}>
-          <details class="agenda__details"${hasParalelas ? ' open' : ''}>
+          <details class="agenda__details">
             <summary class="agenda__row agenda__row--toggle">
               ${summary}
               <svg class="agenda__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
             </summary>
             <div class="agenda__content">
               ${caption}
-              ${
-                hasParalelas
-                  ? renderParalelas({ lang, paralelas: event.paralelas, ejes })
-                  : renderSublist({ lang, talks: event.talks, panelists: event.panelists })
-              }
+              ${renderSublist({ lang, talks: event.talks, panelists: event.panelists })}
             </div>
           </details>
         </li>`;
@@ -421,146 +451,269 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
     stroke: currentColor;
     stroke-width: 2;
   }
-  /* -- simultaneous rooms (tabs) ------------------------------------------ */
-  .salas__tabs {
+  /* -- simultaneous rooms --------------------------------------------------- */
+  .salas {
+    padding: 0.2rem 1.1rem 1.2rem;
+  }
+  .salas__radio {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+    pointer-events: none;
+  }
+  .salas__picker {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.5rem;
+    margin-bottom: 1.1rem;
+  }
+  .salas__opt {
     display: flex;
-    gap: 0.4rem;
-    overflow-x: auto;
-    padding-bottom: 0.3rem;
-    margin-bottom: 0.6rem;
-    scrollbar-width: thin;
-  }
-  .salas__tab {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.45rem;
-    flex-shrink: 0;
-    white-space: nowrap;
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-    border-radius: 8px;
-    border: 1.5px solid var(--color-border);
+    flex-direction: column;
+    gap: 0.15rem;
+    padding: 0.7rem 0.9rem;
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
     background: var(--color-surface);
-    color: var(--color-muted);
     cursor: pointer;
-    transition: 0.2s ease;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
   }
-  .salas__tab:hover {
+  .salas__opt:hover {
     border-color: var(--item-color, var(--y-blue));
-    color: var(--item-color, var(--y-blue));
   }
-  .salas__tab.is-active {
-    background: var(--item-color, var(--y-blue));
-    border-color: var(--item-color, var(--y-blue));
-    color: #fff;
-  }
-  .salas__count {
-    font-size: 0.7rem;
-    font-weight: 800;
-    padding: 0.05rem 0.4rem;
-    border-radius: 999px;
-    background: color-mix(in srgb, currentColor 16%, transparent);
-  }
-  .salas__panel-name {
-    display: none;
+  .salas__opt-name {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 0.9rem;
-    margin: 0.8rem 0 0.4rem;
+    font-size: 0.95rem;
+    color: var(--color-text);
   }
-  /* Without JS every room stacks with its name; with JS only the active tab shows. */
-  html:not(.js) .salas__tabs { display: none; }
-  html:not(.js) .salas__panel-name { display: block; }
-  .js .salas__panel:not(.is-active) { display: none; }
-  .sala-talks {
+  .salas__opt-meta {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+  .salas__opt-meta > span + span::before {
+    content: ' · ';
+  }
+  .salas__radio:nth-of-type(1):checked ~ .salas__picker > .salas__opt:nth-child(1),
+  .salas__radio:nth-of-type(2):checked ~ .salas__picker > .salas__opt:nth-child(2),
+  .salas__radio:nth-of-type(3):checked ~ .salas__picker > .salas__opt:nth-child(3),
+  .salas__radio:nth-of-type(4):checked ~ .salas__picker > .salas__opt:nth-child(4) {
+    border-color: var(--item-color, var(--y-blue));
+    background: var(--item-color, var(--y-blue));
+  }
+  .salas__radio:nth-of-type(1):checked ~ .salas__picker > .salas__opt:nth-child(1) > *,
+  .salas__radio:nth-of-type(2):checked ~ .salas__picker > .salas__opt:nth-child(2) > *,
+  .salas__radio:nth-of-type(3):checked ~ .salas__picker > .salas__opt:nth-child(3) > *,
+  .salas__radio:nth-of-type(4):checked ~ .salas__picker > .salas__opt:nth-child(4) > * {
+    color: #fff;
+  }
+  .salas__radio:nth-of-type(1):focus-visible ~ .salas__picker > .salas__opt:nth-child(1),
+  .salas__radio:nth-of-type(2):focus-visible ~ .salas__picker > .salas__opt:nth-child(2),
+  .salas__radio:nth-of-type(3):focus-visible ~ .salas__picker > .salas__opt:nth-child(3),
+  .salas__radio:nth-of-type(4):focus-visible ~ .salas__picker > .salas__opt:nth-child(4) {
+    outline: 3px solid var(--y-blue);
+    outline-offset: 2px;
+  }
+  .salas__panel {
+    display: none;
+  }
+  .salas__radio:nth-of-type(1):checked ~ .salas__panels > .salas__panel:nth-child(1),
+  .salas__radio:nth-of-type(2):checked ~ .salas__panels > .salas__panel:nth-child(2),
+  .salas__radio:nth-of-type(3):checked ~ .salas__panels > .salas__panel:nth-child(3),
+  .salas__radio:nth-of-type(4):checked ~ .salas__panels > .salas__panel:nth-child(4) {
+    display: block;
+  }
+  .salas__panel-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  /* -- talk cards ----------------------------------------------------------- */
+  .talks {
     list-style: none;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    gap: 0.6rem;
   }
-  .sala-talk {
+  .talk {
     display: grid;
-    grid-template-columns: 92px 1fr;
-    gap: 0.2rem 0.8rem;
-    padding: 0.7rem 0 0.7rem 0.75rem;
-    border-left: 3px solid var(--track-color, var(--color-border));
-    border-bottom: 1px solid var(--color-border);
+    grid-template-columns: 56px 1fr;
+    gap: 0.8rem;
+    align-items: start;
   }
-  .sala-talk:last-child {
-    border-bottom: 0;
-  }
-  .sala-talk__time {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 0.78rem;
-    color: var(--color-muted);
-    padding-top: 0.1rem;
-    white-space: nowrap;
-  }
-  .sala-talk__body {
+  .talk__time {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
-    min-width: 0;
+    align-items: flex-end;
+    padding-top: 0.8rem;
+    font-family: var(--font-display);
+    line-height: 1.2;
   }
-  .sala-talk__title {
+  .talk__start {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--color-text);
+  }
+  .talk__end {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+  }
+  .talk__card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+    padding: 0.8rem 1rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--eje-color, var(--color-border));
+    border-radius: 10px;
+  }
+  .talk__eje {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-muted);
+  }
+  .talk__eje::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background: var(--eje-color);
+  }
+  .talk__title {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: 1rem;
     font-weight: 700;
-    font-size: 0.9rem;
     line-height: 1.35;
     color: var(--color-text);
+    text-wrap: pretty;
     overflow-wrap: anywhere;
   }
-  .sala-talk__meta {
-    font-size: 0.8rem;
+  .talk__who {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.1rem 0.6rem;
+    font-size: 0.84rem;
+  }
+  .talk__speaker {
+    font-weight: 700;
+    color: var(--y-blue-dk, var(--color-text));
+  }
+  .talk__inst {
     color: var(--color-muted);
   }
-  .sala-talk__speaker {
+  .talk__more summary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.78rem;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--y-blue);
   }
-  .sala-talk__coaut {
-    font-size: 0.75rem;
-    color: var(--color-muted-2, var(--color-muted));
+  .talk__more summary::-webkit-details-marker {
+    display: none;
   }
-  .sala-talk__desc {
-    margin: 0.15rem 0 0;
-    font-size: 0.8rem;
-    line-height: 1.45;
+  .talk__more summary::after {
+    content: '+';
+    font-size: 0.95rem;
+    line-height: 1;
+  }
+  .talk__more[open] summary::after {
+    content: '−';
+  }
+  .talk__more p {
+    margin: 0.45rem 0 0;
+    font-size: 0.85rem;
+    line-height: 1.5;
     color: var(--color-muted);
   }
-  .sala-talk__eje {
-    align-self: flex-start;
-    margin-top: 0.15rem;
-    font-size: 0.68rem;
-    font-weight: 700;
-    padding: 0.12rem 0.5rem;
-    border-radius: 999px;
+  .talk__coaut strong {
     color: var(--color-text);
-    background: color-mix(in srgb, var(--track-color) 16%, transparent);
   }
-  .sala-talk--tbd .sala-talk__title {
+  .talk--tbd .talk__card {
+    border-style: dashed;
+    border-left-style: solid;
+    background: transparent;
+  }
+  .talk--tbd .talk__title {
     font-style: italic;
     color: var(--color-muted);
   }
-  .sala-talk--break {
-    border-left-color: transparent;
-    background: color-mix(in srgb, var(--color-muted) 7%, transparent);
-    border-radius: 6px;
-    padding-block: 0.45rem;
-  }
-  .sala-talk--break .sala-talk__title {
-    font-size: 0.8rem;
-    font-weight: 700;
+  .talk-break {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 0.5rem 0;
+    font-size: 0.72rem;
+    font-weight: 800;
     text-transform: uppercase;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: var(--color-muted);
   }
+  .talk-break::before,
+  .talk-break::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-border);
+  }
   @media (max-width: 560px) {
-    .sala-talk {
+    .salas {
+      padding-inline: 0.8rem;
+    }
+    .salas__picker {
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(0, 1fr);
+      gap: 0.35rem;
+    }
+    .salas__opt {
+      padding: 0.5rem 0.55rem;
+      border-radius: 10px;
+    }
+    .salas__opt-name {
+      font-size: 0.8rem;
+      overflow-wrap: anywhere;
+    }
+    .salas__opt-meta {
+      font-size: 0.68rem;
+    }
+    .salas__opt-meta > span {
+      display: block;
+    }
+    .salas__opt-meta > span + span::before {
+      content: none;
+    }
+    .talk {
       grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+    .talk__time {
+      flex-direction: row;
+      align-items: baseline;
+      gap: 0.35rem;
+      padding-top: 0;
+    }
+    .talk__end::before {
+      content: '– ';
     }
   }
   .agenda__chevron {

@@ -116,14 +116,23 @@
           "nota": "Fuente: assets/ponentes_posters_abstracts_info/yosw2026_charlas.json. Por confirmar: Hall 10:50 (reservado para Joel Inca).",
           "paralelas": [
             {
-              "sala": "Hall Senescyt",
+              "sala": {
+                "es": "Hall Senescyt",
+                "en": "Senescyt Hall"
+              },
               "talks": [
                 {
                   "hora": "09:30",
                   "fin": "09:50",
                   "speaker": "Thibault Terencio",
-                  "tema": "Cat-ions and dispersion, maybe a relation?",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                  "tema": {
+                    "es": "Cationes y dispersión: ¿existe una relación?",
+                    "en": "Cat-ions and Dispersion, Maybe a Relation?"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+                  },
                   "coautores": "Bryan Maisincho",
                   "eje": 5,
                   "descripcion": {
@@ -135,7 +144,10 @@
                   "hora": "09:50",
                   "fin": "10:10",
                   "speaker": "Angie Inga Ipiales",
-                  "tema": "Computer Vision-Based Anthropometric Acquisition for the Personalized Design of a Passive Lumbar Exoskeleton",
+                  "tema": {
+                    "es": "Adquisición antropométrica basada en visión por computador para el diseño personalizado de un exoesqueleto lumbar pasivo",
+                    "en": "Computer Vision-Based Anthropometric Acquisition for the Personalized Design of a Passive Lumbar Exoskeleton"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 2,
                   "descripcion": {
@@ -147,8 +159,14 @@
                   "hora": "10:10",
                   "fin": "10:30",
                   "speaker": "Julio C. Chacón-Torres",
-                  "tema": "From Advanced Materials to Sustainable Innovation: Bridging Research, Technology Transfer and Territorial Challenges",
-                  "institucion": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología (ANTON Group)",
+                  "tema": {
+                    "es": "De los materiales avanzados a la innovación sostenible: investigación, transferencia tecnológica y retos territoriales",
+                    "en": "From Advanced Materials to Sustainable Innovation: Bridging Research, Technology Transfer and Territorial Challenges"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología (ANTON Group)",
+                    "en": "Yachay Tech – School of Physical Sciences & Nanotechnology (ANTON Group)"
+                  },
                   "eje": 3,
                   "descripcion": {
                     "es": "Cómo conectar la investigación en materiales avanzados y nanotecnología con la transferencia tecnológica y los retos productivos del territorio.",
@@ -159,7 +177,10 @@
                   "hora": "10:30",
                   "fin": "10:50",
                   "speaker": "Raisa Ivanova Torres Ramírez",
-                  "tema": "Achachay App: Ciencia Ciudadana que convierte a la población en un pilar de la investigación",
+                  "tema": {
+                    "es": "Achachay App: ciencia ciudadana que convierte a la población en un pilar de la investigación",
+                    "en": "Achachay App: Citizen Science That Makes the Public a Pillar of Research"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 4,
                   "descripcion": {
@@ -177,7 +198,10 @@
                   "hora": "11:10",
                   "fin": "11:30",
                   "speaker": "Oscar Mosquera Duarte",
-                  "tema": "La Resiliencia como Mercancía: Un Análisis Marxista del Suicidio en el Capitalismo Contemporáneo",
+                  "tema": {
+                    "es": "La resiliencia como mercancía: un análisis marxista del suicidio en el capitalismo contemporáneo",
+                    "en": "Resilience as Commodity: A Marxist Analysis of Suicide in Contemporary Capitalism"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 4,
                   "descripcion": {
@@ -189,8 +213,14 @@
                   "hora": "12:00",
                   "fin": "12:20",
                   "speaker": "Hugo Leiva",
-                  "tema": "Controllability of Impulsive Semilinear Pure Integro-Differential Equations with Delays and Nonlocal Conditions",
-                  "institucion": "Yachay Tech – Esc. Ciencias Matemáticas y Computacionales",
+                  "tema": {
+                    "es": "Controlabilidad de ecuaciones integro-diferenciales semilineales puras con impulsos, retardos y condiciones no locales",
+                    "en": "Controllability of Impulsive Semilinear Pure Integro-Differential Equations with Delays and Nonlocal Conditions"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Matemáticas y Computacionales",
+                    "en": "Yachay Tech – School of Mathematical & Computational Sciences"
+                  },
                   "eje": 5,
                   "descripcion": {
                     "es": "Estudia la controlabilidad exacta y aproximada de sistemas integro-diferenciales semilineales con impulsos, retardos y condiciones no locales.",
@@ -201,7 +231,10 @@
                   "hora": "12:20",
                   "fin": "12:40",
                   "speaker": "Alexander Escobar-Pullas",
-                  "tema": "Responsive Biopolymeric Matrices: Engineering Smart Lignin Nanoparticles to Unlock the Therapeutic Potential of Botanical Extracts",
+                  "tema": {
+                    "es": "Matrices biopoliméricas responsivas: nanopartículas inteligentes de lignina para liberar el potencial terapéutico de extractos botánicos",
+                    "en": "Responsive Biopolymeric Matrices: Engineering Smart Lignin Nanoparticles to Unlock the Therapeutic Potential of Botanical Extracts"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 2,
                   "descripcion": {
@@ -213,8 +246,14 @@
                   "hora": "12:40",
                   "fin": "13:00",
                   "speaker": "Ruby Anrrango",
-                  "tema": "Experimental Evaluation of Heavy Metal Removal from Water Using a Bioelectrochemical System with an Antarctic Microbial Bioanode",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                  "tema": {
+                    "es": "Evaluación experimental de la remoción de metales pesados del agua con un sistema bioelectroquímico de bioánodo microbiano antártico",
+                    "en": "Experimental Evaluation of Heavy Metal Removal from Water Using a Bioelectrochemical System with an Antarctic Microbial Bioanode"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+                  },
                   "coautores": "Alex Palma-Cando, Carlos Pazmiño-Arias",
                   "eje": 3,
                   "descripcion": {
@@ -226,14 +265,20 @@
                   "hora": "13:00",
                   "fin": "13:20",
                   "speaker": "Hortensia Rodríguez",
-                  "tema": "From Biomass to Nanomedicine: Multifunctional Carbon-Based Materials for Sustainable Biomedical Applications",
+                  "tema": {
+                    "es": "De la biomasa a la nanomedicina: materiales multifuncionales de carbono para aplicaciones biomédicas sostenibles",
+                    "en": "From Biomass to Nanomedicine: Multifunctional Carbon-Based Materials for Sustainable Biomedical Applications"
+                  },
                   "eje": 2
                 },
                 {
                   "hora": "13:20",
                   "fin": "13:40",
                   "speaker": "Ernesto Flores Sierra",
-                  "tema": "Conformación de la subjetividad en épocas de la IA, la sobreproducción y el mercado cripto",
+                  "tema": {
+                    "es": "Conformación de la subjetividad en épocas de la IA, la sobreproducción y el mercado cripto",
+                    "en": "Shaping Subjectivity in the Age of AI, Overproduction and the Crypto Market"
+                  },
                   "institucion": "PUCE",
                   "eje": 4,
                   "descripcion": {
@@ -245,8 +290,14 @@
                   "hora": "13:40",
                   "fin": "14:00",
                   "speaker": "Alex Palma-Cando",
-                  "tema": "From Conjugated Microporous Polymers to Covalent Organic Frameworks: Designing Porous Organic Materials for Potential Advanced Applications",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería (GIAMP)",
+                  "tema": {
+                    "es": "De los polímeros microporosos conjugados a las redes orgánicas covalentes: diseño de materiales orgánicos porosos para aplicaciones avanzadas",
+                    "en": "From Conjugated Microporous Polymers to Covalent Organic Frameworks: Designing Porous Organic Materials for Potential Advanced Applications"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería (GIAMP)",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering (GIAMP)"
+                  },
                   "eje": 3,
                   "descripcion": {
                     "es": "Diseño de polímeros microporosos conjugados (CMP) y redes orgánicas covalentes (COF) para aplicaciones energéticas y ambientales.",
@@ -256,13 +307,19 @@
               ]
             },
             {
-              "sala": "Aula SE-PA1-A13",
+              "sala": {
+                "es": "Aula SE-PA1-A13",
+                "en": "Room SE-PA1-A13"
+              },
               "talks": [
                 {
                   "hora": "09:30",
                   "fin": "09:45",
                   "speaker": "Nelson Mesías Rodríguez",
-                  "tema": "Dinámicas de poder y semillas: el rol de la biotecnología en la economía circular",
+                  "tema": {
+                    "es": "Dinámicas de poder y semillas: el rol de la biotecnología en la economía circular",
+                    "en": "Power Dynamics and Seeds: The Role of Biotechnology in the Circular Economy"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 3,
                   "descripcion": {
@@ -274,8 +331,14 @@
                   "hora": "09:45",
                   "fin": "10:00",
                   "speaker": "Judith Vanegas",
-                  "tema": "Parabolic Dirac Operators and Their Fundamental Solutions in Parametric Clifford Algebras",
-                  "institucion": "Yachay Tech – Vicerrectorado Académico",
+                  "tema": {
+                    "es": "Operadores de Dirac parabólicos y sus soluciones fundamentales en álgebras de Clifford paramétricas",
+                    "en": "Parabolic Dirac Operators and Their Fundamental Solutions in Parametric Clifford Algebras"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Vicerrectorado Académico",
+                    "en": "Yachay Tech – Academic Vice-Rectorate"
+                  },
                   "coautores": "Eusebio Ariza, Franklin Vargas",
                   "eje": 5,
                   "descripcion": {
@@ -287,7 +350,10 @@
                   "hora": "10:00",
                   "fin": "10:15",
                   "speaker": "Angélica Romero",
-                  "tema": "Algorithmic Commodification and Performative Rebellion: Subcultures and Activism in an Era of Hyper-connectivity",
+                  "tema": {
+                    "es": "Mercantilización algorítmica y rebeldía performativa: subculturas y activismo en la era de la hiperconectividad",
+                    "en": "Algorithmic Commodification and Performative Rebellion: Subcultures and Activism in an Era of Hyper-connectivity"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Karla Ushiña",
                   "eje": 4,
@@ -300,7 +366,10 @@
                   "hora": "10:15",
                   "fin": "10:30",
                   "speaker": "Cielo Méndez",
-                  "tema": "From Interstitial Fluid to Digital Health: Microneedles for Accessible and Personalized Diabetes Monitoring",
+                  "tema": {
+                    "es": "Del fluido intersticial a la salud digital: microagujas para un monitoreo de la diabetes accesible y personalizado",
+                    "en": "From Interstitial Fluid to Digital Health: Microneedles for Accessible and Personalized Diabetes Monitoring"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 2,
                   "descripcion": {
@@ -312,7 +381,10 @@
                   "hora": "10:30",
                   "fin": "10:45",
                   "speaker": "Eduardo Ludeña",
-                  "tema": "Theoretical Perspectives on CISS in Biomolecular Processes",
+                  "tema": {
+                    "es": "Perspectivas teóricas sobre CISS en procesos biomoleculares",
+                    "en": "Theoretical Perspectives on CISS in Biomolecular Processes"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Andrés Toledo, William Aguilar, Silvio Pérez",
                   "eje": 5,
@@ -325,7 +397,10 @@
                   "hora": "10:45",
                   "fin": "11:00",
                   "speaker": "Caetano Osejo Oquendo",
-                  "tema": "Near-Infrared Spectroscopy as a Rapid, Non-Destructive Tool for Food Quality and Safety Monitoring: A Case Study on Microbial Contamination in Apple Juice",
+                  "tema": {
+                    "es": "Espectroscopía de infrarrojo cercano como herramienta rápida y no destructiva para la calidad e inocuidad alimentaria: contaminación microbiana en jugo de manzana",
+                    "en": "Near-Infrared Spectroscopy as a Rapid, Non-Destructive Tool for Food Quality and Safety Monitoring: A Case Study on Microbial Contamination in Apple Juice"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Juan Pablo Aguinaga Bósquez",
                   "eje": 3,
@@ -338,7 +413,10 @@
                   "hora": "11:00",
                   "fin": "11:15",
                   "speaker": "Damaris Asanza",
-                  "tema": "In Silico Characterization of PFAS Interactions with the Aryl Hydrocarbon Receptor (AhR)",
+                  "tema": {
+                    "es": "Caracterización in silico de las interacciones de PFAS con el receptor de hidrocarburos arílicos (AhR)",
+                    "en": "In Silico Characterization of PFAS Interactions with the Aryl Hydrocarbon Receptor (AhR)"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Mariela Pérez",
                   "eje": 5,
@@ -351,7 +429,10 @@
                   "hora": "11:15",
                   "fin": "11:30",
                   "speaker": "Darío J. Cabascango",
-                  "tema": "In Silico Design and Thermodynamic Profiling of Nanomaterials: An Open-Source Computational Framework for Pre-Empirical Validation",
+                  "tema": {
+                    "es": "Diseño in silico y perfil termodinámico de nanomateriales: un marco computacional abierto para la validación pre-empírica",
+                    "en": "In Silico Design and Thermodynamic Profiling of Nanomaterials: An Open-Source Computational Framework for Pre-Empirical Validation"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 5,
                   "descripcion": {
@@ -363,7 +444,10 @@
                   "hora": "12:00",
                   "fin": "12:15",
                   "speaker": "Pedro Emilio Albuja",
-                  "tema": "Beyond Nominal Free Tuition: Comprehensive Student Retention, the Socio-Digital Divide and the Foundations for a Third University Reform in Ecuador",
+                  "tema": {
+                    "es": "Más allá de la gratuidad nominal: retención estudiantil integral, brecha socio-digital y bases para una tercera reforma universitaria en Ecuador",
+                    "en": "Beyond Nominal Free Tuition: Comprehensive Student Retention, the Socio-Digital Divide and the Foundations for a Third University Reform in Ecuador"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Anahí Libertad Romero, Elian Gortaire",
                   "eje": 4,
@@ -376,8 +460,14 @@
                   "hora": "12:15",
                   "fin": "12:30",
                   "speaker": "Sarah Briceño",
-                  "tema": "Magnetic Nanomaterials for Microplastics Removal",
-                  "institucion": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología",
+                  "tema": {
+                    "es": "Nanomateriales magnéticos para la remoción de microplásticos",
+                    "en": "Magnetic Nanomaterials for Microplastics Removal"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología",
+                    "en": "Yachay Tech – School of Physical Sciences & Nanotechnology"
+                  },
                   "eje": 3,
                   "descripcion": {
                     "es": "Nanomateriales magnéticos funcionalizados para capturar microplásticos y su posterior fotodegradación.",
@@ -388,8 +478,14 @@
                   "hora": "12:30",
                   "fin": "12:45",
                   "speaker": "Edward E. Ávila Sosa",
-                  "tema": "Functionalized Supramolecular Soft-Materials via Asymmetric 1D Coordination Polymers: Design, Properties, and Applications",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                  "tema": {
+                    "es": "Materiales blandos supramoleculares funcionalizados mediante polímeros de coordinación 1D asimétricos: diseño, propiedades y aplicaciones",
+                    "en": "Functionalized Supramolecular Soft-Materials via Asymmetric 1D Coordination Polymers: Design, Properties, and Applications"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+                  },
                   "coautores": "Jeffrey E. Alvarez, Jefferson Batista, Estefanía Molina-Valencia, Johsua Gavilanes-Chavez, Juan Pablo Saucedo",
                   "eje": 5,
                   "descripcion": {
@@ -401,8 +497,14 @@
                   "hora": "12:45",
                   "fin": "13:00",
                   "speaker": "Miguel Herrera-Robledo",
-                  "tema": "Implementation of an Undergraduate Research Program – Guidelines and the #BiOX Program as Example",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                  "tema": {
+                    "es": "Implementación de un programa de investigación de pregrado: lineamientos y el programa #BiOX como ejemplo",
+                    "en": "Implementation of an Undergraduate Research Program – Guidelines and the #BiOX Program as Example"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+                  },
                   "eje": 4,
                   "descripcion": {
                     "es": "Lecciones de un programa de investigación de pregrado en fotocatálisis con oxihaluros de bismuto en una universidad pública ecuatoriana.",
@@ -413,8 +515,14 @@
                   "hora": "13:00",
                   "fin": "13:15",
                   "speaker": "Maribel Quelal-Vásconez",
-                  "tema": "Automatic and Non-Targeted Analysis of the Volatile Profile of Natural and Alkalized Cocoa Powders Using SBSE-GC-MS and Chemometrics",
-                  "institucion": "Yachay Tech – Esc. Ciencias Agropecuarias y Agroindustriales",
+                  "tema": {
+                    "es": "Análisis automático y no dirigido del perfil volátil de cacao en polvo natural y alcalinizado mediante SBSE-GC-MS y quimiometría",
+                    "en": "Automatic and Non-Targeted Analysis of the Volatile Profile of Natural and Alkalized Cocoa Powders Using SBSE-GC-MS and Chemometrics"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Agropecuarias y Agroindustriales",
+                    "en": "Yachay Tech – School of Agricultural & Agroindustrial Sciences"
+                  },
                   "coautores": "Rasmus Bro",
                   "eje": 3,
                   "descripcion": {
@@ -426,7 +534,10 @@
                   "hora": "13:15",
                   "fin": "13:30",
                   "speaker": "Ricardo Calderón-Álvarez",
-                  "tema": "Electronic Structure and Photocatalytic Performance of Staggered Ti-Based MOF-901(M=Ti) from First Principles",
+                  "tema": {
+                    "es": "Estructura electrónica y desempeño fotocatalítico del MOF-901(M=Ti) escalonado a partir de primeros principios",
+                    "en": "Electronic Structure and Photocatalytic Performance of Staggered Ti-Based MOF-901(M=Ti) from First Principles"
+                  },
                   "institucion": "Yachay Tech – CompNano Group",
                   "coautores": "Henry P. Pinto",
                   "eje": 5,
@@ -439,7 +550,10 @@
                   "hora": "13:30",
                   "fin": "13:45",
                   "speaker": "Emily Ruales Guatimal",
-                  "tema": "Extraction and Encapsulation of Phenolic Compounds from Mauritia flexuosa in β-cyclodextrin: Comprehensive Analysis of Quality and Antioxidant Potential",
+                  "tema": {
+                    "es": "Extracción y encapsulación de compuestos fenólicos de Mauritia flexuosa en β-ciclodextrina: análisis integral de calidad y potencial antioxidante",
+                    "en": "Extraction and Encapsulation of Phenolic Compounds from Mauritia flexuosa in β-cyclodextrin: Comprehensive Analysis of Quality and Antioxidant Potential"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Pablo Andrés Cisneros Pérez",
                   "eje": 3,
@@ -452,7 +566,10 @@
                   "hora": "13:45",
                   "fin": "14:00",
                   "speaker": "Silvio Pérez",
-                  "tema": "Theoretical Perspectives on CISS in Biomolecular Processes",
+                  "tema": {
+                    "es": "Perspectivas teóricas sobre CISS en procesos biomoleculares",
+                    "en": "Theoretical Perspectives on CISS in Biomolecular Processes"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Eduardo Ludeña, Andrés Toledo, William Aguilar",
                   "eje": 5,
@@ -464,13 +581,19 @@
               ]
             },
             {
-              "sala": "Aula SE-PA2-A23",
+              "sala": {
+                "es": "Aula SE-PA2-A23",
+                "en": "Room SE-PA2-A23"
+              },
               "talks": [
                 {
                   "hora": "09:30",
                   "fin": "09:45",
                   "speaker": "Nayeli Bastidas-Benalcázar",
-                  "tema": "Spatial Graph Neurobiology Reveals a Dual Braak-Associated Alzheimer’s Disease Remodeling Program in Human Middle Temporal Gyrus MERFISH Tissue",
+                  "tema": {
+                    "es": "Neurobiología espacial con grafos revela un programa dual de remodelación asociado a Braak en la enfermedad de Alzheimer (tejido MERFISH del giro temporal medio)",
+                    "en": "Spatial Graph Neurobiology Reveals a Dual Braak-Associated Alzheimer’s Disease Remodeling Program in Human Middle Temporal Gyrus MERFISH Tissue"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Santiago Guerrero, Jennyfer M. García-Cárdenas, Jonathan David Cruz Varela",
                   "eje": 2,
@@ -483,8 +606,14 @@
                   "hora": "09:45",
                   "fin": "10:00",
                   "speaker": "Alicia Sommer-Márquez",
-                  "tema": "HIPE-Derived Metal-Functionalized SiC–SiO₂ Hybrid Materials from Biomass and Waste Oil",
-                  "institucion": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                  "tema": {
+                    "es": "Materiales híbridos SiC–SiO₂ funcionalizados con metales derivados de HIPE a partir de biomasa y aceite residual",
+                    "en": "HIPE-Derived Metal-Functionalized SiC–SiO₂ Hybrid Materials from Biomass and Waste Oil"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+                  },
                   "eje": 3,
                   "descripcion": {
                     "es": "Monolitos híbridos SiC–SiO₂ obtenidos a partir de semilla de aguacate y aceite de cocina reciclado, en clave de economía circular.",
@@ -495,7 +624,10 @@
                   "hora": "10:00",
                   "fin": "10:15",
                   "speaker": "José Efraín Osorio-Álvarez",
-                  "tema": "Pareto fuerte en la agregación de preferencias inducidas por la Regla de Dominancia Plausible: condición necesaria sobre las creencias",
+                  "tema": {
+                    "es": "Pareto fuerte en la agregación de preferencias inducidas por la Regla de Dominancia Plausible: condición necesaria sobre las creencias",
+                    "en": "Strong Pareto in the Aggregation of Preferences Induced by the Plausible Dominance Rule: A Necessary Condition on Beliefs"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Franklin Camacho",
                   "eje": 5,
@@ -508,7 +640,10 @@
                   "hora": "10:15",
                   "fin": "10:30",
                   "speaker": "Quray A. Potosí",
-                  "tema": "Unraveling Flower-like Topological Defects on the Transition-Metal Dichalcogenide NbS₂ Monolayer Superlattices with First-Principles Calculations and Machine Learning",
+                  "tema": {
+                    "es": "Defectos topológicos en forma de flor en superredes de monocapas de NbS₂ estudiados con cálculos de primeros principios y machine learning",
+                    "en": "Unraveling Flower-like Topological Defects on the Transition-Metal Dichalcogenide NbS₂ Monolayer Superlattices with First-Principles Calculations and Machine Learning"
+                  },
                   "institucion": "Yachay Tech – CompNano Group",
                   "coautores": "Jörg Behler, Henry P. Pinto",
                   "eje": 5,
@@ -521,8 +656,14 @@
                   "hora": "10:30",
                   "fin": "10:45",
                   "speaker": "Ibeth Rendón Enríquez",
-                  "tema": "Electrochemistry in Action – Electrochromic Windows and Low-Cost Potentiostats",
-                  "institucion": "Yachay Tech – Esc. Ciencias Biológicas e Ingeniería",
+                  "tema": {
+                    "es": "Electroquímica en acción: ventanas electrocrómicas y potenciostatos de bajo costo",
+                    "en": "Electrochemistry in Action – Electrochromic Windows and Low-Cost Potentiostats"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Biológicas e Ingeniería",
+                    "en": "Yachay Tech – School of Biological Sciences & Engineering"
+                  },
                   "coautores": "Pablo Andrés Cisneros Pérez, Génesis Victoria Cuichan Macías",
                   "eje": 5,
                   "descripcion": {
@@ -534,7 +675,10 @@
                   "hora": "10:45",
                   "fin": "11:00",
                   "speaker": "Luis Andrade Gualacata",
-                  "tema": "Super-replication of Convex Options on a Trinomial Extension of the Cox–Ross–Rubinstein Model",
+                  "tema": {
+                    "es": "Superreplicación de opciones convexas en una extensión trinomial del modelo de Cox–Ross–Rubinstein",
+                    "en": "Super-replication of Convex Options on a Trinomial Extension of the Cox–Ross–Rubinstein Model"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Leonardo Medina Espinosa",
                   "eje": 5,
@@ -546,8 +690,14 @@
                 {
                   "hora": "11:00",
                   "fin": "11:15",
-                  "speaker": "Paula Salomé Verdugo-Briones y Dayana Murillo-Guanuchy",
-                  "tema": "AI-Assisted Endometriosis Diagnosis: A Multi-CNN Laparoscopic Image Analysis",
+                  "speaker": {
+                    "es": "Paula Salomé Verdugo-Briones y Dayana Murillo-Guanuchy",
+                    "en": "Paula Salomé Verdugo-Briones and Dayana Murillo-Guanuchy"
+                  },
+                  "tema": {
+                    "es": "Diagnóstico de endometriosis asistido por IA: análisis de imágenes laparoscópicas con múltiples CNN",
+                    "en": "AI-Assisted Endometriosis Diagnosis: A Multi-CNN Laparoscopic Image Analysis"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Anthony Anrango-Mendez",
                   "eje": 2,
@@ -560,7 +710,10 @@
                   "hora": "11:15",
                   "fin": "11:30",
                   "speaker": "Jhon Jairo Aponte",
-                  "tema": "First-Principles and Machine Learning Investigation of Phase Transitions in Technologically Important Perovskites",
+                  "tema": {
+                    "es": "Primeros principios y machine learning para estudiar transiciones de fase en perovskitas de importancia tecnológica",
+                    "en": "First-Principles and Machine Learning Investigation of Phase Transitions in Technologically Important Perovskites"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Henry Pinto",
                   "eje": 3,
@@ -573,8 +726,14 @@
                   "hora": "12:00",
                   "fin": "12:15",
                   "speaker": "Andrea C. Landázuri",
-                  "tema": "What We Choose Not to See: Novel Entities, the Remediation Biorefinery, and Pollution as Raw Material",
-                  "institucion": "Yachay Tech – Esc. Ciencias de la Tierra, Energía y Ambiente",
+                  "tema": {
+                    "es": "Lo que elegimos no ver: nuevas entidades, la biorrefinería de remediación y la contaminación como materia prima",
+                    "en": "What We Choose Not to See: Novel Entities, the Remediation Biorefinery, and Pollution as Raw Material"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias de la Tierra, Energía y Ambiente",
+                    "en": "Yachay Tech – School of Earth Sciences, Energy & Environment"
+                  },
                   "eje": 3,
                   "descripcion": {
                     "es": "Las 'nuevas entidades' como límite planetario y el rol de la ingeniería: la biorrefinería de remediación y la contaminación como materia prima.",
@@ -584,10 +743,19 @@
                 {
                   "hora": "12:15",
                   "fin": "12:30",
-                  "speaker": "Carlos Cazco Maldonado y David Cazco Maldonado",
-                  "tema": "Orion and Isabella's Adventures, a Reading English Material for School Children",
+                  "speaker": {
+                    "es": "Carlos Cazco Maldonado y David Cazco Maldonado",
+                    "en": "Carlos Cazco Maldonado and David Cazco Maldonado"
+                  },
+                  "tema": {
+                    "es": "Las aventuras de Orión e Isabella: material de lectura en inglés para niños en edad escolar",
+                    "en": "Orion and Isabella's Adventures, a Reading English Material for School Children"
+                  },
                   "institucion": "Yachay Tech",
-                  "coautores": "UNAE, PUCE-Ibarra (proyecto colaborativo)",
+                  "coautores": {
+                    "es": "UNAE, PUCE-Ibarra (proyecto colaborativo)",
+                    "en": "UNAE, PUCE-Ibarra (collaborative project)"
+                  },
                   "eje": 4,
                   "descripcion": {
                     "es": "Material de lectura en inglés, con diseño gráfico sobre regiones de Ecuador, para niños de escuelas en contextos vulnerables.",
@@ -598,8 +766,14 @@
                   "hora": "12:30",
                   "fin": "12:45",
                   "speaker": "Andrey Mereshchenko",
-                  "tema": "The Solvent Effect on Ultrafast Photochemistry of Copper(II) Halide Complexes",
-                  "institucion": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología",
+                  "tema": {
+                    "es": "El efecto del solvente en la fotoquímica ultrarrápida de complejos de haluros de cobre(II)",
+                    "en": "The Solvent Effect on Ultrafast Photochemistry of Copper(II) Halide Complexes"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología",
+                    "en": "Yachay Tech – School of Physical Sciences & Nanotechnology"
+                  },
                   "eje": 5,
                   "descripcion": {
                     "es": "Cómo el solvente determina la fotoquímica ultrarrápida y las rutas de reacción de complejos de haluros de cobre(II).",
@@ -610,7 +784,10 @@
                   "hora": "12:45",
                   "fin": "13:00",
                   "speaker": "P. Zamora Dávila",
-                  "tema": "Structural and Electrochemical Properties of Diatomites Grounded Carbon Nanotubes",
+                  "tema": {
+                    "es": "Propiedades estructurales y electroquímicas de nanotubos de carbono crecidos sobre diatomitas",
+                    "en": "Structural and Electrochemical Properties of Diatomites Grounded Carbon Nanotubes"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 5,
                   "descripcion": {
@@ -621,8 +798,14 @@
                 {
                   "hora": "13:00",
                   "fin": "13:15",
-                  "speaker": "Daniela Fernández Cisneros, Lady Salazar Ochoa y Mizael Armas Morales",
-                  "tema": "Selecting and Benchmarking CNN and CNN–Transformer Backbones for Multiclass Brain-Tumor MRI Classification: A Controlled Architecture Comparison and Hybrid Roadmap",
+                  "speaker": {
+                    "es": "Daniela Fernández Cisneros, Lady Salazar Ochoa y Mizael Armas Morales",
+                    "en": "Daniela Fernández Cisneros, Lady Salazar Ochoa and Mizael Armas Morales"
+                  },
+                  "tema": {
+                    "es": "Selección y evaluación de arquitecturas CNN y CNN–Transformer para clasificar tumores cerebrales en resonancia magnética: comparación controlada y hoja de ruta híbrida",
+                    "en": "Selecting and Benchmarking CNN and CNN–Transformer Backbones for Multiclass Brain-Tumor MRI Classification: A Controlled Architecture Comparison and Hybrid Roadmap"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 2,
                   "descripcion": {
@@ -634,7 +817,10 @@
                   "hora": "13:15",
                   "fin": "13:30",
                   "speaker": "Jeison Cabezas Cabezas",
-                  "tema": "The Impact of Climatic Conditions on the Bromatological and Bioactive Profiles of Apis mellifera Products: A Review",
+                  "tema": {
+                    "es": "El impacto de las condiciones climáticas en los perfiles bromatológicos y bioactivos de los productos de Apis mellifera: una revisión",
+                    "en": "The Impact of Climatic Conditions on the Bromatological and Bioactive Profiles of Apis mellifera Products: A Review"
+                  },
                   "institucion": "Yachay Tech",
                   "coautores": "Luis Mateo Tituaña Izama, Lucía de los Ángeles Buitrón Sierra",
                   "eje": 3,
@@ -647,8 +833,14 @@
                   "hora": "13:30",
                   "fin": "13:45",
                   "speaker": "Pablo Rosero Pozo",
-                  "tema": "An Explicit Description of Colored Mutation Classes in Affine Type A",
-                  "institucion": "Yachay Tech – Esc. Ciencias Matemáticas y Computacionales",
+                  "tema": {
+                    "es": "Una descripción explícita de las clases de mutación coloreada en tipo A afín",
+                    "en": "An Explicit Description of Colored Mutation Classes in Affine Type A"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Matemáticas y Computacionales",
+                    "en": "Yachay Tech – School of Mathematical & Computational Sciences"
+                  },
                   "coautores": "Viviana Gubitosi",
                   "eje": 5,
                   "descripcion": {
@@ -660,7 +852,10 @@
                   "hora": "13:45",
                   "fin": "14:00",
                   "speaker": "Fardy Padilla",
-                  "tema": "La ciencia como herramienta emancipatoria: epistemología, colonialidad y desarrollo científico del sur global",
+                  "tema": {
+                    "es": "La ciencia como herramienta emancipatoria: epistemología, colonialidad y desarrollo científico del sur global",
+                    "en": "Science as an Emancipatory Tool: Epistemology, Coloniality and Scientific Development in the Global South"
+                  },
                   "institucion": "Yachay Tech",
                   "eje": 4,
                   "descripcion": {
@@ -671,7 +866,10 @@
               ]
             }
           ],
-          "lugar": "Edificio Senescyt",
+          "lugar": {
+            "es": "Edificio Senescyt",
+            "en": "Senescyt Building"
+          },
           "detalle": {
             "es": "Tres salas en paralelo: charlas de 20 min en el Hall y de 15 min en las aulas. Coffee break de 11:30 a 12:00.",
             "en": "Three rooms in parallel: 20-min talks in the Hall and 15-min talks in the classrooms. Coffee break 11:30–12:00."

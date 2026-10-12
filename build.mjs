@@ -55,15 +55,22 @@ const data = { calendario, ejes, participants, sponsors, config, ideathon, cifra
 
 // --- Render pages ----------------------------------------------------------
 
+// Static hosts cache scripts/styles (GitHub Pages: 10 min), so a fresh page
+// could otherwise run against last deploy's JS/CSS. Tag local asset URLs
+// with a per-build version to force a refetch after each deploy.
+const buildId = Date.now().toString(36);
+const versionAssets = (html) =>
+  html.replace(/((?:src|href)="(?:\.\.\/)*(?:client|styles|lib)\/[^"?#]+\.(?:js|css))"/g, `$1?v=${buildId}"`);
+
 for (const lang of ['es', 'en']) {
   const langDir = path.join(distDir, lang);
   mkdirSync(langDir, { recursive: true });
 
   const homeHtml = renderHomePage({ lang, data });
-  writeFileSync(path.join(langDir, 'index.html'), homeHtml, 'utf-8');
+  writeFileSync(path.join(langDir, 'index.html'), versionAssets(homeHtml), 'utf-8');
 
   const participantesHtml = renderParticipantesPage({ lang, data });
-  writeFileSync(path.join(langDir, 'participantes.html'), participantesHtml, 'utf-8');
+  writeFileSync(path.join(langDir, 'participantes.html'), versionAssets(participantesHtml), 'utf-8');
 }
 
 // --- Copy static assets -----------------------------------------------------

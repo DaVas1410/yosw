@@ -2,13 +2,16 @@ import { z } from 'zod';
 
 const I18nStr = z.object({ es: z.string(), en: z.string() });
 
+// Plain text, or { es, en } when the value differs by language.
+const Text = z.union([z.string(), I18nStr]);
+
 const Talk = z.object({
   hora: z.string().optional(),
   fin: z.string().optional(),
-  speaker: z.string(),
-  tema: z.string().optional(),
-  institucion: z.string().optional(),
-  coautores: z.string().optional(),
+  speaker: Text,
+  tema: Text.optional(),
+  institucion: Text.optional(),
+  coautores: Text.optional(),
   // Thematic-axis id from ejes.json.
   eje: z.number().optional(),
   descripcion: I18nStr.optional(),
@@ -17,7 +20,7 @@ const Talk = z.object({
 // `sala` is the room name ("TBD" renders as "por confirmar"); `eje` is an
 // optional thematic-axis id from ejes.json used to colour/label the track.
 const Paralela = z.object({
-  sala: z.string(),
+  sala: Text,
   eje: z.number().optional(),
   talks: z.array(Talk),
 });
@@ -31,7 +34,7 @@ const Evento = z.object({
   detalle: I18nStr.optional(),
   talks: z.array(Talk).optional(),
   panelists: z.array(z.string()).optional(),
-  lugar: z.string().optional(),
+  lugar: Text.optional(),
   paralelas: z.array(Paralela).optional(),
 });
 const Dia = z.object({
