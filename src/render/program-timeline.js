@@ -160,7 +160,7 @@ function renderEvent({ lang, event, ejes }) {
   }
 
   return `<li class="agenda__item" ${style}>
-          <details class="agenda__details">
+          <details class="agenda__details"${hasParalelas ? ' open' : ''}>
             <summary class="agenda__row agenda__row--toggle">
               ${summary}
               <svg class="agenda__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg>
