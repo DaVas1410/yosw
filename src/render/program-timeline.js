@@ -49,9 +49,17 @@ function renderSalaTalk({ lang, talk, ejes }) {
                         ${talk.coautores ? `<p class="talk__coaut"><strong>${t(lang, 'programa.coautores')}:</strong> ${escapeHtml(loc(lang, talk.coautores))}</p>` : ''}
                       </details>`
     : '';
-  return `<li class="talk${pending ? ' talk--tbd' : ''}"${eje ? ` style="--eje-color: ${eje.color}"` : ''}>
+  const destacado = talk.destacado
+    ? `<div class="talk__destacado">
+                        <span class="talk__badge">${t(lang, 'programa.destacado')}</span>
+                        ${talk.logo ? `<img class="talk__org-logo" src="../assets/${escapeHtml(talk.logo)}" alt="" />` : ''}
+                      </div>`
+    : '';
+  const cls = `talk${pending ? ' talk--tbd' : ''}${talk.destacado ? ' talk--destacado' : ''}`;
+  return `<li class="${cls}"${eje ? ` style="--eje-color: ${eje.color}"` : ''}>
                     <div class="talk__time"><span class="talk__start">${escapeHtml(talk.hora ?? '')}</span>${talk.fin ? `<span class="talk__end">${escapeHtml(talk.fin)}</span>` : ''}</div>
                     <div class="talk__card">
+                      ${destacado}
                       ${eje ? `<span class="talk__eje">${escapeHtml(eje.nombre[lang])}</span>` : ''}
                       <h4 class="talk__title">${titulo}</h4>
                       <p class="talk__who"><span class="talk__speaker">${speaker}</span>${talk.institucion ? `<span class="talk__inst">${escapeHtml(loc(lang, talk.institucion))}</span>` : ''}</p>
@@ -664,6 +672,44 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
   .talk--tbd .talk__title {
     font-style: italic;
     color: var(--color-muted);
+  }
+  /* Headline talk (keynote): framed card with badge and organisation logo. */
+  .talk--destacado .talk__card {
+    border: 2px solid var(--y-blue);
+    background: color-mix(in srgb, var(--y-blue) 5%, var(--color-surface));
+    box-shadow: var(--shadow-sm);
+  }
+  .talk--destacado.talk--tbd .talk__card {
+    border-style: solid;
+  }
+  .talk--destacado .talk__title {
+    font-size: 1.12rem;
+    font-style: normal;
+    color: var(--y-blue-dk, var(--color-text));
+  }
+  .talk__destacado {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.8rem;
+    margin-bottom: 0.2rem;
+  }
+  .talk__badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--y-blue);
+    padding: 0.22rem 0.65rem;
+    border-radius: 999px;
+  }
+  .talk__org-logo {
+    height: 28px;
+    width: auto;
+    padding: 3px 5px;
+    background: #fff;
+    border-radius: 4px;
   }
   .talk-break {
     display: flex;

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "unesco",
+    "organizacion": "UNESCO",
+    "logo": "brand/unesco-logo.svg",
+    "ponente": "TBD",
+    "tipo": { "es": "Charla magistral", "en": "Keynote" },
+    "titulo": {
+      "es": "Ciencia abierta y ética de la tecnología: el marco de la UNESCO y el papel de las nuevas generaciones de investigadores",
+      "en": "Open Science and the Ethics of Technology: the UNESCO Framework and the Role of New Generations of Researchers"
+    },
+    "fecha": "2026-10-22",
+    "hora_inicio": "09:30",
+    "hora_fin": "10:30",
+    "lugar": { "es": "Hall Senescyt", "en": "Senescyt Hall" }
+  }
+]

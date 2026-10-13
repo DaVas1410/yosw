@@ -15,6 +15,10 @@ const Talk = z.object({
   // Thematic-axis id from ejes.json.
   eje: z.number().optional(),
   descripcion: I18nStr.optional(),
+  // Headline talk (e.g. a keynote): highlighted card, with an optional
+  // organisation logo path inside src/assets/.
+  destacado: z.boolean().optional(),
+  logo: z.string().optional(),
 });
 // One room of a block of simultaneous talks (e.g. Wednesday's charlas).
 // `sala` is the room name ("TBD" renders as "por confirmar"); `eje` is an
@@ -107,3 +111,16 @@ export type Sponsor = z.infer<typeof SponsorsSchema>[number];
 export type Paralela = z.infer<typeof Paralela>;
 export type Reto = z.infer<typeof IdeathonSchema>['retos'][number];
 export type Config = z.infer<typeof ConfigSchema>;
+// Headline guests shown in the "Invitados especiales" section.
+export const InvitadosSchema = z.array(z.object({
+  id: z.string(),
+  organizacion: z.string(),
+  logo: z.string(),
+  ponente: z.string(),
+  tipo: I18nStr,
+  titulo: I18nStr,
+  fecha: z.string(),
+  hora_inicio: z.string(),
+  hora_fin: z.string(),
+  lugar: I18nStr,
+}));

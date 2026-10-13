@@ -12,4 +12,12 @@
       document.querySelector(`[data-panel="${tab.dataset.tab}"]`)?.classList.add('is-active');
     });
   });
+
+  // Links elsewhere on the page (e.g. "Invitados especiales") can open a
+  // given day: <a href="#programa" data-programa-dia="d4">.
+  document.querySelectorAll('[data-programa-dia]').forEach((link) => {
+    link.addEventListener('click', () => {
+      document.querySelector(`.programa__tab[data-tab="${link.dataset.programaDia}"]`)?.click();
+    });
+  });
 })();

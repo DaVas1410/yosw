@@ -930,6 +930,8 @@
                 {
                   "hora": "09:30",
                   "fin": "10:30",
+                  "destacado": true,
+                  "logo": "brand/unesco-logo.svg",
                   "speaker": {
                     "es": "UNESCO (ponente por confirmar)",
                     "en": "UNESCO (speaker to be confirmed)"

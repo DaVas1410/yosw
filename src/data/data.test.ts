@@ -2,7 +2,9 @@ import { describe, it, expect } from 'vitest';
 import calendario from './calendario.json';
 import ejes from './ejes.json';
 import config from './config.json';
-import { CalendarioSchema, EjesSchema, ConfigSchema } from './schemas';
+import invitados from './invitados.json';
+import { existsSync } from 'node:fs';
+import { CalendarioSchema, EjesSchema, ConfigSchema, InvitadosSchema } from './schemas';
 
 describe('data files', () => {
   it('calendario matches schema', () => {
@@ -23,5 +25,13 @@ describe('data files', () => {
     const parsed = CalendarioSchema.parse(calendario);
     expect(parsed.dias[0].fecha).toBe('2026-10-19');
     expect(parsed.dias.at(-1)!.fecha).toBe('2026-10-24');
+  });
+  it('invitados match schema, fall on a programme day and have their logo', () => {
+    const parsed = InvitadosSchema.parse(invitados);
+    const dias = CalendarioSchema.parse(calendario).dias.map((d) => d.fecha);
+    for (const inv of parsed) {
+      expect(dias).toContain(inv.fecha);
+      expect(existsSync(new URL(`../assets/${inv.logo}`, import.meta.url))).toBe(true);
+    }
   });
 });

@@ -1,5 +1,5 @@
 // Ported from src/pages/[lang]/index.astro.
-// Assembles the page sections in order: Nav, Hero, Marquee, Cifras, About,
+// Assembles the page sections in order: Nav, Hero, Marquee, Cifras, Invitados, About,
 // EjesSection, Ideathon, ProgramTimeline, ParticipantsPreview, Registration,
 // Sponsors, Sede, Faq, Footer — wrapped in the Base page shell.
 
@@ -8,6 +8,7 @@ import { renderNav } from '../nav.js';
 import { renderHero } from '../hero.js';
 import { renderMarquee } from '../marquee.js';
 import { renderCifras } from '../cifras.js';
+import { renderInvitados } from '../invitados.js';
 import { renderAbout } from '../about.js';
 import { renderEjesSection } from '../ejes-section.js';
 import { renderIdeathon } from '../ideathon.js';
@@ -20,7 +21,7 @@ import { renderFaq } from '../faq.js';
 import { renderFooter } from '../footer.js';
 
 export function renderHomePage({ lang, data }) {
-  const { calendario, ejes, participants, sponsors, config, ideathon, cifras } = data;
+  const { calendario, ejes, participants, sponsors, config, ideathon, cifras, invitados } = data;
   const currentPath = `/${lang}`;
 
   const bodyHtml = `${renderNav({ lang, currentPath })}
@@ -28,6 +29,7 @@ export function renderHomePage({ lang, data }) {
 ${renderHero({ lang, config })}
 ${renderMarquee({ lang })}
 ${renderCifras({ lang, cifras })}
+${renderInvitados({ lang, invitados, calendario })}
 ${renderAbout({ lang })}
 ${renderEjesSection({ lang, ejes })}
 ${renderIdeathon({ lang, ideathon, formUrl: config.forms.ideathon })}
