@@ -31,6 +31,27 @@ export function sponsorLogoSrc(logo) {
 // repeated until they reach this many before being doubled for the loop.
 const MIN_TILES_PER_ROW = 8;
 
+function fillRow(row) {
+  const filled = [];
+  while (filled.length < MIN_TILES_PER_ROW) filled.push(...row);
+  return filled;
+}
+
+// When a wall mixes main sponsors (`principal`) with the rest, the main ones
+// get the first row (larger tiles) and everyone else the row below.
+// Otherwise rows are split evenly by marqueeRows.
+export function wallRows(sponsors) {
+  const main = sponsors.filter((s) => s.principal);
+  const rest = sponsors.filter((s) => !s.principal);
+  if (main.length && rest.length) {
+    return [
+      { principal: true, items: fillRow(main) },
+      { principal: false, items: fillRow(rest) },
+    ];
+  }
+  return marqueeRows(sponsors).map((items) => ({ principal: false, items }));
+}
+
 // Split sponsors into marquee rows. With few sponsors every row shows all of
 // them (rotated so rows don't line up); with many, they are dealt round-robin.
 export function marqueeRows(sponsors) {
@@ -46,9 +67,7 @@ export function marqueeRows(sponsors) {
     } else {
       row = sponsors.filter((_, i) => i % rowCount === r);
     }
-    const filled = [];
-    while (filled.length < MIN_TILES_PER_ROW) filled.push(...row);
-    rows.push(filled);
+    rows.push(fillRow(row));
   }
   return rows;
 }
@@ -65,12 +84,13 @@ function renderTile(s, { decorative }) {
 }
 
 function renderMarquee(sponsors) {
-  const rows = marqueeRows(sponsors);
+  const rows = wallRows(sponsors);
   return `<div class="sponsors__marquee" aria-hidden="true">
       ${rows
-        .map((row, r) => {
+        .map(({ principal, items: row }, r) => {
           const set = row.map((s) => `<li>${renderTile(s, { decorative: true })}</li>`).join('');
-          return `<div class="sponsors__row${r % 2 ? ' sponsors__row--reverse' : ''}" style="--dur: ${row.length * 4.5}s">
+          const cls = `sponsors__row${r % 2 ? ' sponsors__row--reverse' : ''}${principal ? ' sponsors__row--principal' : ''}`;
+          return `<div class="${cls}" style="--dur: ${row.length * 4.5}s">
         <ul class="sponsors__track" role="list">${set}${set}</ul>
       </div>`;
         })
@@ -88,7 +108,9 @@ function renderWall(items) {
   return items.length > 0
     ? `${renderMarquee(items)}
     <ul class="sponsors__static" role="list">
-      ${items.map((s) => `<li>${renderTile(s, { decorative: false })}</li>`).join('\n      ')}
+      ${[...items.filter((s) => s.principal), ...items.filter((s) => !s.principal)]
+        .map((s) => `<li${s.principal ? ' class="sponsors__item--principal"' : ''}>${renderTile(s, { decorative: false })}</li>`)
+        .join('\n      ')}
     </ul>`
     : `<ul class="sponsors__static sponsors__static--empty" role="list" aria-hidden="true">
       <li><div class="sponsors__logo sponsors__logo--placeholder"></div></li>
@@ -186,6 +208,16 @@ export function renderSponsors({ lang, sponsors, email, proposalUrl }) {
     to { transform: translateX(calc(-50% - var(--gap) / 2)); }
   }
   .sponsors__row--reverse .sponsors__track { animation-direction: reverse; }
+  /* Main sponsors: first row, larger tiles; the row below gets smaller ones. */
+  .sponsors__row--principal,
+  .sponsors__item--principal {
+    --tile-w: 260px;
+    --tile-h: 130px;
+  }
+  .sponsors__row--principal ~ .sponsors__row {
+    --tile-w: 170px;
+    --tile-h: 84px;
+  }
   .sponsors__marquee:hover .sponsors__track { animation-play-state: paused; }
 
   .sponsors__logo {
@@ -301,6 +333,9 @@ export function renderSponsors({ lang, sponsors, email, proposalUrl }) {
 
   @media (max-width: 560px) {
     .sponsors__wall { --tile-w: 150px; --tile-h: 80px; --gap: 0.75rem; }
+    .sponsors__row--principal,
+    .sponsors__item--principal { --tile-w: 180px; --tile-h: 92px; }
+    .sponsors__row--principal ~ .sponsors__row { --tile-w: 124px; --tile-h: 64px; }
     .sponsors__logo { padding: 0.6rem 0.8rem; }
   }
 </style>`;

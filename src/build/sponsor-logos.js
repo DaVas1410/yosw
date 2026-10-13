@@ -85,6 +85,7 @@ export async function buildSponsorLogos({ srcDir, outDir, meta = {} }) {
       tipo,
       logo: destRel,
       ...(m.enlace ? { enlace: m.enlace } : {}),
+      ...(m.principal ? { principal: true } : {}),
     });
   }
   return sponsors;

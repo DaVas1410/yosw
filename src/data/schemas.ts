@@ -75,14 +75,16 @@ export const ParticipantsSchema = z.array(z.object({
 }));
 // Optional metadata for the logos in src/assets/sponsors/{patrocinadores,colaboradores}/,
 // keyed by "<carpeta>/<archivo>". The logo files themselves drive the walls.
+// `principal: true` puts a sponsor in the first, larger row of its wall.
 export const SponsorsMetaSchema = z.record(z.string(), z.object({
-  nombre: z.string().optional(), enlace: z.string().optional(),
+  nombre: z.string().optional(), enlace: z.string().optional(), principal: z.boolean().optional(),
 }));
 export const SponsorsSchema = z.array(z.object({
   id: z.string(), nombre: z.string(),
   // 'sponsor' = Patrocinadores, 'colaborador' = Colaboradores.
   tipo: z.enum(['sponsor', 'colaborador']).optional(),
   logo: z.string().optional(), enlace: z.string().optional(),
+  principal: z.boolean().optional(),
 }));
 export const ConfigSchema = z.object({
   eventStart: z.string(),

@@ -1,9 +1,9 @@
 {
   "patrocinadores/el-pato-goloso.png": { "nombre": "El Pato Goloso" },
-  "patrocinadores/emlab-representaciones.png": { "nombre": "EMLAB Representaciones" },
-  "patrocinadores/florsani.png": { "nombre": "Florsani – Florícola San Isidro Labrador" },
-  "patrocinadores/huawei.png": { "nombre": "Huawei" },
-  "patrocinadores/jjh.png": { "nombre": "JJ&H" },
+  "patrocinadores/emlab-representaciones.png": { "nombre": "EMLAB Representaciones", "principal": true },
+  "patrocinadores/florsani.png": { "nombre": "Florsani – Florícola San Isidro Labrador", "principal": true },
+  "patrocinadores/huawei.png": { "nombre": "Huawei", "principal": true },
+  "patrocinadores/jjh.png": { "nombre": "JJ&H", "principal": true },
   "patrocinadores/dakori.png": { "nombre": "Dakori Korean Chicken" },
   "patrocinadores/pizza-isabella.png": { "nombre": "Pizza Isabella" },
   "patrocinadores/tasska.png": { "nombre": "Tasska Grill - Restaurant" },
