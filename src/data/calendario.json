@@ -904,11 +904,101 @@
           }
         },
         {
-          "titulo": { "es": "Charlas de Alumni", "en": "Alumni Talks" },
-          "hora_inicio": "09:00",
-          "hora_fin": "13:00",
+          "titulo": {
+            "es": "Charlas",
+            "en": "Talks"
+          },
+          "hora_inicio": "09:30",
+          "hora_fin": "13:15",
           "categoria": "charlas",
-          "nota": "Formato y ponentes por confirmar"
+          "lugar": {
+            "es": "Hall Senescyt",
+            "en": "Senescyt Hall"
+          },
+          "detalle": {
+            "es": "Abre la charla magistral de la UNESCO sobre ciencia abierta. Coffee break de 11:20 a 12:00.",
+            "en": "Opens with the UNESCO keynote on open science. Coffee break 11:20–12:00."
+          },
+          "nota": "Ponente de la UNESCO por confirmar.",
+          "paralelas": [
+            {
+              "sala": {
+                "es": "Hall Senescyt",
+                "en": "Senescyt Hall"
+              },
+              "talks": [
+                {
+                  "hora": "09:30",
+                  "fin": "10:30",
+                  "speaker": {
+                    "es": "UNESCO (ponente por confirmar)",
+                    "en": "UNESCO (speaker to be confirmed)"
+                  },
+                  "tema": {
+                    "es": "Ciencia abierta y ética de la tecnología: el marco de la UNESCO y el papel de las nuevas generaciones de investigadores",
+                    "en": "Open Science and the Ethics of Technology: the UNESCO Framework and the Role of New Generations of Researchers"
+                  },
+                  "eje": 4
+                },
+                {
+                  "hora": "10:30",
+                  "fin": "10:55",
+                  "speaker": "Nerio Borges",
+                  "tema": {
+                    "es": "Un enfoque vectorial de los operadores de mejora",
+                    "en": "A Vector Approach to Improvement Operators"
+                  },
+                  "eje": 5
+                },
+                {
+                  "hora": "10:55",
+                  "fin": "11:20",
+                  "speaker": "Paula Ponce",
+                  "tema": {
+                    "es": "Redes cristalinas con enlaces de calcógeno basadas en donadores de simetría C3",
+                    "en": "Chalcogen-Bonded Crystalline Networks Based on C3-Symmetry Chalcogen Bond Donors"
+                  },
+                  "eje": 5
+                },
+                {
+                  "hora": "12:00",
+                  "fin": "12:25",
+                  "speaker": {
+                    "es": "Wilmer Ilescas (virtual)",
+                    "en": "Wilmer Ilescas (online)"
+                  },
+                  "tema": {
+                    "es": "Capacidad antioxidante de tallos de brócoli orgánico y convencional de dos altitudes de Ecuador para su revalorización",
+                    "en": "Antioxidant Capacity of Organic and Conventional Broccoli Stems from Two Ecuadorian Altitudes for Upcycling"
+                  },
+                  "eje": 3
+                },
+                {
+                  "hora": "12:25",
+                  "fin": "12:50",
+                  "speaker": {
+                    "es": "Rashell Mayancela y Erika Moncayo",
+                    "en": "Rashell Mayancela and Erika Moncayo"
+                  },
+                  "tema": {
+                    "es": "Conectando ciencia, patrimonio y comunidad: experiencias de divulgación del Museo Arqueológico Yachay-Urcuquí",
+                    "en": "Connecting Science, Heritage, and Community: Outreach Experiences from the Yachay-Urcuquí Archaeological Museum"
+                  },
+                  "eje": 4
+                },
+                {
+                  "hora": "12:50",
+                  "fin": "13:15",
+                  "speaker": "Byron Caiza",
+                  "tema": {
+                    "es": "Arquitecturas ópticas cuánticas avanzadas: de la manipulación de modos espaciales de alta dimensión a la holografía sintética no lineal",
+                    "en": "Advanced Quantum Optical Architectures: From High-Dimensional Spatial Mode Manipulation to Non-Linear Synthetic Holography"
+                  },
+                  "eje": 5
+                }
+              ]
+            }
+          ]
         },
         {
           "titulo": { "es": "Tour al Museo Arqueológico de Yachay Tech", "en": "Yachay Tech Archaeological Museum Tour" },

@@ -83,7 +83,8 @@ const minutes = (a, b) => {
 
 // Simultaneous talks: a room picker plus one list per room. The picker is
 // a radio group, so switching rooms is pure CSS (no script to go stale in a
-// cache). A room named "TBD" shows as "Sala N" until it is filled in.
+// cache). A room named "TBD" shows as "Sala N" until it is filled in. A
+// single room skips the picker and just lists its talks.
 let paralelasCount = 0;
 function renderParalelas({ lang, paralelas, ejes }) {
   const uid = `salas-${lang}-${++paralelasCount}`;
@@ -97,6 +98,13 @@ function renderParalelas({ lang, paralelas, ejes }) {
       dur: first?.hora && first?.fin ? minutes(first.hora, first.fin) : null,
     };
   });
+  if (rooms.length === 1) {
+    return `<div class="salas salas--single">
+              <ol class="talks">
+              ${renderSalaTalks({ lang, talks: rooms[0].p.talks, ejes })}
+              </ol>
+            </div>`;
+  }
   return `<div class="salas">
               ${rooms
                 .map(
@@ -159,7 +167,7 @@ function renderEvent({ lang, event, ejes }) {
   const hasExtra = Boolean(event.talks?.length || event.panelists?.length);
   const style = `style="--item-color: var(--cat-${event.categoria})"`;
 
-  const tag = hasParalelas
+  const tag = event.paralelas?.length > 1
     ? `\n          <span class="agenda__tag">${t(lang, 'programa.paralelas_tag')}</span>`
     : '';
   const lugar = event.lugar
