@@ -1031,38 +1031,77 @@
           "categoria": "inauguracion"
         },
         {
-          "titulo": { "es": "Charla I", "en": "Talk I" },
+          "titulo": {
+            "es": "Charlas",
+            "en": "Talks"
+          },
           "hora_inicio": "09:30",
-          "hora_fin": "10:00",
+          "hora_fin": "12:25",
           "categoria": "charlas",
-          "talks": [{ "hora": "09:30", "speaker": "TBD", "tema": "TBD" }]
+          "lugar": {
+            "es": "Hall Senescyt",
+            "en": "Senescyt Hall"
+          },
+          "detalle": {
+            "es": "Coffee break de 10:35 a 11:20.",
+            "en": "Coffee break 10:35–11:20."
+          },
+          "paralelas": [
+            {
+              "sala": {
+                "es": "Hall Senescyt",
+                "en": "Senescyt Hall"
+              },
+              "talks": [
+                {
+                  "hora": "09:30",
+                  "fin": "10:35",
+                  "speaker": {
+                    "es": "Camilo Andres Colorato Yepes, Claudia Marcela Pena Barajas y Rigo Daniel Julian Arias Carrero",
+                    "en": "Camilo Andres Colorato Yepes, Claudia Marcela Pena Barajas and Rigo Daniel Julian Arias Carrero"
+                  },
+                  "tema": {
+                    "es": "Territorio, sostenibilidad y patrimonio biocultural: experiencias investigativas en los Andes orientales de Colombia",
+                    "en": "Territory, Sustainability and Biocultural Heritage: Research Experiences in the Eastern Andes of Colombia"
+                  },
+                  "institucion": "CICPA",
+                  "eje": 3
+                },
+                {
+                  "hora": "11:20",
+                  "fin": "12:25",
+                  "speaker": "Vinicio Torres",
+                  "institucion": "Huawei",
+                  "tema": {
+                    "es": "La Fábrica de IA: de los datos a los agentes inteligentes",
+                    "en": "The AI Factory: From Data to Intelligent Agents"
+                  },
+                  "eje": 1,
+                  "descripcion": {
+                    "es": "De la ciencia de datos y la computación de alto rendimiento a los sistemas multiagente: la infraestructura (aceleradores, sistemas POD, almacenamiento y redes de alta velocidad) que hace posible escalar la IA.",
+                    "en": "From data science and high-performance computing to multi-agent systems: the infrastructure (accelerators, POD systems, storage and high-speed networking) that makes it possible to scale AI."
+                  }
+                }
+              ]
+            }
+          ]
         },
         {
-          "titulo": { "es": "Mesa Abierta I", "en": "Open Panel I" },
-          "hora_inicio": "10:00",
-          "hora_fin": "11:00",
+          "titulo": {
+            "es": "Ciencia abierta y tecnología para la humanidad: ética, poder y sostenibilidad en la construcción del futuro",
+            "en": "Open Science and Technology for Humanity: Ethics, Power and Sustainability in Building the Future"
+          },
+          "hora_inicio": "12:25",
+          "hora_fin": "13:30",
           "categoria": "mesas_abiertas",
-          "panelists": ["TBD"]
-        },
-        {
-          "titulo": { "es": "Coffee Break", "en": "Coffee Break" },
-          "hora_inicio": "11:00",
-          "hora_fin": "11:30",
-          "categoria": "academico_general"
-        },
-        {
-          "titulo": { "es": "Mesa Abierta II", "en": "Open Panel II" },
-          "hora_inicio": "11:30",
-          "hora_fin": "12:30",
-          "categoria": "mesas_abiertas",
-          "panelists": ["TBD"]
-        },
-        {
-          "titulo": { "es": "Charla II", "en": "Talk II" },
-          "hora_inicio": "12:30",
-          "hora_fin": "13:00",
-          "categoria": "charlas",
-          "talks": [{ "hora": "12:30", "speaker": "TBD", "tema": "TBD" }]
+          "lugar": {
+            "es": "Hall Senescyt",
+            "en": "Senescyt Hall"
+          },
+          "nota": "Panelistas aún sin confirmar todos; no publicar nombres todavía.",
+          "panelists": [
+            "TBD"
+          ]
         },
         {
           "titulo": { "es": "Pitches Finales Ideatón", "en": "Ideathon Final Pitches" },
