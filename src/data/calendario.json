@@ -308,8 +308,8 @@
             },
             {
               "sala": {
-                "es": "Aula SE-PA1-A13",
-                "en": "Room SE-PA1-A13"
+                "es": "Sala 1: SE-PA1-A13",
+                "en": "Room 1: SE-PA1-A13"
               },
               "talks": [
                 {
@@ -582,8 +582,8 @@
             },
             {
               "sala": {
-                "es": "Aula SE-PA2-A23",
-                "en": "Room SE-PA2-A23"
+                "es": "Sala 2: SE-PA2-A23",
+                "en": "Room 2: SE-PA2-A23"
               },
               "talks": [
                 {
@@ -871,8 +871,8 @@
             "en": "Senescyt Building"
           },
           "detalle": {
-            "es": "Tres salas en paralelo: charlas de 20 min en el Hall y de 15 min en las aulas. Coffee break de 11:30 a 12:00.",
-            "en": "Three rooms in parallel: 20-min talks in the Hall and 15-min talks in the classrooms. Coffee break 11:30–12:00."
+            "es": "Tres salas en paralelo: charlas de 20 min en el Hall y de 15 min en las Salas 1 y 2. Coffee break de 11:30 a 12:00.",
+            "en": "Three rooms in parallel: 20-min talks in the Hall and 15-min talks in Rooms 1 and 2. Coffee break 11:30–12:00."
           }
         },
         {

@@ -89,6 +89,15 @@ const minutes = (a, b) => {
   return bh * 60 + bm - (ah * 60 + am);
 };
 
+// "Sala 1: SE-PA1-A13" shows as a short name with the room code on its own
+// line, so the code never breaks at its hyphens on narrow screens.
+function roomLabel(sala) {
+  const [name, code] = sala.split(/:\s+/);
+  return code
+    ? `<span class="salas__opt-name">${name}</span><span class="salas__opt-code">${code}</span>`
+    : `<span class="salas__opt-name">${sala}</span>`;
+}
+
 // Simultaneous talks: a room picker plus one list per room. The picker is
 // a radio group, so switching rooms is pure CSS (no script to go stale in a
 // cache). A room named "TBD" shows as "Sala N" until it is filled in. A
@@ -123,7 +132,7 @@ function renderParalelas({ lang, paralelas, ejes }) {
                 ${rooms
                   .map(
                     (r) => `<label class="salas__opt" for="${r.id}">
-                  <span class="salas__opt-name">${r.sala}</span>
+                  ${roomLabel(r.sala)}
                   <span class="salas__opt-meta"><span>${r.p.talks.length} ${t(lang, 'programa.charlas')}</span>${r.dur ? `<span>${r.dur} min</span>` : ''}</span>
                 </label>`
                   )
@@ -504,6 +513,12 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
     font-size: 0.95rem;
     color: var(--color-text);
   }
+  .salas__opt-code {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text);
+    white-space: nowrap;
+  }
   .salas__opt-meta {
     font-size: 0.75rem;
     color: var(--color-muted);
@@ -746,6 +761,9 @@ export function renderProgramTimeline({ lang, calendario, ejes = [] }) {
     .salas__opt-name {
       font-size: 0.8rem;
       overflow-wrap: anywhere;
+    }
+    .salas__opt-code {
+      font-size: 0.66rem;
     }
     .salas__opt-meta {
       font-size: 0.68rem;
