@@ -113,7 +113,7 @@
           "hora_inicio": "09:30",
           "hora_fin": "14:00",
           "categoria": "charlas",
-          "nota": "Fuente: assets/ponentes_posters_abstracts_info/yosw2026_charlas.json. Por confirmar: Hall 10:50 (reservado para Joel Inca).",
+          "nota": "Fuente: assets/ponentes_posters_abstracts_info/yosw2026_charlas.json. Hall 10:50: Daniela López reemplaza a Joel Inca.",
           "paralelas": [
             {
               "sala": {
@@ -191,8 +191,21 @@
                 {
                   "hora": "10:50",
                   "fin": "11:10",
-                  "speaker": "TBD",
-                  "tema": "TBD"
+                  "speaker": "Daniela López Zhindón",
+                  "tema": {
+                    "es": "Propiedades de volumen y de superficie del CuO magnético: un estudio de primeros principios",
+                    "en": "Bulk and Surface Properties Investigation of Magnetic CuO: A First-Principles Study"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología (CompNano Group)",
+                    "en": "Yachay Tech – School of Physical Sciences & Nanotechnology (CompNano Group)"
+                  },
+                  "coautores": "Henry P. Pinto",
+                  "eje": 5,
+                  "descripcion": {
+                    "es": "Estudio con DFT (funcional meta-GGA LAK) de la estructura magnética y electrónica del óxido de cobre (CuO) en volumen y superficies: confirma el estado fundamental antiferromagnético y se contrasta con difracción de rayos X, con miras a catálisis, energía solar y sensores.",
+                    "en": "A DFT study (meta-GGA LAK functional) of the magnetic and electronic structure of copper oxide (CuO) in bulk and at surfaces: it confirms the antiferromagnetic ground state and is checked against X-ray diffraction, with a view to catalysis, solar energy and sensors."
+                  }
                 },
                 {
                   "hora": "11:10",
