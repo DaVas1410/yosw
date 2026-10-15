@@ -916,10 +916,9 @@
             "en": "Senescyt Hall"
           },
           "detalle": {
-            "es": "Abre la charla magistral de la UNESCO sobre ciencia abierta. Coffee break de 11:20 a 12:00.",
-            "en": "Opens with the UNESCO keynote on open science. Coffee break 11:20–12:00."
+            "es": "Abre la charla magistral de Tatiana Villegas Zamora, Representante de la UNESCO en Ecuador. Coffee break de 11:20 a 12:00.",
+            "en": "Opens with the keynote by Tatiana Villegas Zamora, UNESCO Representative in Ecuador. Coffee break 11:20–12:00."
           },
-          "nota": "Ponente de la UNESCO por confirmar.",
           "paralelas": [
             {
               "sala": {
@@ -932,15 +931,20 @@
                   "fin": "10:30",
                   "destacado": true,
                   "logo": "brand/unesco-logo.svg",
-                  "speaker": {
-                    "es": "UNESCO (ponente por confirmar)",
-                    "en": "UNESCO (speaker to be confirmed)"
+                  "speaker": "Tatiana Villegas Zamora",
+                  "institucion": {
+                    "es": "Representante de la UNESCO en Ecuador",
+                    "en": "UNESCO Representative in Ecuador"
                   },
                   "tema": {
                     "es": "Ciencia abierta y ética de la tecnología: el marco de la UNESCO y el papel de las nuevas generaciones de investigadores",
                     "en": "Open Science and the Ethics of Technology: the UNESCO Framework and the Role of New Generations of Researchers"
                   },
-                  "eje": 4
+                  "eje": 4,
+                  "descripcion": {
+                    "es": "La Recomendación de la UNESCO sobre la Ciencia Abierta (2021) y sus cuatro pilares —conocimiento científico abierto, infraestructuras abiertas, participación de la sociedad y diálogo con otros sistemas de conocimiento—, los avances y retos de su implementación en América Latina y el Caribe, y los principios éticos para innovar con responsabilidad: qué compromisos asumen las nuevas generaciones de investigadores.",
+                    "en": "The 2021 UNESCO Recommendation on Open Science and its four pillars —open scientific knowledge, open infrastructures, societal engagement and dialogue with other knowledge systems—, progress and challenges in implementing it across Latin America and the Caribbean, and the ethical principles for responsible innovation: the commitments new generations of researchers take on."
+                  }
                 },
                 {
                   "hora": "10:30",

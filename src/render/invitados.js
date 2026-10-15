@@ -27,7 +27,8 @@ function renderCard({ lang, inv, calendario }) {
       <div class="invitado__body">
         <span class="invitado__tipo">${escapeHtml(inv.tipo[lang])}</span>
         <h3 class="invitado__titulo">${escapeHtml(inv.titulo[lang])}</h3>
-        <p class="invitado__ponente">${ponente} · ${escapeHtml(inv.organizacion)}</p>
+        <p class="invitado__ponente"><strong>${ponente}</strong>${inv.cargo ? `<span>${escapeHtml(inv.cargo[lang])}</span>` : ` · ${escapeHtml(inv.organizacion)}`}</p>
+        ${inv.resumen ? `<p class="invitado__resumen">${escapeHtml(inv.resumen[lang])}</p>` : ''}
         <ul class="invitado__meta">
           <li>${CAL_ICON}<span>${escapeHtml(fecha)} · ${escapeHtml(inv.hora_inicio)}–${escapeHtml(inv.hora_fin)}</span></li>
           <li>${PIN_ICON}<span>${escapeHtml(inv.lugar[lang])}</span></li>
@@ -109,7 +110,20 @@ export function renderInvitados({ lang, invitados, calendario }) {
   }
   .invitado__ponente {
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
     font-weight: 600;
+    color: var(--color-muted);
+  }
+  .invitado__ponente strong {
+    font-size: 1.05rem;
+    color: var(--color-text);
+  }
+  .invitado__resumen {
+    margin: 0.2rem 0 0;
+    font-size: 0.92rem;
+    line-height: 1.55;
     color: var(--color-muted);
   }
   .invitado__meta {
