@@ -37,7 +37,7 @@ const Evento = z.object({
   nota: z.string().optional(),
   detalle: I18nStr.optional(),
   talks: z.array(Talk).optional(),
-  panelists: z.array(z.string()).optional(),
+  panelists: z.array(Text).optional(),
   lugar: Text.optional(),
   paralelas: z.array(Paralela).optional(),
 });

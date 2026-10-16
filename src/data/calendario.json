@@ -38,6 +38,38 @@
           "hora_inicio": "11:00",
           "hora_fin": "12:30",
           "categoria": "inauguracion"
+        },
+        {
+          "titulo": {
+            "es": "Foro: Del laboratorio a la industria: el futuro farmacéutico del Ecuador",
+            "en": "Forum: From the Lab to Industry: The Future of Ecuador’s Pharmaceutical Sector"
+          },
+          "hora_inicio": "14:30",
+          "hora_fin": null,
+          "categoria": "mesas_abiertas",
+          "lugar": {
+            "es": "Hall Senescyt",
+            "en": "Senescyt Hall"
+          },
+          "nota": "Hora de fin por confirmar.",
+          "panelists": [
+            {
+              "es": "Mag. Verónica Zambrano — Laboratorio Farmacéutico Liphycos",
+              "en": "Verónica Zambrano, MSc — Liphycos Pharmaceutical Laboratory"
+            },
+            {
+              "es": "Mag. Alexander Escobar — Graduado de la Maestría en Química Médica de Yachay Tech",
+              "en": "Alexander Escobar, MSc — Graduate of the Master’s in Medicinal Chemistry, Yachay Tech"
+            },
+            {
+              "es": "Dra. Hortensia Rodríguez — Coordinadora de la Maestría en Química Médica de Yachay Tech",
+              "en": "Dr. Hortensia Rodríguez — Coordinator of the Master’s in Medicinal Chemistry, Yachay Tech"
+            },
+            {
+              "es": "Dra. Vivian Morera — Docente de la ECQI y decana durante la aprobación de la carrera de Bioquímica y Farmacia",
+              "en": "Dr. Vivian Morera — ECQI faculty member, dean when the Biochemistry and Pharmacy degree was approved"
+            }
+          ]
         }
       ]
     },
