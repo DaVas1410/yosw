@@ -289,6 +289,26 @@
     "foto": "participantes/fotos/paula-salome-verdugo-briones.jpg"
   },
   {
+    "id": "oscar-mosquera-duarte",
+    "nombre": "Oscar Mosquera Duarte",
+    "rol": "ponente",
+    "eje": 4,
+    "trabajo": {
+      "titulo": {
+        "es": "La resiliencia como mercancía: un análisis marxista del suicidio en el capitalismo contemporáneo",
+        "en": "Resilience as Commodity: A Marxist Analysis of Suicide in Contemporary Capitalism"
+      },
+      "fecha": "2026-10-21",
+      "hora": "11:10",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": "Yachay Tech",
+    "foto": "participantes/fotos/oscar-mosquera-duarte.jpg"
+  },
+  {
     "id": "jhon-jairo-aponte",
     "nombre": "Jhon Jairo Aponte",
     "rol": "ponente",
@@ -835,25 +855,6 @@
       "lugar": {
         "es": "Sala 2: SE-PA2-A23",
         "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": "Yachay Tech"
-  },
-  {
-    "id": "oscar-mosquera-duarte",
-    "nombre": "Oscar Mosquera Duarte",
-    "rol": "ponente",
-    "eje": 4,
-    "trabajo": {
-      "titulo": {
-        "es": "La resiliencia como mercancía: un análisis marxista del suicidio en el capitalismo contemporáneo",
-        "en": "Resilience as Commodity: A Marxist Analysis of Suicide in Contemporary Capitalism"
-      },
-      "fecha": "2026-10-21",
-      "hora": "11:10",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
       }
     },
     "institucion": "Yachay Tech"
