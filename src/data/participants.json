@@ -1,69 +1,5 @@
 [
   {
-    "id": "tatiana-villegas-zamora",
-    "nombre": "Tatiana Villegas Zamora",
-    "rol": "invitado",
-    "eje": 4,
-    "institucion": {
-      "es": "Representante de la UNESCO en Ecuador",
-      "en": "UNESCO Representative in Ecuador"
-    },
-    "trabajo": {
-      "titulo": {
-        "es": "Ciencia abierta y ética de la tecnología: el marco de la UNESCO y el papel de las nuevas generaciones de investigadores",
-        "en": "Open Science and the Ethics of Technology: the UNESCO Framework and the Role of New Generations of Researchers"
-      },
-      "fecha": "2026-10-22",
-      "hora": "09:30",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    }
-  },
-  {
-    "id": "veronica-zambrano",
-    "nombre": "Verónica Zambrano",
-    "rol": "panelista",
-    "institucion": {
-      "es": "Laboratorio Farmacéutico Liphycos",
-      "en": "Liphycos Pharmaceutical Laboratory"
-    },
-    "trabajo": {
-      "titulo": {
-        "es": "Foro: Del laboratorio a la industria: el futuro farmacéutico del Ecuador",
-        "en": "Forum: From the Lab to Industry: The Future of Ecuador’s Pharmaceutical Sector"
-      },
-      "fecha": "2026-10-19",
-      "hora": "14:30",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    }
-  },
-  {
-    "id": "vivian-morera",
-    "nombre": "Vivian Morera",
-    "rol": "panelista",
-    "institucion": {
-      "es": "Docente de la ECQI y decana durante la aprobación de la carrera de Bioquímica y Farmacia",
-      "en": "ECQI faculty member, dean when the Biochemistry and Pharmacy degree was approved"
-    },
-    "trabajo": {
-      "titulo": {
-        "es": "Foro: Del laboratorio a la industria: el futuro farmacéutico del Ecuador",
-        "en": "Forum: From the Lab to Industry: The Future of Ecuador’s Pharmaceutical Sector"
-      },
-      "fecha": "2026-10-19",
-      "hora": "14:30",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    }
-  },
-  {
     "id": "thibault-terencio",
     "nombre": "Thibault Terencio",
     "rol": "ponente",
@@ -127,28 +63,6 @@
     "foto": "participantes/fotos/nayeli-bastidas-benalcazar.jpg"
   },
   {
-    "id": "judith-vanegas",
-    "nombre": "Judith Vanegas",
-    "rol": "ponente",
-    "eje": 5,
-    "trabajo": {
-      "titulo": {
-        "es": "Operadores de Dirac parabólicos y sus soluciones fundamentales en álgebras de Clifford paramétricas",
-        "en": "Parabolic Dirac Operators and Their Fundamental Solutions in Parametric Clifford Algebras"
-      },
-      "fecha": "2026-10-21",
-      "hora": "09:45",
-      "lugar": {
-        "es": "Sala 1: SE-PA1-A13",
-        "en": "Room 1: SE-PA1-A13"
-      }
-    },
-    "institucion": {
-      "es": "Yachay Tech – Vicerrectorado Académico",
-      "en": "Yachay Tech – Academic Vice-Rectorate"
-    }
-  },
-  {
     "id": "alicia-sommer-marquez",
     "nombre": "Alicia Sommer-Márquez",
     "rol": "ponente",
@@ -190,25 +104,6 @@
     },
     "institucion": "Yachay Tech",
     "foto": "participantes/fotos/angie-inga-ipiales.jpg"
-  },
-  {
-    "id": "angelica-romero",
-    "nombre": "Angélica Romero",
-    "rol": "ponente",
-    "eje": 4,
-    "trabajo": {
-      "titulo": {
-        "es": "Mercantilización algorítmica y rebeldía performativa: subculturas y activismo en la era de la hiperconectividad",
-        "en": "Algorithmic Commodification and Performative Rebellion: Subcultures and Activism in an Era of Hyper-connectivity"
-      },
-      "fecha": "2026-10-21",
-      "hora": "10:00",
-      "lugar": {
-        "es": "Sala 1: SE-PA1-A13",
-        "en": "Room 1: SE-PA1-A13"
-      }
-    },
-    "institucion": "Yachay Tech"
   },
   {
     "id": "jose-efrain-osorio-alvarez",
@@ -314,47 +209,6 @@
     "foto": "participantes/fotos/raisa-ivanova-torres-ramirez.jpg"
   },
   {
-    "id": "eduardo-ludena",
-    "nombre": "Eduardo Ludeña",
-    "rol": "ponente",
-    "eje": 5,
-    "trabajo": {
-      "titulo": {
-        "es": "Perspectivas teóricas sobre CISS en procesos biomoleculares",
-        "en": "Theoretical Perspectives on CISS in Biomolecular Processes"
-      },
-      "fecha": "2026-10-21",
-      "hora": "10:30",
-      "lugar": {
-        "es": "Sala 1: SE-PA1-A13",
-        "en": "Room 1: SE-PA1-A13"
-      }
-    },
-    "institucion": "Yachay Tech"
-  },
-  {
-    "id": "ibeth-rendon-enriquez",
-    "nombre": "Ibeth Rendón Enríquez",
-    "rol": "ponente",
-    "eje": 5,
-    "trabajo": {
-      "titulo": {
-        "es": "Electroquímica en acción: ventanas electrocrómicas y potenciostatos de bajo costo",
-        "en": "Electrochemistry in Action – Electrochromic Windows and Low-Cost Potentiostats"
-      },
-      "fecha": "2026-10-21",
-      "hora": "10:30",
-      "lugar": {
-        "es": "Sala 2: SE-PA2-A23",
-        "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": {
-      "es": "Yachay Tech – Esc. Ciencias Biológicas e Ingeniería",
-      "en": "Yachay Tech – School of Biological Sciences & Engineering"
-    }
-  },
-  {
     "id": "caetano-osejo-oquendo",
     "nombre": "Caetano Osejo Oquendo",
     "rol": "ponente",
@@ -395,28 +249,6 @@
     "foto": "participantes/fotos/luis-andrade-gualacata.jpg"
   },
   {
-    "id": "daniela-lopez-zhindon",
-    "nombre": "Daniela López Zhindón",
-    "rol": "ponente",
-    "eje": 5,
-    "trabajo": {
-      "titulo": {
-        "es": "Propiedades de volumen y de superficie del CuO magnético: un estudio de primeros principios",
-        "en": "Bulk and Surface Properties Investigation of Magnetic CuO: A First-Principles Study"
-      },
-      "fecha": "2026-10-21",
-      "hora": "10:50",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    },
-    "institucion": {
-      "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología (CompNano Group)",
-      "en": "Yachay Tech – School of Physical Sciences & Nanotechnology (CompNano Group)"
-    }
-  },
-  {
     "id": "damaris-asanza",
     "nombre": "Damaris Asanza",
     "rol": "ponente",
@@ -455,63 +287,6 @@
     },
     "institucion": "Yachay Tech",
     "foto": "participantes/fotos/paula-salome-verdugo-briones.jpg"
-  },
-  {
-    "id": "dayana-murillo-guanuchy",
-    "nombre": "Dayana Murillo-Guanuchy",
-    "rol": "ponente",
-    "eje": 2,
-    "trabajo": {
-      "titulo": {
-        "es": "Diagnóstico de endometriosis asistido por IA: análisis de imágenes laparoscópicas con múltiples CNN",
-        "en": "AI-Assisted Endometriosis Diagnosis: A Multi-CNN Laparoscopic Image Analysis"
-      },
-      "fecha": "2026-10-21",
-      "hora": "11:00",
-      "lugar": {
-        "es": "Sala 2: SE-PA2-A23",
-        "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": "Yachay Tech"
-  },
-  {
-    "id": "oscar-mosquera-duarte",
-    "nombre": "Oscar Mosquera Duarte",
-    "rol": "ponente",
-    "eje": 4,
-    "trabajo": {
-      "titulo": {
-        "es": "La resiliencia como mercancía: un análisis marxista del suicidio en el capitalismo contemporáneo",
-        "en": "Resilience as Commodity: A Marxist Analysis of Suicide in Contemporary Capitalism"
-      },
-      "fecha": "2026-10-21",
-      "hora": "11:10",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    },
-    "institucion": "Yachay Tech"
-  },
-  {
-    "id": "dario-j-cabascango",
-    "nombre": "Darío J. Cabascango",
-    "rol": "ponente",
-    "eje": 5,
-    "trabajo": {
-      "titulo": {
-        "es": "Diseño in silico y perfil termodinámico de nanomateriales: un marco computacional abierto para la validación pre-empírica",
-        "en": "In Silico Design and Thermodynamic Profiling of Nanomaterials: An Open-Source Computational Framework for Pre-Empirical Validation"
-      },
-      "fecha": "2026-10-21",
-      "hora": "11:15",
-      "lugar": {
-        "es": "Sala 1: SE-PA1-A13",
-        "en": "Room 1: SE-PA1-A13"
-      }
-    },
-    "institucion": "Yachay Tech"
   },
   {
     "id": "jhon-jairo-aponte",
@@ -575,28 +350,6 @@
     },
     "institucion": "Yachay Tech",
     "foto": "participantes/fotos/pedro-emilio-albuja.jpg"
-  },
-  {
-    "id": "andrea-c-landazuri",
-    "nombre": "Andrea C. Landázuri",
-    "rol": "ponente",
-    "eje": 3,
-    "trabajo": {
-      "titulo": {
-        "es": "Lo que elegimos no ver: nuevas entidades, la biorrefinería de remediación y la contaminación como materia prima",
-        "en": "What We Choose Not to See: Novel Entities, the Remediation Biorefinery, and Pollution as Raw Material"
-      },
-      "fecha": "2026-10-21",
-      "hora": "12:00",
-      "lugar": {
-        "es": "Sala 2: SE-PA2-A23",
-        "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": {
-      "es": "Yachay Tech – Esc. Ciencias de la Tierra, Energía y Ambiente",
-      "en": "Yachay Tech – School of Earth Sciences, Energy & Environment"
-    }
   },
   {
     "id": "sarah-briceno",
@@ -770,25 +523,8 @@
         "en": "Room 2: SE-PA2-A23"
       }
     },
-    "institucion": "Yachay Tech"
-  },
-  {
-    "id": "hortensia-rodriguez",
-    "nombre": "Hortensia Rodríguez",
-    "rol": "ponente",
-    "eje": 2,
-    "trabajo": {
-      "titulo": {
-        "es": "De la biomasa a la nanomedicina: materiales multifuncionales de carbono para aplicaciones biomédicas sostenibles",
-        "en": "From Biomass to Nanomedicine: Multifunctional Carbon-Based Materials for Sustainable Biomedical Applications"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:00",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    }
+    "institucion": "Yachay Tech",
+    "foto": "participantes/fotos/p-zamora-davila.jpg"
   },
   {
     "id": "maribel-quelal-vasconez",
@@ -812,6 +548,374 @@
       "en": "Yachay Tech – School of Agricultural & Agroindustrial Sciences"
     },
     "foto": "participantes/fotos/maribel-quelal-vasconez.jpg"
+  },
+  {
+    "id": "jeison-cabezas-cabezas",
+    "nombre": "Jeison Cabezas Cabezas",
+    "rol": "ponente",
+    "eje": 3,
+    "trabajo": {
+      "titulo": {
+        "es": "El impacto de las condiciones climáticas en los perfiles bromatológicos y bioactivos de los productos de Apis mellifera: una revisión",
+        "en": "The Impact of Climatic Conditions on the Bromatological and Bioactive Profiles of Apis mellifera Products: A Review"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:15",
+      "lugar": {
+        "es": "Sala 2: SE-PA2-A23",
+        "en": "Room 2: SE-PA2-A23"
+      }
+    },
+    "institucion": "Yachay Tech",
+    "foto": "participantes/fotos/jeison-cabezas-cabezas.jpg"
+  },
+  {
+    "id": "ernesto-flores-sierra",
+    "nombre": "Ernesto Flores Sierra",
+    "rol": "ponente",
+    "eje": 4,
+    "trabajo": {
+      "titulo": {
+        "es": "Conformación de la subjetividad en épocas de la IA, la sobreproducción y el mercado cripto",
+        "en": "Shaping Subjectivity in the Age of AI, Overproduction and the Crypto Market"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:20",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": "PUCE",
+    "foto": "participantes/fotos/ernesto-flores-sierra.jpg"
+  },
+  {
+    "id": "emily-ruales-guatimal",
+    "nombre": "Emily Ruales Guatimal",
+    "rol": "ponente",
+    "eje": 3,
+    "trabajo": {
+      "titulo": {
+        "es": "Extracción y encapsulación de compuestos fenólicos de Mauritia flexuosa en β-ciclodextrina: análisis integral de calidad y potencial antioxidante",
+        "en": "Extraction and Encapsulation of Phenolic Compounds from Mauritia flexuosa in β-cyclodextrin: Comprehensive Analysis of Quality and Antioxidant Potential"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:30",
+      "lugar": {
+        "es": "Sala 1: SE-PA1-A13",
+        "en": "Room 1: SE-PA1-A13"
+      }
+    },
+    "institucion": "Yachay Tech",
+    "foto": "participantes/fotos/emily-ruales-guatimal.jpg"
+  },
+  {
+    "id": "alex-palma-cando",
+    "nombre": "Alex Palma-Cando",
+    "rol": "ponente",
+    "eje": 3,
+    "trabajo": {
+      "titulo": {
+        "es": "De los polímeros microporosos conjugados a las redes orgánicas covalentes: diseño de materiales orgánicos porosos para aplicaciones avanzadas",
+        "en": "From Conjugated Microporous Polymers to Covalent Organic Frameworks: Designing Porous Organic Materials for Potential Advanced Applications"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:40",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería (GIAMP)",
+      "en": "Yachay Tech – School of Chemical Sciences & Engineering (GIAMP)"
+    },
+    "foto": "participantes/fotos/alex-palma-cando.jpg"
+  },
+  {
+    "id": "fardy-padilla",
+    "nombre": "Fardy Padilla",
+    "rol": "ponente",
+    "eje": 4,
+    "trabajo": {
+      "titulo": {
+        "es": "La ciencia como herramienta emancipatoria: epistemología, colonialidad y desarrollo científico del sur global",
+        "en": "Science as an Emancipatory Tool: Epistemology, Coloniality and Scientific Development in the Global South"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:45",
+      "lugar": {
+        "es": "Sala 2: SE-PA2-A23",
+        "en": "Room 2: SE-PA2-A23"
+      }
+    },
+    "institucion": "Yachay Tech",
+    "foto": "participantes/fotos/fardy-padilla.jpg"
+  },
+  {
+    "id": "tatiana-villegas-zamora",
+    "nombre": "Tatiana Villegas Zamora",
+    "rol": "invitado",
+    "eje": 4,
+    "institucion": {
+      "es": "Representante de la UNESCO en Ecuador",
+      "en": "UNESCO Representative in Ecuador"
+    },
+    "trabajo": {
+      "titulo": {
+        "es": "Ciencia abierta y ética de la tecnología: el marco de la UNESCO y el papel de las nuevas generaciones de investigadores",
+        "en": "Open Science and the Ethics of Technology: the UNESCO Framework and the Role of New Generations of Researchers"
+      },
+      "fecha": "2026-10-22",
+      "hora": "09:30",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    }
+  },
+  {
+    "id": "veronica-zambrano",
+    "nombre": "Verónica Zambrano",
+    "rol": "panelista",
+    "institucion": {
+      "es": "Laboratorio Farmacéutico Liphycos",
+      "en": "Liphycos Pharmaceutical Laboratory"
+    },
+    "trabajo": {
+      "titulo": {
+        "es": "Foro: Del laboratorio a la industria: el futuro farmacéutico del Ecuador",
+        "en": "Forum: From the Lab to Industry: The Future of Ecuador’s Pharmaceutical Sector"
+      },
+      "fecha": "2026-10-19",
+      "hora": "14:30",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    }
+  },
+  {
+    "id": "vivian-morera",
+    "nombre": "Vivian Morera",
+    "rol": "panelista",
+    "institucion": {
+      "es": "Docente de la ECQI y decana durante la aprobación de la carrera de Bioquímica y Farmacia",
+      "en": "ECQI faculty member, dean when the Biochemistry and Pharmacy degree was approved"
+    },
+    "trabajo": {
+      "titulo": {
+        "es": "Foro: Del laboratorio a la industria: el futuro farmacéutico del Ecuador",
+        "en": "Forum: From the Lab to Industry: The Future of Ecuador’s Pharmaceutical Sector"
+      },
+      "fecha": "2026-10-19",
+      "hora": "14:30",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    }
+  },
+  {
+    "id": "judith-vanegas",
+    "nombre": "Judith Vanegas",
+    "rol": "ponente",
+    "eje": 5,
+    "trabajo": {
+      "titulo": {
+        "es": "Operadores de Dirac parabólicos y sus soluciones fundamentales en álgebras de Clifford paramétricas",
+        "en": "Parabolic Dirac Operators and Their Fundamental Solutions in Parametric Clifford Algebras"
+      },
+      "fecha": "2026-10-21",
+      "hora": "09:45",
+      "lugar": {
+        "es": "Sala 1: SE-PA1-A13",
+        "en": "Room 1: SE-PA1-A13"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Vicerrectorado Académico",
+      "en": "Yachay Tech – Academic Vice-Rectorate"
+    }
+  },
+  {
+    "id": "angelica-romero",
+    "nombre": "Angélica Romero",
+    "rol": "ponente",
+    "eje": 4,
+    "trabajo": {
+      "titulo": {
+        "es": "Mercantilización algorítmica y rebeldía performativa: subculturas y activismo en la era de la hiperconectividad",
+        "en": "Algorithmic Commodification and Performative Rebellion: Subcultures and Activism in an Era of Hyper-connectivity"
+      },
+      "fecha": "2026-10-21",
+      "hora": "10:00",
+      "lugar": {
+        "es": "Sala 1: SE-PA1-A13",
+        "en": "Room 1: SE-PA1-A13"
+      }
+    },
+    "institucion": "Yachay Tech"
+  },
+  {
+    "id": "eduardo-ludena",
+    "nombre": "Eduardo Ludeña",
+    "rol": "ponente",
+    "eje": 5,
+    "trabajo": {
+      "titulo": {
+        "es": "Perspectivas teóricas sobre CISS en procesos biomoleculares",
+        "en": "Theoretical Perspectives on CISS in Biomolecular Processes"
+      },
+      "fecha": "2026-10-21",
+      "hora": "10:30",
+      "lugar": {
+        "es": "Sala 1: SE-PA1-A13",
+        "en": "Room 1: SE-PA1-A13"
+      }
+    },
+    "institucion": "Yachay Tech"
+  },
+  {
+    "id": "ibeth-rendon-enriquez",
+    "nombre": "Ibeth Rendón Enríquez",
+    "rol": "ponente",
+    "eje": 5,
+    "trabajo": {
+      "titulo": {
+        "es": "Electroquímica en acción: ventanas electrocrómicas y potenciostatos de bajo costo",
+        "en": "Electrochemistry in Action – Electrochromic Windows and Low-Cost Potentiostats"
+      },
+      "fecha": "2026-10-21",
+      "hora": "10:30",
+      "lugar": {
+        "es": "Sala 2: SE-PA2-A23",
+        "en": "Room 2: SE-PA2-A23"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Esc. Ciencias Biológicas e Ingeniería",
+      "en": "Yachay Tech – School of Biological Sciences & Engineering"
+    }
+  },
+  {
+    "id": "daniela-lopez-zhindon",
+    "nombre": "Daniela López Zhindón",
+    "rol": "ponente",
+    "eje": 5,
+    "trabajo": {
+      "titulo": {
+        "es": "Propiedades de volumen y de superficie del CuO magnético: un estudio de primeros principios",
+        "en": "Bulk and Surface Properties Investigation of Magnetic CuO: A First-Principles Study"
+      },
+      "fecha": "2026-10-21",
+      "hora": "10:50",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Esc. Ciencias Físicas y Nanotecnología (CompNano Group)",
+      "en": "Yachay Tech – School of Physical Sciences & Nanotechnology (CompNano Group)"
+    }
+  },
+  {
+    "id": "dayana-murillo-guanuchy",
+    "nombre": "Dayana Murillo-Guanuchy",
+    "rol": "ponente",
+    "eje": 2,
+    "trabajo": {
+      "titulo": {
+        "es": "Diagnóstico de endometriosis asistido por IA: análisis de imágenes laparoscópicas con múltiples CNN",
+        "en": "AI-Assisted Endometriosis Diagnosis: A Multi-CNN Laparoscopic Image Analysis"
+      },
+      "fecha": "2026-10-21",
+      "hora": "11:00",
+      "lugar": {
+        "es": "Sala 2: SE-PA2-A23",
+        "en": "Room 2: SE-PA2-A23"
+      }
+    },
+    "institucion": "Yachay Tech"
+  },
+  {
+    "id": "oscar-mosquera-duarte",
+    "nombre": "Oscar Mosquera Duarte",
+    "rol": "ponente",
+    "eje": 4,
+    "trabajo": {
+      "titulo": {
+        "es": "La resiliencia como mercancía: un análisis marxista del suicidio en el capitalismo contemporáneo",
+        "en": "Resilience as Commodity: A Marxist Analysis of Suicide in Contemporary Capitalism"
+      },
+      "fecha": "2026-10-21",
+      "hora": "11:10",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": "Yachay Tech"
+  },
+  {
+    "id": "dario-j-cabascango",
+    "nombre": "Darío J. Cabascango",
+    "rol": "ponente",
+    "eje": 5,
+    "trabajo": {
+      "titulo": {
+        "es": "Diseño in silico y perfil termodinámico de nanomateriales: un marco computacional abierto para la validación pre-empírica",
+        "en": "In Silico Design and Thermodynamic Profiling of Nanomaterials: An Open-Source Computational Framework for Pre-Empirical Validation"
+      },
+      "fecha": "2026-10-21",
+      "hora": "11:15",
+      "lugar": {
+        "es": "Sala 1: SE-PA1-A13",
+        "en": "Room 1: SE-PA1-A13"
+      }
+    },
+    "institucion": "Yachay Tech"
+  },
+  {
+    "id": "andrea-c-landazuri",
+    "nombre": "Andrea C. Landázuri",
+    "rol": "ponente",
+    "eje": 3,
+    "trabajo": {
+      "titulo": {
+        "es": "Lo que elegimos no ver: nuevas entidades, la biorrefinería de remediación y la contaminación como materia prima",
+        "en": "What We Choose Not to See: Novel Entities, the Remediation Biorefinery, and Pollution as Raw Material"
+      },
+      "fecha": "2026-10-21",
+      "hora": "12:00",
+      "lugar": {
+        "es": "Sala 2: SE-PA2-A23",
+        "en": "Room 2: SE-PA2-A23"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Esc. Ciencias de la Tierra, Energía y Ambiente",
+      "en": "Yachay Tech – School of Earth Sciences, Energy & Environment"
+    }
+  },
+  {
+    "id": "hortensia-rodriguez",
+    "nombre": "Hortensia Rodríguez",
+    "rol": "ponente",
+    "eje": 2,
+    "trabajo": {
+      "titulo": {
+        "es": "De la biomasa a la nanomedicina: materiales multifuncionales de carbono para aplicaciones biomédicas sostenibles",
+        "en": "From Biomass to Nanomedicine: Multifunctional Carbon-Based Materials for Sustainable Biomedical Applications"
+      },
+      "fecha": "2026-10-21",
+      "hora": "13:00",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    }
   },
   {
     "id": "daniela-fernandez-cisneros",
@@ -890,66 +994,6 @@
     "institucion": "Yachay Tech – CompNano Group"
   },
   {
-    "id": "jeison-cabezas-cabezas",
-    "nombre": "Jeison Cabezas Cabezas",
-    "rol": "ponente",
-    "eje": 3,
-    "trabajo": {
-      "titulo": {
-        "es": "El impacto de las condiciones climáticas en los perfiles bromatológicos y bioactivos de los productos de Apis mellifera: una revisión",
-        "en": "The Impact of Climatic Conditions on the Bromatological and Bioactive Profiles of Apis mellifera Products: A Review"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:15",
-      "lugar": {
-        "es": "Sala 2: SE-PA2-A23",
-        "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": "Yachay Tech",
-    "foto": "participantes/fotos/jeison-cabezas-cabezas.jpg"
-  },
-  {
-    "id": "ernesto-flores-sierra",
-    "nombre": "Ernesto Flores Sierra",
-    "rol": "ponente",
-    "eje": 4,
-    "trabajo": {
-      "titulo": {
-        "es": "Conformación de la subjetividad en épocas de la IA, la sobreproducción y el mercado cripto",
-        "en": "Shaping Subjectivity in the Age of AI, Overproduction and the Crypto Market"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:20",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    },
-    "institucion": "PUCE",
-    "foto": "participantes/fotos/ernesto-flores-sierra.jpg"
-  },
-  {
-    "id": "emily-ruales-guatimal",
-    "nombre": "Emily Ruales Guatimal",
-    "rol": "ponente",
-    "eje": 3,
-    "trabajo": {
-      "titulo": {
-        "es": "Extracción y encapsulación de compuestos fenólicos de Mauritia flexuosa en β-ciclodextrina: análisis integral de calidad y potencial antioxidante",
-        "en": "Extraction and Encapsulation of Phenolic Compounds from Mauritia flexuosa in β-cyclodextrin: Comprehensive Analysis of Quality and Antioxidant Potential"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:30",
-      "lugar": {
-        "es": "Sala 1: SE-PA1-A13",
-        "en": "Room 1: SE-PA1-A13"
-      }
-    },
-    "institucion": "Yachay Tech",
-    "foto": "participantes/fotos/emily-ruales-guatimal.jpg"
-  },
-  {
     "id": "pablo-rosero-pozo",
     "nombre": "Pablo Rosero Pozo",
     "rol": "ponente",
@@ -972,29 +1016,6 @@
     }
   },
   {
-    "id": "alex-palma-cando",
-    "nombre": "Alex Palma-Cando",
-    "rol": "ponente",
-    "eje": 3,
-    "trabajo": {
-      "titulo": {
-        "es": "De los polímeros microporosos conjugados a las redes orgánicas covalentes: diseño de materiales orgánicos porosos para aplicaciones avanzadas",
-        "en": "From Conjugated Microporous Polymers to Covalent Organic Frameworks: Designing Porous Organic Materials for Potential Advanced Applications"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:40",
-      "lugar": {
-        "es": "Hall Senescyt",
-        "en": "Senescyt Hall"
-      }
-    },
-    "institucion": {
-      "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería (GIAMP)",
-      "en": "Yachay Tech – School of Chemical Sciences & Engineering (GIAMP)"
-    },
-    "foto": "participantes/fotos/alex-palma-cando.jpg"
-  },
-  {
     "id": "silvio-perez",
     "nombre": "Silvio Pérez",
     "rol": "ponente",
@@ -1012,26 +1033,6 @@
       }
     },
     "institucion": "Yachay Tech"
-  },
-  {
-    "id": "fardy-padilla",
-    "nombre": "Fardy Padilla",
-    "rol": "ponente",
-    "eje": 4,
-    "trabajo": {
-      "titulo": {
-        "es": "La ciencia como herramienta emancipatoria: epistemología, colonialidad y desarrollo científico del sur global",
-        "en": "Science as an Emancipatory Tool: Epistemology, Coloniality and Scientific Development in the Global South"
-      },
-      "fecha": "2026-10-21",
-      "hora": "13:45",
-      "lugar": {
-        "es": "Sala 2: SE-PA2-A23",
-        "en": "Room 2: SE-PA2-A23"
-      }
-    },
-    "institucion": "Yachay Tech",
-    "foto": "participantes/fotos/fardy-padilla.jpg"
   },
   {
     "id": "nerio-borges",
