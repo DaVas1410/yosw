@@ -4,8 +4,10 @@
 // src/render/participant-card.js, the source of truth for that markup) —
 // this script only toggles `hidden` on the existing DOM cards based on their
 // data-nombre/data-rol/data-eje attributes (data-nombre also carries the talk
-// title and institution, so the search matches those), and hides a section
-// ([data-group]) once none of its cards are visible.
+// title and institution, so the search matches those). A section
+// ([data-group]) with nothing visible either shows its own
+// [data-group-empty] message (home page columns) or is hidden (directory).
+// Used on the directory page and on the home page, which has no role filter.
 
 import { filterParticipants } from '../lib/filter.js';
 
@@ -15,7 +17,7 @@ const rolSelect = document.getElementById('participantes-rol');
 const grid = document.getElementById('participantes-grid');
 const emptyState = document.getElementById('participantes-empty');
 
-if (search && ejeSelect && rolSelect && grid && emptyState) {
+if (search && ejeSelect && grid) {
   const cards = Array.from(grid.querySelectorAll('[data-participant]'));
   const list = cards.map((card) => ({
     id: card.dataset.nombre ?? '',
@@ -27,7 +29,7 @@ if (search && ejeSelect && rolSelect && grid && emptyState) {
 
   const applyFilters = () => {
     const eje = ejeSelect.value ? Number(ejeSelect.value) : undefined;
-    const rol = rolSelect.value || undefined;
+    const rol = rolSelect?.value || undefined;
     const query = search.value || undefined;
     const matches = new Set(filterParticipants(list, { eje, rol, query }).map((p) => p.el));
     let visibleCount = 0;
@@ -37,12 +39,15 @@ if (search && ejeSelect && rolSelect && grid && emptyState) {
       if (visible) visibleCount += 1;
     }
     for (const group of grid.querySelectorAll('[data-group]')) {
-      group.hidden = !group.querySelector('[data-participant]:not([hidden])');
+      const empty = !group.querySelector('[data-participant]:not([hidden])');
+      const message = group.querySelector('[data-group-empty]');
+      if (message) message.hidden = !empty;
+      else group.hidden = empty;
     }
-    emptyState.hidden = visibleCount !== 0;
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
   };
 
   search.addEventListener('input', applyFilters);
   ejeSelect.addEventListener('change', applyFilters);
-  rolSelect.addEventListener('change', applyFilters);
+  rolSelect?.addEventListener('change', applyFilters);
 }

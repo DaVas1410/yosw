@@ -17,6 +17,10 @@ describe('filterParticipants', () => {
   it('searches name case-insensitively', () => {
     expect(filterParticipants(list, { query: 'ana' }).map(p => p.id)).toEqual(['a', 'c']);
   });
+  it('ignores accents in the query and the name', () => {
+    expect(filterParticipants(list, { query: 'lucia' }).map(p => p.id)).toEqual(['c']);
+    expect(filterParticipants(list, { query: 'LUCÍA' }).map(p => p.id)).toEqual(['c']);
+  });
   it('returns all with no criteria', () => {
     expect(filterParticipants(list, {})).toHaveLength(3);
   });
