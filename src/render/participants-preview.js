@@ -5,9 +5,21 @@ import { t } from '../lib/i18n.js';
 import { renderParticipantCard, participantCardStyle } from './participant-card.js';
 
 export function renderParticipantsPreview({ lang, participants, ejes }) {
-  // Home teaser: speakers with a photo read best, so those go first.
+  // Home teaser: 12 speakers (photos first) and 8 posters spread across the
+  // tracks. Both counts fill whole rows at every breakpoint (see the grid CSS).
   const people = participants.filter((p) => p.rol !== 'poster');
-  const preview = [...people.filter((p) => p.foto), ...people.filter((p) => !p.foto)].slice(0, 8);
+  const preview = [...people.filter((p) => p.foto), ...people.filter((p) => !p.foto)].slice(0, 12);
+  const allPosters = participants.filter((p) => p.rol === 'poster');
+  const byEje = new Map();
+  for (const p of allPosters.filter((x) => x.poster)) {
+    if (!byEje.has(p.eje)) byEje.set(p.eje, []);
+    byEje.get(p.eje).push(p);
+  }
+  const posterPreview = [];
+  while (posterPreview.length < 8 && [...byEje.values()].some((l) => l.length)) {
+    for (const list of byEje.values()) if (list.length && posterPreview.length < 8) posterPreview.push(list.shift());
+  }
+  const card = (p) => renderParticipantCard({ lang, participant: p, ejes });
 
   return `<section id="participantes" class="section participantes-preview">
   <div class="section__wrap">
@@ -19,9 +31,18 @@ export function renderParticipantsPreview({ lang, participants, ejes }) {
 
     ${
       preview.length > 0
-        ? `<div class="participantes-preview__grid" data-reveal-stagger>
-      ${preview.map((p) => renderParticipantCard({ lang, participant: p, ejes })).join('\n      ')}
+        ? `<h3 class="participantes-preview__sub" data-reveal>${t(lang, 'participantes.ponentes_heading')} <span>${people.length}</span></h3>
+    <div class="participantes-preview__grid" data-reveal-stagger>
+      ${preview.map(card).join('\n      ')}
+    </div>
+    ${
+      posterPreview.length > 0
+        ? `<h3 class="participantes-preview__sub" data-reveal>${t(lang, 'participantes.posters_heading')} <span>${allPosters.length}</span></h3>
+    <div class="participantes-preview__grid participantes-preview__grid--posters" data-reveal-stagger>
+      ${posterPreview.map(card).join('\n      ')}
     </div>`
+        : ''
+    }`
         : `<div class="card participantes-preview__empty" data-reveal>
       <span class="participantes-preview__empty-icon">✦</span>
       <p>${t(lang, 'stats.soon')}</p>
@@ -38,10 +59,39 @@ export function renderParticipantsPreview({ lang, participants, ejes }) {
 
 ${participantCardStyle}
 <style>
+  .participantes-preview__sub {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    margin: calc(var(--space) * 4) 0 calc(var(--space) * 2);
+    font-family: var(--font-display);
+    font-size: clamp(1.15rem, 2vw, 1.4rem);
+    font-weight: 700;
+  }
+  .participantes-preview__sub span {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-muted);
+  }
+  /* 12 speakers: 6 / 4 / 3 per row; 8 posters: 8 / 4 per row. Phones show 6 + 4. */
   .participantes-preview__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: calc(var(--space) * 2);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 1rem;
+  }
+  .participantes-preview__grid--posters { grid-template-columns: repeat(8, minmax(0, 1fr)); }
+  @media (max-width: 1100px) {
+    .participantes-preview__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 760px) {
+    .participantes-preview__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .participantes-preview__grid--posters { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+  @media (max-width: 560px) {
+    .participantes-preview__grid,
+    .participantes-preview__grid--posters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
+    .participantes-preview__grid > :nth-child(n + 7),
+    .participantes-preview__grid--posters > :nth-child(n + 5) { display: none; }
   }
   .participantes-preview__empty {
     display: flex;

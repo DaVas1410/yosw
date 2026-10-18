@@ -90,15 +90,16 @@
   color: var(--color-muted);
 }
 .participantes-page__grid {
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  gap: 1rem;
 }
 .participantes-page__grid--posters {
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
 }
 @media (max-width: 520px) {
   .participantes-page { padding-inline: 16px; }
-  .participantes-page__grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
-  .participantes-page__grid--posters { grid-template-columns: 1fr 1fr; }
+  .participantes-page__grid,
+  .participantes-page__grid--posters { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
   .participantes-page__search,
   .participantes-page__select { flex: 1 1 100%; }
 }
