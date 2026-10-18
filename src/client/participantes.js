@@ -3,7 +3,9 @@
 // unchanged. The participant cards are already rendered server-side (see
 // src/render/participant-card.js, the source of truth for that markup) —
 // this script only toggles `hidden` on the existing DOM cards based on their
-// data-nombre/data-rol/data-eje attributes, it does not re-render markup.
+// data-nombre/data-rol/data-eje attributes (data-nombre also carries the talk
+// title and institution, so the search matches those), and hides a section
+// ([data-group]) once none of its cards are visible.
 
 import { filterParticipants } from '../lib/filter.js';
 
@@ -33,6 +35,9 @@ if (search && ejeSelect && rolSelect && grid && emptyState) {
       const visible = matches.has(item.el);
       item.el.hidden = !visible;
       if (visible) visibleCount += 1;
+    }
+    for (const group of grid.querySelectorAll('[data-group]')) {
+      group.hidden = !group.querySelector('[data-participant]:not([hidden])');
     }
     emptyState.hidden = visibleCount !== 0;
   };

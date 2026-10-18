@@ -19,7 +19,7 @@ npm test           # run the Vitest test suite (alias for `npx vitest run`)
 npm run test:watch # run Vitest in watch mode
 ```
 
-Requires Node >= 22.12.0. Deployment is via Netlify (`netlify.toml`: build `npm run build`, publish `dist`, redirect `/` → `/es/`).
+Requires Node >= 22.12.0. Deployment is via GitHub Pages only (`.github/workflows/deploy-pages.yml`: on push to `main` it runs `npm test` then `npm run build` and publishes `dist`). `netlify.toml` is unused.
 
 ## Editing content
 

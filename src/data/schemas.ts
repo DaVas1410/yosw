@@ -73,9 +73,22 @@ export const IdeathonSchema = z.object({
     perfiles: I18nStr,
   })),
 });
+// Directory of the people presenting at the congress. `rol` is one of
+// 'ponente' | 'panelista' | 'invitado' | 'poster' (labels in i18n
+// `participantes.rol.<rol>`). `foto` and `poster` are paths inside src/assets/.
+// `trabajo` is the talk/poster they present; `fecha`/`hora`/`lugar` are only
+// set for scheduled talks.
 export const ParticipantsSchema = z.array(z.object({
   id: z.string(), nombre: z.string(), rol: z.string(), eje: z.number().nullable().optional(),
   foto: z.string().optional(), enlace: z.string().optional(), bio: I18nStr.optional(),
+  institucion: Text.optional(),
+  trabajo: z.object({
+    titulo: Text,
+    fecha: z.string().optional(),
+    hora: z.string().optional(),
+    lugar: Text.optional(),
+  }).optional(),
+  poster: z.object({ thumb: z.string(), full: z.string() }).optional(),
 }));
 // Optional metadata for the logos in src/assets/sponsors/{patrocinadores,colaboradores}/,
 // keyed by "<carpeta>/<archivo>". The logo files themselves drive the walls.

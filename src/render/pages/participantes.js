@@ -11,7 +11,11 @@ import { renderParticipantCard, participantCardStyle } from '../participant-card
 export function renderParticipantesPage({ lang, data }) {
   const { participants, ejes } = data;
   const currentPath = `/${lang}/participantes`;
-  const roles = Array.from(new Set(participants.map((p) => p.rol))).sort();
+  const ROLE_ORDER = ['invitado', 'panelista', 'ponente', 'poster'];
+  const roles = ROLE_ORDER.filter((rol) => participants.some((p) => p.rol === rol));
+  const people = participants.filter((p) => p.rol !== 'poster');
+  const posters = participants.filter((p) => p.rol === 'poster');
+  const cards = (list) => list.map((p) => renderParticipantCard({ lang, participant: p, ejes })).join('\n      ');
 
   const bodyHtml = `${renderNav({ lang, currentPath })}
 
@@ -35,12 +39,28 @@ export function renderParticipantesPage({ lang, data }) {
       </select>
       <select id="participantes-rol" class="participantes-page__select" aria-label="${t(lang, 'participantes.filtrar_rol')}">
         <option value="">${t(lang, 'participantes.todos_roles')}</option>
-        ${roles.map((rol) => `<option value="${rol}">${rol}</option>`).join('\n        ')}
+        ${roles.map((rol) => `<option value="${rol}">${t(lang, `participantes.rol_plural.${rol}`)}</option>`).join('\n        ')}
       </select>
     </div>
 
-    <div id="participantes-grid" class="participantes-page__grid">
-      ${participants.map((p) => renderParticipantCard({ lang, participant: p, ejes })).join('\n      ')}
+    <div id="participantes-grid">
+      <section class="participantes-page__group" data-group>
+        <h2 class="participantes-page__subheading">${t(lang, 'participantes.ponentes_heading')} <span class="participantes-page__count">${people.length}</span></h2>
+        <div class="participantes-page__grid">
+      ${cards(people)}
+        </div>
+      </section>
+      ${
+        posters.length > 0
+          ? `<section class="participantes-page__group" data-group>
+        <h2 class="participantes-page__subheading">${t(lang, 'participantes.posters_heading')} <span class="participantes-page__count">${posters.length}</span></h2>
+        <p class="participantes-page__note">${t(lang, 'participantes.posters_lead')}</p>
+        <div class="participantes-page__grid participantes-page__grid--posters">
+      ${cards(posters)}
+        </div>
+      </section>`
+          : ''
+      }
     </div>
 
     <p id="participantes-empty" class="participantes-page__empty" hidden>
@@ -56,7 +76,7 @@ export function renderParticipantesPage({ lang, data }) {
 </main>
 
 ${participantCardStyle}
-${participants.length > 0 ? `<script src="../client/participantes.js" defer></script>` : ''}`;
+${participants.length > 0 ? `<script type="module" src="../client/participantes.js"></script>` : ''}`;
 
   return renderPageShell({
     lang,

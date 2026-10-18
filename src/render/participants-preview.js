@@ -5,7 +5,9 @@ import { t } from '../lib/i18n.js';
 import { renderParticipantCard, participantCardStyle } from './participant-card.js';
 
 export function renderParticipantsPreview({ lang, participants, ejes }) {
-  const preview = participants.slice(0, 8);
+  // Home teaser: speakers with a photo read best, so those go first.
+  const people = participants.filter((p) => p.rol !== 'poster');
+  const preview = [...people.filter((p) => p.foto), ...people.filter((p) => !p.foto)].slice(0, 8);
 
   return `<section id="participantes" class="section participantes-preview">
   <div class="section__wrap">
