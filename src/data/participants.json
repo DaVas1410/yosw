@@ -1226,7 +1226,7 @@
     "eje": 1,
     "institucion": "Yachay Tech",
     "trabajo": {
-      "titulo": "Assessment of Sparse, Dense, and Learned Adjacency Matrices in STGCN for EEG-Based Person Identification"
+      "titulo": "Does the Graph Layer Matter? Comparing GCN, ChebConv, GAT and Graph Transformer for Motor-Imagery EEG Decoding"
     },
     "poster": {
       "thumb": "participantes/posters/aldrin-josue-chavez-piguave-thumb.jpg",
