@@ -473,16 +473,16 @@
                 {
                   "hora": "11:15",
                   "fin": "11:30",
-                  "speaker": "Darío J. Cabascango",
+                  "speaker": "Gema González",
                   "tema": {
-                    "es": "Diseño in silico y perfil termodinámico de nanomateriales: un marco computacional abierto para la validación pre-empírica",
-                    "en": "In Silico Design and Thermodynamic Profiling of Nanomaterials: An Open-Source Computational Framework for Pre-Empirical Validation"
+                    "es": "Ingeniería de la materia a la nanoescala: comprender lo invisible para crear lo posible",
+                    "en": "Engineering Matter at the Nanoscale: Understanding the Invisible to Create the Possible"
                   },
                   "institucion": "Yachay Tech",
                   "eje": 5,
                   "descripcion": {
-                    "es": "Flujo de trabajo open-source (dinámica molecular + DFT) para diseñar y evaluar nanomateriales antes de sintetizarlos.",
-                    "en": "An open-source workflow (molecular dynamics + DFT) to design and evaluate nanomaterials before synthesising them."
+                    "es": "Cómo entender y manipular la materia a escala nanométrica permite diseñar materiales con propiedades nuevas.",
+                    "en": "How understanding and manipulating matter at the nanometre scale lets us design materials with new properties."
                   }
                 },
                 {
