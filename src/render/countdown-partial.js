@@ -5,7 +5,7 @@
 
 import { t } from '../lib/i18n.js';
 
-export function renderCountdownPartial({ lang, target, end }) {
+export function renderCountdownPartial({ lang, target, end, stream }) {
   const labels = {
     d: t(lang, 'countdown.days'),
     h: t(lang, 'countdown.hours'),
@@ -20,6 +20,10 @@ export function renderCountdownPartial({ lang, target, end }) {
     <span class="countdown__pill"><i aria-hidden="true"></i> ${t(lang, 'countdown.live.badge')}</span>
     <span class="countdown__day" data-live-day data-template="${t(lang, 'countdown.live.day')}"></span>
     <p class="countdown__headline">${t(lang, 'countdown.live.headline')}</p>
+    ${stream ? `<a class="btn btn-primary countdown__stream" href="${stream}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
+      ${t(lang, 'countdown.live.stream')}
+    </a>` : ''}
   </div>
   <p class="countdown__done">${t(lang, 'countdown.done')}</p>
   <div class="countdown__units">
@@ -95,6 +99,14 @@ export function renderCountdownPartial({ lang, target, end }) {
     margin: 0;
     font-family: var(--font-body);
     color: var(--color-muted);
+  }
+  .countdown__stream {
+    gap: 0.5rem;
+  }
+  .countdown__stream svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
   }
   .countdown__caption {
     margin: 0.6rem 0 0;

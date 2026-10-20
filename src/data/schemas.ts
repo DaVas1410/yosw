@@ -106,6 +106,7 @@ export const SponsorsSchema = z.array(z.object({
 export const ConfigSchema = z.object({
   eventStart: z.string(),
   eventEnd: z.string().optional(),
+  liveStreamUrl: z.string().optional(),
   venue: I18nStr,
   forms: z.object({ register: z.string(), ideathon: z.string().optional() }),
   social: z.object({
