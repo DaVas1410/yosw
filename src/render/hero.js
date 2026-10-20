@@ -44,7 +44,7 @@ export function renderHero({ lang, config }) {
         <a href="#registro" class="btn btn-primary">${t(lang, 'hero.cta')}</a>
         <a href="#programa" class="btn btn-ghost">${t(lang, 'hero.cta.programa')}</a>
       </div>
-      <div class="hero__countdown hero-seq" style="--seq: ${seqAfterTitle + 4}">${renderCountdownPartial({ lang, target: config.eventStart })}</div>
+      <div class="hero__countdown hero-seq" style="--seq: ${seqAfterTitle + 4}">${renderCountdownPartial({ lang, target: config.eventStart, end: config.eventEnd })}</div>
     </div>
 
     <figure class="hero__visual">

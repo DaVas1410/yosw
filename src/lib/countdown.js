@@ -8,3 +8,20 @@ export function breakdown(ms) {
     s: s % 60,
   };
 }
+
+const DAY_MS = 86400000;
+// Ecuador (UTC-5, no DST): event days roll over at local midnight.
+const ECUADOR_OFFSET_MS = -5 * 3600000;
+
+// 'before' until start, 'live' while start <= now < end, 'after' from end on.
+export function eventPhase(now, start, end) {
+  if (now < start) return 'before';
+  if (now < end) return 'live';
+  return 'after';
+}
+
+// 1-based event day in Ecuador local time (day 1 = the start's calendar date).
+export function eventDay(now, start) {
+  const localDay = (ms) => Math.floor((ms + ECUADOR_OFFSET_MS) / DAY_MS);
+  return localDay(now) - localDay(start) + 1;
+}
