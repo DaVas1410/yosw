@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { breakdown, eventPhase, eventDay } from './countdown';
+import { breakdown, eventPhase, eventDay, youtubeId } from './countdown';
 
 describe('breakdown', () => {
   it('splits ms into d/h/m/s', () => {
@@ -33,5 +33,18 @@ describe('eventDay', () => {
     expect(eventDay(Date.parse('2026-10-19T23:59:00-05:00'), start)).toBe(1);
     expect(eventDay(Date.parse('2026-10-20T00:00:00-05:00'), start)).toBe(2);
     expect(eventDay(Date.parse('2026-10-24T11:00:00-05:00'), start)).toBe(6);
+  });
+});
+
+describe('youtubeId', () => {
+  it('reads the id from live, watch, short and embed URLs', () => {
+    expect(youtubeId('https://www.youtube.com/live/fn8SnrXkD7Q?si=abc')).toBe('fn8SnrXkD7Q');
+    expect(youtubeId('https://www.youtube.com/watch?v=fn8SnrXkD7Q')).toBe('fn8SnrXkD7Q');
+    expect(youtubeId('https://youtu.be/fn8SnrXkD7Q')).toBe('fn8SnrXkD7Q');
+    expect(youtubeId('https://www.youtube.com/embed/fn8SnrXkD7Q')).toBe('fn8SnrXkD7Q');
+  });
+  it('returns null for anything else', () => {
+    expect(youtubeId('')).toBeNull();
+    expect(youtubeId('https://example.com')).toBeNull();
   });
 });

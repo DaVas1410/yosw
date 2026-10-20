@@ -25,3 +25,10 @@ export function eventDay(now, start) {
   const localDay = (ms) => Math.floor((ms + ECUADOR_OFFSET_MS) / DAY_MS);
   return localDay(now) - localDay(start) + 1;
 }
+
+// Video id from a YouTube watch / live / youtu.be / embed URL, or null.
+export function youtubeId(url) {
+  if (!url) return null;
+  const m = String(url).match(/(?:youtu\.be\/|youtube\.com\/(?:live\/|embed\/|watch\?(?:.*&)?v=))([\w-]{11})/);
+  return m ? m[1] : null;
+}

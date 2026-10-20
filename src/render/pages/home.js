@@ -1,11 +1,12 @@
 // Ported from src/pages/[lang]/index.astro.
-// Assembles the page sections in order: Nav, Hero, Marquee, Cifras, Invitados, About,
+// Assembles the page sections in order: Nav, Hero, LiveStream, Marquee, Cifras, Invitados, About,
 // EjesSection, Ideathon, ProgramTimeline, ParticipantsPreview, Registration,
 // Sponsors, Sede, Faq, Footer — wrapped in the Base page shell.
 
 import { renderPageShell } from '../page-shell.js';
 import { renderNav } from '../nav.js';
 import { renderHero } from '../hero.js';
+import { renderLiveStream } from '../live-stream.js';
 import { renderMarquee } from '../marquee.js';
 import { renderCifras } from '../cifras.js';
 import { renderInvitados } from '../invitados.js';
@@ -27,6 +28,7 @@ export function renderHomePage({ lang, data }) {
   const bodyHtml = `${renderNav({ lang, currentPath })}
 <main id="main">
 ${renderHero({ lang, config })}
+${renderLiveStream({ lang, config })}
 ${renderMarquee({ lang })}
 ${renderCifras({ lang, cifras })}
 ${renderInvitados({ lang, invitados, calendario })}

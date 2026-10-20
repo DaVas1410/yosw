@@ -6,6 +6,8 @@
 import { t } from '../lib/i18n.js';
 
 export function renderCountdownPartial({ lang, target, end, stream }) {
+  // stream: truthy when a live stream is configured; the button jumps to the
+  // embedded player in the #en-vivo section.
   const labels = {
     d: t(lang, 'countdown.days'),
     h: t(lang, 'countdown.hours'),
@@ -20,7 +22,7 @@ export function renderCountdownPartial({ lang, target, end, stream }) {
     <span class="countdown__pill"><i aria-hidden="true"></i> ${t(lang, 'countdown.live.badge')}</span>
     <span class="countdown__day" data-live-day data-template="${t(lang, 'countdown.live.day')}"></span>
     <p class="countdown__headline">${t(lang, 'countdown.live.headline')}</p>
-    ${stream ? `<a class="btn btn-primary countdown__stream" href="${stream}" target="_blank" rel="noopener">
+    ${stream ? `<a class="btn btn-primary countdown__stream" href="#en-vivo">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"></path></svg>
       ${t(lang, 'countdown.live.stream')}
     </a>` : ''}
