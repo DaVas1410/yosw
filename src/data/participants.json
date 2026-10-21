@@ -653,6 +653,27 @@
     "foto": "participantes/fotos/alex-palma-cando.jpg"
   },
   {
+    "id": "antonio-diaz-barrios",
+    "nombre": "Antonio Díaz Barrios",
+    "rol": "ponente",
+    "trabajo": {
+      "titulo": {
+        "es": "Experiencias en el desarrollo y comercialización a escala internacional de una tecnología química",
+        "en": "Experiences in the Development and International Commercialization of a Chemical Technology"
+      },
+      "fecha": "2026-10-21",
+      "hora": "14:00",
+      "lugar": {
+        "es": "Hall Senescyt",
+        "en": "Senescyt Hall"
+      }
+    },
+    "institucion": {
+      "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+      "en": "Yachay Tech – School of Chemical Sciences & Engineering"
+    }
+  },
+  {
     "id": "fardy-padilla",
     "nombre": "Fardy Padilla",
     "rol": "ponente",

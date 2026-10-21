@@ -143,9 +143,9 @@
             "en": "Parallel Talks"
           },
           "hora_inicio": "09:30",
-          "hora_fin": "14:00",
+          "hora_fin": "14:20",
           "categoria": "charlas",
-          "nota": "Fuente: assets/ponentes_posters_abstracts_info/yosw2026_charlas.json. Hall 10:50: Daniela López reemplaza a Joel Inca.",
+          "nota": "Fuente: assets/ponentes_posters_abstracts_info/yosw2026_charlas.json. Hall 10:50: Daniela López reemplaza a Joel Inca. Hall 14:00: Antonio Díaz agregado (fuera del JSON fuente).",
           "paralelas": [
             {
               "sala": {
@@ -347,6 +347,19 @@
                   "descripcion": {
                     "es": "Diseño de polímeros microporosos conjugados (CMP) y redes orgánicas covalentes (COF) para aplicaciones energéticas y ambientales.",
                     "en": "Design of conjugated microporous polymers (CMPs) and covalent organic frameworks (COFs) for energy and environmental applications."
+                  }
+                },
+                {
+                  "hora": "14:00",
+                  "fin": "14:20",
+                  "speaker": "Antonio Díaz Barrios",
+                  "tema": {
+                    "es": "Experiencias en el desarrollo y comercialización a escala internacional de una tecnología química",
+                    "en": "Experiences in the Development and International Commercialization of a Chemical Technology"
+                  },
+                  "institucion": {
+                    "es": "Yachay Tech – Esc. Ciencias Químicas e Ingeniería",
+                    "en": "Yachay Tech – School of Chemical Sciences & Engineering"
                   }
                 }
               ]
