@@ -1161,10 +1161,22 @@
             "en": "Senescyt Hall"
           },
           "panelists": [
-            "Julio C. Chacón-Torres",
-            "Raisa Ivanova Torres Ramírez",
-            "Jefferson Moreno",
-            "Mayumi Alta"
+            {
+              "es": "Dr. Julio C. Chacón-Torres — Docente de la Escuela de Ciencias Físicas y Nanotecnología de Yachay Tech",
+              "en": "Dr. Julio C. Chacón-Torres — Faculty member, School of Physical Sciences and Nanotechnology, Yachay Tech"
+            },
+            {
+              "es": "Raisa Ivanova Torres Ramírez, PhD (c) — Docente de la Escuela de Ciencias de la Tierra, Energía y Ambiente de Yachay Tech",
+              "en": "Raisa Ivanova Torres Ramírez, PhD (c) — Faculty member, School of Earth Sciences, Energy and Environment, Yachay Tech"
+            },
+            {
+              "es": "Jefferson Moreno, PhD (c) — Docente de la Escuela de Ciencias Matemáticas y Computacionales de Yachay Tech",
+              "en": "Jefferson Moreno, PhD (c) — Faculty member, School of Mathematical and Computational Sciences, Yachay Tech"
+            },
+            {
+              "es": "Mayumi Alta — Técnica de laboratorio de la Escuela de Ciencias Agropecuarias y Ambientales de Yachay Tech",
+              "en": "Mayumi Alta — Laboratory technician, School of Agricultural and Environmental Sciences, Yachay Tech"
+            }
           ]
         },
         {
