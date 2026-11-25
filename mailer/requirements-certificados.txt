@@ -1,0 +1,6 @@
+pymupdf
+pyhanko
+segno
+python-dotenv
+openpyxl
+tqdm

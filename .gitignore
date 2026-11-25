@@ -61,3 +61,7 @@ assets/ideathon.jpeg
 # Configuración local de Claude Code
 .claude/launch.json
 .claude/settings.local.json
+
+# entornos de Python
+.venv/
+__pycache__/
