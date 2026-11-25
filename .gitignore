@@ -35,3 +35,28 @@ mailer/__pycache__/
 
 # notebook outputs contain real recipient names/emails from test runs — never commit
 mailer/invite.ipynb
+
+# Material operativo del evento con datos personales (correos, cédulas,
+# inscripciones, certificados). El repo es público: nunca commitear esto.
+*.xlsx
+*.csv
+!.claude/skills/**/*.csv
+*.zip
+certificados/
+correos_ideaton/
+posters_evaluacion/
+assets/ponentes_posters_abstracts_info/
+correo_*.txt
+Mentores.txt
+cronograma_grupos_investigacion.md
+yosw-mailer-handoff-AGENTS.md
+
+# Assets de diseño crudos (pesados, no los usa el build)
+assets/new_assets/
+assets/sponsors/
+assets/sponsors main/
+assets/flyer_reminder.png
+assets/ideathon.jpeg
+
+# Configuración local de Claude Code
+.claude/launch.json
